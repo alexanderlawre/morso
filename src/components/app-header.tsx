@@ -11,10 +11,11 @@ export function AppHeader({
   image?: string | null;
 }) {
   return (
-    <header className="glass-surface sticky top-0 z-30 grid grid-cols-[1fr_auto_1fr] items-center border-x-0 border-t-0 px-6 py-4">
-      <div />
-      <AnimatedLogo />
-      <div className="flex items-center justify-end gap-4">
+    <header className="glass-surface sticky top-0 z-30 relative flex items-center justify-end border-x-0 border-t-0 px-6 py-4">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+        <AnimatedLogo />
+      </div>
+      <div className="flex items-center gap-4">
         <ProfileMenu name={name} image={image} isAdmin={isAdmin} />
       </div>
     </header>
