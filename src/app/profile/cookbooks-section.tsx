@@ -48,7 +48,7 @@ export function CookbooksSection({ cookbooks }: { cookbooks: CookbookSummary[] }
 
   return (
     <div className="mt-10">
-      <h2 className="text-lg font-semibold text-[#101010]">My cookbooks</h2>
+      <h2 className="text-lg font-bold text-[#101010]">My cookbooks</h2>
       <p className="mt-1 text-sm text-[#6B7370]">
         Public — visible to other signed-in users. Only recipes you&apos;ve cooked can be added.
       </p>

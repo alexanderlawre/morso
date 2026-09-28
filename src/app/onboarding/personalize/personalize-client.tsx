@@ -183,7 +183,7 @@ export function PersonalizeClient({ foodGroups }: { foodGroups: FoodGroup[] }) {
       }
     >
       <div className="mb-4 rounded-2xl bg-[#EDF3EF] p-4">
-        <p className="text-sm font-semibold text-[#101010]">Use → Signal → Sharper picks</p>
+        <p className="text-sm font-bold text-[#101010]">Use → Signal → Sharper picks</p>
         <p className="mt-1 text-xs text-[#6B7370]">
           These sliders are just a starting point — Umami keeps learning from what you actually
           cook.

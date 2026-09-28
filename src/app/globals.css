@@ -9,6 +9,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-body);
+  --font-serif: var(--font-title);
 }
 
 /* This app only has one, light theme — no component has dark-mode styling
@@ -41,16 +42,25 @@ html {
   }
 }
 
-/* Headers/titles app-wide use STIX Two Text (loaded as --font-title in
-   layout.tsx) instead of the body font, applied once here rather than
-   editing every h1/h2/h3 call site individually. Always bold
-   (font-weight: 700, the only cut loaded), regardless of whatever
-   font-semibold/font-bold utility class each individual heading already
-   has — a true bold cut, not synthesized. */
+/* True page titles (always h1 app-wide — recipe detail, dashboard,
+   cook later, admin pages, profile, personalization, onboarding, etc.)
+   use STIX Two Text (loaded as --font-title in layout.tsx) instead of
+   the body font. Always bold (font-weight: 700, the only cut loaded),
+   regardless of whatever font-semibold/font-bold utility class the
+   element already has — a true bold cut, not synthesized.
+
+   h2/h3 intentionally do NOT get this treatment: in-content section
+   labels ("Ingredients", "Method", "Nutrition", modal titles, settings
+   section headers) are h2/h3 but should read as Poppins Bold
+   subheaders, not serif titles — they fall through to the body font
+   here and get their Bold weight from an explicit font-bold utility at
+   the call site instead. The two exceptions are the recipe-title h3s
+   in recipe-card-shell.tsx and dashboard-client.tsx, which opt back
+   into the serif treatment via the font-serif utility (mapped to
+   --font-title above) since a recipe's title should look like a title
+   even in card view. */
 @layer base {
-  h1,
-  h2,
-  h3 {
+  h1 {
     font-family: var(--font-title), ui-serif, serif;
     font-weight: 700;
   }

@@ -94,7 +94,7 @@ export function SubmissionsClient({
   return (
     <div className="space-y-8">
       <div>
-        <h2 className="mb-2 text-sm font-semibold text-[#101010]">
+        <h2 className="mb-2 text-sm font-bold text-[#101010]">
           Pending ({pending.length})
         </h2>
         {pending.length === 0 ? (
@@ -129,7 +129,7 @@ export function SubmissionsClient({
 
       {recent.length > 0 && (
         <div>
-          <h2 className="mb-2 text-sm font-semibold text-[#101010]">Recently reviewed</h2>
+          <h2 className="mb-2 text-sm font-bold text-[#101010]">Recently reviewed</h2>
           <div className="space-y-2">
             {recent.map((row) => (
               <div
@@ -162,7 +162,7 @@ export function SubmissionsClient({
         <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/40 p-4 sm:p-8">
           <div className="w-full max-w-2xl rounded-2xl bg-[#EFEFEF] p-6 shadow-xl">
             <div className="flex items-center justify-between">
-              <h2 className="text-lg font-semibold text-[#101010]">Review submission</h2>
+              <h2 className="text-lg font-bold text-[#101010]">Review submission</h2>
               <button
                 type="button"
                 onClick={() => setReviewing(null)}

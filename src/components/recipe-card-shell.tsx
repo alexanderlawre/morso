@@ -82,7 +82,7 @@ export function RecipeCardShell({
             same height regardless of title length — a long title
             wrapping to a 2nd/3rd line was pushing cards out of
             alignment with their neighbors in the grid. */}
-        <h3 className="mt-1 truncate text-lg font-semibold text-[#101010]">
+        <h3 className="mt-1 truncate font-serif text-lg font-bold text-[#101010]">
           {recipe.title}
         </h3>
         {recipe.ingredientItems.length > 0 && (
@@ -96,7 +96,7 @@ export function RecipeCardShell({
             {emblems.map((diet) => (
               <span
                 key={diet}
-                className={`rounded-full px-2 py-1 text-[11px] font-extralight ${dietEmblemClass(diet)}`}
+                className={`rounded-full px-2 py-1 text-[11px] font-medium ${dietEmblemClass(diet)}`}
               >
                 {diet}
               </span>

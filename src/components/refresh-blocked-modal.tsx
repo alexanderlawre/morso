@@ -45,7 +45,7 @@ export function RefreshBlockedModal({
 
   return (
     <SheetModal open={open} onClose={onClose}>
-      <p className="text-lg font-semibold text-[#101010]">That&apos;s your refresh for now</p>
+      <p className="text-lg font-bold text-[#101010]">That&apos;s your refresh for now</p>
       <p className="mt-2 text-sm text-[#6B7370]">
         Fresh picks land automatically at the next window — or go unlimited with Umami+.
       </p>

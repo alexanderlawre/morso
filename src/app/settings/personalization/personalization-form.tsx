@@ -170,7 +170,7 @@ export function PersonalizationForm({
         </p>
 
         <div className="mt-8 rounded-2xl border border-[#E8E6E0] bg-white p-5 shadow-soft">
-          <h3 className="text-sm font-semibold text-[#101010]">How Umami learns you</h3>
+          <h3 className="text-sm font-bold text-[#101010]">How Umami learns you</h3>
           <p className="mt-1 text-xs text-[#6B7370]">
             Every rating, save, and skip below feeds your taste profile — recommendations sharpen
             the more you use Umami.
@@ -185,7 +185,7 @@ export function PersonalizationForm({
         </div>
 
         <div className="mt-6 rounded-2xl border border-[#E8E6E0] bg-white p-5 shadow-soft">
-          <h3 className="text-sm font-semibold text-[#101010]">Any allergies?</h3>
+          <h3 className="text-sm font-bold text-[#101010]">Any allergies?</h3>
           <p className="mt-1 text-xs text-[#6B7370]">
             Pick as many as apply. This is the main safeguard that keeps unsafe recipes off your
             dashboard.
@@ -221,7 +221,7 @@ export function PersonalizationForm({
         </div>
 
         <div className="mt-6 rounded-2xl border border-[#E8E6E0] bg-white p-5 shadow-soft">
-          <h3 className="text-sm font-semibold text-[#101010]">Any diets that apply to you?</h3>
+          <h3 className="text-sm font-bold text-[#101010]">Any diets that apply to you?</h3>
           <p className="mt-1 text-xs text-[#6B7370]">
             Pick as many as you like. No restrictions is fine too, you can leave this blank.
           </p>
@@ -254,7 +254,7 @@ export function PersonalizationForm({
         </div>
 
         <div className="mt-6 rounded-2xl border border-[#E8E6E0] bg-white p-5 shadow-soft">
-          <h3 className="text-sm font-semibold text-[#101010]">How much heat can you handle?</h3>
+          <h3 className="text-sm font-bold text-[#101010]">How much heat can you handle?</h3>
           <p className="mt-1 text-xs text-[#6B7370]">
             We won&rsquo;t surface anything spicier than this. Recipes we haven&rsquo;t rated for
             heat still show up either way.
@@ -273,7 +273,7 @@ export function PersonalizationForm({
         </div>
 
         <div className="mt-6 rounded-2xl border border-[#E8E6E0] bg-white p-5 shadow-soft">
-          <h3 className="text-sm font-semibold text-[#101010]">How much do you eat these?</h3>
+          <h3 className="text-sm font-bold text-[#101010]">How much do you eat these?</h3>
           <p className="mt-1 text-xs text-[#6B7370]">
             Rarely to constantly. This nudges which recipes we show you first, it never rules
             anything out.

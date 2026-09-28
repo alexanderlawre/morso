@@ -259,7 +259,7 @@ function RecipeCard({
           onSavedChange={(saved) => onSavedChange(recipe.id, saved)}
         />
         {recipe.isDiscovery ? (
-          <span className="absolute right-3 top-3 rounded-full bg-[#1B4332] px-2.5 py-1 text-[11px] font-extralight text-white shadow-sm">
+          <span className="absolute right-3 top-3 rounded-full bg-[#1B4332] px-2.5 py-1 text-[11px] font-medium text-white shadow-sm">
             Something new
           </span>
         ) : null}
@@ -273,7 +273,7 @@ function RecipeCard({
             height regardless of title length — a long title wrapping to a
             2nd/3rd line was pushing cards out of alignment with their
             neighbors in the grid. */}
-        <h3 className="mt-1 truncate text-lg font-semibold text-[#101010]">
+        <h3 className="mt-1 truncate font-serif text-lg font-bold text-[#101010]">
           {recipe.title}
         </h3>
         {recipe.ingredientItems.length > 0 && (
@@ -289,7 +289,7 @@ function RecipeCard({
             {emblems.map((diet) => (
               <span
                 key={diet}
-                className={`rounded-full px-2 py-1 text-[11px] font-extralight ${dietEmblemClass(diet)}`}
+                className={`rounded-full px-2 py-1 text-[11px] font-medium ${dietEmblemClass(diet)}`}
               >
                 {diet}
               </span>
@@ -510,7 +510,7 @@ function FilterBar({
             <div className="mt-3 space-y-3 rounded-2xl border border-[#E8E6E0] bg-white p-4 shadow-soft">
               {foodGroupTags.length > 0 && (
                 <div>
-                  <p className="mb-1.5 text-[11px] font-semibold uppercase tracking-wide text-[#6B7370]">
+                  <p className="mb-1.5 text-[11px] font-extralight uppercase tracking-wide text-[#6B7370]">
                     More of
                   </p>
                   <div className="flex flex-wrap gap-2">
@@ -527,7 +527,7 @@ function FilterBar({
               )}
               {attrTags.length > 0 && (
                 <div>
-                  <p className="mb-1.5 text-[11px] font-semibold uppercase tracking-wide text-[#6B7370]">
+                  <p className="mb-1.5 text-[11px] font-extralight uppercase tracking-wide text-[#6B7370]">
                     Tags
                   </p>
                   <div className="flex flex-wrap gap-2">
@@ -1092,7 +1092,7 @@ export function DashboardClient({
         <div className="mt-10 space-y-8">
           {cookbooksState.map((cookbook) => (
             <div key={cookbook.id}>
-              <h2 className="text-lg font-semibold text-[#101010]">{cookbook.name}</h2>
+              <h2 className="text-lg font-bold text-[#101010]">{cookbook.name}</h2>
               <div className="mt-3 flex gap-4 overflow-x-auto pb-2">
                 {cookbook.recipes.map((recipe) => (
                   <div key={recipe.id} className="w-72 shrink-0">

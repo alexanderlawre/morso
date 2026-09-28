@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Roboto_Mono, STIX_Two_Text } from "next/font/google";
+import { Poppins, STIX_Two_Text } from "next/font/google";
 import "./globals.css";
 import { auth } from "@/auth";
 import { AuthSessionProvider } from "@/components/session-provider";
@@ -7,14 +7,17 @@ import { AppHeader } from "@/components/app-header";
 import { TimezoneSync } from "@/components/timezone-sync";
 import { NativeBootstrap } from "@/components/native-bootstrap";
 
-// Body copy app-wide. 400 = regular body text, 200 = the ExtraLight cut
-// used (via the `font-extralight` utility) for small subtext — cuisine
-// tags, badges, metadata labels. 700 kept for any existing
-// font-semibold/font-bold body text to render as a true bold cut.
-const robotoMono = Roboto_Mono({
+// Body copy app-wide. Weight scale: 200 ExtraLight (subtext — metadata,
+// small labels), 400 Regular (body paragraphs), 500 Medium (tags/chip
+// callouts), 600 SemiBold (emphasized inline data — nutrition numbers,
+// stat figures — not structural headings), 700 Bold (subheaders — in-
+// content section labels like "Ingredients"/"Method"; true page/recipe
+// titles use the separate serif --font-title instead). All five loaded
+// as real cuts so nothing gets browser-synthesized.
+const poppins = Poppins({
   variable: "--font-body",
   subsets: ["latin"],
-  weight: ["200", "400", "700"],
+  weight: ["200", "400", "500", "600", "700"],
 });
 
 // Page titles/section headers (h1-h3) app-wide. Bold only — headers are
@@ -48,7 +51,7 @@ export default async function RootLayout({
   return (
     <html
       lang="en"
-      className={`${robotoMono.variable} ${stixTwoText.variable} h-full antialiased`}
+      className={`${poppins.variable} ${stixTwoText.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-[#EFEFEF] text-[#101010]">
         <AuthSessionProvider session={session}>

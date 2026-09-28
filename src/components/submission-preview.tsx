@@ -47,11 +47,11 @@ export function SubmissionPreview({ submission }: { submission: SubmissionPrevie
       )}
 
       <div>
-        <h3 className="text-lg font-semibold text-[#101010]">{submission.title}</h3>
+        <h3 className="text-lg font-bold text-[#101010]">{submission.title}</h3>
         <p className="mt-1 text-sm text-[#6B7370]">{submission.shortDescription}</p>
       </div>
 
-      <div className="flex flex-wrap gap-2 text-xs font-extralight text-[#6B7370]">
+      <div className="flex flex-wrap gap-2 text-xs font-medium text-[#6B7370]">
         <span className="rounded-full border border-[#E8E6E0] px-2 py-1">{submission.cuisine.name}</span>
         <span className="rounded-full border border-[#E8E6E0] px-2 py-1">{submission.difficulty}</span>
         <span className="rounded-full border border-[#E8E6E0] px-2 py-1">{submission.effortTier}</span>
@@ -67,7 +67,7 @@ export function SubmissionPreview({ submission }: { submission: SubmissionPrevie
       </div>
 
       {(submission.dietTags.length > 0 || submission.allergenTags.length > 0) && (
-        <div className="flex flex-wrap gap-2 text-xs font-extralight">
+        <div className="flex flex-wrap gap-2 text-xs font-medium">
           {submission.dietTags.map((d) => (
             <span key={d.id} className="rounded-full bg-[#EDF3EF] px-2 py-1 text-[#1B4332]">
               {d.name}
@@ -82,7 +82,7 @@ export function SubmissionPreview({ submission }: { submission: SubmissionPrevie
       )}
 
       {submission.attributes.length > 0 && (
-        <div className="flex flex-wrap gap-2 text-xs font-extralight text-[#6B7370]">
+        <div className="flex flex-wrap gap-2 text-xs font-medium text-[#6B7370]">
           {submission.attributes.map((a) => (
             <span key={a} className="rounded-full border border-[#E8E6E0] px-2 py-1">
               {attributeLabel(a)}

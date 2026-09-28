@@ -316,7 +316,7 @@ export function RecipeEditor({
     <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/40 p-4 sm:p-8">
       <div className="w-full max-w-2xl rounded-2xl bg-[#EFEFEF] p-6 shadow-xl">
         <div className="flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-[#101010]">
+          <h2 className="text-lg font-bold text-[#101010]">
             {isCreate ? "New recipe" : `Edit ${recipe!.title}`}
           </h2>
           <button

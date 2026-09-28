@@ -490,7 +490,7 @@ export function RecipesClient({
               open={expandAll}
               className="group rounded-2xl border border-[#E8E6E0] bg-white"
             >
-              <summary className="flex cursor-pointer list-none items-center justify-between px-4 py-3 text-sm font-semibold text-[#101010]">
+              <summary className="flex cursor-pointer list-none items-center justify-between px-4 py-3 text-sm font-bold text-[#101010]">
                 <span className="flex items-center gap-2">
                   {label}
                   {hasUnverified && (
@@ -530,7 +530,7 @@ export function RecipesClient({
           open={expandAll}
           className="group rounded-2xl border border-[#E8E6E0] bg-white"
         >
-          <summary className="flex cursor-pointer list-none items-center justify-between px-4 py-3 text-sm font-semibold text-[#101010]">
+          <summary className="flex cursor-pointer list-none items-center justify-between px-4 py-3 text-sm font-bold text-[#101010]">
             <span>Archived</span>
             <span className="text-xs font-normal text-[#6B7370]">
               {archived.length} recipe{archived.length === 1 ? "" : "s"}

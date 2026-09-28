@@ -98,7 +98,7 @@ export default async function RecipeDetailPage({
     <main className="mx-auto w-full max-w-2xl flex-1 px-6 py-10">
       {allergyWarning && (
         <div className="mb-6 rounded-xl border border-[#B23A32] bg-[#FBEBE9] px-4 py-3 text-sm text-[#B23A32]">
-          <p className="font-semibold">Possible allergen conflict</p>
+          <p className="font-bold">Possible allergen conflict</p>
           <p className="mt-1">
             This recipe may conflict with an allergy on your profile, or hasn&apos;t been
             verified against your declared allergies yet. Please review the ingredients

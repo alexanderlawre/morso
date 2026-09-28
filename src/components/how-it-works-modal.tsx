@@ -30,7 +30,7 @@ export function HowItWorksModal({
 }) {
   return (
     <SheetModal open={open} onClose={onClose}>
-      <p className="text-lg font-semibold text-[#101010]">How Umami learns you</p>
+      <p className="text-lg font-bold text-[#101010]">How Umami learns you</p>
       <p className="mt-2 text-sm text-[#6B7370]">
         There&apos;s no long survey to get right. The more you use Umami, the better it gets.
       </p>
@@ -45,7 +45,7 @@ export function HowItWorksModal({
               {i < STEPS.length - 1 && <div className="mt-1 w-px flex-1 bg-[#E8E6E0]" />}
             </div>
             <div className="pb-1">
-              <p className="text-sm font-semibold text-[#101010]">{step.title}</p>
+              <p className="text-sm font-bold text-[#101010]">{step.title}</p>
               <p className="mt-0.5 text-xs text-[#6B7370]">{step.caption}</p>
             </div>
           </div>

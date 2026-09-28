@@ -107,7 +107,7 @@ function CatalogSection({
 
   return (
     <section className="rounded-2xl border border-[#E8E6E0] bg-white p-5">
-      <h2 className="text-lg font-semibold text-[#101010]">{title}</h2>
+      <h2 className="text-lg font-bold text-[#101010]">{title}</h2>
       <p className="mt-0.5 text-xs text-[#6B7370]">{description}</p>
 
       <ul className="mt-4 space-y-2">
@@ -247,7 +247,7 @@ function FoodGroupSection({ items }: { items: FoodGroupRow[] }) {
 
   return (
     <section className="rounded-2xl border border-[#E8E6E0] bg-white p-5">
-      <h2 className="text-lg font-semibold text-[#101010]">Food groups</h2>
+      <h2 className="text-lg font-bold text-[#101010]">Food groups</h2>
       <p className="mt-0.5 text-xs text-[#6B7370]">
         Used for recipe profiling and the onboarding/settings taste sliders. Note: the sliders
         cluster food groups into ~12 broad categories defined in code — a newly added group is

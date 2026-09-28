@@ -103,7 +103,7 @@ export function PreferencesClient({
       }
     >
       <div>
-        <h3 className="text-sm font-semibold text-[#101010]">Any allergies?</h3>
+        <h3 className="text-sm font-bold text-[#101010]">Any allergies?</h3>
         <p className="mt-1 text-xs text-[#6B7370]">
           Choose a category, then check off the specific items that apply. This is the main
           safeguard that keeps unsafe recipes off your dashboard.
@@ -138,7 +138,7 @@ export function PreferencesClient({
       </div>
 
       <div className="mt-8 border-t border-[#E8E6E0] pt-6">
-        <h3 className="text-sm font-semibold text-[#101010]">Any diets that apply to you?</h3>
+        <h3 className="text-sm font-bold text-[#101010]">Any diets that apply to you?</h3>
         <p className="mt-1 text-xs text-[#6B7370]">
           Pick as many as you like. No restrictions is fine too, you can leave this blank.
         </p>

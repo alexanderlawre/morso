@@ -242,7 +242,7 @@ export function ProfileClient({
         <CookbooksSection cookbooks={cookbooks} />
 
         <div className="mt-10">
-          <h2 className="text-lg font-semibold text-[#101010]">Cook archive</h2>
+          <h2 className="text-lg font-bold text-[#101010]">Cook archive</h2>
           <p className="mt-1 text-sm text-[#6B7370]">
             Private — only you can see this. Recipes you&apos;ve marked as cooked show up here; add
             any of them to a public cookbook above.

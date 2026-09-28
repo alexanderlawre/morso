@@ -22,7 +22,7 @@ export function CollapsibleSection({
         type="button"
         onClick={() => setExpanded((v) => !v)}
         aria-expanded={expanded}
-        className="flex w-full cursor-pointer items-center justify-between px-5 py-4 text-sm font-semibold text-[#101010]"
+        className="flex w-full cursor-pointer items-center justify-between px-5 py-4 text-sm font-bold text-[#101010]"
       >
         <span>{title}</span>
         <span className="text-xs font-normal text-[#6B7370]">{expanded ? "Hide" : "Show"}</span>

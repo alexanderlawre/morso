@@ -251,7 +251,7 @@ export function CookbookManageClient({
 
         {availableToAdd.length > 0 && (
           <div className="mt-8">
-            <h2 className="text-lg font-semibold text-[#101010]">Add a recipe you&apos;ve cooked</h2>
+            <h2 className="text-lg font-bold text-[#101010]">Add a recipe you&apos;ve cooked</h2>
             <div className="mt-3 space-y-2">
               {availableToAdd.map((recipe) => (
                 <div
@@ -274,7 +274,7 @@ export function CookbookManageClient({
         )}
 
         <div className="mt-8">
-          <h2 className="text-lg font-semibold text-[#101010]">Recipes</h2>
+          <h2 className="text-lg font-bold text-[#101010]">Recipes</h2>
           {recipes.length === 0 ? (
             <p className="mt-4 text-sm text-[#6B7370]">
               No recipes yet. Add one from your cooked recipes above.

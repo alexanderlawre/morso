@@ -256,7 +256,7 @@ export function RecipeDetailClient({
       <p className="mt-2 text-sm text-[#101010]">{recipe.introCopy}</p>
       <p className="mt-1 text-xs italic text-[#6B7370]">{recipe.note}</p>
 
-      <div className="mt-4 flex flex-wrap gap-2 text-xs text-[#6B7370]">
+      <div className="mt-4 flex flex-wrap gap-2 text-xs font-medium text-[#6B7370]">
         <span className="rounded-full bg-[#EDF3EF] px-2 py-1">{recipe.effortTier}</span>
         <span className="rounded-full bg-[#EDF3EF] px-2 py-1">
           {recipe.prepMinutes} min prep / {recipe.cookMinutes} min cook
@@ -268,7 +268,7 @@ export function RecipeDetailClient({
           {dietEmblems.map((diet) => (
             <span
               key={diet}
-              className={`rounded-full px-2 py-1 font-extralight ${dietEmblemClass(diet)}`}
+              className={`rounded-full px-2 py-1 font-medium ${dietEmblemClass(diet)}`}
             >
               {diet}
             </span>
@@ -276,7 +276,7 @@ export function RecipeDetailClient({
           {recipe.allergenTags.map((allergen) => (
             <span
               key={allergen}
-              className="rounded-full border border-[#B23A32] bg-[#FBEBE9] px-2 py-1 font-medium text-[#B23A32]"
+              className="rounded-full border border-[#B23A32] bg-[#FBEBE9] px-2 py-1 font-bold text-[#B23A32]"
             >
               ⚠ Contains {allergen}
             </span>
@@ -318,7 +318,7 @@ export function RecipeDetailClient({
                 transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
                 className="overflow-hidden"
               >
-                <div className="mt-2 flex flex-wrap gap-2 text-xs">
+                <div className="mt-2 flex flex-wrap gap-2 text-xs font-medium">
                   {recipe.attributes.map((a) => (
                     <span key={a} className="rounded-full bg-[#EDF3EF] px-2 py-1 text-[#6B7370]">
                       {attributeLabel(a)}
@@ -334,7 +334,7 @@ export function RecipeDetailClient({
       {hasMacros && (
         <section className="mt-6 rounded-2xl border border-[#E8E6E0] bg-white p-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-sm font-semibold text-[#101010]">Nutrition</h2>
+            <h2 className="text-sm font-bold text-[#101010]">Nutrition</h2>
             <span className="text-[11px] font-extralight text-[#6B7370]">
               for {servings} serving{servings === 1 ? "" : "s"}
             </span>
@@ -400,7 +400,7 @@ export function RecipeDetailClient({
 
       <section className="mt-6">
         <div className="flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-[#101010]">Ingredients</h2>
+          <h2 className="text-lg font-bold text-[#101010]">Ingredients</h2>
           <div className="flex items-center gap-2">
             <MotionButton
               onClick={() => setServings((s) => Math.max(1, s - 1))}
@@ -522,7 +522,7 @@ export function RecipeDetailClient({
       )}
 
       <section className="mt-6">
-        <h2 className="text-lg font-semibold text-[#101010]">Method</h2>
+        <h2 className="text-lg font-bold text-[#101010]">Method</h2>
         <ol className="mt-2 space-y-3">
           {[...recipe.steps]
             .sort((a, b) => a.order - b.order)
@@ -550,7 +550,7 @@ export function RecipeDetailClient({
         if (!completeItems?.length && !recipe.pairingSuggestion) return null;
         return (
           <div className="mt-6 rounded-2xl bg-[#EDF3EF] p-4">
-            <h2 className="text-sm font-semibold text-[#101010]">Complete the Meal</h2>
+            <h2 className="text-sm font-bold text-[#101010]">Complete the Meal</h2>
             {completeItems?.length ? (
               <p className="mt-1 text-sm text-[#101010]">
                 {completeItems.map((i) => i.item).join(", ")}
@@ -602,7 +602,7 @@ export function RecipeDetailClient({
       </div>
 
       <SheetModal open={showCosign} onClose={() => submitCosign(false)}>
-        <h3 className="text-lg font-semibold text-[#101010]">Nice cooking!</h3>
+        <h3 className="text-lg font-bold text-[#101010]">Nice cooking!</h3>
         <p className="mt-1 text-sm text-[#6B7370]">
           Want to leave a note about how it went?
         </p>

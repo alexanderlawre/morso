@@ -238,7 +238,7 @@ export function CategoryAccordion({
         type="button"
         onClick={onToggleExpanded}
         aria-expanded={expanded}
-        className="flex items-center gap-1.5 text-sm font-semibold text-[#101010]"
+        className="flex items-center gap-1.5 text-sm font-bold text-[#101010]"
       >
         <motion.span
           className="inline-block text-xs"

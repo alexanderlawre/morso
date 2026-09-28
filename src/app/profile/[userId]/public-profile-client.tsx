@@ -52,7 +52,7 @@ export function PublicProfileClient({
                     />
                   </div>
                 )}
-                <h2 className="text-lg font-semibold text-[#101010]">{cookbook.name}</h2>
+                <h2 className="text-lg font-bold text-[#101010]">{cookbook.name}</h2>
               </div>
 
               {cookbook.recipes.length === 0 ? (

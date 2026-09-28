@@ -109,7 +109,7 @@ export function CookbooksClient({ cookbooks }: { cookbooks: CookbookRow[] }) {
 
   return (
     <section className="rounded-2xl border border-[#E8E6E0] bg-white p-5">
-      <h2 className="text-lg font-semibold text-[#101010]">Collections</h2>
+      <h2 className="text-lg font-bold text-[#101010]">Collections</h2>
       <p className="mt-0.5 text-xs text-[#6B7370]">
         Only cookbooks with at least one eligible recipe for a given user appear on their
         dashboard.

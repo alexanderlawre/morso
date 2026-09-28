@@ -32,7 +32,7 @@ function StatusBadge({ status }: { status: SubmissionRow["status"] }) {
 export function MySubmissions({ submissions }: { submissions: SubmissionRow[] }) {
   return (
     <div>
-      <h2 className="text-sm font-semibold text-[#101010]">Your submissions</h2>
+      <h2 className="text-sm font-bold text-[#101010]">Your submissions</h2>
       <div className="mt-2 rounded-2xl border border-[#E8E6E0] bg-white px-4">
         {submissions.map((s) => (
           <div
