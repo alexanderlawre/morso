@@ -22,19 +22,18 @@ export function AnimatedLogo() {
   return (
     <Link
       href="/dashboard"
-      className={`-my-2 -ml-1 flex items-center gap-1.5 rounded-lg px-1 py-2 ${
+      className={`-my-2 flex items-center rounded-lg px-1 py-2 ${
         animate ? "animate-title-intro" : ""
       }`}
     >
       <Image
-        src="/brand/svg/mark-black.svg"
-        alt=""
-        width={323}
-        height={288}
-        className="h-6 w-auto"
+        src="/brand/svg/wordmark-black.svg"
+        alt="Morso"
+        width={864}
+        height={286}
+        className="h-7 w-auto"
         priority
       />
-      <span className="font-serif text-lg font-bold text-[#101010]">Morso</span>
     </Link>
   );
 }

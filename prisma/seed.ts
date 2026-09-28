@@ -190,7 +190,10 @@ async function main() {
         cookMinutes: recipe.cookMinutes,
         difficulty: recipe.difficulty,
         cuisine: { connect: { name: recipe.cuisine } },
-        mealSlot: recipe.mealSlot as never,
+        // Seed data predates the mealSlot array -> scalar migration and
+        // still lists eligible slots in priority order; take the first as
+        // the recipe's primary slot.
+        mealSlot: recipe.mealSlot[0] as never,
         effortTier: recipe.effortTier,
         batchFriendly: recipe.batchFriendly,
         attributeTags: { connect: recipe.attributes.map((code) => ({ code })) },

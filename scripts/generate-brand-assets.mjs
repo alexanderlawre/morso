@@ -53,6 +53,18 @@ async function realMarkSvg(color) {
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${viewBox}"><path d="${d}" fill="${color}" fill-rule="evenodd" /></svg>`;
 }
 
+// ---- The wordmark ----------------------------------------------------------
+// The full "Morso" lockup (leaf-topped M plus "orso") as approved artwork —
+// scripts/brand-source/wordmark-source.png — traced the same way as the
+// standalone mark. This is the primary logo: the main site header and the
+// onboarding flow use this image directly instead of pairing the mark icon
+// with live "Morso" text. The mark stays separate for contexts that need the
+// short form (loading screen, app icon, favicon).
+async function realWordmarkSvg(color) {
+  const { viewBox, d } = await tracePng(path.join(BRAND_SOURCE_DIR, "wordmark-source.png"));
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${viewBox}"><path d="${d}" fill="${color}" fill-rule="evenodd" /></svg>`;
+}
+
 // ---- The plain-text logotype (reference export, not used live) ----------
 // Kept as a reference asset: the word "Morso" set in IBM Plex Mono Bold
 // with tight letter-spacing, no illustrated mark (see the `.font-display`
@@ -376,6 +388,12 @@ async function main() {
 
   // --- SVG source files (black) ---
   await writeFile(path.join(SVG_DIR, "mark-black.svg"), await realMarkSvg(COLORS.black));
+  await writeFile(path.join(SVG_DIR, "wordmark-black.svg"), await realWordmarkSvg(COLORS.black));
+  await exportTransparentPngRect(
+    await realWordmarkSvg(COLORS.black),
+    1600,
+    path.join(PNG_DIR, "wordmark-black.png"),
+  );
 
   // --- Plain-text logotype, reference export: black + white ---
   for (const name of ["black", "white"]) {
