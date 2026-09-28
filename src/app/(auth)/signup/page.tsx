@@ -113,17 +113,14 @@ export default function SignupPage() {
     <main className="flex flex-1 items-center justify-center px-6 py-12">
       <PageTransition className="w-full max-w-sm">
         <div className="rounded-2xl border border-[#E8E6E0] bg-white p-8 shadow-soft">
-          <div className="flex items-center gap-2">
-            <Image
-              src="/brand/svg/mark-black.svg"
-              alt=""
-              width={323}
-              height={288}
-              className="h-10 w-auto"
-              priority
-            />
-            <span className="font-serif text-3xl font-bold text-[#101010]">Morso</span>
-          </div>
+          <Image
+            src="/brand/svg/wordmark-black.svg"
+            alt="Morso"
+            width={864}
+            height={286}
+            className="h-10 w-auto"
+            priority
+          />
           <p className="mt-1 text-sm text-[#6B7370]">
             Recipes catered to you.
           </p>
