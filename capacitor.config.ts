@@ -1,6 +1,6 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
-// Umami is a full-stack Next.js app (SSR, API routes, Prisma/Postgres-backed
+// Morso is a full-stack Next.js app (SSR, API routes, Prisma/Postgres-backed
 // auth) rather than a static SPA, so it can't be bundled as static assets via
 // `webDir`. Instead this points the native WebView at a running Next.js
 // server ("remote-URL wrapper" pattern). `webDir: 'public'` is required by
@@ -10,8 +10,8 @@ import type { CapacitorConfig } from '@capacitor/cli';
 // LAN/loopback address reachable from the simulator. Swap `server.url` to
 // the deployed HTTPS origin (and drop `cleartext`) for production builds.
 const config: CapacitorConfig = {
-  appId: 'com.umami.app',
-  appName: 'Umami',
+  appId: 'com.morso.app',
+  appName: 'Morso',
   webDir: 'public',
   server: {
     url: 'http://localhost:3001',

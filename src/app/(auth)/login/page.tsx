@@ -45,14 +45,17 @@ export default function LoginPage() {
     <main className="flex flex-1 items-center justify-center px-6 py-12">
       <PageTransition className="w-full max-w-sm">
         <div className="rounded-2xl border border-[#E8E6E0] bg-white p-8 shadow-soft">
-          <Image
-            src="/brand/svg/wordmark-black.svg"
-            alt="umami"
-            width={1698}
-            height={687}
-            className="mx-auto h-10 w-auto"
-            priority
-          />
+          <div className="mx-auto flex w-fit items-center gap-2">
+            <Image
+              src="/brand/svg/mark-black.svg"
+              alt=""
+              width={323}
+              height={288}
+              className="h-10 w-auto"
+              priority
+            />
+            <span className="font-serif text-3xl font-bold text-[#101010]">Morso</span>
+          </div>
           <p className="mt-1 text-center text-sm text-[#6B7370]">Welcome back.</p>
 
           <div className="mt-8">

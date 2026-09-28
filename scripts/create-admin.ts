@@ -1,7 +1,7 @@
 // One-off script to create/promote an admin user.
 //
 // Usage:
-//   ADMIN_EMAIL=admin@umami.io ADMIN_PASSWORD=... npx tsx scripts/create-admin.ts
+//   ADMIN_EMAIL=admin@morso.io ADMIN_PASSWORD=... npx tsx scripts/create-admin.ts
 //
 // If ADMIN_PASSWORD is omitted, a secure random password is generated and
 // printed once. If the user already exists, they are simply promoted to
@@ -20,7 +20,7 @@ function generatePassword(): string {
 async function main() {
   const email = (process.env.ADMIN_EMAIL || "").trim().toLowerCase();
   if (!email) {
-    console.error("ADMIN_EMAIL is required, e.g. ADMIN_EMAIL=admin@umami.io npx tsx scripts/create-admin.ts");
+    console.error("ADMIN_EMAIL is required, e.g. ADMIN_EMAIL=admin@morso.io npx tsx scripts/create-admin.ts");
     process.exit(1);
   }
 

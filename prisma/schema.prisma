@@ -5,6 +5,13 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+  // Migrations (prisma migrate deploy) need a direct, non-pooled connection:
+  // the advisory lock they take to coordinate concurrent deploys isn't
+  // reliably supported over PgBouncer transaction-mode pooling, which is
+  // what DATABASE_URL points to on Neon. DATABASE_URL_UNPOOLED is Neon's
+  // direct connection string (auto-provisioned by the Neon/Vercel
+  // integration) and is only used for this, never at runtime.
+  directUrl = env("DATABASE_URL_UNPOOLED")
 }
 
 // ---------- Enums ----------

@@ -30,7 +30,7 @@ const stixTwoText = STIX_Two_Text({
 });
 
 export const metadata: Metadata = {
-  title: "Umami",
+  title: "Morso",
   description: "Four recipes. That's the whole surface.",
 };
 

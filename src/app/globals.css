@@ -109,7 +109,7 @@ body {
   animation: title-intro 0.5s ease-out;
 }
 
-/* Gentle breathing pulse for the umami leaf-mark app loading indicator
+/* Gentle breathing pulse for the Morso leaf-mark app loading indicator
    (see loading-orb.tsx). */
 @keyframes loading-mark-pulse {
   0%,

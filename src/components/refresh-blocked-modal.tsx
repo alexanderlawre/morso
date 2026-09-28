@@ -47,7 +47,7 @@ export function RefreshBlockedModal({
     <SheetModal open={open} onClose={onClose}>
       <p className="text-lg font-bold text-[#101010]">That&apos;s your refresh for now</p>
       <p className="mt-2 text-sm text-[#6B7370]">
-        Fresh picks land automatically at the next window — or go unlimited with Umami+.
+        Fresh picks land automatically at the next window — or go unlimited with Morso+.
       </p>
       {remaining !== null && (
         <p className="mt-3 text-xs font-medium text-[#6B7370]">
@@ -67,7 +67,7 @@ export function RefreshBlockedModal({
           onClick={onClose}
           className="flex-1 rounded-lg bg-[#1B4332] px-4 py-2.5 text-center text-sm font-medium text-white shadow-brand transition hover:opacity-90"
         >
-          Go Umami+
+          Go Morso+
         </Link>
       </div>
     </SheetModal>

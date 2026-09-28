@@ -20,7 +20,7 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 async function fetchWithRetry(url, attempt = 1) {
   const res = await fetch(url, {
-    headers: { "User-Agent": "UmamiRecipeApp/0.1 (prototype; contact: n/a)" },
+    headers: { "User-Agent": "MorsoRecipeApp/0.1 (prototype; contact: n/a)" },
   });
   if (res.status === 429 || res.status === 503) {
     if (attempt >= 6) throw new Error(`HTTP ${res.status} after ${attempt} attempts`);

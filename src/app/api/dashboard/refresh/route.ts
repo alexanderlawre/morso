@@ -48,7 +48,7 @@ export async function POST(request: Request) {
             {
               error: "REFRESH_LIMIT_REACHED",
               message:
-                "That's your refresh for now. Fresh picks land automatically at the next window — or go unlimited with Umami+.",
+                "That's your refresh for now. Fresh picks land automatically at the next window — or go unlimited with Morso+.",
               nextWindowAt: active.nextWindowAt.toISOString(),
             },
             { status: 429 },

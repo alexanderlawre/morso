@@ -91,7 +91,7 @@ export function ProfileMenu({
               }}
               className="block w-full px-4 py-2 text-left text-sm text-[#101010] transition hover:bg-[#EDF3EF]"
             >
-              How Umami works
+              How Morso works
             </button>
             <div className="my-1.5 border-t border-[#E8E6E0]" />
             <button

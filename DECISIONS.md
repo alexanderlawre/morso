@@ -8,7 +8,7 @@ only stop to ask about ambiguities involving allergens or auth.
 
 - **Local Postgres for dev, Neon for prod.** No Docker or existing Postgres was
   found on this machine. Installed `postgresql@16` via Homebrew and created a
-  local `umami_dev` database for development. `DATABASE_URL` in `.env` points
+  local `morso_dev` database for development. `DATABASE_URL` in `.env` points
   to it. Swapping to a Neon connection string for deployment is a one-line
   change — no code changes needed, since Prisma only cares about the URL.
 - **Prisma pinned to v6.19.3, not the default v7.9.0.** `npm install prisma`
@@ -114,7 +114,7 @@ with a live browser session against the local dev DB. Confirmed:
   buttons, admin toggles) and every form input below 16px font-size (which
   otherwise triggers iOS's auto-zoom-on-focus).
 - **iOS wrapper uses Capacitor's "remote-URL" pattern, not a static bundle.**
-  Umami is a full SSR app with API routes and a Postgres-backed session, so
+  Morso is a full SSR app with API routes and a Postgres-backed session, so
   `next export` isn't viable. `capacitor.config.ts` instead points
   `server.url` at the running Next.js server directly (`localhost` for
   simulator dev), with `cleartext: true` and a matching `NSAppTransportSecurity`

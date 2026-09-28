@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 
-const CACHE_KEY = "umami:tz";
+const CACHE_KEY = "morso:tz";
 
 // Mounted once in the root layout. On mount, detects the browser's real IANA
 // timezone and reports it to the server so the dashboard's meal-slot

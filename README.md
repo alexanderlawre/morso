@@ -1,4 +1,4 @@
-# Umami
+# Morso
 
 A recipe recommendation app: users onboard with their diets/allergens/preferences,
 get a personalized dashboard of eligible recipes, save some for later, and log

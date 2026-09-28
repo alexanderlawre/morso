@@ -47,7 +47,7 @@ export function hapticImpactMedium(): void {
 }
 
 /**
- * Sets the status bar to dark content (readable on Umami's light/cream
+ * Sets the status bar to dark content (readable on Morso's light/cream
  * background) and matches its background color to the app header.
  * Call once on native app launch.
  */

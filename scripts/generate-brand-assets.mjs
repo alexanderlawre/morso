@@ -1,7 +1,6 @@
-// Generates the umami brand mark (a stylized "u" with a leaf sprouting from
-// its right stroke) and derived assets: standalone mark PNGs/SVG, a
-// "umami" wordmark that uses the mark as its initial letter, app-icon-style
-// covers, and a single presentation sheet for reference. Re-run any time
+// Generates the Morso brand mark (a stylized "M" with a leaf sprouting from
+// it) and derived assets: standalone mark PNGs/SVG, app-icon-style covers,
+// and a single presentation sheet for reference. Re-run any time
 // colors/sizes need to change: `node scripts/generate-brand-assets.mjs`.
 import sharp from "sharp";
 import opentype from "opentype.js";
@@ -23,13 +22,15 @@ const COLORS = {
   white: "#FFFFFF",
 };
 
-// ---- The mark & wordmark ------------------------------------------------
-// Sourced from the actual approved artwork (scripts/brand-source/*.png — a
-// stylized "u" with a leaf sprouting from its accent, and the matching
-// "umami" wordmark), not hand-drawn. Each source PNG is vector-traced once
-// (via potrace) into a single evenodd SVG path, then re-rendered in each
-// brand color by swapping the `fill`, so the exact approved silhouette is
-// what ships everywhere — mark, wordmark, app icons, and favicon.
+// ---- The mark -------------------------------------------------------------
+// Sourced from the actual approved artwork (scripts/brand-source/mark-
+// source.png — a stylized "M" with a leaf sprouting from it), not hand-
+// drawn. The source PNG is vector-traced once (via potrace) into a single
+// evenodd SVG path, then re-rendered in each brand color by swapping the
+// `fill`, so the exact approved silhouette is what ships everywhere — mark,
+// app icons, and favicon. (There's no separate wordmark art — the header/
+// login/signup lockup pairs this mark with real "Morso" text instead, see
+// src/components/animated-logo.tsx.)
 const traceCache = new Map();
 
 async function tracePng(pngPath) {
@@ -52,17 +53,11 @@ async function realMarkSvg(color) {
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${viewBox}"><path d="${d}" fill="${color}" fill-rule="evenodd" /></svg>`;
 }
 
-async function realWordmarkSvg(color) {
-  const { viewBox, d } = await tracePng(path.join(BRAND_SOURCE_DIR, "wordmark-source.png"));
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${viewBox}"><path d="${d}" fill="${color}" fill-rule="evenodd" /></svg>`;
-}
-
-// ---- The current live logo (plain text) --------------------------------
-// This is the actual logo in use on the live site right now: the word
-// "umami" set in IBM Plex Mono Bold with tight letter-spacing, no
-// illustrated mark (see src/components/animated-logo.tsx and the
-// `.font-display` utility in globals.css). Serving as the logo until a
-// stronger custom mark replaces it, per direct request.
+// ---- The plain-text logotype (reference export, not used live) ----------
+// Kept as a reference asset: the word "Morso" set in IBM Plex Mono Bold
+// with tight letter-spacing, no illustrated mark (see the `.font-display`
+// utility in globals.css). The live header/login/signup lockup instead
+// pairs the mark SVG above with real "Morso" text in the app's title font.
 //
 // The glyph outlines are baked to static SVG path data (via opentype.js,
 // reading the real webfont file below) rather than an SVG <text> element,
@@ -83,7 +78,7 @@ async function loadLogoFont() {
 
 async function logoTextSvg(color) {
   const font = await loadLogoFont();
-  const glyphPath = font.getPath("umami", 0, 0, LOGO_FONT_SIZE, {
+  const glyphPath = font.getPath("Morso", 0, 0, LOGO_FONT_SIZE, {
     letterSpacing: LOGO_LETTER_SPACING_EM,
   });
   const bbox = glyphPath.getBoundingBox();
@@ -283,39 +278,6 @@ async function buildPresentationSheet() {
   const LABEL_H = 40;
   const ROW_H = CARD_H + 16 + LABEL_H;
 
-  const wordmarkCardW = CARD_W * 2 + GAP;
-
-  const wordmarkCards = await Promise.all([
-    buildLabeledCard({
-      cardW: wordmarkCardW,
-      cardH: CARD_H,
-      labelH: LABEL_H,
-      label: "Wordmark — green on white",
-      bg: "#FFFFFF",
-      border: "#E8E6E0",
-      contentPath: path.join(PNG_DIR, "wordmark-green.png"),
-      contentBox: Math.round(wordmarkCardW * 0.8),
-    }),
-    buildLabeledCard({
-      cardW: wordmarkCardW,
-      cardH: CARD_H,
-      labelH: LABEL_H,
-      label: "Wordmark — white on black",
-      bg: "#1A1D1B",
-      contentPath: path.join(PNG_DIR, "wordmark-white.png"),
-      contentBox: Math.round(wordmarkCardW * 0.8),
-    }),
-    buildLabeledCard({
-      cardW: wordmarkCardW,
-      cardH: CARD_H,
-      labelH: LABEL_H,
-      label: "Wordmark — white on green",
-      bg: "#1B4332",
-      contentPath: path.join(PNG_DIR, "wordmark-white.png"),
-      contentBox: Math.round(wordmarkCardW * 0.8),
-    }),
-  ]);
-
   const markCards = await Promise.all([
     buildLabeledCard({
       cardW: CARD_W,
@@ -367,13 +329,12 @@ async function buildPresentationSheet() {
     }),
   ]);
 
-  // Layout: title, then a row of 3 wordmark cards, then a row of mark/icon
-  // cards (wraps to 2 rows of up-to-3 since there are 5 of them).
-  const wordmarkRowW = wordmarkCardW * 3 + GAP * 2;
+  // Layout: title, then a row of mark/icon cards (wraps to 2 rows of
+  // up-to-3 since there are 5 of them).
   const markRowW = CARD_W * 3 + GAP * 2;
-  const sheetW = MARGIN * 2 + Math.max(wordmarkRowW, markRowW);
+  const sheetW = MARGIN * 2 + markRowW;
 
-  const titlePng = await renderLabel("umami — brand mark", { size: 44, color: "#1A1D1B", weight: 700 });
+  const titlePng = await renderLabel("Morso — brand mark", { size: 44, color: "#1A1D1B", weight: 700 });
   const titleMeta = await sharp(titlePng).metadata();
   const subtitlePng = await renderLabel("Reference sheet — generated asset, not final approval", {
     size: 20,
@@ -383,8 +344,7 @@ async function buildPresentationSheet() {
   const subtitleMeta = await sharp(subtitlePng).metadata();
 
   const titleBlockH = titleMeta.height + 12 + subtitleMeta.height;
-  const wordmarkRowY = MARGIN + titleBlockH + 56;
-  const markRow1Y = wordmarkRowY + ROW_H + 56;
+  const markRow1Y = MARGIN + titleBlockH + 56;
   const markRow2Y = markRow1Y + ROW_H + 40;
   const sheetH = markRow2Y + ROW_H + MARGIN;
 
@@ -392,10 +352,6 @@ async function buildPresentationSheet() {
     { input: titlePng, left: MARGIN, top: MARGIN },
     { input: subtitlePng, left: MARGIN, top: MARGIN + titleMeta.height + 12 },
   ];
-
-  wordmarkCards.forEach((card, i) => {
-    composites.push({ input: card, left: MARGIN + i * (wordmarkCardW + GAP), top: wordmarkRowY });
-  });
 
   markCards.slice(0, 3).forEach((card, i) => {
     composites.push({ input: card, left: MARGIN + i * (CARD_W + GAP), top: markRow1Y });
@@ -420,9 +376,8 @@ async function main() {
 
   // --- SVG source files (black) ---
   await writeFile(path.join(SVG_DIR, "mark-black.svg"), await realMarkSvg(COLORS.black));
-  await writeFile(path.join(SVG_DIR, "wordmark-black.svg"), await realWordmarkSvg(COLORS.black));
 
-  // --- Current live logo: plain "umami" text, black + white ---
+  // --- Plain-text logotype, reference export: black + white ---
   for (const name of ["black", "white"]) {
     const svg = await logoTextSvg(COLORS[name]);
     await writeFile(path.join(SVG_DIR, `logo-text-${name}.svg`), svg);
@@ -432,15 +387,6 @@ async function main() {
   // --- Mark-only PNGs, transparent bg, 3 colors, 1024px square ---
   for (const [name, hex] of Object.entries(COLORS)) {
     await exportTransparentPng(await realMarkSvg(hex), 1024, path.join(PNG_DIR, `mark-${name}.png`));
-  }
-
-  // --- Wordmark PNGs, transparent bg, 3 colors, 1600px wide ---
-  for (const [name, hex] of Object.entries(COLORS)) {
-    await exportTransparentPngRect(
-      await realWordmarkSvg(hex),
-      1600,
-      path.join(PNG_DIR, `wordmark-${name}.png`),
-    );
   }
 
   // --- App icon covers ---

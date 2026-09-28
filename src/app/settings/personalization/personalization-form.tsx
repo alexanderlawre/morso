@@ -170,10 +170,10 @@ export function PersonalizationForm({
         </p>
 
         <div className="mt-8 rounded-2xl border border-[#E8E6E0] bg-white p-5 shadow-soft">
-          <h3 className="text-sm font-bold text-[#101010]">How Umami learns you</h3>
+          <h3 className="text-sm font-bold text-[#101010]">How Morso learns you</h3>
           <p className="mt-1 text-xs text-[#6B7370]">
             Every rating, save, and skip below feeds your taste profile — recommendations sharpen
-            the more you use Umami.
+            the more you use Morso.
           </p>
           <button
             type="button"

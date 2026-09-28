@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-const SESSION_KEY = "umami-title-intro-shown";
+const SESSION_KEY = "morso-title-intro-shown";
 
 // Renders without the animation class during SSR/first paint (avoids a
 // hydration mismatch), then adds it post-mount only the first time this
@@ -22,18 +22,19 @@ export function AnimatedLogo() {
   return (
     <Link
       href="/dashboard"
-      className={`-my-2 -ml-1 flex items-center rounded-lg px-1 py-2 ${
+      className={`-my-2 -ml-1 flex items-center gap-1.5 rounded-lg px-1 py-2 ${
         animate ? "animate-title-intro" : ""
       }`}
     >
       <Image
-        src="/brand/svg/wordmark-black.svg"
-        alt="umami"
-        width={1698}
-        height={687}
+        src="/brand/svg/mark-black.svg"
+        alt=""
+        width={323}
+        height={288}
         className="h-6 w-auto"
         priority
       />
+      <span className="font-serif text-lg font-bold text-[#101010]">Morso</span>
     </Link>
   );
 }

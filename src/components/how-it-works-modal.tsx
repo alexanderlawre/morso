@@ -3,12 +3,12 @@
 import { SheetModal } from "@/components/sheet-modal";
 
 // The "Use -> Signal -> Recommendations sharpen" learning-loop explainer —
-// shared by the profile menu ("How Umami works") and the Settings ->
+// shared by the profile menu ("How Morso works") and the Settings ->
 // Personalization page ("See how it works" link), so there's exactly one
 // place this copy/design lives.
 const STEPS = [
   {
-    title: "You use Umami",
+    title: "You use Morso",
     caption: "Cook, save, skip, rate — every action is a signal.",
   },
   {
@@ -30,9 +30,9 @@ export function HowItWorksModal({
 }) {
   return (
     <SheetModal open={open} onClose={onClose}>
-      <p className="text-lg font-bold text-[#101010]">How Umami learns you</p>
+      <p className="text-lg font-bold text-[#101010]">How Morso learns you</p>
       <p className="mt-2 text-sm text-[#6B7370]">
-        There&apos;s no long survey to get right. The more you use Umami, the better it gets.
+        There&apos;s no long survey to get right. The more you use Morso, the better it gets.
       </p>
 
       <div className="mt-5 space-y-5">
@@ -53,7 +53,7 @@ export function HowItWorksModal({
       </div>
 
       <p className="mt-4 text-xs italic text-[#6B7370]">
-        …and the cycle repeats every time you open Umami.
+        …and the cycle repeats every time you open Morso.
       </p>
 
       <button
