@@ -16711,5 +16711,358 @@
     ],
     "imageUrl": "/recipe-photos/gado-gado.jpg",
     "imageCredit": "Timothy A. Gonsalves / Wikimedia Commons (CC BY-SA 4.0)"
+  },
+  {
+    "slug": "pork-souvlaki-tzatziki",
+    "title": "Pork Souvlaki with Tzatziki & Pita",
+    "shortDescription": "Grilled pork skewers, tzatziki, pita, tomato, red onion",
+    "note": "Thread the pork cubes tightly on the skewers so they char evenly without drying out before the centers cook through.",
+    "pairingSuggestion": "Pairs well with a crisp Assyrtiko or a cold beer.",
+    "introCopy": "Charred pork skewers piled over cool tzatziki with warm pita, tomato, and red onion — ready in 20 minutes.",
+    "servings": 1,
+    "prepMinutes": 8,
+    "cookMinutes": 12,
+    "difficulty": "EASY",
+    "cuisine": "Greek",
+    "mealSlot": [
+      "DINNER",
+      "LUNCH"
+    ],
+    "effortTier": "WEEKNIGHT",
+    "batchFriendly": false,
+    "attributes": [
+      "UNDER_30",
+      "HIGH_PROTEIN",
+      "GRILLED"
+    ],
+    "heroColor": "#B5714A",
+    "allergenReviewStatus": "UNVERIFIED",
+    "isActive": false,
+    "ingredients": [
+      {
+        "component": null,
+        "order": 1,
+        "quantity": "180",
+        "unit": "g",
+        "item": "pork tenderloin",
+        "prepNote": "cubed",
+        "optional": false
+      },
+      {
+        "component": null,
+        "order": 2,
+        "quantity": "1",
+        "unit": "each",
+        "item": "whole wheat pita",
+        "prepNote": "cut into triangles",
+        "optional": false
+      },
+      {
+        "component": null,
+        "order": 3,
+        "quantity": "80",
+        "unit": "g",
+        "item": "tzatziki",
+        "prepNote": null,
+        "optional": false
+      },
+      {
+        "component": null,
+        "order": 4,
+        "quantity": "1",
+        "unit": "each",
+        "item": "ripe tomato",
+        "prepNote": "cut into wedges",
+        "optional": false
+      },
+      {
+        "component": null,
+        "order": 5,
+        "quantity": "1/4",
+        "unit": "each",
+        "item": "red onion",
+        "prepNote": "sliced",
+        "optional": false
+      },
+      {
+        "component": null,
+        "order": 6,
+        "quantity": "1",
+        "unit": "tbsp",
+        "item": "olive oil",
+        "prepNote": null,
+        "optional": false
+      },
+      {
+        "component": null,
+        "order": 7,
+        "quantity": "1",
+        "unit": "tsp",
+        "item": "dried oregano",
+        "prepNote": null,
+        "optional": false
+      },
+      {
+        "component": null,
+        "order": 8,
+        "quantity": "1/2",
+        "unit": "each",
+        "item": "lemon",
+        "prepNote": "juiced",
+        "optional": false
+      },
+      {
+        "component": null,
+        "order": 9,
+        "quantity": "to taste",
+        "unit": null,
+        "item": "fresh dill, for serving",
+        "prepNote": null,
+        "optional": true
+      },
+      {
+        "component": null,
+        "order": 10,
+        "quantity": "to taste",
+        "unit": null,
+        "item": "paprika, for serving",
+        "prepNote": null,
+        "optional": true
+      },
+      {
+        "component": null,
+        "order": 11,
+        "quantity": "to taste",
+        "unit": null,
+        "item": "salt and black pepper",
+        "prepNote": null,
+        "optional": false
+      }
+    ],
+    "steps": [
+      {
+        "order": 1,
+        "text": "Toss the cubed pork in a bowl with half the olive oil, the lemon juice, dried oregano, salt, and black pepper.",
+        "durationMinutes": 5
+      },
+      {
+        "order": 2,
+        "text": "Thread the seasoned pork cubes tightly onto skewers.",
+        "durationMinutes": 3
+      },
+      {
+        "order": 3,
+        "text": "Heat a ridged grill pan over medium-high heat with the remaining olive oil until smoking hot.",
+        "durationMinutes": 3
+      },
+      {
+        "order": 4,
+        "text": "Grill the pork skewers for 7 to 8 minutes, turning frequently, until charred outside and cooked through.",
+        "durationMinutes": 8
+      },
+      {
+        "order": 5,
+        "text": "Warm the pita triangles on the grill pan for 1 minute until lightly toasted.",
+        "durationMinutes": 1
+      },
+      {
+        "order": 6,
+        "text": "Spoon the tzatziki into a bowl, lay the skewers over it, arrange the pita, tomato, and red onion alongside, then finish with paprika and fresh dill.",
+        "durationMinutes": null
+      }
+    ],
+    "foodGroupProfile": [
+      {
+        "foodGroup": "Pork",
+        "weight": 45
+      },
+      {
+        "foodGroup": "Dairy",
+        "weight": 20
+      },
+      {
+        "foodGroup": "Refined grains",
+        "weight": 15
+      },
+      {
+        "foodGroup": "Nightshades",
+        "weight": 10
+      },
+      {
+        "foodGroup": "Alliums",
+        "weight": 5
+      },
+      {
+        "foodGroup": "Fresh herbs",
+        "weight": 5
+      }
+    ],
+    "dietTags": [
+      "High-protein",
+      "Mediterranean"
+    ],
+    "allergenTags": [
+      "Wheat/gluten",
+      "Milk"
+    ]
+  },
+  {
+    "slug": "dakos",
+    "title": "Dakos",
+    "shortDescription": "Cretan barley rusk, grated tomato, feta, olives, capers",
+    "note": "Moisten the rusk just enough to soften the crust without letting it turn soggy — it should still hold a rustic crunch underneath the tomato.",
+    "pairingSuggestion": "Pairs well with a chilled glass of Assyrtiko or another light Greek white wine.",
+    "introCopy": "A Cretan classic: barley rusk piled with juicy grated tomato, crumbled feta, olives, and a generous drizzle of olive oil.",
+    "servings": 1,
+    "prepMinutes": 5,
+    "cookMinutes": 0,
+    "difficulty": "EASY",
+    "cuisine": "Greek",
+    "mealSlot": [
+      "TAPAS",
+      "SNACK"
+    ],
+    "effortTier": "WEEKNIGHT",
+    "batchFriendly": false,
+    "attributes": [
+      "UNDER_30",
+      "NO_COOK",
+      "HIGH_FIBER"
+    ],
+    "heroColor": "#A3B18A",
+    "allergenReviewStatus": "UNVERIFIED",
+    "isActive": false,
+    "ingredients": [
+      {
+        "component": null,
+        "order": 1,
+        "quantity": "1",
+        "unit": "each",
+        "item": "Cretan barley rusk",
+        "prepNote": "or 1 thick slice well-toasted sourdough",
+        "optional": false
+      },
+      {
+        "component": null,
+        "order": 2,
+        "quantity": "1",
+        "unit": "each",
+        "item": "ripe tomato",
+        "prepNote": "coarsely grated",
+        "optional": false
+      },
+      {
+        "component": null,
+        "order": 3,
+        "quantity": "60",
+        "unit": "g",
+        "item": "Greek feta",
+        "prepNote": "crumbled",
+        "optional": false
+      },
+      {
+        "component": null,
+        "order": 4,
+        "quantity": "1",
+        "unit": "tbsp",
+        "item": "extra virgin olive oil",
+        "prepNote": null,
+        "optional": false
+      },
+      {
+        "component": null,
+        "order": 5,
+        "quantity": "5",
+        "unit": "each",
+        "item": "Kalamata olives",
+        "prepNote": "pitted",
+        "optional": false
+      },
+      {
+        "component": null,
+        "order": 6,
+        "quantity": "1",
+        "unit": "tsp",
+        "item": "capers",
+        "prepNote": "rinsed",
+        "optional": false
+      },
+      {
+        "component": null,
+        "order": 7,
+        "quantity": "1/2",
+        "unit": "tsp",
+        "item": "dried Greek oregano",
+        "prepNote": null,
+        "optional": false
+      },
+      {
+        "component": null,
+        "order": 8,
+        "quantity": "to taste",
+        "unit": null,
+        "item": "flaky sea salt and cracked black pepper",
+        "prepNote": null,
+        "optional": false
+      }
+    ],
+    "steps": [
+      {
+        "order": 1,
+        "text": "Moisten the barley rusk with 1 to 2 tablespoons of water so the crust softens slightly while keeping its rustic crunch.",
+        "durationMinutes": null
+      },
+      {
+        "order": 2,
+        "text": "Place the rusk on a plate and spoon the grated tomato and its juices over the top.",
+        "durationMinutes": 1
+      },
+      {
+        "order": 3,
+        "text": "Pile the crumbled feta generously over the tomato.",
+        "durationMinutes": 1
+      },
+      {
+        "order": 4,
+        "text": "Scatter the Kalamata olives and capers over the feta.",
+        "durationMinutes": 1
+      },
+      {
+        "order": 5,
+        "text": "Drizzle with olive oil so it pools into the tomato juices at the base.",
+        "durationMinutes": 1
+      },
+      {
+        "order": 6,
+        "text": "Finish with dried oregano, flaky sea salt, and cracked black pepper.",
+        "durationMinutes": 1
+      }
+    ],
+    "foodGroupProfile": [
+      {
+        "foodGroup": "Nightshades",
+        "weight": 35
+      },
+      {
+        "foodGroup": "Whole grains",
+        "weight": 25
+      },
+      {
+        "foodGroup": "Dairy",
+        "weight": 20
+      },
+      {
+        "foodGroup": "Fresh herbs",
+        "weight": 5
+      }
+    ],
+    "dietTags": [
+      "Vegetarian",
+      "Mediterranean"
+    ],
+    "allergenTags": [
+      "Wheat/gluten",
+      "Milk"
+    ]
   }
 ]
