@@ -4,17 +4,12 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { signOut } from "next-auth/react";
 import { AnimatePresence, motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { getInitials } from "@/lib/avatar";
 import { MotionButton } from "@/components/motion-button";
 import { HowItWorksModal } from "@/components/how-it-works-modal";
-
-type MenuLink = { href: string; label: string };
-
-const BASE_LINKS: MenuLink[] = [
-  { href: "/profile", label: "Profile" },
-  { href: "/cook-later", label: "Cook later" },
-  { href: "/settings/personalization", label: "Personalization" },
-];
+import { AccessibilityPanel } from "@/components/accessibility-menu";
+import { SheetModal } from "@/components/sheet-modal";
 
 export function ProfileMenu({
   name,
@@ -25,8 +20,10 @@ export function ProfileMenu({
   image?: string | null;
   isAdmin?: boolean;
 }) {
+  const t = useTranslations("accessibility");
   const [open, setOpen] = useState(false);
   const [showHowItWorks, setShowHowItWorks] = useState(false);
+  const [showAccessibility, setShowAccessibility] = useState(false);
   const ref = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -45,8 +42,6 @@ export function ProfileMenu({
     };
   }, [open]);
 
-  const links = isAdmin ? [...BASE_LINKS, { href: "/admin", label: "Admin" }] : BASE_LINKS;
-
   return (
     <div ref={ref} className="relative">
       <MotionButton
@@ -55,7 +50,7 @@ export function ProfileMenu({
         aria-label="Profile menu"
         whileHover={{ y: -2, scale: 1.04 }}
         whileTap={{ scale: 0.92 }}
-        className="flex h-9 w-9 items-center justify-center overflow-hidden rounded-full bg-[#1B4332] text-sm font-semibold text-white shadow-sm"
+        className="flex h-9 w-9 items-center justify-center overflow-hidden rounded-full bg-accent text-sm font-semibold text-accent-ink shadow-sm"
       >
         {image ? (
           // eslint-disable-next-line @next/next/no-img-element
@@ -68,35 +63,67 @@ export function ProfileMenu({
       <AnimatePresence>
         {open && (
           <motion.div
-            className="absolute right-0 top-11 z-20 w-48 origin-top-right overflow-hidden rounded-2xl border border-[#E8E6E0] bg-white py-1.5 shadow-lifted"
+            className="absolute end-0 top-11 z-20 w-48 origin-top-right overflow-hidden rounded-2xl border border-border bg-surface py-1.5 shadow-lifted"
             initial={{ opacity: 0, scale: 0.92, y: -6 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.92, y: -6 }}
             transition={{ type: "spring", stiffness: 420, damping: 30 }}
           >
-            {links.map((link) => (
+            <Link
+              href="/profile"
+              onClick={() => setOpen(false)}
+              className="block px-4 py-2 text-sm text-ink transition hover:bg-hover"
+            >
+              Profile
+            </Link>
+            <Link
+              href="/cook-later"
+              onClick={() => setOpen(false)}
+              className="block px-4 py-2 text-sm text-ink transition hover:bg-hover"
+            >
+              Cook later
+            </Link>
+            {/* Accessibility/appearance/language — deliberately placed above
+                Personalization (this app's de-facto "Settings" entry; there's
+                no separate literal Settings row). */}
+            <button
+              onClick={() => {
+                setShowAccessibility(true);
+                setOpen(false);
+              }}
+              className="block w-full px-4 py-2 text-start text-sm text-ink transition hover:bg-hover"
+            >
+              {t("menuLabel")}
+            </button>
+            <Link
+              href="/settings/personalization"
+              onClick={() => setOpen(false)}
+              className="block px-4 py-2 text-sm text-ink transition hover:bg-hover"
+            >
+              Personalization
+            </Link>
+            {isAdmin && (
               <Link
-                key={link.href}
-                href={link.href}
+                href="/admin"
                 onClick={() => setOpen(false)}
-                className="block px-4 py-2 text-sm text-[#101010] transition hover:bg-[#EDF3EF]"
+                className="block px-4 py-2 text-sm text-ink transition hover:bg-hover"
               >
-                {link.label}
+                Admin
               </Link>
-            ))}
+            )}
             <button
               onClick={() => {
                 setShowHowItWorks(true);
                 setOpen(false);
               }}
-              className="block w-full px-4 py-2 text-left text-sm text-[#101010] transition hover:bg-[#EDF3EF]"
+              className="block w-full px-4 py-2 text-start text-sm text-ink transition hover:bg-hover"
             >
               How Morso works
             </button>
-            <div className="my-1.5 border-t border-[#E8E6E0]" />
+            <div className="my-1.5 border-t border-border" />
             <button
               onClick={() => signOut({ callbackUrl: "/login" })}
-              className="block w-full px-4 py-2 text-left text-sm text-[#101010] transition hover:bg-[#EDF3EF]"
+              className="block w-full px-4 py-2 text-start text-sm text-ink transition hover:bg-hover"
             >
               Sign out
             </button>
@@ -105,6 +132,10 @@ export function ProfileMenu({
       </AnimatePresence>
 
       <HowItWorksModal open={showHowItWorks} onClose={() => setShowHowItWorks(false)} />
+
+      <SheetModal open={showAccessibility} onClose={() => setShowAccessibility(false)}>
+        <AccessibilityPanel onClose={() => setShowAccessibility(false)} />
+      </SheetModal>
     </div>
   );
 }

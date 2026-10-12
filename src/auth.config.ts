@@ -43,12 +43,24 @@ export const authConfig: NextAuthConfig = {
         token.onboarded = (user as { onboarded?: boolean }).onboarded ?? false;
         token.isAdmin = (user as { isAdmin?: boolean }).isAdmin ?? false;
         token.isPremium = (user as { isPremium?: boolean }).isPremium ?? false;
+        token.theme = (user as { theme?: "LIGHT" | "GREEN" | "DARK" }).theme ?? "LIGHT";
+        token.locale = (user as { locale?: string }).locale ?? "en";
       }
       if (trigger === "update" && session?.onboarded) {
         token.onboarded = true;
       }
       if (trigger === "update" && typeof session?.image !== "undefined") {
         token.picture = session.image;
+      }
+      // Pushed by the accessibility menu's theme/language picker (via
+      // next-auth's client-side `update()`) right after the preferences
+      // route persists the change, so the new value is reflected without
+      // waiting for the session to naturally re-fetch.
+      if (trigger === "update" && typeof session?.theme !== "undefined") {
+        token.theme = session.theme;
+      }
+      if (trigger === "update" && typeof session?.locale !== "undefined") {
+        token.locale = session.locale;
       }
       return token;
     },
@@ -59,6 +71,8 @@ export const authConfig: NextAuthConfig = {
         session.user.onboarded = token.onboarded as boolean;
         session.user.isAdmin = token.isAdmin as boolean;
         session.user.isPremium = token.isPremium as boolean;
+        session.user.theme = token.theme as "LIGHT" | "GREEN" | "DARK";
+        session.user.locale = token.locale as string;
       }
       return session;
     },

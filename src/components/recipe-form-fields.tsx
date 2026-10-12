@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import {
   DIFFICULTIES,
   MEAL_SLOTS,
@@ -16,11 +17,11 @@ import {
 } from "@/lib/recipe-form-shared";
 
 export function inputClass() {
-  return "w-full rounded-lg border border-[#E8E6E0] bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1B4332]";
+  return "w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-accent";
 }
 
 export function labelClass() {
-  return "mb-1 block text-xs font-extralight text-[#6B7370]";
+  return "mb-1 block text-xs font-extralight text-muted";
 }
 
 /**
@@ -31,6 +32,7 @@ export function labelClass() {
  * (outside the recipe editor modal).
  */
 export function AddCuisineInline({ onCreated }: { onCreated: (cuisine: EditorCuisine) => void }) {
+  const t = useTranslations("submitRecipe");
   const [name, setName] = useState("");
   const [adding, setAdding] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -46,24 +48,24 @@ export function AddCuisineInline({ onCreated }: { onCreated: (cuisine: EditorCui
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name: trimmed }),
       });
-      if (!res.ok) throw new Error("Failed to add cuisine");
+      if (!res.ok) throw new Error(t("errors.addCuisineFailed"));
       const { cuisine } = (await res.json()) as { cuisine: EditorCuisine };
       onCreated(cuisine);
       setName("");
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to add cuisine");
+      setError(err instanceof Error ? err.message : t("errors.addCuisineFailed"));
     } finally {
       setAdding(false);
     }
   }
 
   return (
-    <div className="rounded-2xl border border-dashed border-[#E8E6E0] bg-white p-4">
-      <label className={labelClass()}>Add a new cuisine</label>
+    <div className="rounded-2xl border border-dashed border-border bg-surface p-4">
+      <label className={labelClass()}>{t("form.addCuisineLabel")}</label>
       <div className="flex gap-2">
         <input
           className={inputClass()}
-          placeholder="e.g. Ethiopian"
+          placeholder={t("form.addCuisinePlaceholder")}
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
@@ -71,9 +73,9 @@ export function AddCuisineInline({ onCreated }: { onCreated: (cuisine: EditorCui
           type="button"
           onClick={submit}
           disabled={adding || !name.trim()}
-          className="shrink-0 rounded-lg border border-[#E8E6E0] px-3 py-2 text-xs text-[#101010] shadow-brand disabled:opacity-50"
+          className="shrink-0 rounded-lg border border-border px-3 py-2 text-xs text-ink shadow-brand disabled:opacity-50"
         >
-          {adding ? "Adding…" : "+ Add"}
+          {adding ? t("actions.adding") : t("actions.add")}
         </button>
       </div>
       {error && <p className="mt-1 text-xs text-red-600">{error}</p>}
@@ -96,8 +98,8 @@ export function Chip({
       onClick={onClick}
       className={`rounded-full border px-3 py-1.5 text-xs font-medium ${
         active
-          ? "border-[#1B4332] bg-[#EDF3EF] text-[#1B4332]"
-          : "border-[#E8E6E0] text-[#6B7370]"
+          ? "border-accent bg-hover text-accent"
+          : "border-border text-muted"
       }`}
     >
       {children}
@@ -177,10 +179,11 @@ export function RecipeFormFields({
   addSubRecipeStep?: (subIdx: number) => void;
   removeSubRecipeStep?: (subIdx: number, stepIdx: number) => void;
 }) {
+  const t = useTranslations("submitRecipe");
   return (
     <>
       <div>
-        <label className={labelClass()}>Title</label>
+        <label className={labelClass()}>{t("form.titleLabel")}</label>
         <input
           className={inputClass()}
           value={form.title}
@@ -189,7 +192,7 @@ export function RecipeFormFields({
       </div>
 
       <div>
-        <label className={labelClass()}>Short description</label>
+        <label className={labelClass()}>{t("form.shortDescriptionLabel")}</label>
         <input
           className={inputClass()}
           value={form.shortDescription}
@@ -198,7 +201,7 @@ export function RecipeFormFields({
       </div>
 
       <div>
-        <label className={labelClass()}>Note</label>
+        <label className={labelClass()}>{t("form.noteLabel")}</label>
         <textarea
           rows={2}
           className={inputClass()}
@@ -208,7 +211,7 @@ export function RecipeFormFields({
       </div>
 
       <div>
-        <label className={labelClass()}>Intro copy</label>
+        <label className={labelClass()}>{t("form.introCopyLabel")}</label>
         <textarea
           rows={3}
           className={inputClass()}
@@ -219,7 +222,7 @@ export function RecipeFormFields({
 
       <div className="grid grid-cols-3 gap-3">
         <div>
-          <label className={labelClass()}>Servings</label>
+          <label className={labelClass()}>{t("form.servingsLabel")}</label>
           <input
             type="number"
             min={1}
@@ -229,7 +232,7 @@ export function RecipeFormFields({
           />
         </div>
         <div>
-          <label className={labelClass()}>Prep min</label>
+          <label className={labelClass()}>{t("form.prepMinLabel")}</label>
           <input
             type="number"
             min={0}
@@ -239,7 +242,7 @@ export function RecipeFormFields({
           />
         </div>
         <div>
-          <label className={labelClass()}>Cook min</label>
+          <label className={labelClass()}>{t("form.cookMinLabel")}</label>
           <input
             type="number"
             min={0}
@@ -251,7 +254,7 @@ export function RecipeFormFields({
       </div>
 
       <div>
-        <label className={labelClass()}>Difficulty</label>
+        <label className={labelClass()}>{t("form.difficultyLabel")}</label>
         <select
           className={inputClass()}
           value={form.difficulty}
@@ -266,14 +269,14 @@ export function RecipeFormFields({
       </div>
 
       <div>
-        <label className={labelClass()}>Cuisine</label>
+        <label className={labelClass()}>{t("form.cuisineLabel")}</label>
         <div className="flex gap-2">
           <select
             className={inputClass()}
             value={form.cuisineId}
             onChange={(e) => update("cuisineId", e.target.value)}
           >
-            <option value="">Select a cuisine…</option>
+            <option value="">{t("form.selectCuisinePlaceholder")}</option>
             {cuisines.map((c) => (
               <option key={c.id} value={c.id}>
                 {c.name}
@@ -285,7 +288,7 @@ export function RecipeFormFields({
           <div className="mt-2 flex gap-2">
             <input
               className={inputClass()}
-              placeholder="Add new cuisine…"
+              placeholder={t("form.addCuisineInputPlaceholder")}
               value={newCuisineName}
               onChange={(e) => setNewCuisineName(e.target.value)}
             />
@@ -293,16 +296,16 @@ export function RecipeFormFields({
               type="button"
               onClick={onAddCuisine}
               disabled={addingCuisine || !newCuisineName.trim()}
-              className="shrink-0 rounded-lg border border-[#E8E6E0] px-3 py-2 text-xs text-[#101010] shadow-brand disabled:opacity-50"
+              className="shrink-0 rounded-lg border border-border px-3 py-2 text-xs text-ink shadow-brand disabled:opacity-50"
             >
-              {addingCuisine ? "Adding…" : "+ Add"}
+              {addingCuisine ? t("actions.adding") : t("actions.add")}
             </button>
           </div>
         )}
       </div>
 
       <div>
-        <label className={labelClass()}>Meal slot</label>
+        <label className={labelClass()}>{t("form.mealSlotLabel")}</label>
         <div className="flex flex-wrap gap-2">
           {MEAL_SLOTS.map((slot) => (
             <Chip
@@ -317,22 +320,22 @@ export function RecipeFormFields({
       </div>
 
       <div>
-        <label className={labelClass()}>Attributes / tags</label>
+        <label className={labelClass()}>{t("form.attributesLabel")}</label>
         <div className="flex flex-wrap gap-2">
-          {attributeTags.map((t) => (
+          {attributeTags.map((tag) => (
             <Chip
-              key={t.id}
-              active={form.attributes.includes(t.code)}
-              onClick={() => toggleArrayValue("attributes", t.code)}
+              key={tag.id}
+              active={form.attributes.includes(tag.code)}
+              onClick={() => toggleArrayValue("attributes", tag.code)}
             >
-              {t.name}
+              {tag.name}
             </Chip>
           ))}
         </div>
       </div>
 
       <div>
-        <label className={labelClass()}>Diet tags</label>
+        <label className={labelClass()}>{t("form.dietTagsLabel")}</label>
         <div className="flex flex-wrap gap-2">
           {diets.map((d) => (
             <Chip
@@ -347,7 +350,7 @@ export function RecipeFormFields({
       </div>
 
       <div>
-        <label className={labelClass()}>Allergen tags</label>
+        <label className={labelClass()}>{t("form.allergenTagsLabel")}</label>
         <div className="flex flex-wrap gap-2">
           {allergens.map((a) => (
             <Chip
@@ -361,73 +364,73 @@ export function RecipeFormFields({
         </div>
       </div>
 
-      <label className="flex items-center gap-2 text-sm text-[#101010]">
+      <label className="flex items-center gap-2 text-sm text-ink">
         <input
           type="checkbox"
           checked={form.batchFriendly}
           onChange={(e) => update("batchFriendly", e.target.checked)}
         />
-        Batch friendly
+        {t("form.batchFriendlyLabel")}
       </label>
 
       {/* Macros — all optional, kept to 4 simple numbers per serving. */}
       <div>
-        <label className={labelClass()}>Macros (per serving, optional)</label>
+        <label className={labelClass()}>{t("form.macrosLabel")}</label>
         <div className="grid grid-cols-4 gap-2">
           <div>
             <input
               type="number"
               min={0}
               className={inputClass()}
-              placeholder="Cal"
+              placeholder={t("form.macros.caloriesPlaceholder")}
               value={form.caloriesPerServing ?? ""}
               onChange={(e) =>
                 update("caloriesPerServing", e.target.value ? Number(e.target.value) : null)
               }
             />
-            <p className="mt-1 text-center text-[10px] font-extralight text-[#6B7370]">calories</p>
+            <p className="mt-1 text-center text-[10px] font-extralight text-muted">{t("form.macros.caloriesCaption")}</p>
           </div>
           <div>
             <input
               type="number"
               min={0}
               className={inputClass()}
-              placeholder="g"
+              placeholder={t("form.macros.proteinPlaceholder")}
               value={form.proteinGrams ?? ""}
               onChange={(e) => update("proteinGrams", e.target.value ? Number(e.target.value) : null)}
             />
-            <p className="mt-1 text-center text-[10px] font-extralight text-[#6B7370]">protein</p>
+            <p className="mt-1 text-center text-[10px] font-extralight text-muted">{t("form.macros.proteinCaption")}</p>
           </div>
           <div>
             <input
               type="number"
               min={0}
               className={inputClass()}
-              placeholder="g"
+              placeholder={t("form.macros.carbsPlaceholder")}
               value={form.carbsGrams ?? ""}
               onChange={(e) => update("carbsGrams", e.target.value ? Number(e.target.value) : null)}
             />
-            <p className="mt-1 text-center text-[10px] font-extralight text-[#6B7370]">carbs</p>
+            <p className="mt-1 text-center text-[10px] font-extralight text-muted">{t("form.macros.carbsCaption")}</p>
           </div>
           <div>
             <input
               type="number"
               min={0}
               className={inputClass()}
-              placeholder="g"
+              placeholder={t("form.macros.fatPlaceholder")}
               value={form.fatGrams ?? ""}
               onChange={(e) => update("fatGrams", e.target.value ? Number(e.target.value) : null)}
             />
-            <p className="mt-1 text-center text-[10px] font-extralight text-[#6B7370]">fat</p>
+            <p className="mt-1 text-center text-[10px] font-extralight text-muted">{t("form.macros.fatCaption")}</p>
           </div>
         </div>
       </div>
 
       <div>
-        <label className={labelClass()}>Pairing suggestion (optional)</label>
+        <label className={labelClass()}>{t("form.pairingSuggestionLabel")}</label>
         <input
           className={inputClass()}
-          placeholder="e.g. Pairs well with a cold beer or caipirinha."
+          placeholder={t("form.pairingSuggestionPlaceholder")}
           value={form.pairingSuggestion ?? ""}
           onChange={(e) => update("pairingSuggestion", e.target.value || null)}
         />
@@ -436,34 +439,34 @@ export function RecipeFormFields({
       {/* Ingredients */}
       <div>
         <div className="flex items-center justify-between">
-          <label className={labelClass()}>Ingredients</label>
+          <label className={labelClass()}>{t("form.ingredientsLabel")}</label>
           <button
             type="button"
             onClick={addIngredient}
-            className="text-xs font-medium text-[#2C5A87] underline"
+            className="text-xs font-medium text-link underline"
           >
-            + Add ingredient
+            {t("actions.addIngredient")}
           </button>
         </div>
         <div className="space-y-2">
           {form.ingredients.map((ing, i) => (
-            <div key={i} className="rounded-lg border border-[#E8E6E0] bg-white p-2">
+            <div key={i} className="rounded-lg border border-border bg-surface p-2">
               <div className="grid grid-cols-[1fr_1fr_2fr] gap-2">
                 <input
                   className={inputClass()}
-                  placeholder="Qty"
+                  placeholder={t("form.ingredientQtyPlaceholder")}
                   value={ing.quantity}
                   onChange={(e) => updateIngredient(i, { quantity: e.target.value })}
                 />
                 <input
                   className={inputClass()}
-                  placeholder="Unit"
+                  placeholder={t("form.ingredientUnitPlaceholder")}
                   value={ing.unit ?? ""}
                   onChange={(e) => updateIngredient(i, { unit: e.target.value || null })}
                 />
                 <input
                   className={inputClass()}
-                  placeholder="Item"
+                  placeholder={t("form.ingredientItemPlaceholder")}
                   value={ing.item}
                   onChange={(e) => updateIngredient(i, { item: e.target.value })}
                 />
@@ -471,61 +474,57 @@ export function RecipeFormFields({
               <div className="mt-2 grid grid-cols-[2fr_1fr_auto_auto] items-center gap-2">
                 <input
                   className={inputClass()}
-                  placeholder="Prep note (optional)"
+                  placeholder={t("form.prepNotePlaceholder")}
                   value={ing.prepNote ?? ""}
                   onChange={(e) => updateIngredient(i, { prepNote: e.target.value || null })}
                 />
                 <input
                   className={inputClass()}
-                  placeholder="Component (optional)"
+                  placeholder={t("form.componentPlaceholder")}
                   value={ing.component ?? ""}
                   onChange={(e) => updateIngredient(i, { component: e.target.value || null })}
                 />
-                <label className="flex items-center gap-1 whitespace-nowrap text-xs text-[#6B7370]">
+                <label className="flex items-center gap-1 whitespace-nowrap text-xs text-muted">
                   <input
                     type="checkbox"
                     checked={ing.optional}
                     onChange={(e) => updateIngredient(i, { optional: e.target.checked })}
                   />
-                  Optional
+                  {t("form.optionalLabel")}
                 </label>
                 <button
                   type="button"
                   onClick={() => removeIngredient(i)}
                   className="text-xs text-red-600"
                 >
-                  Remove
+                  {t("actions.remove")}
                 </button>
               </div>
             </div>
           ))}
         </div>
-        <p className="mt-1 text-[10px] text-[#6B7370]">
-          Tip: use &ldquo;To complete the meal&rdquo; as the component for sides/drinks that
-          round out the dish — they get their own highlighted callout at the bottom of the
-          recipe page.
-        </p>
+        <p className="mt-1 text-[10px] text-muted">{t("form.completeMealTip")}</p>
       </div>
 
       {/* Steps */}
       <div>
         <div className="flex items-center justify-between">
-          <label className={labelClass()}>Steps</label>
+          <label className={labelClass()}>{t("form.stepsLabel")}</label>
           <button
             type="button"
             onClick={addStep}
-            className="text-xs font-medium text-[#2C5A87] underline"
+            className="text-xs font-medium text-link underline"
           >
-            + Add step
+            {t("actions.addStep")}
           </button>
         </div>
         <div className="space-y-2">
           {form.steps.map((step, i) => (
-            <div key={i} className="rounded-lg border border-[#E8E6E0] bg-white p-2">
+            <div key={i} className="rounded-lg border border-border bg-surface p-2">
               <textarea
                 rows={2}
                 className={inputClass()}
-                placeholder={`Step ${i + 1}`}
+                placeholder={t("form.stepPlaceholder", { number: i + 1 })}
                 value={step.text}
                 onChange={(e) => updateStep(i, { text: e.target.value })}
               />
@@ -534,7 +533,7 @@ export function RecipeFormFields({
                   type="number"
                   min={0}
                   className={`${inputClass()} max-w-[8rem]`}
-                  placeholder="Duration (min)"
+                  placeholder={t("form.durationPlaceholder")}
                   value={step.durationMinutes ?? ""}
                   onChange={(e) =>
                     updateStep(i, {
@@ -547,7 +546,7 @@ export function RecipeFormFields({
                   onClick={() => removeStep(i)}
                   className="text-xs text-red-600"
                 >
-                  Remove
+                  {t("actions.remove")}
                 </button>
               </div>
             </div>
@@ -560,22 +559,22 @@ export function RecipeFormFields({
       {addSubRecipe && (
       <div>
         <div className="flex items-center justify-between">
-          <label className={labelClass()}>Sub-recipes (optional)</label>
+          <label className={labelClass()}>{t("form.subRecipesLabel")}</label>
           <button
             type="button"
             onClick={addSubRecipe}
-            className="text-xs font-medium text-[#2C5A87] underline"
+            className="text-xs font-medium text-link underline"
           >
-            + Add sub-recipe
+            {t("actions.addSubRecipe")}
           </button>
         </div>
         <div className="space-y-3">
           {form.subRecipes.map((sub, subIdx) => (
-            <div key={subIdx} className="rounded-lg border border-[#E8E6E0] bg-white p-3">
+            <div key={subIdx} className="rounded-lg border border-border bg-surface p-3">
               <div className="flex items-center gap-2">
                 <input
                   className={inputClass()}
-                  placeholder='Title, e.g. "Make your own empanada dough"'
+                  placeholder={t("form.subRecipeTitlePlaceholder")}
                   value={sub.title}
                   onChange={(e) => updateSubRecipe?.(subIdx, { title: e.target.value })}
                 />
@@ -584,19 +583,19 @@ export function RecipeFormFields({
                   onClick={() => removeSubRecipe?.(subIdx)}
                   className="shrink-0 text-xs text-red-600"
                 >
-                  Remove
+                  {t("actions.remove")}
                 </button>
               </div>
 
               <div className="mt-3">
                 <div className="flex items-center justify-between">
-                  <p className="text-xs font-medium text-[#6B7370]">Ingredients</p>
+                  <p className="text-xs font-medium text-muted">{t("form.ingredientsLabel")}</p>
                   <button
                     type="button"
                     onClick={() => addSubRecipeIngredient?.(subIdx)}
-                    className="text-xs font-medium text-[#2C5A87] underline"
+                    className="text-xs font-medium text-link underline"
                   >
-                    + Add ingredient
+                    {t("actions.addIngredient")}
                   </button>
                 </div>
                 <div className="mt-1 space-y-1">
@@ -604,7 +603,7 @@ export function RecipeFormFields({
                     <div key={ingIdx} className="grid grid-cols-[1fr_1fr_2fr_auto] gap-2">
                       <input
                         className={inputClass()}
-                        placeholder="Qty"
+                        placeholder={t("form.ingredientQtyPlaceholder")}
                         value={ing.quantity}
                         onChange={(e) =>
                           updateSubRecipeIngredient?.(subIdx, ingIdx, { quantity: e.target.value })
@@ -612,7 +611,7 @@ export function RecipeFormFields({
                       />
                       <input
                         className={inputClass()}
-                        placeholder="Unit"
+                        placeholder={t("form.ingredientUnitPlaceholder")}
                         value={ing.unit ?? ""}
                         onChange={(e) =>
                           updateSubRecipeIngredient?.(subIdx, ingIdx, { unit: e.target.value || null })
@@ -620,7 +619,7 @@ export function RecipeFormFields({
                       />
                       <input
                         className={inputClass()}
-                        placeholder="Item"
+                        placeholder={t("form.ingredientItemPlaceholder")}
                         value={ing.item}
                         onChange={(e) =>
                           updateSubRecipeIngredient?.(subIdx, ingIdx, { item: e.target.value })
@@ -631,7 +630,7 @@ export function RecipeFormFields({
                         onClick={() => removeSubRecipeIngredient?.(subIdx, ingIdx)}
                         className="text-xs text-red-600"
                       >
-                        Remove
+                        {t("actions.remove")}
                       </button>
                     </div>
                   ))}
@@ -640,13 +639,13 @@ export function RecipeFormFields({
 
               <div className="mt-3">
                 <div className="flex items-center justify-between">
-                  <p className="text-xs font-medium text-[#6B7370]">Steps</p>
+                  <p className="text-xs font-medium text-muted">{t("form.stepsLabel")}</p>
                   <button
                     type="button"
                     onClick={() => addSubRecipeStep?.(subIdx)}
-                    className="text-xs font-medium text-[#2C5A87] underline"
+                    className="text-xs font-medium text-link underline"
                   >
-                    + Add step
+                    {t("actions.addStep")}
                   </button>
                 </div>
                 <div className="mt-1 space-y-1">
@@ -655,7 +654,7 @@ export function RecipeFormFields({
                       <textarea
                         rows={2}
                         className={inputClass()}
-                        placeholder={`Step ${stepIdx + 1}`}
+                        placeholder={t("form.stepPlaceholder", { number: stepIdx + 1 })}
                         value={text}
                         onChange={(e) => updateSubRecipeStep?.(subIdx, stepIdx, e.target.value)}
                       />
@@ -664,7 +663,7 @@ export function RecipeFormFields({
                         onClick={() => removeSubRecipeStep?.(subIdx, stepIdx)}
                         className="shrink-0 text-xs text-red-600"
                       >
-                        Remove
+                        {t("actions.remove")}
                       </button>
                     </div>
                   ))}

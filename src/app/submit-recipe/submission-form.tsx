@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { RecipeFormFields } from "@/components/recipe-form-fields";
 import {
   EMPTY_RECIPE,
@@ -22,6 +23,7 @@ export function SubmissionForm({
   diets: EditorDiet[];
   allergens: EditorAllergen[];
 }) {
+  const t = useTranslations("submitRecipe");
   const router = useRouter();
   const [form, setForm] = useState<RecipeFormValues>(EMPTY_RECIPE);
   const [photoFile, setPhotoFile] = useState<File | null>(null);
@@ -89,15 +91,15 @@ export function SubmissionForm({
   async function handleSubmit() {
     setError(null);
     if (!form.cuisineId) {
-      setError("Pick a cuisine.");
+      setError(t("errors.pickCuisine"));
       return;
     }
     if (form.ingredients.some((i) => !i.item.trim())) {
-      setError("Every ingredient needs an item name.");
+      setError(t("errors.ingredientNeedsName"));
       return;
     }
     if (form.steps.some((s) => !s.text.trim())) {
-      setError("Every step needs text.");
+      setError(t("errors.stepNeedsText"));
       return;
     }
 
@@ -110,7 +112,9 @@ export function SubmissionForm({
       });
       if (!res.ok) {
         const body = await res.json().catch(() => null);
-        throw new Error(typeof body?.error === "string" ? body.error : "Submission failed");
+        throw new Error(
+          typeof body?.error === "string" ? body.error : t("errors.submissionFailed"),
+        );
       }
       const { submission } = (await res.json()) as { submission: { id: string } };
 
@@ -123,7 +127,7 @@ export function SubmissionForm({
         });
         if (!photoRes.ok) {
           // Submission itself succeeded — surface a soft warning but still treat as submitted.
-          setError("Recipe submitted, but the photo upload failed. You can resubmit with a photo next time.");
+          setError(t("errors.photoUploadFailed"));
         }
       }
 
@@ -133,7 +137,7 @@ export function SubmissionForm({
       setPhotoPreview(null);
       router.refresh();
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Submission failed");
+      setError(err instanceof Error ? err.message : t("errors.submissionFailed"));
     } finally {
       setSaving(false);
     }
@@ -141,28 +145,26 @@ export function SubmissionForm({
 
   if (submitted) {
     return (
-      <div className="rounded-2xl border border-[#E8E6E0] bg-white p-6 text-center">
-        <p className="text-sm font-medium text-[#101010]">Thanks! Your recipe was submitted.</p>
-        <p className="mt-1 text-sm text-[#6B7370]">
-          An admin will review it soon. You can track its status above.
-        </p>
+      <div className="rounded-2xl border border-border bg-surface p-6 text-center">
+        <p className="text-sm font-medium text-ink">{t("success.title")}</p>
+        <p className="mt-1 text-sm text-muted">{t("success.body")}</p>
         <button
           type="button"
           onClick={() => setSubmitted(false)}
-          className="mt-4 rounded-xl border border-[#E8E6E0] px-4 py-2 text-sm font-medium text-[#101010] shadow-brand"
+          className="mt-4 rounded-xl border border-border px-4 py-2 text-sm font-medium text-ink shadow-brand"
         >
-          Submit another recipe
+          {t("success.submitAnother")}
         </button>
       </div>
     );
   }
 
   return (
-    <div className="space-y-5 rounded-2xl border border-[#E8E6E0] bg-white p-6">
+    <div className="space-y-5 rounded-2xl border border-border bg-surface p-6">
       <div>
-        <label className="mb-1 block text-xs font-medium text-[#6B7370]">Photo (optional)</label>
+        <label className="mb-1 block text-xs font-medium text-muted">{t("form.photoLabel")}</label>
         <div className="flex items-center gap-3">
-          <div className="h-16 w-16 shrink-0 overflow-hidden rounded-lg bg-[#EDF3EF]">
+          <div className="h-16 w-16 shrink-0 overflow-hidden rounded-lg bg-hover">
             {photoPreview && (
               // eslint-disable-next-line @next/next/no-img-element
               <img src={photoPreview} alt="" className="h-full w-full object-cover" />
@@ -179,9 +181,9 @@ export function SubmissionForm({
             type="button"
             onClick={() => fileInputRef.current?.click()}
             disabled={saving}
-            className="rounded-full border border-[#E8E6E0] px-3 py-2 text-xs text-[#101010] shadow-brand disabled:opacity-50"
+            className="rounded-full border border-border px-3 py-2 text-xs text-ink shadow-brand disabled:opacity-50"
           >
-            {photoFile ? "Change photo" : "Add photo"}
+            {photoFile ? t("form.changePhoto") : t("form.addPhoto")}
           </button>
         </div>
       </div>
@@ -209,14 +211,14 @@ export function SubmissionForm({
 
       {error && <p className="text-sm text-red-600">{error}</p>}
 
-      <div className="border-t border-[#E8E6E0] pt-4">
+      <div className="border-t border-border pt-4">
         <button
           type="button"
           onClick={handleSubmit}
           disabled={saving}
-          className="w-full rounded-xl bg-[#1B4332] py-3 text-sm font-medium text-white shadow-brand disabled:opacity-50"
+          className="w-full rounded-xl bg-accent py-3 text-sm font-medium text-accent-ink shadow-brand disabled:opacity-50"
         >
-          {saving ? "Submitting…" : "Submit recipe"}
+          {saving ? t("actions.submitting") : t("actions.submit")}
         </button>
       </div>
     </div>

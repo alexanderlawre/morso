@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { AnimatePresence, motion } from "framer-motion";
 import { logInteraction } from "@/lib/log-interaction";
 import {
@@ -88,6 +89,7 @@ export function RecipeDetailClient({
   initialSaved?: boolean;
   isPremium?: boolean;
 }) {
+  const t = useTranslations("recipe");
   const [servings, setServings] = useState(recipe.servings);
   const [starred, setStarred] = useState(initialSaved);
   const [saveError, setSaveError] = useState<string | null>(null);
@@ -159,11 +161,11 @@ export function RecipeDetailClient({
       if (!res.ok) {
         const body = await res.json().catch(() => null);
         setStarred(!next);
-        setSaveError(body?.error ?? "Something went wrong.");
+        setSaveError(body?.error ?? t("errors.somethingWentWrong"));
       }
     } catch {
       setStarred(!next);
-      setSaveError("Something went wrong.");
+      setSaveError(t("errors.somethingWentWrong"));
     }
   }
 
@@ -185,13 +187,13 @@ export function RecipeDetailClient({
               hour: "numeric",
               minute: "2-digit",
             })
-          : "later";
-        setCookError(`You can log another cook around ${when}.`);
+          : t("errors.timeFallback");
+        setCookError(t("errors.cookRateLimited", { when }));
         return;
       }
 
       if (!res.ok) {
-        setCookError("Something went wrong. Try again.");
+        setCookError(t("errors.cookFailed"));
         return;
       }
 
@@ -200,7 +202,7 @@ export function RecipeDetailClient({
       setJustCooked(true);
       setTimeout(() => setJustCooked(false), 1400);
     } catch {
-      setCookError("Something went wrong. Try again.");
+      setCookError(t("errors.cookFailed"));
     } finally {
       setCooking(false);
     }
@@ -244,22 +246,22 @@ export function RecipeDetailClient({
             />
           </motion.div>
           {recipe.imageCredit && (
-            <p className="mt-1 px-6 text-right text-[10px] text-[#6B7370] sm:px-0">
-              Photo: {recipe.imageCredit}
+            <p className="mt-1 px-6 text-right text-[10px] text-muted sm:px-0">
+              {t("imageCredit", { credit: recipe.imageCredit })}
             </p>
           )}
         </div>
       ) : null}
 
-      <p className="mt-4 text-xs font-extralight uppercase tracking-wide text-[#6B7370]">{recipe.cuisine}</p>
-      <h1 className="mt-1 text-2xl font-bold text-[#101010]">{recipe.title}</h1>
-      <p className="mt-2 text-sm text-[#101010]">{recipe.introCopy}</p>
-      <p className="mt-1 text-xs italic text-[#6B7370]">{recipe.note}</p>
+      <p className="mt-4 text-xs font-extralight uppercase tracking-wide text-muted">{recipe.cuisine}</p>
+      <h1 className="mt-1 text-2xl font-bold text-ink">{recipe.title}</h1>
+      <p className="mt-2 text-sm text-ink">{recipe.introCopy}</p>
+      <p className="mt-1 text-xs italic text-muted">{recipe.note}</p>
 
-      <div className="mt-4 flex flex-wrap gap-2 text-xs font-medium text-[#6B7370]">
-        <span className="rounded-full bg-[#EDF3EF] px-2 py-1">{recipe.effortTier}</span>
-        <span className="rounded-full bg-[#EDF3EF] px-2 py-1">
-          {recipe.prepMinutes} min prep / {recipe.cookMinutes} min cook
+      <div className="mt-4 flex flex-wrap gap-2 text-xs font-medium text-muted">
+        <span className="rounded-full bg-hover px-2 py-1">{recipe.effortTier}</span>
+        <span className="rounded-full bg-hover px-2 py-1">
+          {t("prepCookTime", { prep: recipe.prepMinutes, cook: recipe.cookMinutes })}
         </span>
       </div>
 
@@ -276,17 +278,15 @@ export function RecipeDetailClient({
           {recipe.allergenTags.map((allergen) => (
             <span
               key={allergen}
-              className="rounded-full border border-[#B23A32] bg-[#FBEBE9] px-2 py-1 font-bold text-[#B23A32]"
+              className="rounded-full border border-danger bg-danger-soft px-2 py-1 font-bold text-danger"
             >
-              ⚠ Contains {allergen}
+              {t("allergenBadge", { allergen })}
             </span>
           ))}
         </div>
       )}
       {isAllergenUnverified && (recipe.allergenTags.length > 0 || recipe.dietTags.length > 0) && (
-        <p className="mt-1 text-[11px] italic text-[#6B7370]">
-          Allergen info not yet verified — please check the ingredient list carefully.
-        </p>
+        <p className="mt-1 text-[11px] italic text-muted">{t("allergenUnverified")}</p>
       )}
 
       {recipe.attributes.length > 0 && (
@@ -294,9 +294,9 @@ export function RecipeDetailClient({
           <button
             onClick={() => setTagsOpen((v) => !v)}
             aria-expanded={tagsOpen}
-            className="flex cursor-pointer list-none items-center gap-1 text-xs font-medium text-[#2C5A87]"
+            className="flex cursor-pointer list-none items-center gap-1 text-xs font-medium text-link"
           >
-            Tags & dietary info
+            {t("tagsToggle")}
             <motion.svg
               viewBox="0 0 24 24"
               fill="none"
@@ -320,7 +320,7 @@ export function RecipeDetailClient({
               >
                 <div className="mt-2 flex flex-wrap gap-2 text-xs font-medium">
                   {recipe.attributes.map((a) => (
-                    <span key={a} className="rounded-full bg-[#EDF3EF] px-2 py-1 text-[#6B7370]">
+                    <span key={a} className="rounded-full bg-hover px-2 py-1 text-muted">
                       {attributeLabel(a)}
                     </span>
                   ))}
@@ -332,31 +332,31 @@ export function RecipeDetailClient({
       )}
 
       {hasMacros && (
-        <section className="mt-6 rounded-2xl border border-[#E8E6E0] bg-white p-4">
+        <section className="mt-6 rounded-2xl border border-border bg-surface p-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-sm font-bold text-[#101010]">Nutrition</h2>
-            <span className="text-[11px] font-extralight text-[#6B7370]">
-              for {servings} serving{servings === 1 ? "" : "s"}
+            <h2 className="text-sm font-bold text-ink">{t("sections.nutrition")}</h2>
+            <span className="text-[11px] font-extralight text-muted">
+              {t("nutritionFor", { count: servings })}
             </span>
           </div>
           <div className="mt-3 grid grid-cols-3 gap-2 text-center">
             <div>
-              <p className="text-base font-semibold text-[#101010]">
+              <p className="text-base font-semibold text-ink">
                 {scaledMacro(recipe.caloriesPerServing) ?? "—"}
               </p>
-              <p className="text-[10px] font-extralight uppercase tracking-wide text-[#6B7370]">Calories</p>
+              <p className="text-[10px] font-extralight uppercase tracking-wide text-muted">{t("nutrition.calories")}</p>
             </div>
             <div>
-              <p className="text-base font-semibold text-[#101010]">
+              <p className="text-base font-semibold text-ink">
                 {scaledMacro(recipe.proteinGrams) ?? "—"}g
               </p>
-              <p className="text-[10px] font-extralight uppercase tracking-wide text-[#6B7370]">Protein</p>
+              <p className="text-[10px] font-extralight uppercase tracking-wide text-muted">{t("nutrition.protein")}</p>
             </div>
             <div>
-              <p className="text-base font-semibold text-[#101010]">
+              <p className="text-base font-semibold text-ink">
                 {scaledMacro(recipe.carbsGrams) ?? "—"}g
               </p>
-              <p className="text-[10px] font-extralight uppercase tracking-wide text-[#6B7370]">Carbs</p>
+              <p className="text-[10px] font-extralight uppercase tracking-wide text-muted">{t("nutrition.carbs")}</p>
             </div>
           </div>
 
@@ -365,31 +365,31 @@ export function RecipeDetailClient({
               {isPremium ? (
                 <>
                   <div>
-                    <p className="text-base font-semibold text-[#101010]">
+                    <p className="text-base font-semibold text-ink">
                       {scaledMacro(recipe.fatGrams) ?? "—"}g
                     </p>
-                    <p className="text-[10px] font-extralight uppercase tracking-wide text-[#6B7370]">Fat</p>
+                    <p className="text-[10px] font-extralight uppercase tracking-wide text-muted">{t("nutrition.fat")}</p>
                   </div>
                   <div>
-                    <p className="text-base font-semibold text-[#101010]">
+                    <p className="text-base font-semibold text-ink">
                       {scaledMacro(recipe.fiberGrams) ?? "—"}g
                     </p>
-                    <p className="text-[10px] font-extralight uppercase tracking-wide text-[#6B7370]">Fiber</p>
+                    <p className="text-[10px] font-extralight uppercase tracking-wide text-muted">{t("nutrition.fiber")}</p>
                   </div>
                   <div>
-                    <p className="text-base font-semibold text-[#101010]">
+                    <p className="text-base font-semibold text-ink">
                       {scaledMacro(recipe.cholesterolMg) ?? "—"}mg
                     </p>
-                    <p className="text-[10px] font-extralight uppercase tracking-wide text-[#6B7370]">
-                      Cholesterol
+                    <p className="text-[10px] font-extralight uppercase tracking-wide text-muted">
+                      {t("nutrition.cholesterol")}
                     </p>
                   </div>
                 </>
               ) : (
-                <div className="col-span-3 flex items-center justify-center gap-1.5 rounded-xl bg-[#EDF3EF] px-2 py-2">
-                  <LockIcon className="h-3 w-3 shrink-0 text-[#6B7370]" />
-                  <p className="text-[11px] text-[#6B7370]">
-                    Unlock fat, fiber & cholesterol with Premium
+                <div className="col-span-3 flex items-center justify-center gap-1.5 rounded-xl bg-hover px-2 py-2">
+                  <LockIcon className="h-3 w-3 shrink-0 text-muted" />
+                  <p className="text-[11px] text-muted">
+                    {t("nutrition.premiumLock")}
                   </p>
                 </div>
               )}
@@ -400,12 +400,12 @@ export function RecipeDetailClient({
 
       <section className="mt-6">
         <div className="flex items-center justify-between">
-          <h2 className="text-lg font-bold text-[#101010]">Ingredients</h2>
+          <h2 className="text-lg font-bold text-ink">{t("sections.ingredients")}</h2>
           <div className="flex items-center gap-2">
             <MotionButton
               onClick={() => setServings((s) => Math.max(1, s - 1))}
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-[#E8E6E0] text-base"
-              aria-label="Decrease servings"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-border text-base"
+              aria-label={t("servingsStepper.decrease")}
             >
               −
             </MotionButton>
@@ -414,14 +414,14 @@ export function RecipeDetailClient({
               initial={{ scale: 1.25, opacity: 0.5 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ type: "spring", stiffness: 500, damping: 24 }}
-              className="inline-block text-sm text-[#101010]"
+              className="inline-block text-sm text-ink"
             >
-              {servings} servings
+              {t("servingsStepper.count", { count: servings })}
             </motion.span>
             <MotionButton
               onClick={() => setServings((s) => s + 1)}
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-[#E8E6E0] text-base"
-              aria-label="Increase servings"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-border text-base"
+              aria-label={t("servingsStepper.increase")}
             >
               +
             </MotionButton>
@@ -431,7 +431,7 @@ export function RecipeDetailClient({
         {Object.entries(grouped).map(([component, items]) => (
           <div key={component} className="mt-3">
             {component !== "__main" && (
-              <p className="text-xs font-medium uppercase tracking-wide text-[#6B7370]">
+              <p className="text-xs font-medium uppercase tracking-wide text-muted">
                 {component}
               </p>
             )}
@@ -449,11 +449,13 @@ export function RecipeDetailClient({
               {[...items]
                 .sort((a, b) => a.order - b.order)
                 .map((ing) => (
-                  <li key={ing.id} className="text-sm font-semibold text-[#101010]">
+                  <li key={ing.id} className="text-sm font-semibold text-ink">
                     {scaleQuantity(ing.quantity, factor)} {ing.unit ?? ""} {ing.item}
-                    {ing.optional && <span className="text-[#6B7370]"> (optional)</span>}
+                    {ing.optional && (
+                      <span className="text-muted"> ({t("ingredientOptional")})</span>
+                    )}
                     {ing.prepNote && (
-                      <span className="text-[#6B7370]">, {ing.prepNote}</span>
+                      <span className="text-muted">, {ing.prepNote}</span>
                     )}
                   </li>
                 ))}
@@ -471,9 +473,11 @@ export function RecipeDetailClient({
                 <button
                   onClick={() => toggleSubRecipe(sub.id)}
                   aria-expanded={open}
-                  className="flex cursor-pointer list-none items-center gap-1 text-xs font-medium text-[#2C5A87]"
+                  className="flex cursor-pointer list-none items-center gap-1 text-xs font-medium text-link"
                 >
-                  Want to make the {sub.title.replace(/^Make (your own |)/i, "")} yourself?
+                  {t("subRecipe.toggle", {
+                    title: sub.title.replace(/^Make (your own |)/i, ""),
+                  })}
                   <motion.svg
                     viewBox="0 0 24 24"
                     fill="none"
@@ -495,18 +499,18 @@ export function RecipeDetailClient({
                       transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
                       className="overflow-hidden"
                     >
-                      <div className="mt-2 rounded-xl border border-[#E8E6E0] bg-white p-3">
-                        <p className="text-sm font-semibold text-[#101010]">{sub.title}</p>
+                      <div className="mt-2 rounded-xl border border-border bg-surface p-3">
+                        <p className="text-sm font-semibold text-ink">{sub.title}</p>
                         <ul className="mt-2 space-y-1">
                           {sub.ingredients.map((ing, i) => (
-                            <li key={i} className="text-sm font-semibold text-[#101010]">
+                            <li key={i} className="text-sm font-semibold text-ink">
                               {ing.quantity} {ing.unit ?? ""} {ing.item}
                             </li>
                           ))}
                         </ul>
                         <ol className="mt-3 space-y-2">
                           {sub.steps.map((text, i) => (
-                            <li key={i} className="text-sm text-[#101010]">
+                            <li key={i} className="text-sm text-ink">
                               <span className="font-medium">{i + 1}.</span> {text}
                             </li>
                           ))}
@@ -522,7 +526,7 @@ export function RecipeDetailClient({
       )}
 
       <section className="mt-6">
-        <h2 className="text-lg font-bold text-[#101010]">Method</h2>
+        <h2 className="text-lg font-bold text-ink">{t("sections.method")}</h2>
         <ol className="mt-2 space-y-3">
           {[...recipe.steps]
             .sort((a, b) => a.order - b.order)
@@ -532,12 +536,12 @@ export function RecipeDetailClient({
                 initial={{ opacity: 0, y: 6 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: i * 0.04 }}
-                className="text-sm text-[#101010]"
+                className="text-sm text-ink"
               >
                 <span className="font-medium">{step.order}.</span> {step.text}
                 {step.durationMinutes && (
-                  <span className="ml-2 text-xs text-[#6B7370]">
-                    ~{step.durationMinutes} min
+                  <span className="ml-2 text-xs text-muted">
+                    {t("stepDuration", { minutes: step.durationMinutes })}
                   </span>
                 )}
               </motion.li>
@@ -549,15 +553,15 @@ export function RecipeDetailClient({
         const completeItems = grouped[COMPLETE_THE_MEAL_COMPONENT];
         if (!completeItems?.length && !recipe.pairingSuggestion) return null;
         return (
-          <div className="mt-6 rounded-2xl bg-[#EDF3EF] p-4">
-            <h2 className="text-sm font-bold text-[#101010]">Complete the Meal</h2>
+          <div className="mt-6 rounded-2xl bg-hover p-4">
+            <h2 className="text-sm font-bold text-ink">{t("sections.completeTheMeal")}</h2>
             {completeItems?.length ? (
-              <p className="mt-1 text-sm text-[#101010]">
+              <p className="mt-1 text-sm text-ink">
                 {completeItems.map((i) => i.item).join(", ")}
               </p>
             ) : null}
             {recipe.pairingSuggestion && (
-              <p className="mt-1 text-xs italic text-[#6B7370]">{recipe.pairingSuggestion}</p>
+              <p className="mt-1 text-xs italic text-muted">{recipe.pairingSuggestion}</p>
             )}
           </div>
         );
@@ -575,8 +579,8 @@ export function RecipeDetailClient({
           whileTap={{ scale: 0.94 }}
           className={`rounded-xl border px-4 py-3 text-sm font-medium shadow-brand ${
             starred
-              ? "border-[#1B4332] bg-[#EDF3EF] text-[#1B4332]"
-              : "border-[#E8E6E0] text-[#101010]"
+              ? "border-accent bg-hover text-accent"
+              : "border-border text-ink"
           }`}
         >
           <motion.span
@@ -588,43 +592,45 @@ export function RecipeDetailClient({
           >
             {starred ? "★" : "☆"}
           </motion.span>{" "}
-          Cook later
+          {t("actions.cookLater")}
         </MotionButton>
         <MotionButton
           onClick={handleCook}
           disabled={cooking}
           animate={justCooked ? { scale: [1, 1.08, 1] } : { scale: 1 }}
           transition={{ duration: 0.4, ease: "easeOut" }}
-          className="rounded-xl bg-[#1B4332] px-4 py-3 text-sm font-medium text-white shadow-brand disabled:opacity-50"
+          className="rounded-xl bg-accent px-4 py-3 text-sm font-medium text-accent-ink shadow-brand disabled:opacity-50"
         >
-          {cooking ? "Logging..." : justCooked ? "✓ Logged!" : "I cooked this"}
+          {cooking
+            ? t("actions.logging")
+            : justCooked
+              ? t("actions.logged")
+              : t("actions.iCookedThis")}
         </MotionButton>
       </div>
 
       <SheetModal open={showCosign} onClose={() => submitCosign(false)}>
-        <h3 className="text-lg font-bold text-[#101010]">Nice cooking!</h3>
-        <p className="mt-1 text-sm text-[#6B7370]">
-          Want to leave a note about how it went?
-        </p>
+        <h3 className="text-lg font-bold text-ink">{t("cosign.title")}</h3>
+        <p className="mt-1 text-sm text-muted">{t("cosign.prompt")}</p>
         <textarea
           value={cosignNote}
           onChange={(e) => setCosignNote(e.target.value)}
           rows={3}
-          className="mt-3 w-full rounded-xl border border-[#E8E6E0] p-2 text-base"
-          placeholder="Optional note..."
+          className="mt-3 w-full rounded-xl border border-border p-2 text-base"
+          placeholder={t("cosign.placeholder")}
         />
         <div className="mt-4 flex justify-end gap-2">
           <MotionButton
             onClick={() => submitCosign(false)}
-            className="rounded-xl border border-[#E8E6E0] px-4 py-3 text-sm text-[#101010] shadow-brand"
+            className="rounded-xl border border-border px-4 py-3 text-sm text-ink shadow-brand"
           >
-            Skip
+            {t("cosign.skip")}
           </MotionButton>
           <MotionButton
             onClick={() => submitCosign(true)}
-            className="rounded-xl bg-[#1B4332] px-4 py-3 text-sm font-medium text-white shadow-brand"
+            className="rounded-xl bg-accent px-4 py-3 text-sm font-medium text-accent-ink shadow-brand"
           >
-            Share cosign
+            {t("cosign.share")}
           </MotionButton>
         </div>
       </SheetModal>

@@ -61,6 +61,15 @@ enum DashboardCategory {
   BREAKFAST
 }
 
+// Appearance mode, set via the accessibility menu. LIGHT is the current
+// off-white default; GREEN is a deep brand-green-dominant surface theme;
+// DARK is an Apple-style near-black system dark mode.
+enum ThemeMode {
+  LIGHT
+  GREEN
+  DARK
+}
+
 enum AllergenReviewStatus {
   UNVERIFIED
   IN_REVIEW
@@ -171,6 +180,14 @@ model UserPreferences {
   // This is a comfort preference, not a safety filter, so it lives here
   // rather than alongside the hard allergen fields.
   spiceMax         Int?
+
+  // Appearance + language, set via the accessibility menu (globe icon on
+  // login/signup and the account menu). Mirrors a theme/NEXT_LOCALE cookie
+  // set pre-login so the choice still "sticks" before an account exists —
+  // synced into these fields on signup/login (see src/auth.ts,
+  // src/app/api/signup/route.ts) once an account is available to own them.
+  theme  ThemeMode @default(LIGHT)
+  locale String    @default("en")
 
   updatedAt DateTime @updatedAt
 }
@@ -320,6 +337,12 @@ model Recipe {
   archivedReason       String?
   createdAt            DateTime             @default(now())
 
+  // Bumped whenever ingredients/steps are deleted+recreated (seed re-run,
+  // admin edit) so a RecipeTranslation generated against an older ingredient/
+  // step order can detect it's stale (see RecipeTranslation.sourceContentVersion)
+  // instead of silently showing translated text zipped to the wrong row.
+  contentVersion       Int                  @default(0)
+
   ingredients      Ingredient[]
   steps            Step[]
   subRecipes       SubRecipe[]
@@ -335,6 +358,41 @@ model Recipe {
   cookbookEntries  CookbookRecipe[]
   userCookbookEntries UserCookbookRecipe[]
   submissionSource RecipeSubmission?
+  translations     RecipeTranslation[]
+}
+
+// Per-locale translation of a recipe's text content. `ingredients`/`steps`
+// are stored as JSON arrays ([{item, prepNote, component}] / [{text}])
+// aligned by array index to the English Ingredient/Step rows' `order` —
+// simpler to bulk-generate/import than fully relational per-row translation
+// tables. `sourceContentVersion` pins which Recipe.contentVersion this was
+// translated against; the read path (src/app/recipe/[slug]/page.tsx,
+// src/lib/recipe-card-data.ts) falls back to the English field whenever a
+// field is missing OR sourceContentVersion is behind the recipe's current
+// contentVersion, so a stale/partial translation never shows mis-attributed
+// text instead of just degrading to English.
+model RecipeTranslation {
+  id       String @id @default(cuid())
+  recipeId String
+  recipe   Recipe @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+
+  // BCP-47-ish locale code: en, es, fr, zh (Mandarin, Simplified), yue
+  // (Cantonese, Traditional), ar, de, pt, ru, ja, ko, ur, hi.
+  locale String
+
+  title             String
+  shortDescription  String
+  note              String
+  introCopy         String
+  pairingSuggestion String?
+  ingredients       Json
+  steps             Json
+
+  sourceContentVersion Int
+
+  updatedAt DateTime @updatedAt
+
+  @@unique([recipeId, locale])
 }
 
 model Ingredient {

@@ -2,11 +2,13 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { PageTransition } from "@/components/page-transition";
 import { MotionButton } from "@/components/motion-button";
 import { LoadingOrb } from "@/components/loading-orb";
 
 export default function ForgotPasswordPage() {
+  const t = useTranslations("auth.forgotPassword");
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -25,11 +27,11 @@ export default function ForgotPasswordPage() {
       });
       if (!res.ok) {
         const body = await res.json().catch(() => null);
-        throw new Error(body?.error ?? "Something went wrong");
+        throw new Error(body?.error ?? t("genericError"));
       }
       setSubmitted(true);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Something went wrong");
+      setError(err instanceof Error ? err.message : t("genericError"));
     } finally {
       setLoading(false);
     }
@@ -38,55 +40,55 @@ export default function ForgotPasswordPage() {
   return (
     <main className="flex flex-1 items-center justify-center px-6 py-12">
       <PageTransition className="w-full max-w-sm">
-        <div className="rounded-2xl border border-[#E8E6E0] bg-white p-8 shadow-soft">
-          <h1 className="text-2xl font-bold tracking-tight text-[#101010]">
-            Reset your password
+        <div className="rounded-2xl border border-border bg-surface p-8 shadow-soft">
+          <h1 className="text-2xl font-bold tracking-tight text-ink">
+            {t("title")}
           </h1>
-          <p className="mt-1 text-sm text-[#6B7370]">
-            Enter your email and we&apos;ll send you a link to reset it.
+          <p className="mt-1 text-sm text-muted">
+            {t("subtitle")}
           </p>
 
           {submitted ? (
-            <p className="mt-8 rounded-xl border border-[#E8E6E0] bg-white px-4 py-3 text-sm text-[#101010]">
-              If that email has an account, we&apos;ve sent a password reset link. Check your inbox.
+            <p className="mt-8 rounded-xl border border-border bg-surface px-4 py-3 text-sm text-ink">
+              {t("submitted")}
             </p>
           ) : (
             <form onSubmit={handleSubmit} className="mt-8 space-y-4">
               <div>
-                <label className="block text-sm font-medium text-[#101010]">
-                  Email
+                <label className="block text-sm font-medium text-ink">
+                  {t("emailLabel")}
                 </label>
                 <input
                   type="email"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="mt-1 w-full rounded-xl border border-[#E8E6E0] bg-white px-3 py-2.5 text-base transition-shadow duration-200 focus:outline-none focus:ring-2 focus:ring-[#1B4332]"
+                  className="mt-1 w-full rounded-xl border border-border bg-surface px-3 py-2.5 text-base transition-shadow duration-200 focus:outline-none focus:ring-2 focus:ring-accent"
                 />
               </div>
 
-              {error && <p className="text-sm text-[#B23A32]">{error}</p>}
+              {error && <p className="text-sm text-danger">{error}</p>}
 
               <MotionButton
                 type="submit"
                 disabled={loading}
-                className="w-full rounded-xl bg-[#1B4332] py-3 text-sm font-medium text-white shadow-brand transition-colors hover:bg-[#2D6A4F] disabled:opacity-50"
+                className="w-full rounded-xl bg-accent py-3 text-sm font-medium text-accent-ink shadow-brand transition-colors hover:brightness-110 disabled:opacity-50"
               >
                 {loading ? (
                   <span className="inline-flex items-center justify-center gap-2">
-                    <LoadingOrb size={20} theme="dark" /> Sending...
+                    <LoadingOrb size={20} theme="dark" /> {t("sending")}
                   </span>
                 ) : (
-                  "Send reset link"
+                  t("submit")
                 )}
               </MotionButton>
             </form>
           )}
         </div>
 
-        <p className="mt-6 text-center text-sm text-[#6B7370]">
-          <Link href="/login" className="text-[#2C5A87] underline">
-            Back to login
+        <p className="mt-6 text-center text-sm text-muted">
+          <Link href="/login" className="text-link underline">
+            {t("backToLogin")}
           </Link>
         </p>
       </PageTransition>

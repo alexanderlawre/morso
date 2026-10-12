@@ -1,0 +1,515 @@
+{
+  "accessibility": {
+    "trigger": "無障礙同語言設定",
+    "about": {
+      "label": "關於 Morso",
+      "body": "Morso 會根據你嘅飲食、致敏原同埋喜好推薦食譜——一個為你度身訂造嘅食譜面板，你可以收藏遲啲睇，仲可以記錄你煮過嘅嘢食。",
+      "close": "關閉"
+    },
+    "language": {
+      "label": "語言"
+    },
+    "appearance": {
+      "label": "外觀",
+      "light": "淺色",
+      "green": "綠色",
+      "dark": "深色"
+    },
+    "back": "返回",
+    "menuLabel": "外觀同語言"
+  },
+  "auth": {
+    "login": {
+      "welcomeBack": "歡迎返嚟。",
+      "emailLabel": "電郵",
+      "passwordLabel": "密碼",
+      "forgotPassword": "唔記得密碼？",
+      "wrongCredentials": "電郵或密碼錯誤。",
+      "loggingIn": "登入緊…",
+      "submit": "登入",
+      "newHere": "第一次用？",
+      "createAccount": "開立帳戶"
+    },
+    "signup": {
+      "tagline": "度身訂造嘅食譜。",
+      "stepLabel": "第 1 步（共 3 步）：個人資料",
+      "addPhotoAria": "新增頭像",
+      "addPhoto": "新增相片",
+      "profilePhotoLabel": "頭像",
+      "profilePhotoHint": "非必填，你可以隨時新增或更改。",
+      "fullNameLabel": "全名",
+      "emailLabel": "電郵",
+      "passwordLabel": "密碼",
+      "passwordHint": "最少 10 個字符。",
+      "confirmPasswordLabel": "再次輸入密碼",
+      "passwordsMatch": "密碼相符。",
+      "passwordsMismatch": "密碼仲未相符。",
+      "birthdayLabel": "生日",
+      "passwordsDontMatchError": "兩次密碼唔相符",
+      "locationRequiredError": "城市同國家係必填嘅",
+      "genericError": "出咗啲問題",
+      "partialFailureError": "帳戶已建立，但登入失敗，請再試登入。",
+      "retryError": "出咗啲問題，請再試。",
+      "creatingAccount": "建立緊帳戶…",
+      "continue": "繼續",
+      "alreadyHaveAccount": "已經有帳戶？",
+      "logIn": "登入"
+    },
+    "forgotPassword": {
+      "title": "重設密碼",
+      "subtitle": "輸入你嘅電郵，我哋會寄重設連結俾你。",
+      "emailLabel": "電郵",
+      "submitted": "如果呢個電郵有帳戶，我哋已經寄咗重設密碼連結，請check吓你個inbox。",
+      "sending": "發送緊…",
+      "submit": "寄出重設連結",
+      "backToLogin": "返去登入",
+      "genericError": "出咗啲問題"
+    },
+    "resetPassword": {
+      "title": "設定新密碼",
+      "subtitle": "為你嘅帳戶揀一個新密碼。",
+      "mismatchError": "兩次密碼唔相符。",
+      "genericError": "出咗啲問題",
+      "invalidLink": "呢個重設連結缺失或者無效，請喺",
+      "forgotPasswordLink": "忘記密碼",
+      "pageSuffix": "頁面重新申請。",
+      "success": "密碼已更新，即將跳轉去登入頁…",
+      "newPasswordLabel": "新密碼",
+      "confirmPasswordLabel": "確認新密碼",
+      "updating": "更新緊…",
+      "submit": "更新密碼"
+    },
+    "oauth": {
+      "redirecting": "跳轉緊…",
+      "google": "用 Google 繼續",
+      "apple": "用 Apple 繼續",
+      "or": "或"
+    }
+  },
+  "howItWorks": {
+    "title": "Morso點樣了解你",
+    "subtitle": "唔使填長問卷，你用得越多，Morso就越了解你。",
+    "steps": {
+      "use": {
+        "title": "你使用Morso",
+        "caption": "煮嘢、收藏、略過、評分——每個動作都係一個信號。"
+      },
+      "signal": {
+        "title": "我哋捕捉信號",
+        "caption": "你嘅口味檔案會喺背後靜靜哋更新。"
+      },
+      "sharpen": {
+        "title": "推薦更加精準",
+        "caption": "聽日嘅推薦會比今日更啱你。"
+      }
+    },
+    "footer": "……每次打開Morso，呢個循環都會重複。",
+    "gotIt": "知道了"
+  },
+  "dashboard": {
+    "heading": {
+      "lunch": "為你精選嘅午餐",
+      "dinner": "為你精選嘅晚餐",
+      "tapas": "為你精選嘅Tapas",
+      "breakfast": "為你精選嘅早餐"
+    },
+    "subtitle": {
+      "meals": "{count, plural, one {今日為你精選咗 # 個食譜。} other {今日為你精選咗 # 個食譜。}}",
+      "tapas": "{count, plural, one {今日為你精選咗 # 款tapa。} other {今日為你精選咗 # 款tapas。}}",
+      "breakfast": "{count, plural, one {今日為你精選咗 # 個早餐。} other {今日為你精選咗 # 個早餐。}}"
+    },
+    "category": {
+      "ariaLabel": "你想睇邊類食譜？",
+      "meals": "主餐",
+      "tapas": "Tapas",
+      "breakfast": "早餐"
+    },
+    "filters": {
+      "label": "篩選",
+      "clear": "清除篩選",
+      "moreOf": "更多",
+      "tags": "標籤"
+    },
+    "emptyState": {
+      "noPreferences": "暫時未有啱你口味嘅食譜，遲啲再check吓啦。",
+      "noFiltered": "冇食譜符合你揀嘅篩選條件。"
+    },
+    "loading": {
+      "ariaLabel": "載入食譜中",
+      "text": "載入食譜中…"
+    },
+    "refresh": {
+      "button": "換一批食譜",
+      "shuffling": "換緊…",
+      "error": "出咗啲問題，請再試。"
+    },
+    "recipeCard": {
+      "addToCookLater": "加入待煮清單",
+      "removeFromCookLater": "移出待煮清單",
+      "starError": "出咗啲問題。",
+      "somethingNew": "整啱啲新意",
+      "viewRecipe": "睇食譜",
+      "cookLater": "待煮",
+      "saving": "儲存緊…",
+      "cookedPrefix": "煮過",
+      "lastOn": "上次喺",
+      "removing": "移除緊...",
+      "removeFromCookbook": "由食譜集移除"
+    },
+    "refreshBlocked": {
+      "title": "呢刻嘅換新次數用完咗",
+      "body": "下一個時段會自動有新推薦——或者升級Morso+，無限換。",
+      "nextWindowIn": "下一個時段喺 {countdown} 後",
+      "anyMomentNow": "就嚟㗎喇",
+      "minutes": "{minutes}分鐘",
+      "hours": "{hours}小時",
+      "hoursMinutes": "{hours}小時 {minutes}分鐘",
+      "gotIt": "知道了",
+      "goMorsoPlus": "升級Morso+"
+    }
+  },
+  "onboarding": {
+    "common": {
+      "back": "返回",
+      "continue": "繼續"
+    },
+    "preferences": {
+      "title": "致敏原同飲食",
+      "subtitle": "致敏原排第一位，佢會永久將相關嘅材料由我哋推薦你嘅所有嘢中篩走。你可以隨時喺「個人資料」更新呢啲設定。",
+      "allergies": {
+        "heading": "有冇致敏原？",
+        "description": "揀一個類別，然後㩒低相關嘅項目。呢個係保護你唔會見到唔安全食譜嘅主要防線。",
+        "otherLabel": "其他",
+        "otherDescription": "上面冇列出？可以加其他具體嘅食物或食物類別，用逗號分開（例如「奇異果、貝類」）。",
+        "otherPlaceholder": "例如：奇異果、芫荽"
+      },
+      "diets": {
+        "heading": "你有冇跟開啲飲食方式？",
+        "description": "揀幾多個都得，冇任何限制都冇問題，可以留空。"
+      }
+    },
+    "personalize": {
+      "title": "個人化設定",
+      "subtitle": "由「好少食」到「經常食」都得。如果唔肯定就用預設值，之後隨時都可以調整。",
+      "saving": "儲存緊...",
+      "finish": "完成",
+      "signalBanner": {
+        "title": "用 → 信號 → 更精準嘅推薦",
+        "description": "呢啲滑桿只係一個起點——Morso會不斷從你實際煮嘅嘢中學習。"
+      },
+      "categories": {
+        "produce": "蔬果",
+        "protein": "蛋白質",
+        "grain": "穀物",
+        "dairy": "奶製品",
+        "flavor": "調味料",
+        "other": "其他"
+      },
+      "feedback": {
+        "label": "有冇啲你經常食但冇列出嘅？",
+        "description": "話我哋知，我哋會盡快加入。此欄非必填。"
+      },
+      "cuisines": {
+        "label": "最愛嘅菜式",
+        "description": "盡量輸入至少{count}個，想寫多啲都得。呢個會令我哋偏重呢啲菜式嘅推薦，但唔會排除其他嘅。",
+        "placeholder": "例如：墨西哥菜、泰國菜、法國菜",
+        "moreSuggested": "{count, plural, one {仲建議多加 # 個，但唔係必須。} other {仲建議多加 # 個，但唔係必須。}}"
+      },
+      "errors": {
+        "saveFailed": "儲存你嘅偏好設定時出咗問題。",
+        "generic": "出咗啲問題，請再試。"
+      }
+    }
+  },
+  "recipe": {
+    "allergenWarning": {
+      "title": "可能有致敏原衝突",
+      "body": "呢個食譜可能同你個人資料上嘅致敏原有衝突，或者仲未核對過你申報嘅致敏原。煮之前請仔細check吓材料。"
+    },
+    "imageCredit": "相片：{credit}",
+    "prepCookTime": "準備{prep}分鐘／煮{cook}分鐘",
+    "allergenBadge": "⚠ 含{allergen}",
+    "allergenUnverified": "致敏原資料仲未核實——煮之前請仔細check吓材料清單。",
+    "tagsToggle": "標籤同飲食資訊",
+    "sections": {
+      "nutrition": "營養",
+      "ingredients": "材料",
+      "method": "做法",
+      "completeTheMeal": "配餐推薦"
+    },
+    "nutritionFor": "{count, plural, one {以 # 人份計} other {以 # 人份計}}",
+    "nutrition": {
+      "calories": "熱量",
+      "protein": "蛋白質",
+      "carbs": "碳水化合物",
+      "fat": "脂肪",
+      "fiber": "纖維",
+      "cholesterol": "膽固醇",
+      "premiumLock": "升級Premium解鎖脂肪、纖維同膽固醇資訊"
+    },
+    "servingsStepper": {
+      "decrease": "減少份量",
+      "increase": "增加份量",
+      "count": "{count, plural, one {# 人份} other {# 人份}}"
+    },
+    "ingredientOptional": "非必要",
+    "subRecipe": {
+      "toggle": "想自己整{title}？"
+    },
+    "stepDuration": "~{minutes}分鐘",
+    "errors": {
+      "somethingWentWrong": "出咗啲問題。",
+      "cookFailed": "出咗啲問題，請再試。",
+      "cookRateLimited": "你可以喺{when}左右再記錄另一次煮食。",
+      "timeFallback": "遲啲"
+    },
+    "actions": {
+      "cookLater": "遲啲煮",
+      "logging": "記錄緊...",
+      "logged": "✓ 已記錄！",
+      "iCookedThis": "我煮咗呢個"
+    },
+    "cosign": {
+      "title": "煮得好！",
+      "prompt": "想留個筆記講下煮嘅感覺？",
+      "placeholder": "非必要筆記...",
+      "skip": "跳過",
+      "share": "分享心得"
+    }
+  },
+  "submitRecipe": {
+    "form": {
+      "photoLabel": "相片（非必要）",
+      "addPhoto": "新增相片",
+      "changePhoto": "更改相片",
+      "titleLabel": "標題",
+      "shortDescriptionLabel": "簡短描述",
+      "noteLabel": "備註",
+      "introCopyLabel": "簡介文字",
+      "servingsLabel": "份量",
+      "prepMinLabel": "準備時間（分鐘）",
+      "cookMinLabel": "煮食時間（分鐘）",
+      "difficultyLabel": "難度",
+      "cuisineLabel": "菜式",
+      "selectCuisinePlaceholder": "揀一個菜式…",
+      "addCuisineInputPlaceholder": "新增菜式…",
+      "addCuisineLabel": "新增一個菜式",
+      "addCuisinePlaceholder": "例如：衣索比亞菜",
+      "mealSlotLabel": "用餐時段",
+      "attributesLabel": "屬性／標籤",
+      "dietTagsLabel": "飲食標籤",
+      "allergenTagsLabel": "致敏原標籤",
+      "batchFriendlyLabel": "啱大量製作",
+      "macrosLabel": "營養素（每份量，非必要）",
+      "macros": {
+        "caloriesPlaceholder": "卡",
+        "caloriesCaption": "熱量",
+        "proteinPlaceholder": "克",
+        "proteinCaption": "蛋白質",
+        "carbsPlaceholder": "克",
+        "carbsCaption": "碳水化合物",
+        "fatPlaceholder": "克",
+        "fatCaption": "脂肪"
+      },
+      "pairingSuggestionLabel": "配搭建議（非必要）",
+      "pairingSuggestionPlaceholder": "例如：同凍啤酒或Caipirinha一齊食幾夾。",
+      "ingredientsLabel": "材料",
+      "ingredientQtyPlaceholder": "份量",
+      "ingredientUnitPlaceholder": "單位",
+      "ingredientItemPlaceholder": "材料",
+      "prepNotePlaceholder": "準備備註（非必要）",
+      "componentPlaceholder": "組成部分（非必要）",
+      "optionalLabel": "非必要",
+      "completeMealTip": "貼士：如果想加配菜或飲品令呢餐更完整，可以將組成部分設為「用嚟配餐」——佢哋會喺食譜頁下方有獨立嘅highlight區域顯示。",
+      "stepsLabel": "步驟",
+      "stepPlaceholder": "第{number}步",
+      "durationPlaceholder": "需時（分鐘）",
+      "subRecipesLabel": "附屬食譜（非必要）",
+      "subRecipeTitlePlaceholder": "標題，例如「自己整墨西哥餡餅皮」"
+    },
+    "actions": {
+      "add": "+ 新增",
+      "adding": "新增緊…",
+      "addIngredient": "+ 新增材料",
+      "addStep": "+ 新增步驟",
+      "addSubRecipe": "+ 新增附屬食譜",
+      "remove": "移除",
+      "submit": "提交食譜",
+      "submitting": "提交緊…"
+    },
+    "errors": {
+      "pickCuisine": "請揀一個菜式。",
+      "ingredientNeedsName": "每個材料都要有名稱。",
+      "stepNeedsText": "每個步驟都要有內容。",
+      "submissionFailed": "提交失敗",
+      "photoUploadFailed": "食譜已提交，但相片上載失敗。下次可以連同相片再提交一次。",
+      "addCuisineFailed": "新增菜式失敗"
+    },
+    "success": {
+      "title": "多謝！你嘅食譜已經提交咗。",
+      "body": "管理員會盡快審核，你可以喺上面追蹤審核狀態。",
+      "submitAnother": "再提交另一個食譜"
+    }
+  },
+  "profile": {
+    "heading": "個人資料",
+    "photo": {
+      "changeAriaLabel": "更改頭像",
+      "addPhoto": "新增相片",
+      "label": "頭像",
+      "uploading": "上載緊...",
+      "clickToChange": "㩒一下更改。"
+    },
+    "fields": {
+      "name": "名稱",
+      "birthday": "生日"
+    },
+    "actions": {
+      "save": "儲存",
+      "saving": "儲存緊...",
+      "saved": "已儲存！"
+    },
+    "errors": {
+      "nameRequired": "名稱唔可以空白。",
+      "countryRequired": "國家唔可以空白。",
+      "photoUploadFailed": "上載相片時出咗問題。",
+      "saveFailed": "儲存個人資料時出咗問題。",
+      "generic": "出咗啲問題，請再試。"
+    },
+    "cookArchive": {
+      "heading": "煮食記錄",
+      "privacyNote": "私密——淨係你自己睇到。你標記為「煮過」嘅食譜會喺呢度顯示；可以將任何一個加入上面嘅公開食譜集。",
+      "empty": "仲未有煮過嘅記錄。喺主頁將食譜標記為「煮過」就會顯示喺呢度。"
+    },
+    "cookbooks": {
+      "heading": "我嘅食譜集",
+      "visibilityNote": "公開——其他已登入嘅用戶都睇到。只有你煮過嘅食譜先可以加入。",
+      "empty": "你仲未整過食譜集。整一個嚟開始收集你煮過嘅食譜。",
+      "recipeCount": "{count, plural, one {# 個食譜} other {# 個食譜}}",
+      "noCover": "冇封面",
+      "namePlaceholder": "食譜集名稱",
+      "create": "建立",
+      "cancel": "取消",
+      "newCookbook": "+ 新食譜集",
+      "errors": {
+        "createFailed": "建立食譜集時出咗問題。",
+        "generic": "出咗啲問題，請再試。"
+      }
+    },
+    "accountSettings": {
+      "title": "帳戶設定",
+      "email": "電郵",
+      "timezone": "時區",
+      "changePasswordTitle": "更改密碼",
+      "setPasswordTitle": "設定密碼",
+      "ssoNote": "你嘅帳戶係用Google或Apple登入建立嘅。設定密碼就可以用電郵登入。",
+      "currentPasswordPlaceholder": "目前密碼",
+      "newPasswordPlaceholder": "新密碼（最少10個字符）",
+      "saving": "儲存緊...",
+      "changePasswordButton": "更改密碼",
+      "setPasswordButton": "設定密碼",
+      "saved": "已儲存！",
+      "errors": {
+        "passwordTooShort": "新密碼最少要10個字符。",
+        "changeFailed": "更改密碼時出咗問題。",
+        "generic": "出咗啲問題，請再試。"
+      },
+      "forgotPassword": "唔記得目前密碼？可以<link>用電郵重設</link>。",
+      "signOut": "登出"
+    },
+    "public": {
+      "noCookbooks": "仲未有公開食譜集。",
+      "noRecipesInCookbook": "呢個食譜集仲未有食譜。"
+    }
+  },
+  "settings": {
+    "personalization": {
+      "heading": "個人化設定",
+      "subheading": "隨時更新你嘅飲食、致敏原同口味偏好，更改會即時套用到你嘅主頁。",
+      "howMorsoLearns": {
+        "title": "Morso點樣了解你",
+        "body": "下面每一個評分、收藏同略過都會回饋到你嘅口味檔案——用得越多，推薦就越精準。",
+        "seeHowItWorks": "了解運作方式"
+      },
+      "allergies": {
+        "title": "有冇致敏原？",
+        "body": "揀幾多個都得。呢個係保護你唔會見到唔安全食譜嘅主要防線。",
+        "otherLabel": "其他致敏原",
+        "otherHelp": "列出其他具體嘅食物或食物類別，用逗號分開（例如「奇異果、貝類」）。",
+        "otherPlaceholder": "例如：奇異果、芫荽"
+      },
+      "diets": {
+        "title": "你有冇跟開啲飲食方式？",
+        "body": "揀幾多個都得，冇任何限制都冇問題，可以留空。"
+      },
+      "spice": {
+        "title": "你食辣嘅能力有幾高？",
+        "body": "我哋唔會顯示比呢個更辣嘅嘢。仲未評過辣度嘅食譜都照樣會顯示。",
+        "mild": "小辣",
+        "medium": "中辣",
+        "hot": "大辣"
+      },
+      "foodGroups": {
+        "title": "你食呢啲嘢嘅頻密程度？",
+        "body": "由好少食到經常食。呢個會影響我哋優先顯示嘅食譜，但唔會完全排除任何嘢。",
+        "rarely": "好少食",
+        "constantly": "經常食"
+      },
+      "feedback": {
+        "label": "有冇啲你經常食但冇列出嘅？",
+        "help": "話我哋知，我哋會盡快加入。此欄非必填。"
+      },
+      "cuisines": {
+        "label": "最愛嘅菜式",
+        "help": "盡量輸入至少{count}個，想寫多啲都得。呢個會令我哋偏重呢啲菜式嘅推薦，但唔會排除其他嘅。",
+        "placeholder": "例如：墨西哥菜、泰國菜、法國菜"
+      },
+      "errors": {
+        "saveFailed": "儲存你嘅偏好設定時出咗問題。",
+        "generic": "出咗啲問題，請再試。"
+      },
+      "save": "儲存更改",
+      "saving": "儲存緊...",
+      "saved": "已儲存！"
+    }
+  },
+  "cookLater": {
+    "heading": "待煮清單",
+    "savedCount": "已儲存{count}/{cap}。煮咗一個就有位加多啲。",
+    "hiddenCount": "{count, plural, one {# 個已儲存嘅食譜} other {# 個已儲存嘅食譜}}因你嘅致敏原或飲食設定被隱藏。",
+    "removeAriaLabel": "由待煮清單移除",
+    "empty": "仲未儲存過食譜。喺主頁將食譜加星就會顯示喺呢度。"
+  },
+  "cookbooks": {
+    "manage": {
+      "heading": "管理食譜集",
+      "visibilityNote": "公開——喺你個人資料上，其他已登入嘅用戶都睇到。",
+      "coverChangeAriaLabel": "更改食譜集封面",
+      "addCover": "新增封面",
+      "coverLabel": "封面圖片",
+      "uploading": "上載緊...",
+      "clickToChange": "㩒一下更改。",
+      "nameLabel": "名稱",
+      "saving": "儲存緊...",
+      "saveName": "儲存名稱",
+      "saved": "已儲存！",
+      "errors": {
+        "nameRequired": "食譜集名稱唔可以空白。",
+        "coverUploadFailed": "上載封面時出咗問題。",
+        "renameFailed": "更改食譜集名稱時出咗問題。",
+        "addRecipeFailed": "加入食譜時出咗問題。",
+        "removeRecipeFailed": "移除食譜時出咗問題。",
+        "deleteFailed": "刪除食譜集時出咗問題。",
+        "generic": "出咗啲問題，請再試。"
+      },
+      "deleteConfirm": "刪除「{name}」？呢個動作冇得還原。",
+      "addRecipesHeading": "加入一個你煮過嘅食譜",
+      "adding": "新增緊...",
+      "add": "新增",
+      "recipesHeading": "食譜",
+      "noRecipes": "仲未有食譜。可以喺上面你煮過嘅食譜中加一個。",
+      "deleting": "刪除緊...",
+      "deleteCookbook": "刪除食譜集"
+    }
+  }
+}

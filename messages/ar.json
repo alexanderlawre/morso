@@ -1,0 +1,515 @@
+{
+  "accessibility": {
+    "trigger": "إعدادات إمكانية الوصول واللغة",
+    "about": {
+      "label": "حول Morso",
+      "body": "يقترح Morso وصفات بناءً على نظامك الغذائي ومسببات الحساسية لديك وتفضيلاتك — لوحة مخصصة من الوصفات المناسبة لك يمكنك حفظها لوقت لاحق وتسجيل ما تطبخه.",
+      "close": "إغلاق"
+    },
+    "language": {
+      "label": "اللغة"
+    },
+    "appearance": {
+      "label": "المظهر",
+      "light": "فاتح",
+      "green": "أخضر",
+      "dark": "داكن"
+    },
+    "back": "رجوع",
+    "menuLabel": "المظهر واللغة"
+  },
+  "auth": {
+    "login": {
+      "welcomeBack": "مرحبًا بعودتك.",
+      "emailLabel": "البريد الإلكتروني",
+      "passwordLabel": "كلمة المرور",
+      "forgotPassword": "هل نسيت كلمة المرور؟",
+      "wrongCredentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة.",
+      "loggingIn": "جارٍ تسجيل الدخول...",
+      "submit": "تسجيل الدخول",
+      "newHere": "جديد هنا؟",
+      "createAccount": "إنشاء حساب"
+    },
+    "signup": {
+      "tagline": "وصفات مخصصة لك.",
+      "stepLabel": "الخطوة 1 من 3: الملف الشخصي",
+      "addPhotoAria": "إضافة صورة الملف الشخصي",
+      "addPhoto": "إضافة صورة",
+      "profilePhotoLabel": "صورة الملف الشخصي",
+      "profilePhotoHint": "اختياري. يمكنك إضافتها أو تغييرها في أي وقت.",
+      "fullNameLabel": "الاسم الكامل",
+      "emailLabel": "البريد الإلكتروني",
+      "passwordLabel": "كلمة المرور",
+      "passwordHint": "10 أحرف على الأقل.",
+      "confirmPasswordLabel": "أعد إدخال كلمة المرور",
+      "passwordsMatch": "كلمتا المرور متطابقتان.",
+      "passwordsMismatch": "كلمتا المرور غير متطابقتين بعد.",
+      "birthdayLabel": "تاريخ الميلاد",
+      "passwordsDontMatchError": "كلمتا المرور غير متطابقتين",
+      "locationRequiredError": "المدينة والدولة مطلوبتان",
+      "genericError": "حدث خطأ ما",
+      "partialFailureError": "تم إنشاء الحساب، لكن فشل تسجيل الدخول. حاول تسجيل الدخول.",
+      "retryError": "حدث خطأ ما. حاول مرة أخرى.",
+      "creatingAccount": "جارٍ إنشاء الحساب...",
+      "continue": "متابعة",
+      "alreadyHaveAccount": "هل لديك حساب بالفعل؟",
+      "logIn": "تسجيل الدخول"
+    },
+    "forgotPassword": {
+      "title": "إعادة تعيين كلمة المرور",
+      "subtitle": "أدخل بريدك الإلكتروني وسنرسل لك رابطًا لإعادة تعيينها.",
+      "emailLabel": "البريد الإلكتروني",
+      "submitted": "إذا كان هذا البريد الإلكتروني مرتبطًا بحساب، فقد أرسلنا رابط إعادة تعيين كلمة المرور. تحقق من بريدك الوارد.",
+      "sending": "جارٍ الإرسال...",
+      "submit": "إرسال رابط إعادة التعيين",
+      "backToLogin": "العودة لتسجيل الدخول",
+      "genericError": "حدث خطأ ما"
+    },
+    "resetPassword": {
+      "title": "تعيين كلمة مرور جديدة",
+      "subtitle": "اختر كلمة مرور جديدة لحسابك.",
+      "mismatchError": "كلمتا المرور غير متطابقتين.",
+      "genericError": "حدث خطأ ما",
+      "invalidLink": "رابط إعادة التعيين هذا مفقود أو غير صالح. اطلب رابطًا جديدًا من صفحة",
+      "forgotPasswordLink": "نسيت كلمة المرور",
+      "pageSuffix": ".",
+      "success": "تم تحديث كلمة المرور. جارٍ تحويلك لتسجيل الدخول...",
+      "newPasswordLabel": "كلمة المرور الجديدة",
+      "confirmPasswordLabel": "تأكيد كلمة المرور الجديدة",
+      "updating": "جارٍ التحديث...",
+      "submit": "تحديث كلمة المرور"
+    },
+    "oauth": {
+      "redirecting": "جارٍ إعادة التوجيه...",
+      "google": "المتابعة باستخدام Google",
+      "apple": "المتابعة باستخدام Apple",
+      "or": "أو"
+    }
+  },
+  "howItWorks": {
+    "title": "كيف يتعرّف Morso عليك",
+    "subtitle": "لا يوجد استبيان طويل لملئه. كلما استخدمت Morso أكثر، كلما تحسّن أداؤه.",
+    "steps": {
+      "use": {
+        "title": "تستخدم Morso",
+        "caption": "الطهي، الحفظ، التخطي، التقييم — كل إجراء هو إشارة."
+      },
+      "signal": {
+        "title": "نلتقط الإشارة",
+        "caption": "يتم تحديث ملف ذوقك بهدوء في الخلفية."
+      },
+      "sharpen": {
+        "title": "التوصيات تصبح أدق",
+        "caption": "اختيارات الغد ستناسبك أكثر قليلاً من اختيارات اليوم."
+      }
+    },
+    "footer": "...وتتكرر هذه الدورة في كل مرة تفتح فيها Morso.",
+    "gotIt": "فهمت"
+  },
+  "dashboard": {
+    "heading": {
+      "lunch": "اختيارات الغداء لك",
+      "dinner": "اختيارات العشاء لك",
+      "tapas": "اختيارات التاباس لك",
+      "breakfast": "اختيارات الإفطار لك"
+    },
+    "subtitle": {
+      "meals": "{count, plural, one {تم اختيار # وصفة لك اليوم.} other {تم اختيار # وصفات لك اليوم.}}",
+      "tapas": "{count, plural, one {تم اختيار # تاباس لك اليوم.} other {تم اختيار # تاباس لك اليوم.}}",
+      "breakfast": "{count, plural, one {تم اختيار # وجبة إفطار لك اليوم.} other {تم اختيار # وجبات إفطار لك اليوم.}}"
+    },
+    "category": {
+      "ariaLabel": "ما الوصفات التي تريد رؤيتها؟",
+      "meals": "الوجبات",
+      "tapas": "تاباس",
+      "breakfast": "الإفطار"
+    },
+    "filters": {
+      "label": "الفلاتر",
+      "clear": "إزالة الفلاتر",
+      "moreOf": "المزيد من",
+      "tags": "العلامات"
+    },
+    "emptyState": {
+      "noPreferences": "لا توجد وصفات تطابق تفضيلاتك حتى الآن. تحقق مرة أخرى قريبًا.",
+      "noFiltered": "لا توجد وصفات تطابق الفلاتر المحددة."
+    },
+    "loading": {
+      "ariaLabel": "جارٍ تحميل الوصفات",
+      "text": "جارٍ تحميل الوصفات…"
+    },
+    "refresh": {
+      "button": "تحديث الوصفات",
+      "shuffling": "جارٍ التبديل…",
+      "error": "حدث خطأ ما. حاول مرة أخرى."
+    },
+    "recipeCard": {
+      "addToCookLater": "إضافة إلى قائمة الطبخ لاحقًا",
+      "removeFromCookLater": "إزالة من قائمة الطبخ لاحقًا",
+      "starError": "حدث خطأ ما.",
+      "somethingNew": "شيء جديد",
+      "viewRecipe": "عرض الوصفة",
+      "cookLater": "اطبخ لاحقًا",
+      "saving": "جارٍ الحفظ…",
+      "cookedPrefix": "تم طبخها",
+      "lastOn": "آخر مرة في",
+      "removing": "جارٍ الإزالة...",
+      "removeFromCookbook": "إزالة من كتاب الطبخ"
+    },
+    "refreshBlocked": {
+      "title": "هذا هو تحديثك المتاح الآن",
+      "body": "تصل الاختيارات الجديدة تلقائيًا في الدورة التالية — أو احصل على عدد غير محدود مع Morso+.",
+      "nextWindowIn": "الدورة التالية خلال {countdown}",
+      "anyMomentNow": "في أي لحظة الآن",
+      "minutes": "{minutes} د",
+      "hours": "{hours} س",
+      "hoursMinutes": "{hours} س {minutes} د",
+      "gotIt": "فهمت",
+      "goMorsoPlus": "الترقية إلى Morso+"
+    }
+  },
+  "onboarding": {
+    "common": {
+      "back": "رجوع",
+      "continue": "متابعة"
+    },
+    "preferences": {
+      "title": "الحساسية والنظام الغذائي",
+      "subtitle": "تأتي الحساسية أولًا. فهي تستبعد بشكل دائم المكونات المطابقة من كل ما نعرضه لك. يمكنك دائمًا تحديث هذه الإعدادات لاحقًا من ملفك الشخصي.",
+      "allergies": {
+        "heading": "هل لديك أي حساسية؟",
+        "description": "اختر فئة، ثم حدد العناصر المحددة التي تنطبق عليك. هذا هو الضمان الأساسي الذي يمنع ظهور وصفات غير آمنة في لوحتك.",
+        "otherLabel": "شيء آخر",
+        "otherDescription": "غير مذكور أعلاه؟ أضف أطعمة أو فئات غذائية محددة، مفصولة بفواصل (مثل: «كيوي، محار»).",
+        "otherPlaceholder": "مثل: كيوي، كزبرة"
+      },
+      "diets": {
+        "heading": "هل تتبع أي نظام غذائي معين؟",
+        "description": "اختر ما تريد منها. لا بأس أيضًا بعدم وجود قيود، يمكنك ترك هذا الحقل خاليًا."
+      }
+    },
+    "personalize": {
+      "title": "التخصيص",
+      "subtitle": "من نادرًا إلى باستمرار. الإعدادات الافتراضية مناسبة إذا لم تكن متأكدًا، ويمكنك تعديلها لاحقًا في أي وقت.",
+      "saving": "جارٍ الحفظ...",
+      "finish": "إنهاء",
+      "signalBanner": {
+        "title": "الاستخدام ← الإشارة ← اختيارات أدق",
+        "description": "هذه المؤشرات هي نقطة انطلاق فقط — يستمر Morso في التعلم من ما تطبخه فعليًا."
+      },
+      "categories": {
+        "produce": "الفواكه والخضروات",
+        "protein": "البروتينات",
+        "grain": "الحبوب",
+        "dairy": "منتجات الألبان",
+        "flavor": "النكهات والتوابل",
+        "other": "أخرى"
+      },
+      "feedback": {
+        "label": "لا ترى شيئًا تتناوله كثيرًا؟",
+        "description": "أخبرنا وسنعمل على إضافته. اختياري."
+      },
+      "cuisines": {
+        "label": "المطابخ المفضلة",
+        "description": "اكتب {count} على الأقل إن أمكن، وأكثر إذا أردت. هذا يُظهر تفضيلًا لهذه المطابخ دون استبعاد أي شيء آخر.",
+        "placeholder": "مثل: مكسيكي، تايلاندي، فرنسي",
+        "moreSuggested": "{count, plural, one {يُقترح إضافة # أخرى، ولكنها ليست إلزامية.} other {يُقترح إضافة # أخرى، ولكنها ليست إلزامية.}}"
+      },
+      "errors": {
+        "saveFailed": "حدث خطأ ما أثناء حفظ تفضيلاتك.",
+        "generic": "حدث خطأ ما. حاول مرة أخرى."
+      }
+    }
+  },
+  "recipe": {
+    "allergenWarning": {
+      "title": "تعارض محتمل مع مسببات الحساسية",
+      "body": "قد تتعارض هذه الوصفة مع حساسية في ملفك الشخصي، أو لم تتم مراجعتها بعد مقابل الحساسية التي أعلنت عنها. يُرجى مراجعة المكونات بعناية قبل الطبخ."
+    },
+    "imageCredit": "صورة: {credit}",
+    "prepCookTime": "{prep} دقيقة تحضير / {cook} دقيقة طبخ",
+    "allergenBadge": "⚠ يحتوي على {allergen}",
+    "allergenUnverified": "لم يتم التحقق من معلومات مسببات الحساسية بعد — يُرجى مراجعة قائمة المكونات بعناية.",
+    "tagsToggle": "العلامات والمعلومات الغذائية",
+    "sections": {
+      "nutrition": "التغذية",
+      "ingredients": "المكونات",
+      "method": "طريقة التحضير",
+      "completeTheMeal": "لإكمال الوجبة"
+    },
+    "nutritionFor": "لـ {count, plural, one {# حصة} other {# حصص}}",
+    "nutrition": {
+      "calories": "السعرات الحرارية",
+      "protein": "البروتين",
+      "carbs": "الكربوهيدرات",
+      "fat": "الدهون",
+      "fiber": "الألياف",
+      "cholesterol": "الكوليسترول",
+      "premiumLock": "افتح الدهون والألياف والكوليسترول مع Premium"
+    },
+    "servingsStepper": {
+      "decrease": "تقليل عدد الحصص",
+      "increase": "زيادة عدد الحصص",
+      "count": "{count, plural, one {# حصة} other {# حصص}}"
+    },
+    "ingredientOptional": "اختياري",
+    "subRecipe": {
+      "toggle": "هل تريد تحضير {title} بنفسك؟"
+    },
+    "stepDuration": "~{minutes} دقيقة",
+    "errors": {
+      "somethingWentWrong": "حدث خطأ ما.",
+      "cookFailed": "حدث خطأ ما. حاول مرة أخرى.",
+      "cookRateLimited": "يمكنك تسجيل عملية طبخ أخرى بحلول {when}.",
+      "timeFallback": "لاحقًا"
+    },
+    "actions": {
+      "cookLater": "اطبخ لاحقًا",
+      "logging": "جارٍ التسجيل...",
+      "logged": "✓ تم التسجيل!",
+      "iCookedThis": "لقد طبخت هذا"
+    },
+    "cosign": {
+      "title": "طبخ رائع!",
+      "prompt": "هل تريد ترك ملاحظة عن كيف سارت الأمور؟",
+      "placeholder": "ملاحظة اختيارية...",
+      "skip": "تخطي",
+      "share": "مشاركة الملاحظة"
+    }
+  },
+  "submitRecipe": {
+    "form": {
+      "photoLabel": "صورة (اختياري)",
+      "addPhoto": "إضافة صورة",
+      "changePhoto": "تغيير الصورة",
+      "titleLabel": "العنوان",
+      "shortDescriptionLabel": "وصف مختصر",
+      "noteLabel": "ملاحظة",
+      "introCopyLabel": "نص المقدمة",
+      "servingsLabel": "عدد الحصص",
+      "prepMinLabel": "دقائق التحضير",
+      "cookMinLabel": "دقائق الطبخ",
+      "difficultyLabel": "مستوى الصعوبة",
+      "cuisineLabel": "المطبخ",
+      "selectCuisinePlaceholder": "اختر مطبخًا…",
+      "addCuisineInputPlaceholder": "إضافة مطبخ جديد…",
+      "addCuisineLabel": "إضافة مطبخ جديد",
+      "addCuisinePlaceholder": "مثل: إثيوبي",
+      "mealSlotLabel": "فئة الوجبة",
+      "attributesLabel": "الخصائص / العلامات",
+      "dietTagsLabel": "علامات النظام الغذائي",
+      "allergenTagsLabel": "علامات مسببات الحساسية",
+      "batchFriendlyLabel": "مناسب للتحضير بكميات كبيرة",
+      "macrosLabel": "العناصر الغذائية الكبرى (لكل حصة، اختياري)",
+      "macros": {
+        "caloriesPlaceholder": "سعرات",
+        "caloriesCaption": "سعرات حرارية",
+        "proteinPlaceholder": "غ",
+        "proteinCaption": "بروتين",
+        "carbsPlaceholder": "غ",
+        "carbsCaption": "كربوهيدرات",
+        "fatPlaceholder": "غ",
+        "fatCaption": "دهون"
+      },
+      "pairingSuggestionLabel": "اقتراح تقديم (اختياري)",
+      "pairingSuggestionPlaceholder": "مثل: يتناسب جيدًا مع بيرة بارد أو كايبيرينيا.",
+      "ingredientsLabel": "المكونات",
+      "ingredientQtyPlaceholder": "الكمية",
+      "ingredientUnitPlaceholder": "الوحدة",
+      "ingredientItemPlaceholder": "العنصر",
+      "prepNotePlaceholder": "ملاحظة تحضير (اختياري)",
+      "componentPlaceholder": "عنصر الوجبة (اختياري)",
+      "optionalLabel": "اختياري",
+      "completeMealTip": "نصيحة: استخدم «لإكمال الوجبة» كعنصر للأطباق الجانبية/المشروبات التي تُكمّل الطبق — فهي تحصل على تنبيه مميز خاص بها في أسفل صفحة الوصفة.",
+      "stepsLabel": "الخطوات",
+      "stepPlaceholder": "الخطوة {number}",
+      "durationPlaceholder": "المدة (بالدقائق)",
+      "subRecipesLabel": "وصفات فرعية (اختياري)",
+      "subRecipeTitlePlaceholder": "العنوان، مثل: \"حضّر عجينة الإمباندا بنفسك\""
+    },
+    "actions": {
+      "add": "+ إضافة",
+      "adding": "جارٍ الإضافة…",
+      "addIngredient": "+ إضافة مكوّن",
+      "addStep": "+ إضافة خطوة",
+      "addSubRecipe": "+ إضافة وصفة فرعية",
+      "remove": "إزالة",
+      "submit": "إرسال الوصفة",
+      "submitting": "جارٍ الإرسال…"
+    },
+    "errors": {
+      "pickCuisine": "اختر مطبخًا.",
+      "ingredientNeedsName": "كل مكوّن يحتاج إلى اسم عنصر.",
+      "stepNeedsText": "كل خطوة تحتاج إلى نص.",
+      "submissionFailed": "فشل الإرسال",
+      "photoUploadFailed": "تم إرسال الوصفة، لكن فشل رفع الصورة. يمكنك إعادة الإرسال مع صورة في المرة القادمة.",
+      "addCuisineFailed": "فشلت إضافة المطبخ"
+    },
+    "success": {
+      "title": "شكرًا! تم إرسال وصفتك.",
+      "body": "سيقوم أحد المسؤولين بمراجعتها قريبًا. يمكنك تتبع حالتها أعلاه.",
+      "submitAnother": "إرسال وصفة أخرى"
+    }
+  },
+  "profile": {
+    "heading": "الملف الشخصي",
+    "photo": {
+      "changeAriaLabel": "تغيير صورة الملف الشخصي",
+      "addPhoto": "إضافة صورة",
+      "label": "صورة الملف الشخصي",
+      "uploading": "جارٍ الرفع...",
+      "clickToChange": "اضغط للتغيير."
+    },
+    "fields": {
+      "name": "الاسم",
+      "birthday": "تاريخ الميلاد"
+    },
+    "actions": {
+      "save": "حفظ",
+      "saving": "جارٍ الحفظ...",
+      "saved": "تم الحفظ!"
+    },
+    "errors": {
+      "nameRequired": "لا يمكن أن يكون الاسم خاليًا.",
+      "countryRequired": "لا يمكن أن تكون الدولة خالية.",
+      "photoUploadFailed": "حدث خطأ ما أثناء رفع صورتك.",
+      "saveFailed": "حدث خطأ ما أثناء حفظ ملفك الشخصي.",
+      "generic": "حدث خطأ ما. حاول مرة أخرى."
+    },
+    "cookArchive": {
+      "heading": "أرشيف الطبخ",
+      "privacyNote": "خاص — أنت فقط من يمكنه رؤية هذا. الوصفات التي وضعت عليها علامة «تم طبخها» تظهر هنا؛ أضف أيًا منها إلى كتاب طبخ عام أعلاه.",
+      "empty": "لم يتم طبخ أي شيء بعد. ضع علامة على وصفة بأنها «تم طبخها» من لوحتك لإضافتها هنا."
+    },
+    "cookbooks": {
+      "heading": "كتب طبخي",
+      "visibilityNote": "عام — مرئي للمستخدمين الآخرين المسجلين. يمكن فقط إضافة الوصفات التي طبختها.",
+      "empty": "لم تُنشئ كتاب طبخ بعد. أنشئ واحدًا لتبدأ بجمع وصفاتك المطبوخة.",
+      "recipeCount": "{count, plural, one {# وصفة} other {# وصفات}}",
+      "noCover": "بلا غلاف",
+      "namePlaceholder": "اسم كتاب الطبخ",
+      "create": "إنشاء",
+      "cancel": "إلغاء",
+      "newCookbook": "+ كتاب طبخ جديد",
+      "errors": {
+        "createFailed": "حدث خطأ ما أثناء إنشاء كتاب طبخك.",
+        "generic": "حدث خطأ ما. حاول مرة أخرى."
+      }
+    },
+    "accountSettings": {
+      "title": "إعدادات الحساب",
+      "email": "البريد الإلكتروني",
+      "timezone": "المنطقة الزمنية",
+      "changePasswordTitle": "تغيير كلمة المرور",
+      "setPasswordTitle": "تعيين كلمة مرور",
+      "ssoNote": "تم إنشاء حسابك عبر تسجيل الدخول بواسطة Google أو Apple. عيّن كلمة مرور لتتمكن أيضًا من تسجيل الدخول باستخدام بريدك الإلكتروني.",
+      "currentPasswordPlaceholder": "كلمة المرور الحالية",
+      "newPasswordPlaceholder": "كلمة المرور الجديدة (10 أحرف على الأقل)",
+      "saving": "جارٍ الحفظ...",
+      "changePasswordButton": "تغيير كلمة المرور",
+      "setPasswordButton": "تعيين كلمة المرور",
+      "saved": "تم الحفظ!",
+      "errors": {
+        "passwordTooShort": "يجب أن تتكون كلمة المرور الجديدة من 10 أحرف على الأقل.",
+        "changeFailed": "حدث خطأ ما أثناء تغيير كلمة المرور.",
+        "generic": "حدث خطأ ما. حاول مرة أخرى."
+      },
+      "forgotPassword": "هل نسيت كلمة مرورك الحالية؟ <link>أعد تعيينها عبر البريد الإلكتروني</link> بدلاً من ذلك.",
+      "signOut": "تسجيل الخروج"
+    },
+    "public": {
+      "noCookbooks": "لا توجد كتب طبخ عامة حتى الآن.",
+      "noRecipesInCookbook": "لا توجد وصفات في كتاب الطبخ هذا حتى الآن."
+    }
+  },
+  "settings": {
+    "personalization": {
+      "heading": "التخصيص",
+      "subheading": "حدّث نظامك الغذائي وحساسيتك وتفضيلات ذوقك في أي وقت. تُطبَّق التغييرات على لوحتك فورًا.",
+      "howMorsoLearns": {
+        "title": "كيف يتعرّف Morso عليك",
+        "body": "كل تقييم وحفظ وتخطٍّ أدناه يغذي ملف ذوقك — تصبح التوصيات أدق كلما استخدمت Morso أكثر.",
+        "seeHowItWorks": "اطّلع على كيفية عمل ذلك"
+      },
+      "allergies": {
+        "title": "هل لديك أي حساسية؟",
+        "body": "اختر كل ما ينطبق عليك. هذا هو الضمان الأساسي الذي يمنع ظهور وصفات غير آمنة في لوحتك.",
+        "otherLabel": "حساسية أخرى",
+        "otherHelp": "اذكر أطعمة أو فئات غذائية محددة، مفصولة بفواصل (مثل: «كيوي، محار»).",
+        "otherPlaceholder": "مثل: كيوي، كزبرة"
+      },
+      "diets": {
+        "title": "هل تتبع أي نظام غذائي معين؟",
+        "body": "اختر ما تريد منها. لا بأس أيضًا بعدم وجود قيود، يمكنك ترك هذا الحقل خاليًا."
+      },
+      "spice": {
+        "title": "ما مقدار الحرارة التي تتحملها؟",
+        "body": "لن نعرض عليك أي شيء أكثر حرارة من هذا. الوصفات التي لم نقيّمها من حيث الحرارة تظهر في كل الحالات.",
+        "mild": "خفيف",
+        "medium": "متوسط",
+        "hot": "حار"
+      },
+      "foodGroups": {
+        "title": "كم مرة تتناول هذه الأطعمة؟",
+        "body": "من نادرًا إلى باستمرار. هذا يوجّه الوصفات التي نعرضها لك أولًا، ولا يستبعد أي شيء إطلاقًا.",
+        "rarely": "نادرًا",
+        "constantly": "باستمرار"
+      },
+      "feedback": {
+        "label": "لا ترى شيئًا تتناوله كثيرًا؟",
+        "help": "أخبرنا وسنعمل على إضافته. اختياري."
+      },
+      "cuisines": {
+        "label": "المطابخ المفضلة",
+        "help": "اكتب {count} على الأقل إن أمكن، وأكثر إذا أردت. هذا يُظهر تفضيلًا لهذه المطابخ دون استبعاد أي شيء آخر.",
+        "placeholder": "مثل: مكسيكي، تايلاندي، فرنسي"
+      },
+      "errors": {
+        "saveFailed": "حدث خطأ ما أثناء حفظ تفضيلاتك.",
+        "generic": "حدث خطأ ما. حاول مرة أخرى."
+      },
+      "save": "حفظ التغييرات",
+      "saving": "جارٍ الحفظ...",
+      "saved": "تم الحفظ!"
+    }
+  },
+  "cookLater": {
+    "heading": "اطبخ لاحقًا",
+    "savedCount": "تم حفظ {count}/{cap}. اطبخ واحدة لإخلاء مساحة لإضافة المزيد.",
+    "hiddenCount": "{count, plural, one {تم إخفاء # وصفة محفوظة} other {تم إخفاء # وصفات محفوظة}} بسبب إعدادات حساسيتك أو نظامك الغذائي.",
+    "removeAriaLabel": "إزالة من قائمة الطبخ لاحقًا",
+    "empty": "لم يتم حفظ أي شيء بعد. ضع نجمة على وصفة من لوحتك لإضافتها هنا."
+  },
+  "cookbooks": {
+    "manage": {
+      "heading": "إدارة كتاب الطبخ",
+      "visibilityNote": "عام — مرئي للمستخدمين الآخرين المسجلين في ملفك الشخصي.",
+      "coverChangeAriaLabel": "تغيير غلاف كتاب الطبخ",
+      "addCover": "إضافة غلاف",
+      "coverLabel": "صورة الغلاف",
+      "uploading": "جارٍ الرفع...",
+      "clickToChange": "اضغط للتغيير.",
+      "nameLabel": "الاسم",
+      "saving": "جارٍ الحفظ...",
+      "saveName": "حفظ الاسم",
+      "saved": "تم الحفظ!",
+      "errors": {
+        "nameRequired": "لا يمكن أن يكون اسم كتاب الطبخ خاليًا.",
+        "coverUploadFailed": "حدث خطأ ما أثناء رفع الغلاف.",
+        "renameFailed": "حدث خطأ ما أثناء إعادة تسمية كتاب طبخك.",
+        "addRecipeFailed": "حدث خطأ ما أثناء إضافة تلك الوصفة.",
+        "removeRecipeFailed": "حدث خطأ ما أثناء إزالة تلك الوصفة.",
+        "deleteFailed": "حدث خطأ ما أثناء حذف كتاب طبخك.",
+        "generic": "حدث خطأ ما. حاول مرة أخرى."
+      },
+      "deleteConfirm": "حذف \"{name}\"؟ لا يمكن التراجع عن هذا.",
+      "addRecipesHeading": "إضافة وصفة قمت بطبخها",
+      "adding": "جارٍ الإضافة...",
+      "add": "إضافة",
+      "recipesHeading": "الوصفات",
+      "noRecipes": "لا توجد وصفات بعد. أضف واحدة من وصفاتك المطبوخة أعلاه.",
+      "deleting": "جارٍ الحذف...",
+      "deleteCookbook": "حذف كتاب الطبخ"
+    }
+  }
+}

@@ -32,25 +32,25 @@ function StatusBadge({ status }: { status: SubmissionRow["status"] }) {
 export function MySubmissions({ submissions }: { submissions: SubmissionRow[] }) {
   return (
     <div>
-      <h2 className="text-sm font-bold text-[#101010]">Your submissions</h2>
-      <div className="mt-2 rounded-2xl border border-[#E8E6E0] bg-white px-4">
+      <h2 className="text-sm font-bold text-ink">Your submissions</h2>
+      <div className="mt-2 rounded-2xl border border-border bg-surface px-4">
         {submissions.map((s) => (
           <div
             key={s.id}
-            className="flex flex-col gap-2 border-b border-[#E8E6E0] py-3 last:border-0 sm:flex-row sm:items-center sm:justify-between"
+            className="flex flex-col gap-2 border-b border-border py-3 last:border-0 sm:flex-row sm:items-center sm:justify-between"
           >
             <div className="min-w-0 flex-1">
-              <p className="truncate text-sm font-medium text-[#101010]">{s.title}</p>
+              <p className="truncate text-sm font-medium text-ink">{s.title}</p>
               {s.status === "APPROVED" && s.approvedSlug && (
                 <Link
                   href={`/recipe/${s.approvedSlug}`}
-                  className="text-xs text-[#2C5A87] underline"
+                  className="text-xs text-link underline"
                 >
                   View live recipe
                 </Link>
               )}
               {s.status === "REJECTED" && s.reviewNote && (
-                <p className="text-xs text-[#6B7370]">Note: {s.reviewNote}</p>
+                <p className="text-xs text-muted">Note: {s.reviewNote}</p>
               )}
             </div>
             <StatusBadge status={s.status} />

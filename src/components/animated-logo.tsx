@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
+import { Wordmark } from "@/components/wordmark";
 
 const SESSION_KEY = "morso-title-intro-shown";
 
@@ -26,14 +26,7 @@ export function AnimatedLogo() {
         animate ? "animate-title-intro" : ""
       }`}
     >
-      <Image
-        src="/brand/svg/wordmark-black.svg"
-        alt="Morso"
-        width={864}
-        height={286}
-        className="h-7 w-auto"
-        priority
-      />
+      <Wordmark className="h-7 w-auto" priority />
     </Link>
   );
 }

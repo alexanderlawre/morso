@@ -5,7 +5,8 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import Image from "next/image";
+import { Wordmark } from "@/components/wordmark";
+import { useTranslations } from "next-intl";
 import { compressImage } from "@/lib/image-compression";
 import { PageTransition } from "@/components/page-transition";
 import { MotionButton } from "@/components/motion-button";
@@ -16,6 +17,7 @@ import { LoadingOrb } from "@/components/loading-orb";
 import { hideKeyboard } from "@/lib/native";
 
 export default function SignupPage() {
+  const t = useTranslations("auth.signup");
   const router = useRouter();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -41,12 +43,12 @@ export default function SignupPage() {
     setError(null);
 
     if (password !== confirmPassword) {
-      setError("Passwords don't match");
+      setError(t("passwordsDontMatchError"));
       return;
     }
 
     if (!location.country || !location.city) {
-      setError("City and country are required");
+      setError(t("locationRequiredError"));
       return;
     }
 
@@ -70,7 +72,7 @@ export default function SignupPage() {
       const data = await res.json();
 
       if (!res.ok) {
-        setError(data.error ?? "Something went wrong");
+        setError(data.error ?? t("genericError"));
         setLoading(false);
         return;
       }
@@ -82,7 +84,7 @@ export default function SignupPage() {
       });
 
       if (signInRes?.error) {
-        setError("Account created, but sign in failed. Try logging in.");
+        setError(t("partialFailureError"));
         setLoading(false);
         return;
       }
@@ -104,7 +106,7 @@ export default function SignupPage() {
       router.push("/onboarding/preferences");
       router.refresh();
     } catch {
-      setError("Something went wrong. Try again.");
+      setError(t("retryError"));
       setLoading(false);
     }
   }
@@ -112,25 +114,18 @@ export default function SignupPage() {
   return (
     <main className="flex flex-1 items-center justify-center px-6 py-12">
       <PageTransition className="w-full max-w-sm">
-        <div className="rounded-2xl border border-[#E8E6E0] bg-white p-8 shadow-soft">
-          <Image
-            src="/brand/svg/wordmark-black.svg"
-            alt="Morso"
-            width={864}
-            height={286}
-            className="h-10 w-auto"
-            priority
-          />
-          <p className="mt-1 text-sm text-[#6B7370]">
-            Recipes catered to you.
+        <div className="rounded-2xl border border-border bg-surface p-8 shadow-soft">
+          <Wordmark className="h-10 w-auto" priority />
+          <p className="mt-1 text-sm text-muted">
+            {t("tagline")}
           </p>
 
           <div className="mt-4 mb-4">
             <OAuthButtons />
           </div>
 
-          <p className="text-xs font-medium uppercase tracking-wide text-[#6B7370]">
-            Step 1 of 3: Profile
+          <p className="text-xs font-medium uppercase tracking-wide text-muted">
+            {t("stepLabel")}
           </p>
 
           <form onSubmit={handleSubmit} className="mt-4 space-y-4">
@@ -138,14 +133,14 @@ export default function SignupPage() {
               <MotionButton
                 type="button"
                 onClick={() => fileInputRef.current?.click()}
-                className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-full border border-[#E8E6E0] bg-[#EDF3EF] text-xs text-[#6B7370]"
-                aria-label="Add profile photo"
+                className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-full border border-border bg-hover text-xs text-muted"
+                aria-label={t("addPhotoAria")}
               >
                 {photoPreview ? (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img src={photoPreview} alt="" className="h-full w-full object-cover" />
                 ) : (
-                  "Add photo"
+                  t("addPhoto")
                 )}
               </MotionButton>
               <input
@@ -156,37 +151,37 @@ export default function SignupPage() {
                 className="hidden"
               />
               <div>
-                <p className="text-sm font-medium text-[#101010]">Profile photo</p>
-                <p className="text-xs text-[#6B7370]">Optional. You can add or change this anytime.</p>
+                <p className="text-sm font-medium text-ink">{t("profilePhotoLabel")}</p>
+                <p className="text-xs text-muted">{t("profilePhotoHint")}</p>
               </div>
             </div>
             <div>
-              <label className="block text-sm font-medium text-[#101010]">
-                Full name
+              <label className="block text-sm font-medium text-ink">
+                {t("fullNameLabel")}
               </label>
               <input
                 type="text"
                 required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="mt-1 w-full rounded-xl border border-[#E8E6E0] bg-white px-3 py-2.5 text-base transition-shadow duration-200 focus:outline-none focus:ring-2 focus:ring-[#1B4332]"
+                className="mt-1 w-full rounded-xl border border-border bg-surface px-3 py-2.5 text-base transition-shadow duration-200 focus:outline-none focus:ring-2 focus:ring-accent"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-[#101010]">
-                Email
+              <label className="block text-sm font-medium text-ink">
+                {t("emailLabel")}
               </label>
               <input
                 type="email"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="mt-1 w-full rounded-xl border border-[#E8E6E0] bg-white px-3 py-2.5 text-base transition-shadow duration-200 focus:outline-none focus:ring-2 focus:ring-[#1B4332]"
+                className="mt-1 w-full rounded-xl border border-border bg-surface px-3 py-2.5 text-base transition-shadow duration-200 focus:outline-none focus:ring-2 focus:ring-accent"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-[#101010]">
-                Password
+              <label className="block text-sm font-medium text-ink">
+                {t("passwordLabel")}
               </label>
               <input
                 type="password"
@@ -194,13 +189,13 @@ export default function SignupPage() {
                 minLength={10}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="mt-1 w-full rounded-xl border border-[#E8E6E0] bg-white px-3 py-2.5 text-base transition-shadow duration-200 focus:outline-none focus:ring-2 focus:ring-[#1B4332]"
+                className="mt-1 w-full rounded-xl border border-border bg-surface px-3 py-2.5 text-base transition-shadow duration-200 focus:outline-none focus:ring-2 focus:ring-accent"
               />
-              <p className="mt-1 text-xs text-[#6B7370]">At least 10 characters.</p>
+              <p className="mt-1 text-xs text-muted">{t("passwordHint")}</p>
             </div>
             <div>
-              <label className="block text-sm font-medium text-[#101010]">
-                Retype password
+              <label className="block text-sm font-medium text-ink">
+                {t("confirmPasswordLabel")}
               </label>
               <input
                 type="password"
@@ -208,23 +203,23 @@ export default function SignupPage() {
                 minLength={10}
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                className="mt-1 w-full rounded-xl border border-[#E8E6E0] bg-white px-3 py-2.5 text-base transition-shadow duration-200 focus:outline-none focus:ring-2 focus:ring-[#1B4332]"
+                className="mt-1 w-full rounded-xl border border-border bg-surface px-3 py-2.5 text-base transition-shadow duration-200 focus:outline-none focus:ring-2 focus:ring-accent"
               />
               {/* Live feedback as the user types, instead of only surfacing
                   a mismatch after they submit. */}
               {confirmPassword.length > 0 && (
                 <p
                   className={`mt-1 text-xs ${
-                    password === confirmPassword ? "text-[#1B4332]" : "text-[#B23A32]"
+                    password === confirmPassword ? "text-accent" : "text-danger"
                   }`}
                 >
-                  {password === confirmPassword ? "Passwords match." : "Passwords don't match yet."}
+                  {password === confirmPassword ? t("passwordsMatch") : t("passwordsMismatch")}
                 </p>
               )}
             </div>
             <div>
-              <label className="block text-sm font-medium text-[#101010]">
-                Birthday
+              <label className="block text-sm font-medium text-ink">
+                {t("birthdayLabel")}
               </label>
               <BirthdayPicker value={birthday} onChange={setBirthday} />
             </div>
@@ -237,7 +232,7 @@ export default function SignupPage() {
                 initial={{ x: 0 }}
                 animate={{ x: [0, -6, 6, -4, 4, 0] }}
                 transition={{ duration: 0.4 }}
-                className="text-sm text-[#B23A32]"
+                className="text-sm text-danger"
               >
                 {error}
               </motion.p>
@@ -246,25 +241,28 @@ export default function SignupPage() {
             <MotionButton
               type="submit"
               disabled={loading}
-              className="w-full rounded-xl bg-[#1B4332] py-3 text-sm font-medium text-white shadow-brand disabled:opacity-50"
+              className="w-full rounded-xl bg-accent py-3 text-sm font-medium text-accent-ink shadow-brand disabled:opacity-50"
             >
               {loading ? (
                 <span className="inline-flex items-center justify-center gap-2">
-                  <LoadingOrb size={20} theme="dark" /> Creating account...
+                  <LoadingOrb size={20} theme="dark" /> {t("creatingAccount")}
                 </span>
               ) : (
-                "Continue"
+                t("continue")
               )}
             </MotionButton>
           </form>
         </div>
 
-        <p className="mt-6 text-center text-sm text-[#6B7370]">
-          Already have an account?{" "}
-          <Link href="/login" className="text-[#2C5A87] underline">
-            Log in
+        <div className="mt-6 text-center">
+          <p className="text-sm text-muted">{t("alreadyHaveAccount")}</p>
+          <Link
+            href="/login"
+            className="mt-2 block w-full rounded-lg border border-border bg-surface px-4 py-2.5 text-center text-sm font-medium text-ink shadow-brand transition hover:bg-hover"
+          >
+            {t("logIn")}
           </Link>
-        </p>
+        </div>
       </PageTransition>
     </main>
   );

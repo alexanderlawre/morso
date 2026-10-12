@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import type { Allergen, Diet, DietCommitment } from "@prisma/client";
 import {
   OnboardingShell,
@@ -11,7 +12,7 @@ import {
   DietCommitmentSlider,
 } from "../onboarding-ui";
 import { ONBOARDING_PREFS_KEY } from "../shared";
-import { groupAllergensByCategory, OTHER_ALLERGEN_CATEGORY_LABEL } from "@/lib/allergen-categories";
+import { groupAllergensByCategory } from "@/lib/allergen-categories";
 import { MotionButton } from "@/components/motion-button";
 
 const TOTAL_STEPS = 3;
@@ -24,6 +25,7 @@ export function PreferencesClient({
   allergens: Allergen[];
 }) {
   const router = useRouter();
+  const t = useTranslations("onboarding");
   const [allergenIds, setAllergenIds] = useState<string[]>([]);
   const [customAllergenInput, setCustomAllergenInput] = useState("");
   const [customAllergens, setCustomAllergens] = useState<string[]>([]);
@@ -81,32 +83,31 @@ export function PreferencesClient({
     <OnboardingShell
       step={2}
       totalSteps={TOTAL_STEPS}
-      title="Allergies and diet"
-      subtitle="Allergies come first. They permanently filter matching ingredients out of everything we show you. You can always update these later from your Profile."
+      title={t("preferences.title")}
+      subtitle={t("preferences.subtitle")}
       footer={
         <div className="mt-8 flex gap-3">
           <MotionButton
             type="button"
             onClick={() => router.back()}
-            className="rounded-xl border border-[#E8E6E0] px-4 py-3 text-sm font-medium text-[#101010] shadow-brand"
+            className="rounded-xl border border-border px-4 py-3 text-sm font-medium text-ink shadow-brand"
           >
-            Back
+            {t("common.back")}
           </MotionButton>
           <MotionButton
             type="button"
             onClick={handleContinue}
-            className="flex-1 rounded-xl bg-[#1B4332] py-3 text-sm font-medium text-white shadow-brand"
+            className="flex-1 rounded-xl bg-accent py-3 text-sm font-medium text-accent-ink shadow-brand"
           >
-            Continue
+            {t("common.continue")}
           </MotionButton>
         </div>
       }
     >
       <div>
-        <h3 className="text-sm font-bold text-[#101010]">Any allergies?</h3>
-        <p className="mt-1 text-xs text-[#6B7370]">
-          Choose a category, then check off the specific items that apply. This is the main
-          safeguard that keeps unsafe recipes off your dashboard.
+        <h3 className="text-sm font-bold text-ink">{t("preferences.allergies.heading")}</h3>
+        <p className="mt-1 text-xs text-muted">
+          {t("preferences.allergies.description")}
         </p>
         <div className="mt-3">
           <CategoryItemPicker
@@ -117,12 +118,11 @@ export function PreferencesClient({
         </div>
 
         <div className="mt-5">
-          <label className="block text-sm font-medium text-[#101010]">
-            {OTHER_ALLERGEN_CATEGORY_LABEL}
+          <label className="block text-sm font-medium text-ink">
+            {t("preferences.allergies.otherLabel")}
           </label>
-          <p className="mt-1 text-xs text-[#6B7370]">
-            Not listed above? Add specific foods or food groups, separated by commas (e.g.
-            &ldquo;kiwi, shellfish&rdquo;).
+          <p className="mt-1 text-xs text-muted">
+            {t("preferences.allergies.otherDescription")}
           </p>
           <div className="mt-2">
             <TagInput
@@ -131,16 +131,16 @@ export function PreferencesClient({
               onRemove={(v) => setCustomAllergens((prev) => prev.filter((c) => c !== v))}
               input={customAllergenInput}
               onInputChange={setCustomAllergenInput}
-              placeholder="e.g. kiwi, cilantro"
+              placeholder={t("preferences.allergies.otherPlaceholder")}
             />
           </div>
         </div>
       </div>
 
-      <div className="mt-8 border-t border-[#E8E6E0] pt-6">
-        <h3 className="text-sm font-bold text-[#101010]">Any diets that apply to you?</h3>
-        <p className="mt-1 text-xs text-[#6B7370]">
-          Pick as many as you like. No restrictions is fine too, you can leave this blank.
+      <div className="mt-8 border-t border-border pt-6">
+        <h3 className="text-sm font-bold text-ink">{t("preferences.diets.heading")}</h3>
+        <p className="mt-1 text-xs text-muted">
+          {t("preferences.diets.description")}
         </p>
         <div className="mt-3">
           <ChipGrid

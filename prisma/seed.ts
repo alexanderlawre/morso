@@ -153,6 +153,11 @@ async function main() {
             attributeTags: { set: recipe.attributes.map((code) => ({ code })) },
             heroColor: recipe.heroColor,
             pairingSuggestion: recipe.pairingSuggestion ?? null,
+            // Ingredients/steps are deleted+recreated below, which would
+            // desync any order-indexed RecipeTranslation rows — bump so the
+            // read path detects staleness and falls back to English instead
+            // of zipping translated text to the wrong ingredient/step.
+            contentVersion: { increment: 1 },
             // Deliberately not syncing mealSlot/allergenReviewStatus/isActive/
             // imageUrl/imageCredit here: once a recipe exists, its
             // moderation state and photo are owned by the admin UI (verify/

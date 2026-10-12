@@ -17,15 +17,15 @@ export function CollapsibleSection({
   const [expanded, setExpanded] = useState(defaultExpanded);
 
   return (
-    <div className="rounded-2xl border border-[#E8E6E0] bg-white">
+    <div className="rounded-2xl border border-border bg-surface">
       <button
         type="button"
         onClick={() => setExpanded((v) => !v)}
         aria-expanded={expanded}
-        className="flex w-full cursor-pointer items-center justify-between px-5 py-4 text-sm font-bold text-[#101010]"
+        className="flex w-full cursor-pointer items-center justify-between px-5 py-4 text-sm font-bold text-ink"
       >
         <span>{title}</span>
-        <span className="text-xs font-normal text-[#6B7370]">{expanded ? "Hide" : "Show"}</span>
+        <span className="text-xs font-normal text-muted">{expanded ? "Hide" : "Show"}</span>
       </button>
       <AnimatePresence initial={false}>
         {expanded && (
@@ -36,7 +36,7 @@ export function CollapsibleSection({
             transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
             className="overflow-hidden"
           >
-            <div className="border-t border-[#E8E6E0] p-5">{children}</div>
+            <div className="border-t border-border p-5">{children}</div>
           </motion.div>
         )}
       </AnimatePresence>

@@ -1,0 +1,515 @@
+{
+  "accessibility": {
+    "trigger": "Accessibility and language settings",
+    "about": {
+      "label": "About Morso",
+      "body": "Morso recommends recipes based on your diet, allergens, and preferences — a personalized dashboard of eligible recipes you can save for later and log what you cook.",
+      "close": "Close"
+    },
+    "language": {
+      "label": "Language"
+    },
+    "appearance": {
+      "label": "Appearance",
+      "light": "Light",
+      "green": "Green",
+      "dark": "Dark"
+    },
+    "back": "Back",
+    "menuLabel": "Appearance & language"
+  },
+  "auth": {
+    "login": {
+      "welcomeBack": "Welcome back.",
+      "emailLabel": "Email",
+      "passwordLabel": "Password",
+      "forgotPassword": "Forgot password?",
+      "wrongCredentials": "Wrong email or password.",
+      "loggingIn": "Logging in...",
+      "submit": "Log in",
+      "newHere": "New here?",
+      "createAccount": "Create an account"
+    },
+    "signup": {
+      "tagline": "Recipes catered to you.",
+      "stepLabel": "Step 1 of 3: Profile",
+      "addPhotoAria": "Add profile photo",
+      "addPhoto": "Add photo",
+      "profilePhotoLabel": "Profile photo",
+      "profilePhotoHint": "Optional. You can add or change this anytime.",
+      "fullNameLabel": "Full name",
+      "emailLabel": "Email",
+      "passwordLabel": "Password",
+      "passwordHint": "At least 10 characters.",
+      "confirmPasswordLabel": "Retype password",
+      "passwordsMatch": "Passwords match.",
+      "passwordsMismatch": "Passwords don't match yet.",
+      "birthdayLabel": "Birthday",
+      "passwordsDontMatchError": "Passwords don't match",
+      "locationRequiredError": "City and country are required",
+      "genericError": "Something went wrong",
+      "partialFailureError": "Account created, but sign in failed. Try logging in.",
+      "retryError": "Something went wrong. Try again.",
+      "creatingAccount": "Creating account...",
+      "continue": "Continue",
+      "alreadyHaveAccount": "Already have an account?",
+      "logIn": "Log in"
+    },
+    "forgotPassword": {
+      "title": "Reset your password",
+      "subtitle": "Enter your email and we'll send you a link to reset it.",
+      "emailLabel": "Email",
+      "submitted": "If that email has an account, we've sent a password reset link. Check your inbox.",
+      "sending": "Sending...",
+      "submit": "Send reset link",
+      "backToLogin": "Back to login",
+      "genericError": "Something went wrong"
+    },
+    "resetPassword": {
+      "title": "Set a new password",
+      "subtitle": "Choose a new password for your account.",
+      "mismatchError": "Passwords don't match.",
+      "genericError": "Something went wrong",
+      "invalidLink": "This reset link is missing or invalid. Request a new one from the",
+      "forgotPasswordLink": "forgot password",
+      "pageSuffix": "page.",
+      "success": "Password updated. Redirecting you to log in...",
+      "newPasswordLabel": "New password",
+      "confirmPasswordLabel": "Confirm new password",
+      "updating": "Updating...",
+      "submit": "Update password"
+    },
+    "oauth": {
+      "redirecting": "Redirecting...",
+      "google": "Continue with Google",
+      "apple": "Continue with Apple",
+      "or": "or"
+    }
+  },
+  "howItWorks": {
+    "title": "How Morso learns you",
+    "subtitle": "There's no long survey to get right. The more you use Morso, the better it gets.",
+    "steps": {
+      "use": {
+        "title": "You use Morso",
+        "caption": "Cook, save, skip, rate — every action is a signal."
+      },
+      "signal": {
+        "title": "We catch the signal",
+        "caption": "Your taste profile quietly updates in the background."
+      },
+      "sharpen": {
+        "title": "Recommendations sharpen",
+        "caption": "Tomorrow's picks fit you a little better than today's."
+      }
+    },
+    "footer": "…and the cycle repeats every time you open Morso.",
+    "gotIt": "Got it"
+  },
+  "dashboard": {
+    "heading": {
+      "lunch": "Lunch picks for you",
+      "dinner": "Dinner picks for you",
+      "tapas": "Tapas picks for you",
+      "breakfast": "Breakfast picks for you"
+    },
+    "subtitle": {
+      "meals": "{count, plural, one {# recipe picked for you today.} other {# recipes picked for you today.}}",
+      "tapas": "{count, plural, one {# tapa picked for you today.} other {# tapas picked for you today.}}",
+      "breakfast": "{count, plural, one {# breakfast picked for you today.} other {# breakfasts picked for you today.}}"
+    },
+    "category": {
+      "ariaLabel": "Which recipes do you want to see?",
+      "meals": "Meals",
+      "tapas": "Tapas",
+      "breakfast": "Breakfast"
+    },
+    "filters": {
+      "label": "Filters",
+      "clear": "Clear filters",
+      "moreOf": "More of",
+      "tags": "Tags"
+    },
+    "emptyState": {
+      "noPreferences": "No recipes match your preferences yet. Check back soon.",
+      "noFiltered": "No recipes match your selected filters."
+    },
+    "loading": {
+      "ariaLabel": "Loading recipes",
+      "text": "Loading recipes…"
+    },
+    "refresh": {
+      "button": "Refresh recipes",
+      "shuffling": "Shuffling…",
+      "error": "Something went wrong. Try again."
+    },
+    "recipeCard": {
+      "addToCookLater": "Add to Cook Later",
+      "removeFromCookLater": "Remove from Cook Later",
+      "starError": "Something went wrong.",
+      "somethingNew": "Something new",
+      "viewRecipe": "View Recipe",
+      "cookLater": "Cook Later",
+      "saving": "Saving…",
+      "cookedPrefix": "Cooked",
+      "lastOn": "last on",
+      "removing": "Removing...",
+      "removeFromCookbook": "Remove from cookbook"
+    },
+    "refreshBlocked": {
+      "title": "That's your refresh for now",
+      "body": "Fresh picks land automatically at the next window — or go unlimited with Morso+.",
+      "nextWindowIn": "Next window in {countdown}",
+      "anyMomentNow": "any moment now",
+      "minutes": "{minutes}m",
+      "hours": "{hours}h",
+      "hoursMinutes": "{hours}h {minutes}m",
+      "gotIt": "Got it",
+      "goMorsoPlus": "Go Morso+"
+    }
+  },
+  "onboarding": {
+    "common": {
+      "back": "Back",
+      "continue": "Continue"
+    },
+    "preferences": {
+      "title": "Allergies and diet",
+      "subtitle": "Allergies come first. They permanently filter matching ingredients out of everything we show you. You can always update these later from your Profile.",
+      "allergies": {
+        "heading": "Any allergies?",
+        "description": "Choose a category, then check off the specific items that apply. This is the main safeguard that keeps unsafe recipes off your dashboard.",
+        "otherLabel": "Something else",
+        "otherDescription": "Not listed above? Add specific foods or food groups, separated by commas (e.g. “kiwi, shellfish”).",
+        "otherPlaceholder": "e.g. kiwi, cilantro"
+      },
+      "diets": {
+        "heading": "Any diets that apply to you?",
+        "description": "Pick as many as you like. No restrictions is fine too, you can leave this blank."
+      }
+    },
+    "personalize": {
+      "title": "Personalize",
+      "subtitle": "Rarely to constantly. Defaults are fine if you're not sure, you can always tweak this later.",
+      "saving": "Saving...",
+      "finish": "Finish",
+      "signalBanner": {
+        "title": "Use → Signal → Sharper picks",
+        "description": "These sliders are just a starting point — Morso keeps learning from what you actually cook."
+      },
+      "categories": {
+        "produce": "Fruits and vegetables",
+        "protein": "Proteins",
+        "grain": "Grains",
+        "dairy": "Dairy",
+        "flavor": "Flavor and seasonings",
+        "other": "Other"
+      },
+      "feedback": {
+        "label": "Don't see something you eat a lot?",
+        "description": "Tell us and we'll work on adding it. Optional."
+      },
+      "cuisines": {
+        "label": "Favorite cuisines",
+        "description": "Type at least {count} if you can, more if you want. This shows favoritism toward these cuisines without ruling out anything else.",
+        "placeholder": "e.g. Mexican, Thai, French",
+        "moreSuggested": "{count, plural, one {# more suggested, but not required.} other {# more suggested, but not required.}}"
+      },
+      "errors": {
+        "saveFailed": "Something went wrong saving your preferences.",
+        "generic": "Something went wrong. Try again."
+      }
+    }
+  },
+  "recipe": {
+    "allergenWarning": {
+      "title": "Possible allergen conflict",
+      "body": "This recipe may conflict with an allergy on your profile, or hasn't been verified against your declared allergies yet. Please review the ingredients carefully before cooking."
+    },
+    "imageCredit": "Photo: {credit}",
+    "prepCookTime": "{prep} min prep / {cook} min cook",
+    "allergenBadge": "⚠ Contains {allergen}",
+    "allergenUnverified": "Allergen info not yet verified — please check the ingredient list carefully.",
+    "tagsToggle": "Tags & dietary info",
+    "sections": {
+      "nutrition": "Nutrition",
+      "ingredients": "Ingredients",
+      "method": "Method",
+      "completeTheMeal": "Complete the Meal"
+    },
+    "nutritionFor": "for {count, plural, one {# serving} other {# servings}}",
+    "nutrition": {
+      "calories": "Calories",
+      "protein": "Protein",
+      "carbs": "Carbs",
+      "fat": "Fat",
+      "fiber": "Fiber",
+      "cholesterol": "Cholesterol",
+      "premiumLock": "Unlock fat, fiber & cholesterol with Premium"
+    },
+    "servingsStepper": {
+      "decrease": "Decrease servings",
+      "increase": "Increase servings",
+      "count": "{count, plural, one {# serving} other {# servings}}"
+    },
+    "ingredientOptional": "optional",
+    "subRecipe": {
+      "toggle": "Want to make the {title} yourself?"
+    },
+    "stepDuration": "~{minutes} min",
+    "errors": {
+      "somethingWentWrong": "Something went wrong.",
+      "cookFailed": "Something went wrong. Try again.",
+      "cookRateLimited": "You can log another cook around {when}.",
+      "timeFallback": "later"
+    },
+    "actions": {
+      "cookLater": "Cook later",
+      "logging": "Logging...",
+      "logged": "✓ Logged!",
+      "iCookedThis": "I cooked this"
+    },
+    "cosign": {
+      "title": "Nice cooking!",
+      "prompt": "Want to leave a note about how it went?",
+      "placeholder": "Optional note...",
+      "skip": "Skip",
+      "share": "Share cosign"
+    }
+  },
+  "submitRecipe": {
+    "form": {
+      "photoLabel": "Photo (optional)",
+      "addPhoto": "Add photo",
+      "changePhoto": "Change photo",
+      "titleLabel": "Title",
+      "shortDescriptionLabel": "Short description",
+      "noteLabel": "Note",
+      "introCopyLabel": "Intro copy",
+      "servingsLabel": "Servings",
+      "prepMinLabel": "Prep min",
+      "cookMinLabel": "Cook min",
+      "difficultyLabel": "Difficulty",
+      "cuisineLabel": "Cuisine",
+      "selectCuisinePlaceholder": "Select a cuisine…",
+      "addCuisineInputPlaceholder": "Add new cuisine…",
+      "addCuisineLabel": "Add a new cuisine",
+      "addCuisinePlaceholder": "e.g. Ethiopian",
+      "mealSlotLabel": "Meal slot",
+      "attributesLabel": "Attributes / tags",
+      "dietTagsLabel": "Diet tags",
+      "allergenTagsLabel": "Allergen tags",
+      "batchFriendlyLabel": "Batch friendly",
+      "macrosLabel": "Macros (per serving, optional)",
+      "macros": {
+        "caloriesPlaceholder": "Cal",
+        "caloriesCaption": "calories",
+        "proteinPlaceholder": "g",
+        "proteinCaption": "protein",
+        "carbsPlaceholder": "g",
+        "carbsCaption": "carbs",
+        "fatPlaceholder": "g",
+        "fatCaption": "fat"
+      },
+      "pairingSuggestionLabel": "Pairing suggestion (optional)",
+      "pairingSuggestionPlaceholder": "e.g. Pairs well with a cold beer or caipirinha.",
+      "ingredientsLabel": "Ingredients",
+      "ingredientQtyPlaceholder": "Qty",
+      "ingredientUnitPlaceholder": "Unit",
+      "ingredientItemPlaceholder": "Item",
+      "prepNotePlaceholder": "Prep note (optional)",
+      "componentPlaceholder": "Component (optional)",
+      "optionalLabel": "Optional",
+      "completeMealTip": "Tip: use “To complete the meal” as the component for sides/drinks that round out the dish — they get their own highlighted callout at the bottom of the recipe page.",
+      "stepsLabel": "Steps",
+      "stepPlaceholder": "Step {number}",
+      "durationPlaceholder": "Duration (min)",
+      "subRecipesLabel": "Sub-recipes (optional)",
+      "subRecipeTitlePlaceholder": "Title, e.g. \"Make your own empanada dough\""
+    },
+    "actions": {
+      "add": "+ Add",
+      "adding": "Adding…",
+      "addIngredient": "+ Add ingredient",
+      "addStep": "+ Add step",
+      "addSubRecipe": "+ Add sub-recipe",
+      "remove": "Remove",
+      "submit": "Submit recipe",
+      "submitting": "Submitting…"
+    },
+    "errors": {
+      "pickCuisine": "Pick a cuisine.",
+      "ingredientNeedsName": "Every ingredient needs an item name.",
+      "stepNeedsText": "Every step needs text.",
+      "submissionFailed": "Submission failed",
+      "photoUploadFailed": "Recipe submitted, but the photo upload failed. You can resubmit with a photo next time.",
+      "addCuisineFailed": "Failed to add cuisine"
+    },
+    "success": {
+      "title": "Thanks! Your recipe was submitted.",
+      "body": "An admin will review it soon. You can track its status above.",
+      "submitAnother": "Submit another recipe"
+    }
+  },
+  "profile": {
+    "heading": "Profile",
+    "photo": {
+      "changeAriaLabel": "Change profile photo",
+      "addPhoto": "Add photo",
+      "label": "Profile photo",
+      "uploading": "Uploading...",
+      "clickToChange": "Click to change."
+    },
+    "fields": {
+      "name": "Name",
+      "birthday": "Birthday"
+    },
+    "actions": {
+      "save": "Save",
+      "saving": "Saving...",
+      "saved": "Saved!"
+    },
+    "errors": {
+      "nameRequired": "Name can't be empty.",
+      "countryRequired": "Country can't be empty.",
+      "photoUploadFailed": "Something went wrong uploading your photo.",
+      "saveFailed": "Something went wrong saving your profile.",
+      "generic": "Something went wrong. Try again."
+    },
+    "cookArchive": {
+      "heading": "Cook archive",
+      "privacyNote": "Private — only you can see this. Recipes you've marked as cooked show up here; add any of them to a public cookbook above.",
+      "empty": "Nothing cooked yet. Mark a recipe as cooked from your dashboard to add it here."
+    },
+    "cookbooks": {
+      "heading": "My cookbooks",
+      "visibilityNote": "Public — visible to other signed-in users. Only recipes you've cooked can be added.",
+      "empty": "You haven't made a cookbook yet. Create one to start collecting your cooked recipes.",
+      "recipeCount": "{count, plural, one {# recipe} other {# recipes}}",
+      "noCover": "No cover",
+      "namePlaceholder": "Cookbook name",
+      "create": "Create",
+      "cancel": "Cancel",
+      "newCookbook": "+ New cookbook",
+      "errors": {
+        "createFailed": "Something went wrong creating your cookbook.",
+        "generic": "Something went wrong. Try again."
+      }
+    },
+    "accountSettings": {
+      "title": "Account settings",
+      "email": "Email",
+      "timezone": "Timezone",
+      "changePasswordTitle": "Change password",
+      "setPasswordTitle": "Set a password",
+      "ssoNote": "Your account was created via sign-in with Google or Apple. Set a password to also be able to sign in with your email.",
+      "currentPasswordPlaceholder": "Current password",
+      "newPasswordPlaceholder": "New password (min. 10 characters)",
+      "saving": "Saving...",
+      "changePasswordButton": "Change password",
+      "setPasswordButton": "Set password",
+      "saved": "Saved!",
+      "errors": {
+        "passwordTooShort": "New password must be at least 10 characters.",
+        "changeFailed": "Something went wrong changing your password.",
+        "generic": "Something went wrong. Try again."
+      },
+      "forgotPassword": "Forgot your current password? <link>Reset it by email</link> instead.",
+      "signOut": "Sign out"
+    },
+    "public": {
+      "noCookbooks": "No public cookbooks yet.",
+      "noRecipesInCookbook": "No recipes in this cookbook yet."
+    }
+  },
+  "settings": {
+    "personalization": {
+      "heading": "Personalization",
+      "subheading": "Update your diet, allergies, and taste preferences any time. Changes apply to your dashboard right away.",
+      "howMorsoLearns": {
+        "title": "How Morso learns you",
+        "body": "Every rating, save, and skip below feeds your taste profile — recommendations sharpen the more you use Morso.",
+        "seeHowItWorks": "See how it works"
+      },
+      "allergies": {
+        "title": "Any allergies?",
+        "body": "Pick as many as apply. This is the main safeguard that keeps unsafe recipes off your dashboard.",
+        "otherLabel": "Other allergies",
+        "otherHelp": "List specific foods or food groups, separated by commas (e.g. “kiwi, shellfish”).",
+        "otherPlaceholder": "e.g. kiwi, cilantro"
+      },
+      "diets": {
+        "title": "Any diets that apply to you?",
+        "body": "Pick as many as you like. No restrictions is fine too, you can leave this blank."
+      },
+      "spice": {
+        "title": "How much heat can you handle?",
+        "body": "We won't surface anything spicier than this. Recipes we haven't rated for heat still show up either way.",
+        "mild": "Mild",
+        "medium": "Medium",
+        "hot": "Hot"
+      },
+      "foodGroups": {
+        "title": "How much do you eat these?",
+        "body": "Rarely to constantly. This nudges which recipes we show you first, it never rules anything out.",
+        "rarely": "rarely",
+        "constantly": "constantly"
+      },
+      "feedback": {
+        "label": "Don't see something you eat a lot?",
+        "help": "Tell us and we'll work on adding it. Optional."
+      },
+      "cuisines": {
+        "label": "Favorite cuisines",
+        "help": "Type at least {count} if you can, more if you want. This shows favoritism toward these cuisines without ruling out anything else.",
+        "placeholder": "e.g. Mexican, Thai, French"
+      },
+      "errors": {
+        "saveFailed": "Something went wrong saving your preferences.",
+        "generic": "Something went wrong. Try again."
+      },
+      "save": "Save changes",
+      "saving": "Saving...",
+      "saved": "Saved!"
+    }
+  },
+  "cookLater": {
+    "heading": "Cook later",
+    "savedCount": "{count}/{cap} saved. Cook one to make room for more.",
+    "hiddenCount": "{count, plural, one {# saved recipe} other {# saved recipes}} hidden due to your allergy or diet settings.",
+    "removeAriaLabel": "Remove from Cook Later",
+    "empty": "Nothing saved yet. Star a recipe from your dashboard to add it here."
+  },
+  "cookbooks": {
+    "manage": {
+      "heading": "Manage cookbook",
+      "visibilityNote": "Public — visible to other signed-in users on your profile.",
+      "coverChangeAriaLabel": "Change cookbook cover",
+      "addCover": "Add cover",
+      "coverLabel": "Cover picture",
+      "uploading": "Uploading...",
+      "clickToChange": "Click to change.",
+      "nameLabel": "Name",
+      "saving": "Saving...",
+      "saveName": "Save name",
+      "saved": "Saved!",
+      "errors": {
+        "nameRequired": "Cookbook name can't be empty.",
+        "coverUploadFailed": "Something went wrong uploading the cover.",
+        "renameFailed": "Something went wrong renaming your cookbook.",
+        "addRecipeFailed": "Something went wrong adding that recipe.",
+        "removeRecipeFailed": "Something went wrong removing that recipe.",
+        "deleteFailed": "Something went wrong deleting your cookbook.",
+        "generic": "Something went wrong. Try again."
+      },
+      "deleteConfirm": "Delete \"{name}\"? This can't be undone.",
+      "addRecipesHeading": "Add a recipe you've cooked",
+      "adding": "Adding...",
+      "add": "Add",
+      "recipesHeading": "Recipes",
+      "noRecipes": "No recipes yet. Add one from your cooked recipes above.",
+      "deleting": "Deleting...",
+      "deleteCookbook": "Delete cookbook"
+    }
+  }
+}

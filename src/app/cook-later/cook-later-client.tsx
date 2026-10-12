@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { logInteraction } from "@/lib/log-interaction";
 import { RecipeCardShell, type SavedRecipeData } from "@/components/recipe-card-shell";
 import { PageTransition } from "@/components/page-transition";
@@ -22,6 +23,7 @@ function SavedRecipeCard({
   recipe: CookLaterRecipeData;
   onRemove: (id: string) => void;
 }) {
+  const t = useTranslations("cookLater");
   const [pending, setPending] = useState(false);
   const timeLeft = formatSavedRecipeTimeLeft(recipe.savedAt);
   const urgent = timeLeft === "1d left" || timeLeft === "Expiring";
@@ -47,7 +49,7 @@ function SavedRecipeCard({
           <MotionButton
             onClick={handleRemove}
             disabled={pending}
-            aria-label="Remove from Cook Later"
+            aria-label={t("removeAriaLabel")}
             whileHover={{ y: -2 }}
             className="absolute left-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-[#F2B705] text-white shadow-sm transition-colors"
           >
@@ -60,8 +62,8 @@ function SavedRecipeCard({
               src/lib/saved-recipes.ts) — turns the warning red used
               elsewhere in this app once there's a day or less left. */}
           <span
-            className={`absolute right-3 top-3 rounded-full bg-white/90 px-2.5 py-1 text-xs font-medium shadow-sm ${
-              urgent ? "text-[#B23A32]" : "text-[#101010]"
+            className={`absolute right-3 top-3 rounded-full bg-surface/90 px-2.5 py-1 text-xs font-medium shadow-sm ${
+              urgent ? "text-danger" : "text-ink"
             }`}
           >
             {timeLeft}
@@ -73,6 +75,7 @@ function SavedRecipeCard({
 }
 
 export function CookLaterClient({ recipes }: { recipes: CookLaterRecipeData[] }) {
+  const t = useTranslations("cookLater");
   const [items, setItems] = useState(recipes);
 
   function handleRemove(id: string) {
@@ -82,9 +85,7 @@ export function CookLaterClient({ recipes }: { recipes: CookLaterRecipeData[] })
   if (items.length === 0) {
     return (
       <PageTransition>
-        <p className="text-sm text-[#6B7370]">
-          Nothing saved yet. Star a recipe from your dashboard to add it here.
-        </p>
+        <p className="text-sm text-muted">{t("empty")}</p>
       </PageTransition>
     );
   }

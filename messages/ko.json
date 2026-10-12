@@ -1,0 +1,515 @@
+{
+  "accessibility": {
+    "trigger": "접근성 및 언어 설정",
+    "about": {
+      "label": "Morso 소개",
+      "body": "Morso는 식단, 알레르기 유발 요인, 선호도에 맞춰 레시피를 추천합니다. 나만의 맞춤 대시보드에서 레시피를 저장해두고, 요리한 내용을 기록할 수 있습니다.",
+      "close": "닫기"
+    },
+    "language": {
+      "label": "언어"
+    },
+    "appearance": {
+      "label": "모양",
+      "light": "라이트",
+      "green": "그린",
+      "dark": "다크"
+    },
+    "back": "뒤로",
+    "menuLabel": "모양 및 언어"
+  },
+  "auth": {
+    "login": {
+      "welcomeBack": "다시 오신 것을 환영합니다.",
+      "emailLabel": "이메일",
+      "passwordLabel": "비밀번호",
+      "forgotPassword": "비밀번호를 잊으셨나요?",
+      "wrongCredentials": "이메일 또는 비밀번호가 올바르지 않습니다.",
+      "loggingIn": "로그인 중...",
+      "submit": "로그인",
+      "newHere": "처음이신가요?",
+      "createAccount": "계정 만들기"
+    },
+    "signup": {
+      "tagline": "당신에게 맞춘 레시피.",
+      "stepLabel": "1/3단계: 프로필",
+      "addPhotoAria": "프로필 사진 추가",
+      "addPhoto": "사진 추가",
+      "profilePhotoLabel": "프로필 사진",
+      "profilePhotoHint": "선택 사항입니다. 언제든지 추가하거나 변경할 수 있습니다.",
+      "fullNameLabel": "이름",
+      "emailLabel": "이메일",
+      "passwordLabel": "비밀번호",
+      "passwordHint": "10자 이상.",
+      "confirmPasswordLabel": "비밀번호 재입력",
+      "passwordsMatch": "비밀번호가 일치합니다.",
+      "passwordsMismatch": "비밀번호가 아직 일치하지 않습니다.",
+      "birthdayLabel": "생일",
+      "passwordsDontMatchError": "비밀번호가 일치하지 않습니다",
+      "locationRequiredError": "도시와 국가는 필수입니다",
+      "genericError": "문제가 발생했습니다",
+      "partialFailureError": "계정은 생성되었지만 로그인에 실패했습니다. 로그인을 시도해 주세요.",
+      "retryError": "문제가 발생했습니다. 다시 시도해 주세요.",
+      "creatingAccount": "계정 생성 중...",
+      "continue": "계속",
+      "alreadyHaveAccount": "이미 계정이 있으신가요?",
+      "logIn": "로그인"
+    },
+    "forgotPassword": {
+      "title": "비밀번호 재설정",
+      "subtitle": "이메일을 입력하시면 재설정 링크를 보내드립니다.",
+      "emailLabel": "이메일",
+      "submitted": "해당 이메일로 계정이 있다면 비밀번호 재설정 링크를 보내드렸습니다. 받은편지함을 확인해 주세요.",
+      "sending": "전송 중...",
+      "submit": "재설정 링크 보내기",
+      "backToLogin": "로그인으로 돌아가기",
+      "genericError": "문제가 발생했습니다"
+    },
+    "resetPassword": {
+      "title": "새 비밀번호 설정",
+      "subtitle": "계정의 새 비밀번호를 선택하세요.",
+      "mismatchError": "비밀번호가 일치하지 않습니다.",
+      "genericError": "문제가 발생했습니다",
+      "invalidLink": "이 재설정 링크가 없거나 유효하지 않습니다. 다음 페이지에서 새로 요청하세요:",
+      "forgotPasswordLink": "비밀번호 찾기",
+      "pageSuffix": "",
+      "success": "비밀번호가 업데이트되었습니다. 로그인 페이지로 이동합니다...",
+      "newPasswordLabel": "새 비밀번호",
+      "confirmPasswordLabel": "새 비밀번호 확인",
+      "updating": "업데이트 중...",
+      "submit": "비밀번호 업데이트"
+    },
+    "oauth": {
+      "redirecting": "리디렉션 중...",
+      "google": "Google로 계속하기",
+      "apple": "Apple로 계속하기",
+      "or": "또는"
+    }
+  },
+  "howItWorks": {
+    "title": "Morso가 당신을 알아가는 방법",
+    "subtitle": "긴 설문지를 작성할 필요가 없습니다. Morso를 더 많이 사용할수록 더 정교해집니다.",
+    "steps": {
+      "use": {
+        "title": "Morso를 사용합니다",
+        "caption": "요리하고, 저장하고, 건너뛰고, 평가하는 모든 행동이 신호가 됩니다."
+      },
+      "signal": {
+        "title": "신호를 포착합니다",
+        "caption": "회원님의 취향 프로필이 백그라운드에서 조용히 업데이트됩니다."
+      },
+      "sharpen": {
+        "title": "추천이 더 정교해집니다",
+        "caption": "내일의 추천은 오늘보다 조금 더 당신에게 맞을 거예요."
+      }
+    },
+    "footer": "……Morso를 열 때마다 이 과정이 반복됩니다.",
+    "gotIt": "확인했어요"
+  },
+  "dashboard": {
+    "heading": {
+      "lunch": "오늘의 점심 추천",
+      "dinner": "오늘의 저녁 추천",
+      "tapas": "오늘의 타파스 추천",
+      "breakfast": "오늘의 아침 추천"
+    },
+    "subtitle": {
+      "meals": "{count, plural, one {오늘 당신을 위해 고른 레시피 #개.} other {오늘 당신을 위해 고른 레시피 #개.}}",
+      "tapas": "{count, plural, one {오늘 당신을 위해 고른 타파스 #개.} other {오늘 당신을 위해 고른 타파스 #개.}}",
+      "breakfast": "{count, plural, one {오늘 당신을 위해 고른 아침 메뉴 #개.} other {오늘 당신을 위해 고른 아침 메뉴 #개.}}"
+    },
+    "category": {
+      "ariaLabel": "어떤 레시피를 보고 싶으신가요?",
+      "meals": "식사",
+      "tapas": "타파스",
+      "breakfast": "아침"
+    },
+    "filters": {
+      "label": "필터",
+      "clear": "필터 지우기",
+      "moreOf": "비슷한 종류 더 보기",
+      "tags": "태그"
+    },
+    "emptyState": {
+      "noPreferences": "아직 설정하신 취향에 맞는 레시피가 없어요. 곧 다시 확인해 주세요.",
+      "noFiltered": "선택하신 필터에 맞는 레시피가 없어요."
+    },
+    "loading": {
+      "ariaLabel": "레시피 불러오는 중",
+      "text": "레시피를 불러오는 중…"
+    },
+    "refresh": {
+      "button": "레시피 새로고침",
+      "shuffling": "섞는 중…",
+      "error": "문제가 발생했습니다. 다시 시도해 주세요."
+    },
+    "recipeCard": {
+      "addToCookLater": "나중에 요리하기에 추가",
+      "removeFromCookLater": "나중에 요리하기에서 제거",
+      "starError": "문제가 발생했습니다.",
+      "somethingNew": "새로운 레시피",
+      "viewRecipe": "레시피 보기",
+      "cookLater": "나중에 요리하기",
+      "saving": "저장 중…",
+      "cookedPrefix": "요리함",
+      "lastOn": "마지막으로",
+      "removing": "제거 중...",
+      "removeFromCookbook": "쿡북에서 제거"
+    },
+    "refreshBlocked": {
+      "title": "지금은 새로고침을 모두 사용하셨어요",
+      "body": "다음 시간대가 되면 새로운 추천이 자동으로 제공돼요 — 또는 Morso+로 무제한 이용해 보세요.",
+      "nextWindowIn": "다음 시간대까지 {countdown}",
+      "anyMomentNow": "곧",
+      "minutes": "{minutes}분",
+      "hours": "{hours}시간",
+      "hoursMinutes": "{hours}시간 {minutes}분",
+      "gotIt": "확인했어요",
+      "goMorsoPlus": "Morso+ 시작하기"
+    }
+  },
+  "onboarding": {
+    "common": {
+      "back": "뒤로",
+      "continue": "계속"
+    },
+    "preferences": {
+      "title": "알레르기 및 식단",
+      "subtitle": "알레르기 정보를 먼저 알려주세요. 해당 재료는 이후 모든 추천에서 영구적으로 제외됩니다. 이 설정은 언제든지 프로필에서 변경할 수 있습니다.",
+      "allergies": {
+        "heading": "알레르기가 있으신가요?",
+        "description": "카테고리를 선택한 다음 해당하는 항목에 체크하세요. 이는 대시보드에서 안전하지 않은 레시피를 걸러내는 가장 중요한 안전장치입니다.",
+        "otherLabel": "기타",
+        "otherDescription": "위 목록에 없나요? 특정 음식이나 식품군을 쉼표로 구분해 추가해 주세요 (예: “키위, 조개류”).",
+        "otherPlaceholder": "예: 키위, 고수"
+      },
+      "diets": {
+        "heading": "해당하는 식단이 있으신가요?",
+        "description": "원하는 만큼 선택하세요. 제한이 없다면 비워두셔도 괜찮습니다."
+      }
+    },
+    "personalize": {
+      "title": "맞춤 설정",
+      "subtitle": "거의 안 먹음부터 자주 먹음까지. 잘 모르시겠다면 기본값으로 두셔도 괜찮고, 나중에 언제든 조정할 수 있습니다.",
+      "saving": "저장 중...",
+      "finish": "완료",
+      "signalBanner": {
+        "title": "사용 → 신호 → 더 정교한 추천",
+        "description": "이 슬라이더는 시작점일 뿐이에요 — Morso는 실제로 요리하는 내용을 바탕으로 계속 학습합니다."
+      },
+      "categories": {
+        "produce": "과일과 채소",
+        "protein": "단백질",
+        "grain": "곡물",
+        "dairy": "유제품",
+        "flavor": "향신료와 조미료",
+        "other": "기타"
+      },
+      "feedback": {
+        "label": "자주 드시는 음식이 목록에 없나요?",
+        "description": "알려주시면 추가하도록 노력할게요. 선택 사항입니다."
+      },
+      "cuisines": {
+        "label": "좋아하는 요리",
+        "description": "가능하면 최소 {count}개 이상 입력해 주세요, 더 많아도 좋아요. 이 요리들을 선호한다고 표시되지만 다른 선택이 제외되지는 않습니다.",
+        "placeholder": "예: 멕시칸, 태국, 프랑스",
+        "moreSuggested": "{count, plural, one {#개 더 추천하지만 필수는 아니에요.} other {#개 더 추천하지만 필수는 아니에요.}}"
+      },
+      "errors": {
+        "saveFailed": "취향을 저장하는 중 문제가 발생했습니다.",
+        "generic": "문제가 발생했습니다. 다시 시도해 주세요."
+      }
+    }
+  },
+  "recipe": {
+    "allergenWarning": {
+      "title": "알레르기 유발 요인 충돌 가능성",
+      "body": "이 레시피는 프로필에 등록된 알레르기와 충돌할 수 있거나, 등록하신 알레르기 정보와 아직 대조 확인되지 않았습니다. 요리하기 전에 재료를 꼼꼼히 확인해 주세요."
+    },
+    "imageCredit": "사진: {credit}",
+    "prepCookTime": "준비 {prep}분 / 조리 {cook}분",
+    "allergenBadge": "⚠ {allergen} 함유",
+    "allergenUnverified": "알레르기 정보가 아직 확인되지 않았습니다 — 재료 목록을 꼼꼼히 확인해 주세요.",
+    "tagsToggle": "태그 및 식단 정보",
+    "sections": {
+      "nutrition": "영양 정보",
+      "ingredients": "재료",
+      "method": "조리법",
+      "completeTheMeal": "식사 완성하기"
+    },
+    "nutritionFor": "{count, plural, one {#인분 기준} other {#인분 기준}}",
+    "nutrition": {
+      "calories": "칼로리",
+      "protein": "단백질",
+      "carbs": "탄수화물",
+      "fat": "지방",
+      "fiber": "식이섬유",
+      "cholesterol": "콜레스테롤",
+      "premiumLock": "프리미엄으로 지방, 식이섬유, 콜레스테롤 정보 잠금 해제"
+    },
+    "servingsStepper": {
+      "decrease": "제공량 줄이기",
+      "increase": "제공량 늘리기",
+      "count": "{count, plural, one {#인분} other {#인분}}"
+    },
+    "ingredientOptional": "선택",
+    "subRecipe": {
+      "toggle": "{title}를 직접 만들어 보고 싶으신가요?"
+    },
+    "stepDuration": "약 {minutes}분",
+    "errors": {
+      "somethingWentWrong": "문제가 발생했습니다.",
+      "cookFailed": "문제가 발생했습니다. 다시 시도해 주세요.",
+      "cookRateLimited": "{when} 이후에 다시 요리 기록을 남길 수 있습니다.",
+      "timeFallback": "나중에"
+    },
+    "actions": {
+      "cookLater": "나중에 요리하기",
+      "logging": "기록 중...",
+      "logged": "✓ 기록 완료!",
+      "iCookedThis": "요리했어요"
+    },
+    "cosign": {
+      "title": "요리 완성!",
+      "prompt": "어땠는지 한마디 남겨보시겠어요?",
+      "placeholder": "선택 사항 메모...",
+      "skip": "건너뛰기",
+      "share": "공유하기"
+    }
+  },
+  "submitRecipe": {
+    "form": {
+      "photoLabel": "사진 (선택)",
+      "addPhoto": "사진 추가",
+      "changePhoto": "사진 변경",
+      "titleLabel": "제목",
+      "shortDescriptionLabel": "짧은 설명",
+      "noteLabel": "메모",
+      "introCopyLabel": "소개 문구",
+      "servingsLabel": "제공량",
+      "prepMinLabel": "준비 시간(분)",
+      "cookMinLabel": "조리 시간(분)",
+      "difficultyLabel": "난이도",
+      "cuisineLabel": "요리 종류",
+      "selectCuisinePlaceholder": "요리 종류 선택…",
+      "addCuisineInputPlaceholder": "새 요리 종류 추가…",
+      "addCuisineLabel": "새 요리 종류 추가",
+      "addCuisinePlaceholder": "예: 에티오피아",
+      "mealSlotLabel": "식사 종류",
+      "attributesLabel": "속성 / 태그",
+      "dietTagsLabel": "식단 태그",
+      "allergenTagsLabel": "알레르기 태그",
+      "batchFriendlyLabel": "대량 조리 적합",
+      "macrosLabel": "영양소 (1인분 기준, 선택)",
+      "macros": {
+        "caloriesPlaceholder": "칼로리",
+        "caloriesCaption": "칼로리",
+        "proteinPlaceholder": "g",
+        "proteinCaption": "단백질",
+        "carbsPlaceholder": "g",
+        "carbsCaption": "탄수화물",
+        "fatPlaceholder": "g",
+        "fatCaption": "지방"
+      },
+      "pairingSuggestionLabel": "곁들임 추천 (선택)",
+      "pairingSuggestionPlaceholder": "예: 시원한 맥주나 카이피리냐와 잘 어울려요.",
+      "ingredientsLabel": "재료",
+      "ingredientQtyPlaceholder": "수량",
+      "ingredientUnitPlaceholder": "단위",
+      "ingredientItemPlaceholder": "재료명",
+      "prepNotePlaceholder": "준비 메모 (선택)",
+      "componentPlaceholder": "구성 요소 (선택)",
+      "optionalLabel": "선택",
+      "completeMealTip": "팁: 곁들임 음식이나 음료처럼 식사를 완성해주는 항목에는 구성 요소로 “식사 완성하기”를 사용하세요 — 레시피 페이지 하단에 별도로 강조되어 표시됩니다.",
+      "stepsLabel": "조리 단계",
+      "stepPlaceholder": "{number}단계",
+      "durationPlaceholder": "소요 시간(분)",
+      "subRecipesLabel": "서브 레시피 (선택)",
+      "subRecipeTitlePlaceholder": "제목, 예: \"나만의 엠파나다 도우 만들기\""
+    },
+    "actions": {
+      "add": "+ 추가",
+      "adding": "추가 중…",
+      "addIngredient": "+ 재료 추가",
+      "addStep": "+ 단계 추가",
+      "addSubRecipe": "+ 서브 레시피 추가",
+      "remove": "제거",
+      "submit": "레시피 제출",
+      "submitting": "제출 중…"
+    },
+    "errors": {
+      "pickCuisine": "요리 종류를 선택하세요.",
+      "ingredientNeedsName": "모든 재료에는 이름이 필요합니다.",
+      "stepNeedsText": "모든 단계에는 내용이 필요합니다.",
+      "submissionFailed": "제출에 실패했습니다",
+      "photoUploadFailed": "레시피는 제출되었지만 사진 업로드에 실패했습니다. 다음에 사진과 함께 다시 제출할 수 있습니다.",
+      "addCuisineFailed": "요리 종류 추가에 실패했습니다"
+    },
+    "success": {
+      "title": "감사합니다! 레시피가 제출되었습니다.",
+      "body": "관리자가 곧 검토할 예정입니다. 위에서 진행 상태를 확인할 수 있습니다.",
+      "submitAnother": "다른 레시피 제출하기"
+    }
+  },
+  "profile": {
+    "heading": "프로필",
+    "photo": {
+      "changeAriaLabel": "프로필 사진 변경",
+      "addPhoto": "사진 추가",
+      "label": "프로필 사진",
+      "uploading": "업로드 중...",
+      "clickToChange": "클릭하여 변경하세요."
+    },
+    "fields": {
+      "name": "이름",
+      "birthday": "생일"
+    },
+    "actions": {
+      "save": "저장",
+      "saving": "저장 중...",
+      "saved": "저장되었습니다!"
+    },
+    "errors": {
+      "nameRequired": "이름은 비워둘 수 없습니다.",
+      "countryRequired": "국가는 비워둘 수 없습니다.",
+      "photoUploadFailed": "사진을 업로드하는 중 문제가 발생했습니다.",
+      "saveFailed": "프로필을 저장하는 중 문제가 발생했습니다.",
+      "generic": "문제가 발생했습니다. 다시 시도해 주세요."
+    },
+    "cookArchive": {
+      "heading": "요리 기록",
+      "privacyNote": "비공개 — 본인만 볼 수 있습니다. 요리했다고 표시한 레시피가 여기에 표시됩니다. 위에서 공개 쿡북에 추가할 수 있습니다.",
+      "empty": "아직 요리한 레시피가 없습니다. 대시보드에서 레시피를 요리했다고 표시하면 여기에 추가됩니다."
+    },
+    "cookbooks": {
+      "heading": "내 쿡북",
+      "visibilityNote": "공개 — 로그인한 다른 사용자에게 보입니다. 요리한 레시피만 추가할 수 있습니다.",
+      "empty": "아직 만든 쿡북이 없습니다. 쿡북을 만들어 요리한 레시피를 모아보세요.",
+      "recipeCount": "{count, plural, one {레시피 #개} other {레시피 #개}}",
+      "noCover": "커버 없음",
+      "namePlaceholder": "쿡북 이름",
+      "create": "만들기",
+      "cancel": "취소",
+      "newCookbook": "+ 새 쿡북",
+      "errors": {
+        "createFailed": "쿡북을 만드는 중 문제가 발생했습니다.",
+        "generic": "문제가 발생했습니다. 다시 시도해 주세요."
+      }
+    },
+    "accountSettings": {
+      "title": "계정 설정",
+      "email": "이메일",
+      "timezone": "시간대",
+      "changePasswordTitle": "비밀번호 변경",
+      "setPasswordTitle": "비밀번호 설정",
+      "ssoNote": "회원님의 계정은 Google 또는 Apple 로그인으로 생성되었습니다. 비밀번호를 설정하면 이메일로도 로그인할 수 있습니다.",
+      "currentPasswordPlaceholder": "현재 비밀번호",
+      "newPasswordPlaceholder": "새 비밀번호 (최소 10자)",
+      "saving": "저장 중...",
+      "changePasswordButton": "비밀번호 변경",
+      "setPasswordButton": "비밀번호 설정",
+      "saved": "저장되었습니다!",
+      "errors": {
+        "passwordTooShort": "새 비밀번호는 최소 10자 이상이어야 합니다.",
+        "changeFailed": "비밀번호를 변경하는 중 문제가 발생했습니다.",
+        "generic": "문제가 발생했습니다. 다시 시도해 주세요."
+      },
+      "forgotPassword": "현재 비밀번호를 잊으셨나요? 대신 <link>이메일로 재설정</link>하세요.",
+      "signOut": "로그아웃"
+    },
+    "public": {
+      "noCookbooks": "아직 공개된 쿡북이 없습니다.",
+      "noRecipesInCookbook": "이 쿡북에는 아직 레시피가 없습니다."
+    }
+  },
+  "settings": {
+    "personalization": {
+      "heading": "맞춤 설정",
+      "subheading": "식단, 알레르기, 취향 설정을 언제든지 변경할 수 있습니다. 변경 사항은 대시보드에 즉시 적용됩니다.",
+      "howMorsoLearns": {
+        "title": "Morso가 당신을 알아가는 방법",
+        "body": "아래에서의 모든 평가, 저장, 건너뛰기가 취향 프로필에 반영됩니다 — Morso를 더 많이 사용할수록 추천이 더 정교해집니다.",
+        "seeHowItWorks": "작동 방식 보기"
+      },
+      "allergies": {
+        "title": "알레르기가 있으신가요?",
+        "body": "해당하는 항목을 모두 선택하세요. 이는 대시보드에서 안전하지 않은 레시피를 걸러내는 가장 중요한 안전장치입니다.",
+        "otherLabel": "기타 알레르기",
+        "otherHelp": "특정 음식이나 식품군을 쉼표로 구분해 나열해 주세요 (예: “키위, 조개류”).",
+        "otherPlaceholder": "예: 키위, 고수"
+      },
+      "diets": {
+        "title": "해당하는 식단이 있으신가요?",
+        "body": "원하는 만큼 선택하세요. 제한이 없다면 비워두셔도 괜찮습니다."
+      },
+      "spice": {
+        "title": "얼마나 매운 음식을 드실 수 있나요?",
+        "body": "이보다 매운 레시피는 추천하지 않습니다. 맵기 평가가 되지 않은 레시피는 어느 쪽이든 표시될 수 있습니다.",
+        "mild": "약하게",
+        "medium": "보통",
+        "hot": "맵게"
+      },
+      "foodGroups": {
+        "title": "이 음식들을 얼마나 자주 드시나요?",
+        "body": "거의 안 먹음부터 자주 먹음까지. 어떤 레시피를 먼저 보여드릴지에 영향을 주지만, 어떤 것도 제외하지는 않습니다.",
+        "rarely": "거의 안 먹음",
+        "constantly": "자주 먹음"
+      },
+      "feedback": {
+        "label": "자주 드시는 음식이 목록에 없나요?",
+        "help": "알려주시면 추가하도록 노력할게요. 선택 사항입니다."
+      },
+      "cuisines": {
+        "label": "좋아하는 요리",
+        "help": "가능하면 최소 {count}개 이상 입력해 주세요, 더 많아도 좋아요. 이 요리들을 선호한다고 표시되지만 다른 선택이 제외되지는 않습니다.",
+        "placeholder": "예: 멕시칸, 태국, 프랑스"
+      },
+      "errors": {
+        "saveFailed": "취향을 저장하는 중 문제가 발생했습니다.",
+        "generic": "문제가 발생했습니다. 다시 시도해 주세요."
+      },
+      "save": "변경 사항 저장",
+      "saving": "저장 중...",
+      "saved": "저장되었습니다!"
+    }
+  },
+  "cookLater": {
+    "heading": "나중에 요리하기",
+    "savedCount": "{count}/{cap}개 저장됨. 하나를 요리하면 더 저장할 수 있어요.",
+    "hiddenCount": "{count, plural, one {저장된 레시피 #개가} other {저장된 레시피 #개가}} 알레르기 또는 식단 설정으로 숨겨졌습니다.",
+    "removeAriaLabel": "나중에 요리하기에서 제거",
+    "empty": "아직 저장된 레시피가 없습니다. 대시보드에서 레시피에 별표를 표시해 여기에 추가하세요."
+  },
+  "cookbooks": {
+    "manage": {
+      "heading": "쿡북 관리",
+      "visibilityNote": "공개 — 프로필에서 로그인한 다른 사용자에게 보입니다.",
+      "coverChangeAriaLabel": "쿡북 커버 변경",
+      "addCover": "커버 추가",
+      "coverLabel": "커버 이미지",
+      "uploading": "업로드 중...",
+      "clickToChange": "클릭하여 변경하세요.",
+      "nameLabel": "이름",
+      "saving": "저장 중...",
+      "saveName": "이름 저장",
+      "saved": "저장되었습니다!",
+      "errors": {
+        "nameRequired": "쿡북 이름은 비워둘 수 없습니다.",
+        "coverUploadFailed": "커버를 업로드하는 중 문제가 발생했습니다.",
+        "renameFailed": "쿡북 이름을 변경하는 중 문제가 발생했습니다.",
+        "addRecipeFailed": "레시피를 추가하는 중 문제가 발생했습니다.",
+        "removeRecipeFailed": "레시피를 제거하는 중 문제가 발생했습니다.",
+        "deleteFailed": "쿡북을 삭제하는 중 문제가 발생했습니다.",
+        "generic": "문제가 발생했습니다. 다시 시도해 주세요."
+      },
+      "deleteConfirm": "“{name}”을 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.",
+      "addRecipesHeading": "요리한 레시피 추가하기",
+      "adding": "추가 중...",
+      "add": "추가",
+      "recipesHeading": "레시피",
+      "noRecipes": "아직 레시피가 없습니다. 위의 요리한 레시피에서 추가하세요.",
+      "deleting": "삭제 중...",
+      "deleteCookbook": "쿡북 삭제"
+    }
+  }
+}

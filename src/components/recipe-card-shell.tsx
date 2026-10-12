@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import {
   dietEmblemClass,
   formatMinutes,
@@ -45,13 +46,14 @@ export function RecipeCardShell({
   badge?: React.ReactNode;
   children?: React.ReactNode;
 }) {
+  const t = useTranslations("dashboard");
   const router = useRouter();
   const emblems = visibleDietEmblems(recipe.dietTags, 2);
 
   return (
     <div
       onClick={() => router.push(`/recipe/${recipe.slug}`)}
-      className="cursor-pointer overflow-hidden rounded-[25px] border border-[#E8E6E0] bg-white shadow-brand transition"
+      className="cursor-pointer overflow-hidden rounded-[25px] border border-border bg-surface shadow-brand transition"
     >
       <div className="relative">
         {recipe.imageUrl ? (
@@ -75,18 +77,18 @@ export function RecipeCardShell({
       </div>
 
       <div className="p-5">
-        <p className="text-xs font-extralight uppercase tracking-wide text-[#6B7370]">
+        <p className="text-xs font-extralight uppercase tracking-wide text-muted">
           {recipe.cuisine}
         </p>
         {/* Truncated to a single line so every card in a row stays the
             same height regardless of title length — a long title
             wrapping to a 2nd/3rd line was pushing cards out of
             alignment with their neighbors in the grid. */}
-        <h3 className="mt-1 truncate font-serif text-lg font-bold text-[#101010]">
+        <h3 className="mt-1 truncate font-serif text-lg font-bold text-ink">
           {recipe.title}
         </h3>
         {recipe.ingredientItems.length > 0 && (
-          <p className="mt-1 line-clamp-2 text-sm font-normal text-[#6B7370]">
+          <p className="mt-1 line-clamp-2 text-sm font-normal text-muted">
             {recipe.ingredientItems.join(", ")}
           </p>
         )}
@@ -104,8 +106,8 @@ export function RecipeCardShell({
           </div>
         )}
 
-        <div className="mt-3 flex flex-nowrap items-center gap-2 overflow-hidden text-xs text-[#6B7370]">
-          <span className="shrink-0 font-medium text-[#101010]">
+        <div className="mt-3 flex flex-nowrap items-center gap-2 overflow-hidden text-xs text-muted">
+          <span className="shrink-0 font-medium text-ink">
             {formatMinutes(recipe.prepMinutes, recipe.cookMinutes)}
           </span>
         </div>
@@ -114,9 +116,9 @@ export function RecipeCardShell({
 
         <Link
           href={`/recipe/${recipe.slug}`}
-          className="mt-4 block rounded-full bg-[#1B4332] px-4 py-2 text-center text-sm font-medium text-white shadow-brand transition hover:-translate-y-0.5"
+          className="mt-4 block rounded-full bg-accent px-4 py-2 text-center text-sm font-medium text-accent-ink shadow-brand transition hover:-translate-y-0.5"
         >
-          View Recipe
+          {t("recipeCard.viewRecipe")}
         </Link>
       </div>
     </div>
@@ -132,10 +134,12 @@ export function formatCookedDate(iso: string): string {
 }
 
 export function CookedRecipeCard({ recipe }: { recipe: CookedRecipeData }) {
+  const t = useTranslations("dashboard");
   return (
     <RecipeCardShell recipe={recipe}>
-      <p className="mt-3 text-xs font-extralight text-[#6B7370]">
-        Cooked {recipe.timesCooked > 1 ? `${recipe.timesCooked}x` : ""} · last on{" "}
+      <p className="mt-3 text-xs font-extralight text-muted">
+        {t("recipeCard.cookedPrefix")} {recipe.timesCooked > 1 ? `${recipe.timesCooked}x` : ""} ·{" "}
+        {t("recipeCard.lastOn")}{" "}
         {formatCookedDate(recipe.lastCookedAt)}
       </p>
     </RecipeCardShell>
@@ -154,6 +158,7 @@ export function UserCookbookRecipeCard({
   onRemove: () => void;
   removing?: boolean;
 }) {
+  const t = useTranslations("dashboard");
   return (
     <RecipeCardShell recipe={recipe}>
       <button
@@ -163,9 +168,9 @@ export function UserCookbookRecipeCard({
           onRemove();
         }}
         disabled={removing}
-        className="mt-3 text-xs font-extralight text-[#B23A32] underline disabled:opacity-50"
+        className="mt-3 text-xs font-extralight text-danger underline disabled:opacity-50"
       >
-        {removing ? "Removing..." : "Remove from cookbook"}
+        {removing ? t("recipeCard.removing") : t("recipeCard.removeFromCookbook")}
       </button>
     </RecipeCardShell>
   );

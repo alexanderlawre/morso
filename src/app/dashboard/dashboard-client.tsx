@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { AnimatePresence, motion } from "framer-motion";
 import { Liquid } from "liquid-gooey";
 import { Capacitor } from "@capacitor/core";
@@ -59,6 +60,7 @@ function StarButton({
   saved: boolean;
   onSavedChange: (saved: boolean) => void;
 }) {
+  const t = useTranslations("dashboard");
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -84,11 +86,11 @@ function StarButton({
       if (!res.ok) {
         const body = await res.json().catch(() => null);
         onSavedChange(!next);
-        setError(body?.error ?? "Something went wrong.");
+        setError(body?.error ?? t("recipeCard.starError"));
       }
     } catch {
       onSavedChange(!next);
-      setError("Something went wrong.");
+      setError(t("recipeCard.starError"));
     } finally {
       setPending(false);
     }
@@ -98,14 +100,14 @@ function StarButton({
     <div className="absolute left-3 top-3">
       <MotionButton
         onClick={toggle}
-        aria-label={saved ? "Remove from Cook Later" : "Add to Cook Later"}
+        aria-label={saved ? t("recipeCard.removeFromCookLater") : t("recipeCard.addToCookLater")}
         aria-pressed={saved}
         disabled={pending}
         whileTap={{ scale: 0.8 }}
         whileHover={{ y: -2, scale: 1.06 }}
         transition={{ type: "spring", stiffness: 500, damping: 22 }}
         className={`flex h-9 w-9 items-center justify-center rounded-full shadow-sm ${
-          saved ? "bg-[#F2B705] text-white" : "bg-white/90 text-[#6B7370]"
+          saved ? "bg-[#F2B705] text-white" : "bg-surface/90 text-muted"
         }`}
       >
         <motion.svg
@@ -156,6 +158,7 @@ function RecipeCard({
   // which aren't a "mount" moment in the same sense.
   index?: number;
 }) {
+  const t = useTranslations("dashboard");
   const router = useRouter();
   const ref = useRef<HTMLDivElement | null>(null);
   const emblems = visibleDietEmblems(recipe.dietTags, 2);
@@ -259,25 +262,25 @@ function RecipeCard({
           onSavedChange={(saved) => onSavedChange(recipe.id, saved)}
         />
         {recipe.isDiscovery ? (
-          <span className="absolute right-3 top-3 rounded-full bg-[#1B4332] px-2.5 py-1 text-[11px] font-medium text-white shadow-sm">
-            Something new
+          <span className="absolute right-3 top-3 rounded-full bg-accent px-2.5 py-1 text-[11px] font-medium text-accent-ink shadow-sm">
+            {t("recipeCard.somethingNew")}
           </span>
         ) : null}
       </div>
 
       <div className="p-5">
-        <p className="text-xs font-extralight uppercase tracking-wide text-[#6B7370]">
+        <p className="text-xs font-extralight uppercase tracking-wide text-muted">
           {recipe.cuisine}
         </p>
         {/* Truncated to a single line so every card in a row stays the same
             height regardless of title length — a long title wrapping to a
             2nd/3rd line was pushing cards out of alignment with their
             neighbors in the grid. */}
-        <h3 className="mt-1 truncate font-serif text-lg font-bold text-[#101010]">
+        <h3 className="mt-1 truncate font-serif text-lg font-bold text-ink">
           {recipe.title}
         </h3>
         {recipe.ingredientItems.length > 0 && (
-          <p className="mt-1 line-clamp-2 text-sm font-normal text-[#6B7370]">
+          <p className="mt-1 line-clamp-2 text-sm font-normal text-muted">
             {recipe.ingredientItems.join(", ")}
           </p>
         )}
@@ -299,8 +302,8 @@ function RecipeCard({
 
         {/* Time zone: attribute tag chips were moved off the card and are
             now shown only in a dropdown on the recipe detail page. */}
-        <div className="mt-3 flex flex-nowrap items-center gap-2 overflow-hidden text-xs text-[#6B7370]">
-          <span className="shrink-0 font-medium text-[#101010]">
+        <div className="mt-3 flex flex-nowrap items-center gap-2 overflow-hidden text-xs text-muted">
+          <span className="shrink-0 font-medium text-ink">
             {formatMinutes(recipe.prepMinutes, recipe.cookMinutes)}
           </span>
         </div>
@@ -308,17 +311,17 @@ function RecipeCard({
         <div className="mt-4 flex items-center gap-2">
           <Link
             href={`/recipe/${recipe.slug}`}
-            className="flex-1 rounded-full bg-[#1B4332] px-4 py-2 text-center text-sm font-medium text-white shadow-brand transition hover:-translate-y-0.5"
+            className="flex-1 rounded-full bg-accent px-4 py-2 text-center text-sm font-medium text-accent-ink shadow-brand transition hover:-translate-y-0.5"
           >
-            View Recipe
+            {t("recipeCard.viewRecipe")}
           </Link>
           <MotionButton
             onClick={handleCookLater}
             disabled={cookLaterPending}
             whileHover={{ y: -2 }}
-            className="flex-1 rounded-full border border-[#E8E6E0] px-4 py-2 text-sm font-medium text-[#101010] shadow-brand transition-colors hover:bg-[#EDF3EF] disabled:cursor-not-allowed disabled:opacity-50"
+            className="flex-1 rounded-full border border-border px-4 py-2 text-sm font-medium text-ink shadow-brand transition-colors hover:bg-hover disabled:cursor-not-allowed disabled:opacity-50"
           >
-            {cookLaterPending ? "Saving\u2026" : "Cook Later"}
+            {cookLaterPending ? t("recipeCard.saving") : t("recipeCard.cookLater")}
           </MotionButton>
         </div>
       </div>
@@ -335,7 +338,7 @@ function RecipeCard({
       transition={{ type: "spring", stiffness: 300, damping: 28, delay: (index ?? 0) * 0.06 }}
       whileHover={{ y: -6 }}
       onClick={() => router.push(`/recipe/${recipe.slug}`)}
-      className="cursor-pointer overflow-hidden rounded-[25px] border border-[#E8E6E0] bg-white shadow-brand"
+      className="cursor-pointer overflow-hidden rounded-[25px] border border-border bg-surface shadow-brand"
     >
       {popKey === undefined ? (
         innerContent
@@ -431,7 +434,7 @@ function FilterTagButton({
           className={`rounded-full border px-3 py-1.5 text-xs font-medium transition-colors ${
             active
               ? `border-transparent ${activeClass}`
-              : "border-[#E8E6E0] bg-white text-[#6B7370] hover:bg-[#EDF3EF]"
+              : "border-border bg-surface text-muted hover:bg-hover"
           }`}
         >
           {tag.label}
@@ -456,6 +459,7 @@ function FilterBar({
   onToggle: (value: string) => void;
   onClear: () => void;
 }) {
+  const t = useTranslations("dashboard");
   const [open, setOpen] = useState(false);
 
   if (tags.length === 0) return null;
@@ -469,11 +473,11 @@ function FilterBar({
         <button
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
-          className="flex items-center gap-1.5 rounded-full border border-[#E8E6E0] bg-white px-3 py-1.5 text-xs font-medium text-[#101010] shadow-brand transition hover:bg-[#EDF3EF]"
+          className="flex items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-medium text-ink shadow-brand transition hover:bg-hover"
         >
-          Filters
+          {t("filters.label")}
           {selected.size > 0 && (
-            <span className="rounded-full bg-[#1B4332] px-1.5 py-0.5 text-[10px] font-semibold text-white">
+            <span className="rounded-full bg-accent px-1.5 py-0.5 text-[10px] font-semibold text-accent-ink">
               {selected.size}
             </span>
           )}
@@ -490,9 +494,9 @@ function FilterBar({
         {selected.size > 0 && (
           <button
             onClick={onClear}
-            className="text-xs font-medium text-[#2C5A87] underline"
+            className="text-xs font-medium text-link underline"
           >
-            Clear filters
+            {t("filters.clear")}
           </button>
         )}
       </div>
@@ -507,11 +511,11 @@ function FilterBar({
             transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
             className="overflow-hidden"
           >
-            <div className="mt-3 space-y-3 rounded-2xl border border-[#E8E6E0] bg-white p-4 shadow-soft">
+            <div className="mt-3 space-y-3 rounded-2xl border border-border bg-surface p-4 shadow-soft">
               {foodGroupTags.length > 0 && (
                 <div>
-                  <p className="mb-1.5 text-[11px] font-extralight uppercase tracking-wide text-[#6B7370]">
-                    More of
+                  <p className="mb-1.5 text-[11px] font-extralight uppercase tracking-wide text-muted">
+                    {t("filters.moreOf")}
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {foodGroupTags.map((tag) => (
@@ -527,8 +531,8 @@ function FilterBar({
               )}
               {attrTags.length > 0 && (
                 <div>
-                  <p className="mb-1.5 text-[11px] font-extralight uppercase tracking-wide text-[#6B7370]">
-                    Tags
+                  <p className="mb-1.5 text-[11px] font-extralight uppercase tracking-wide text-muted">
+                    {t("filters.tags")}
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {attrTags.map((tag) => (
@@ -545,9 +549,9 @@ function FilterBar({
               {selected.size > 0 && (
                 <button
                   onClick={onClear}
-                  className="text-xs font-medium text-[#2C5A87] underline"
+                  className="text-xs font-medium text-link underline"
                 >
-                  Clear filters
+                  {t("filters.clear")}
                 </button>
               )}
             </div>
@@ -560,10 +564,10 @@ function FilterBar({
 
 type DashboardCategory = "MEALS" | "TAPAS" | "BREAKFAST";
 
-const CATEGORY_OPTIONS: { value: DashboardCategory; label: string }[] = [
-  { value: "MEALS", label: "Meals" },
-  { value: "TAPAS", label: "Tapas" },
-  { value: "BREAKFAST", label: "Breakfast" },
+const CATEGORY_OPTIONS: { value: DashboardCategory; labelKey: string }[] = [
+  { value: "MEALS", labelKey: "category.meals" },
+  { value: "TAPAS", labelKey: "category.tapas" },
+  { value: "BREAKFAST", labelKey: "category.breakfast" },
 ];
 
 // Persistent Meals/Tapas/Breakfast segmented control. Unlike FilterBar above
@@ -628,13 +632,14 @@ function CategoryControl({
   onChange: (value: DashboardCategory) => void;
   disabled: boolean;
 }) {
+  const t = useTranslations("dashboard");
   const activeIndex = CATEGORY_OPTIONS.findIndex((opt) => opt.value === value);
 
   return (
     <div
       role="radiogroup"
-      aria-label="Which recipes do you want to see?"
-      className="relative mx-auto mb-4 inline-flex rounded-full border border-[#E8E6E0] bg-white p-1"
+      aria-label={t("category.ariaLabel")}
+      className="relative mx-auto mb-4 inline-flex rounded-full border border-border bg-surface p-1"
     >
       <Liquid
         blur={5}
@@ -667,10 +672,10 @@ function CategoryControl({
             onClick={() => !active && onChange(opt.value)}
             style={{ width: SEGMENT_WIDTH }}
             className={`relative z-10 rounded-full py-1.5 text-center text-xs font-medium transition-colors duration-200 disabled:opacity-50 ${
-              active ? "text-white" : "text-[#6B7370] hover:bg-[#EDF3EF]"
+              active ? "text-accent-ink" : "text-muted hover:bg-hover"
             }`}
           >
-            {opt.label}
+            {t(opt.labelKey)}
           </button>
         );
       })}
@@ -684,10 +689,10 @@ export type CookbookSection = {
   recipes: RecipeCardData[];
 };
 
-const CATEGORY_SUBTITLE: Record<DashboardCategory, string> = {
-  MEALS: "4 recipes picked for you today.",
-  TAPAS: "4 tapas picked for you today.",
-  BREAKFAST: "4 breakfasts picked for you today.",
+const CATEGORY_SUBTITLE_KEY: Record<DashboardCategory, string> = {
+  MEALS: "subtitle.meals",
+  TAPAS: "subtitle.tapas",
+  BREAKFAST: "subtitle.breakfast",
 };
 
 export function DashboardClient({
@@ -705,6 +710,7 @@ export function DashboardClient({
   category: DashboardCategory;
   currentSlot: "LUNCH" | "DINNER";
 }) {
+  const t = useTranslations("dashboard");
   const [poolState, setPoolState] = useState(pool);
   const [visible, setVisible] = useState(() => dedupeFirstFour(served));
   // The current "true base" set of cards — what clearing all filters should
@@ -799,14 +805,14 @@ export function DashboardClient({
       }
 
       if (!res.ok || !body?.recipes) {
-        setRefreshMessage("Something went wrong. Try again.");
+        setRefreshMessage(t("refresh.error"));
         return;
       }
 
       replaceVisible(body.recipes);
       setBaseVisible(body.recipes);
     } catch {
-      setRefreshMessage("Something went wrong. Try again.");
+      setRefreshMessage(t("refresh.error"));
     } finally {
       setRefreshPending(false);
     }
@@ -833,7 +839,7 @@ export function DashboardClient({
       const body = await res.json().catch(() => null);
 
       if (!res.ok || !body?.recipes) {
-        setRefreshMessage("Something went wrong. Try again.");
+        setRefreshMessage(t("refresh.error"));
         setActiveCategory(category);
         return;
       }
@@ -843,7 +849,7 @@ export function DashboardClient({
       setPoolState(body.pool ?? poolState);
       setSelected(new Set());
     } catch {
-      setRefreshMessage("Something went wrong. Try again.");
+      setRefreshMessage(t("refresh.error"));
       setActiveCategory(category);
     } finally {
       setCategoryPending(false);
@@ -939,23 +945,25 @@ export function DashboardClient({
   const heading =
     activeCategory === "MEALS"
       ? currentSlot === "LUNCH"
-        ? "Lunch picks for you"
-        : "Dinner picks for you"
+        ? t("heading.lunch")
+        : t("heading.dinner")
       : activeCategory === "TAPAS"
-        ? "Tapas picks for you"
-        : "Breakfast picks for you";
+        ? t("heading.tapas")
+        : t("heading.breakfast");
+
+  const subtitle = t(CATEGORY_SUBTITLE_KEY[activeCategory], { count: 4 });
 
   if (poolState.length === 0) {
     return (
       <div>
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-[#101010]">{heading}</h1>
-          <p className="mt-1 text-sm text-[#6B7370]">{CATEGORY_SUBTITLE[activeCategory]}</p>
+          <h1 className="text-2xl font-bold text-ink">{heading}</h1>
+          <p className="mt-1 text-sm text-muted">{subtitle}</p>
           <div className="mt-6">
             <CategoryControl value={activeCategory} onChange={handleCategoryChange} disabled={categoryPending} />
           </div>
         </div>
-        <EmptyState title="No recipes match your preferences yet. Check back soon." />
+        <EmptyState title={t("emptyState.noPreferences")} />
       </div>
     );
   }
@@ -966,8 +974,8 @@ export function DashboardClient({
   return (
     <div>
       <div className="text-center">
-        <h1 className="text-2xl font-bold text-[#101010]">{heading}</h1>
-        <p className="mt-1 text-sm text-[#6B7370]">{CATEGORY_SUBTITLE[activeCategory]}</p>
+        <h1 className="text-2xl font-bold text-ink">{heading}</h1>
+        <p className="mt-1 text-sm text-muted">{subtitle}</p>
 
         <div className="mt-6">
           <CategoryControl value={activeCategory} onChange={handleCategoryChange} disabled={categoryPending} />
@@ -991,8 +999,8 @@ export function DashboardClient({
             transition={{ duration: 0.2 }}
             className="flex flex-col items-center gap-3 py-16"
           >
-            <LoadingOrb size={64} aria-label="Loading recipes" />
-            <p className="text-sm text-[#6B7370]">Loading recipes…</p>
+            <LoadingOrb size={64} aria-label={t("loading.ariaLabel")} />
+            <p className="text-sm text-muted">{t("loading.text")}</p>
           </motion.div>
         ) : selected.size > 0 && filteredPool.length === 0 ? (
           <motion.div
@@ -1003,13 +1011,13 @@ export function DashboardClient({
             transition={{ duration: 0.2 }}
           >
             <EmptyState
-              title="No recipes match your selected filters."
+              title={t("emptyState.noFiltered")}
               action={
                 <button
                   onClick={clearFilters}
-                  className="text-sm font-medium text-[#2C5A87] underline"
+                  className="text-sm font-medium text-link underline"
                 >
-                  Clear filters
+                  {t("filters.clear")}
                 </button>
               }
             />
@@ -1056,7 +1064,7 @@ export function DashboardClient({
         <MotionButton
           onClick={handleRefresh}
           disabled={refreshDisabled}
-          className="flex items-center gap-2 rounded-full border border-[#E8E6E0] px-5 py-3 text-sm font-medium text-[#101010] shadow-brand transition-colors hover:bg-[#EDF3EF] disabled:cursor-not-allowed disabled:opacity-50"
+          className="flex items-center gap-2 rounded-full border border-border px-5 py-3 text-sm font-medium text-ink shadow-brand transition-colors hover:bg-hover disabled:cursor-not-allowed disabled:opacity-50"
         >
           {refreshPending ? (
             <LoadingOrb size={20} />
@@ -1075,10 +1083,10 @@ export function DashboardClient({
               />
             </svg>
           )}
-          {refreshPending ? "Shuffling\u2026" : "Refresh recipes"}
+          {refreshPending ? t("refresh.shuffling") : t("refresh.button")}
         </MotionButton>
         {refreshMessage && (
-          <p className="text-xs text-[#6B7370]">{refreshMessage}</p>
+          <p className="text-xs text-muted">{refreshMessage}</p>
         )}
       </div>
 
@@ -1092,7 +1100,7 @@ export function DashboardClient({
         <div className="mt-10 space-y-8">
           {cookbooksState.map((cookbook) => (
             <div key={cookbook.id}>
-              <h2 className="text-lg font-bold text-[#101010]">{cookbook.name}</h2>
+              <h2 className="text-lg font-bold text-ink">{cookbook.name}</h2>
               <div className="mt-3 flex gap-4 overflow-x-auto pb-2">
                 {cookbook.recipes.map((recipe) => (
                   <div key={recipe.id} className="w-72 shrink-0">
