@@ -5,7 +5,7 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import Image from "next/image";
+import { Wordmark } from "@/components/wordmark";
 import { useTranslations } from "next-intl";
 import { PageTransition } from "@/components/page-transition";
 import { MotionButton } from "@/components/motion-button";
@@ -47,14 +47,7 @@ export default function LoginPage() {
     <main className="flex flex-1 items-center justify-center px-6 py-12">
       <PageTransition className="w-full max-w-sm">
         <div className="rounded-2xl border border-border bg-surface p-8 shadow-soft">
-          <Image
-            src="/brand/svg/wordmark-black.svg"
-            alt="Morso"
-            width={864}
-            height={286}
-            className="mx-auto h-10 w-auto"
-            priority
-          />
+          <Wordmark className="mx-auto h-10 w-auto" priority />
           <p className="mt-1 text-center text-sm text-muted">{t("welcomeBack")}</p>
 
           <div className="mt-8">
