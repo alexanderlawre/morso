@@ -33,15 +33,14 @@ export function AccessibilityPanel({ onClose }: { onClose: () => void }) {
 
   const [view, setView] = useState<"root" | "language" | "appearance">("root");
   const [showAbout, setShowAbout] = useState(false);
-  const [theme, setThemeState] = useState<ThemeMode>("LIGHT");
-
   // Theme has no server-side React context to read in a client component —
-  // sync from the attribute the server already rendered on <html> (see
-  // src/app/layout.tsx), once, on mount.
-  useEffect(() => {
+  // read it lazily from the attribute the server already rendered on <html>
+  // (see src/app/layout.tsx) on first render in the browser.
+  const [theme, setThemeState] = useState<ThemeMode>(() => {
+    if (typeof document === "undefined") return "LIGHT";
     const attr = document.documentElement.getAttribute("data-theme");
-    if (attr) setThemeState(attr.toUpperCase() as ThemeMode);
-  }, []);
+    return attr ? (attr.toUpperCase() as ThemeMode) : "LIGHT";
+  });
 
   async function persist(patch: { theme?: ThemeMode; locale?: Locale }) {
     if (session?.user) {
