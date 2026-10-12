@@ -115,7 +115,7 @@ export default function SignupPage() {
     <main className="flex flex-1 items-center justify-center px-6 py-12">
       <PageTransition className="w-full max-w-sm">
         <div className="rounded-2xl border border-border bg-surface p-8 shadow-soft">
-          <Wordmark className="h-10 w-auto" priority />
+          <Wordmark className="mx-auto h-10 w-auto" priority />
           <p className="mt-1 text-sm text-muted">
             {t("tagline")}
           </p>
