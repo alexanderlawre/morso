@@ -2,20 +2,21 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { SheetModal } from "@/components/sheet-modal";
 
 // Coarse (minute-granularity) countdown, matching the "no live-second
 // ticking needed" style planned for A4's cook-later countdowns — this can
 // be up to ~18h away (a Dinner window), so a ticking-every-second display
 // would be both wasteful and visually noisy for a number that large.
-function formatCountdown(msRemaining: number): string {
-  if (msRemaining <= 0) return "any moment now";
+function formatCountdown(msRemaining: number, t: ReturnType<typeof useTranslations>): string {
+  if (msRemaining <= 0) return t("refreshBlocked.anyMomentNow");
   const totalMinutes = Math.ceil(msRemaining / 60_000);
   const hours = Math.floor(totalMinutes / 60);
   const minutes = totalMinutes % 60;
-  if (hours === 0) return `${minutes}m`;
-  if (minutes === 0) return `${hours}h`;
-  return `${hours}h ${minutes}m`;
+  if (hours === 0) return t("refreshBlocked.minutes", { minutes });
+  if (minutes === 0) return t("refreshBlocked.hours", { hours });
+  return t("refreshBlocked.hoursMinutes", { hours, minutes });
 }
 
 // A1's free-plan blocker: shown when POST /api/dashboard/refresh returns
@@ -33,6 +34,7 @@ export function RefreshBlockedModal({
   onClose: () => void;
   nextWindowAt: string | null;
 }) {
+  const t = useTranslations("dashboard");
   const [now, setNow] = useState(() => Date.now());
 
   useEffect(() => {
@@ -45,13 +47,13 @@ export function RefreshBlockedModal({
 
   return (
     <SheetModal open={open} onClose={onClose}>
-      <p className="text-lg font-bold text-[#101010]">That&apos;s your refresh for now</p>
+      <p className="text-lg font-bold text-[#101010]">{t("refreshBlocked.title")}</p>
       <p className="mt-2 text-sm text-[#6B7370]">
-        Fresh picks land automatically at the next window — or go unlimited with Morso+.
+        {t("refreshBlocked.body")}
       </p>
       {remaining !== null && (
         <p className="mt-3 text-xs font-medium text-[#6B7370]">
-          Next window in {formatCountdown(remaining)}
+          {t("refreshBlocked.nextWindowIn", { countdown: formatCountdown(remaining, t) })}
         </p>
       )}
       <div className="mt-5 flex gap-2">
@@ -60,14 +62,14 @@ export function RefreshBlockedModal({
           onClick={onClose}
           className="flex-1 rounded-lg border border-[#E8E6E0] px-4 py-2.5 text-sm font-medium text-[#101010] shadow-brand transition hover:bg-[#EDF3EF]"
         >
-          Got it
+          {t("refreshBlocked.gotIt")}
         </button>
         <Link
           href="/premium"
           onClick={onClose}
           className="flex-1 rounded-lg bg-[#1B4332] px-4 py-2.5 text-center text-sm font-medium text-white shadow-brand transition hover:opacity-90"
         >
-          Go Morso+
+          {t("refreshBlocked.goMorsoPlus")}
         </Link>
       </div>
     </SheetModal>

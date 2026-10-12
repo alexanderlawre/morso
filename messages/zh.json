@@ -1,0 +1,515 @@
+{
+  "accessibility": {
+    "trigger": "辅助功能和语言设置",
+    "about": {
+      "label": "关于 Morso",
+      "body": "Morso 会根据您的饮食习惯、过敏原和偏好推荐食谱——一个为您量身定制的食谱面板，您可以收藏以后再看，并记录您做过的菜。",
+      "close": "关闭"
+    },
+    "language": {
+      "label": "语言"
+    },
+    "appearance": {
+      "label": "外观",
+      "light": "浅色",
+      "green": "绿色",
+      "dark": "深色"
+    },
+    "back": "返回",
+    "menuLabel": "外观和语言"
+  },
+  "auth": {
+    "login": {
+      "welcomeBack": "欢迎回来。",
+      "emailLabel": "邮箱",
+      "passwordLabel": "密码",
+      "forgotPassword": "忘记密码？",
+      "wrongCredentials": "邮箱或密码错误。",
+      "loggingIn": "正在登录…",
+      "submit": "登录",
+      "newHere": "初次使用？",
+      "createAccount": "创建账户"
+    },
+    "signup": {
+      "tagline": "为你量身定制的食谱。",
+      "stepLabel": "第 1 步（共 3 步）：个人资料",
+      "addPhotoAria": "添加头像",
+      "addPhoto": "添加照片",
+      "profilePhotoLabel": "头像",
+      "profilePhotoHint": "可选。您可以随时添加或更改。",
+      "fullNameLabel": "姓名",
+      "emailLabel": "邮箱",
+      "passwordLabel": "密码",
+      "passwordHint": "至少 10 个字符。",
+      "confirmPasswordLabel": "重新输入密码",
+      "passwordsMatch": "密码匹配。",
+      "passwordsMismatch": "密码尚未匹配。",
+      "birthdayLabel": "生日",
+      "passwordsDontMatchError": "两次密码不一致",
+      "locationRequiredError": "城市和国家为必填项",
+      "genericError": "出了点问题",
+      "partialFailureError": "账户已创建，但登录失败。请尝试重新登录。",
+      "retryError": "出了点问题，请重试。",
+      "creatingAccount": "正在创建账户…",
+      "continue": "继续",
+      "alreadyHaveAccount": "已经有账户了？",
+      "logIn": "登录"
+    },
+    "forgotPassword": {
+      "title": "重置密码",
+      "subtitle": "输入您的邮箱，我们会发送重置链接给您。",
+      "emailLabel": "邮箱",
+      "submitted": "如果该邮箱已注册，我们已发送密码重置链接，请查收邮箱。",
+      "sending": "发送中…",
+      "submit": "发送重置链接",
+      "backToLogin": "返回登录",
+      "genericError": "出了点问题"
+    },
+    "resetPassword": {
+      "title": "设置新密码",
+      "subtitle": "为您的账户选择一个新密码。",
+      "mismatchError": "两次密码不一致。",
+      "genericError": "出了点问题",
+      "invalidLink": "此重置链接缺失或无效。请在",
+      "forgotPasswordLink": "忘记密码",
+      "pageSuffix": "页面重新申请。",
+      "success": "密码已更新，正在跳转到登录页…",
+      "newPasswordLabel": "新密码",
+      "confirmPasswordLabel": "确认新密码",
+      "updating": "更新中…",
+      "submit": "更新密码"
+    },
+    "oauth": {
+      "redirecting": "正在跳转…",
+      "google": "使用 Google 继续",
+      "apple": "使用 Apple 继续",
+      "or": "或"
+    }
+  },
+  "howItWorks": {
+    "title": "Morso 如何了解你",
+    "subtitle": "无需填写冗长的问卷，使用得越多，Morso 就越懂你。",
+    "steps": {
+      "use": {
+        "title": "使用 Morso",
+        "caption": "烹饪、收藏、跳过、评分——每个操作都是一种信号。"
+      },
+      "signal": {
+        "title": "我们捕捉信号",
+        "caption": "你的口味画像会在后台悄悄更新。"
+      },
+      "sharpen": {
+        "title": "推荐更精准",
+        "caption": "明天的推荐会比今天更适合你。"
+      }
+    },
+    "footer": "……每次打开 Morso，这个过程都会重复。",
+    "gotIt": "知道了"
+  },
+  "dashboard": {
+    "heading": {
+      "lunch": "为你推荐的午餐",
+      "dinner": "为你推荐的晚餐",
+      "tapas": "为你推荐的塔帕斯",
+      "breakfast": "为你推荐的早餐"
+    },
+    "subtitle": {
+      "meals": "{count, plural, one {今天为你挑选了 # 道食谱。} other {今天为你挑选了 # 道食谱。}}",
+      "tapas": "{count, plural, one {今天为你挑选了 # 道塔帕斯。} other {今天为你挑选了 # 道塔帕斯。}}",
+      "breakfast": "{count, plural, one {今天为你挑选了 # 款早餐。} other {今天为你挑选了 # 款早餐。}}"
+    },
+    "category": {
+      "ariaLabel": "您想查看哪类食谱？",
+      "meals": "正餐",
+      "tapas": "塔帕斯",
+      "breakfast": "早餐"
+    },
+    "filters": {
+      "label": "筛选",
+      "clear": "清除筛选",
+      "moreOf": "更多",
+      "tags": "标签"
+    },
+    "emptyState": {
+      "noPreferences": "目前没有符合您偏好的食谱，请稍后再来看看。",
+      "noFiltered": "没有符合所选筛选条件的食谱。"
+    },
+    "loading": {
+      "ariaLabel": "正在加载食谱",
+      "text": "正在加载食谱…"
+    },
+    "refresh": {
+      "button": "刷新食谱",
+      "shuffling": "正在重新排列…",
+      "error": "出了点问题，请重试。"
+    },
+    "recipeCard": {
+      "addToCookLater": "加入待烹饪",
+      "removeFromCookLater": "从待烹饪中移除",
+      "starError": "出了点问题。",
+      "somethingNew": "尝试新口味",
+      "viewRecipe": "查看食谱",
+      "cookLater": "待烹饪",
+      "saving": "保存中…",
+      "cookedPrefix": "已烹饪",
+      "lastOn": "上次于",
+      "removing": "正在移除…",
+      "removeFromCookbook": "从食谱集中移除"
+    },
+    "refreshBlocked": {
+      "title": "这是您目前的刷新次数",
+      "body": "新一轮推荐将在下一个时段自动上线——或升级 Morso+ 畅享无限次刷新。",
+      "nextWindowIn": "下一时段还剩 {countdown}",
+      "anyMomentNow": "随时可能到来",
+      "minutes": "{minutes} 分钟",
+      "hours": "{hours} 小时",
+      "hoursMinutes": "{hours} 小时 {minutes} 分钟",
+      "gotIt": "知道了",
+      "goMorsoPlus": "升级 Morso+"
+    }
+  },
+  "onboarding": {
+    "common": {
+      "back": "返回",
+      "continue": "继续"
+    },
+    "preferences": {
+      "title": "过敏与饮食",
+      "subtitle": "过敏信息优先。它会永久过滤掉所有含有相应成分的食谱。您可以随时在个人资料中更新这些设置。",
+      "allergies": {
+        "heading": "有任何过敏情况吗？",
+        "description": "先选择一个类别，再勾选适用的具体项目。这是防止不安全食谱出现在您面板上的主要保护措施。",
+        "otherLabel": "其他",
+        "otherDescription": "上面没有列出？请用逗号分隔添加具体食物或食物类别（例如“猕猴桃、贝类”）。",
+        "otherPlaceholder": "例如：猕猴桃、香菜"
+      },
+      "diets": {
+        "heading": "有适用于您的饮食方式吗？",
+        "description": "可以选择任意多项。没有限制也没关系，您可以留空。"
+      }
+    },
+    "personalize": {
+      "title": "个性化设置",
+      "subtitle": "从很少到经常。如果不确定，使用默认值即可，之后您可以随时调整。",
+      "saving": "保存中…",
+      "finish": "完成",
+      "signalBanner": {
+        "title": "使用 → 信号 → 更精准的推荐",
+        "description": "这些滑块只是一个起点——Morso 会持续根据您实际烹饪的内容来学习。"
+      },
+      "categories": {
+        "produce": "水果和蔬菜",
+        "protein": "蛋白质",
+        "grain": "谷物",
+        "dairy": "乳制品",
+        "flavor": "风味和调味料",
+        "other": "其他"
+      },
+      "feedback": {
+        "label": "没看到您经常吃的东西？",
+        "description": "告诉我们，我们会尽快添加。此项为可选。"
+      },
+      "cuisines": {
+        "label": "喜爱的菜系",
+        "description": "如果可以，请至少输入 {count} 个，越多越好。这会让系统更倾向于推荐这些菜系，但不会排除其他选项。",
+        "placeholder": "例如：墨西哥菜、泰国菜、法国菜",
+        "moreSuggested": "{count, plural, one {建议再填写 # 个，非必填。} other {建议再填写 # 个，非必填。}}"
+      },
+      "errors": {
+        "saveFailed": "保存偏好设置时出了点问题。",
+        "generic": "出了点问题，请重试。"
+      }
+    }
+  },
+  "recipe": {
+    "allergenWarning": {
+      "title": "可能存在过敏原冲突",
+      "body": "此食谱可能与您资料中的过敏原冲突，或尚未针对您声明的过敏原进行核实。烹饪前请仔细检查食材。"
+    },
+    "imageCredit": "图片：{credit}",
+    "prepCookTime": "准备 {prep} 分钟 / 烹饪 {cook} 分钟",
+    "allergenBadge": "⚠ 含有 {allergen}",
+    "allergenUnverified": "过敏原信息尚未核实——请仔细检查食材清单。",
+    "tagsToggle": "标签与饮食信息",
+    "sections": {
+      "nutrition": "营养信息",
+      "ingredients": "食材",
+      "method": "做法",
+      "completeTheMeal": "搭配完整一餐"
+    },
+    "nutritionFor": "每 {count, plural, one {# 份} other {# 份}}",
+    "nutrition": {
+      "calories": "热量",
+      "protein": "蛋白质",
+      "carbs": "碳水化合物",
+      "fat": "脂肪",
+      "fiber": "纤维",
+      "cholesterol": "胆固醇",
+      "premiumLock": "升级 Premium 解锁脂肪、纤维和胆固醇信息"
+    },
+    "servingsStepper": {
+      "decrease": "减少份数",
+      "increase": "增加份数",
+      "count": "{count, plural, one {# 份} other {# 份}}"
+    },
+    "ingredientOptional": "可选",
+    "subRecipe": {
+      "toggle": "想自己制作 {title} 吗？"
+    },
+    "stepDuration": "约 {minutes} 分钟",
+    "errors": {
+      "somethingWentWrong": "出了点问题。",
+      "cookFailed": "出了点问题，请重试。",
+      "cookRateLimited": "您可以在 {when} 左右再次记录烹饪。",
+      "timeFallback": "稍后"
+    },
+    "actions": {
+      "cookLater": "稍后烹饪",
+      "logging": "记录中…",
+      "logged": "✓ 已记录！",
+      "iCookedThis": "我做过这道菜"
+    },
+    "cosign": {
+      "title": "做得真棒！",
+      "prompt": "想留一句话说说做菜的感受吗？",
+      "placeholder": "可选留言…",
+      "skip": "跳过",
+      "share": "分享成果"
+    }
+  },
+  "submitRecipe": {
+    "form": {
+      "photoLabel": "照片（可选）",
+      "addPhoto": "添加照片",
+      "changePhoto": "更换照片",
+      "titleLabel": "标题",
+      "shortDescriptionLabel": "简短描述",
+      "noteLabel": "备注",
+      "introCopyLabel": "简介文案",
+      "servingsLabel": "份数",
+      "prepMinLabel": "准备时间（分钟）",
+      "cookMinLabel": "烹饪时间（分钟）",
+      "difficultyLabel": "难度",
+      "cuisineLabel": "菜系",
+      "selectCuisinePlaceholder": "选择菜系…",
+      "addCuisineInputPlaceholder": "添加新菜系…",
+      "addCuisineLabel": "添加新菜系",
+      "addCuisinePlaceholder": "例如：埃塞俄比亚菜",
+      "mealSlotLabel": "用餐时段",
+      "attributesLabel": "属性/标签",
+      "dietTagsLabel": "饮食标签",
+      "allergenTagsLabel": "过敏原标签",
+      "batchFriendlyLabel": "适合批量制作",
+      "macrosLabel": "宏量营养素（每份，可选）",
+      "macros": {
+        "caloriesPlaceholder": "卡",
+        "caloriesCaption": "热量",
+        "proteinPlaceholder": "克",
+        "proteinCaption": "蛋白质",
+        "carbsPlaceholder": "克",
+        "carbsCaption": "碳水化合物",
+        "fatPlaceholder": "克",
+        "fatCaption": "脂肪"
+      },
+      "pairingSuggestionLabel": "搭配建议（可选）",
+      "pairingSuggestionPlaceholder": "例如：搭配冰啤酒或凯匹林纳鸡尾酒更佳。",
+      "ingredientsLabel": "食材",
+      "ingredientQtyPlaceholder": "数量",
+      "ingredientUnitPlaceholder": "单位",
+      "ingredientItemPlaceholder": "食材名称",
+      "prepNotePlaceholder": "准备说明（可选）",
+      "componentPlaceholder": "组成部分（可选）",
+      "optionalLabel": "可选",
+      "completeMealTip": "提示：对于搭配主菜的配菜或饮品，请使用“搭配完整一餐”作为组成部分——它们会在食谱页面底部以高亮形式单独展示。",
+      "stepsLabel": "步骤",
+      "stepPlaceholder": "步骤 {number}",
+      "durationPlaceholder": "时长（分钟）",
+      "subRecipesLabel": "子食谱（可选）",
+      "subRecipeTitlePlaceholder": "标题，例如“自制油炸饺子面皮”"
+    },
+    "actions": {
+      "add": "+ 添加",
+      "adding": "添加中…",
+      "addIngredient": "+ 添加食材",
+      "addStep": "+ 添加步骤",
+      "addSubRecipe": "+ 添加子食谱",
+      "remove": "移除",
+      "submit": "提交食谱",
+      "submitting": "提交中…"
+    },
+    "errors": {
+      "pickCuisine": "请选择一个菜系。",
+      "ingredientNeedsName": "每种食材都需要填写名称。",
+      "stepNeedsText": "每个步骤都需要填写内容。",
+      "submissionFailed": "提交失败",
+      "photoUploadFailed": "食谱已提交，但照片上传失败。您可以下次重新提交照片。",
+      "addCuisineFailed": "添加菜系失败"
+    },
+    "success": {
+      "title": "谢谢！您的食谱已提交。",
+      "body": "管理员会尽快审核。您可以在上方查看审核状态。",
+      "submitAnother": "再提交一个食谱"
+    }
+  },
+  "profile": {
+    "heading": "个人资料",
+    "photo": {
+      "changeAriaLabel": "更改头像",
+      "addPhoto": "添加照片",
+      "label": "头像",
+      "uploading": "上传中…",
+      "clickToChange": "点击更改。"
+    },
+    "fields": {
+      "name": "姓名",
+      "birthday": "生日"
+    },
+    "actions": {
+      "save": "保存",
+      "saving": "保存中…",
+      "saved": "已保存！"
+    },
+    "errors": {
+      "nameRequired": "姓名不能为空。",
+      "countryRequired": "国家不能为空。",
+      "photoUploadFailed": "上传照片时出了点问题。",
+      "saveFailed": "保存资料时出了点问题。",
+      "generic": "出了点问题，请重试。"
+    },
+    "cookArchive": {
+      "heading": "烹饪记录",
+      "privacyNote": "私密——仅您本人可见。您标记为已烹饪的食谱会出现在这里；您可以将其中任意一个添加到上方的公开食谱集。",
+      "empty": "还没有烹饪记录。在面板中将食谱标记为已烹饪即可添加到此处。"
+    },
+    "cookbooks": {
+      "heading": "我的食谱集",
+      "visibilityNote": "公开——其他已登录用户可见。只能添加您已烹饪过的食谱。",
+      "empty": "您还没有创建食谱集。创建一个来开始收集您烹饪过的食谱吧。",
+      "recipeCount": "{count, plural, one {# 道食谱} other {# 道食谱}}",
+      "noCover": "无封面",
+      "namePlaceholder": "食谱集名称",
+      "create": "创建",
+      "cancel": "取消",
+      "newCookbook": "+ 新建食谱集",
+      "errors": {
+        "createFailed": "创建食谱集时出了点问题。",
+        "generic": "出了点问题，请重试。"
+      }
+    },
+    "accountSettings": {
+      "title": "账户设置",
+      "email": "邮箱",
+      "timezone": "时区",
+      "changePasswordTitle": "修改密码",
+      "setPasswordTitle": "设置密码",
+      "ssoNote": "您的账户是通过 Google 或 Apple 登录创建的。设置密码后，您也可以使用邮箱登录。",
+      "currentPasswordPlaceholder": "当前密码",
+      "newPasswordPlaceholder": "新密码（至少 10 个字符）",
+      "saving": "保存中…",
+      "changePasswordButton": "修改密码",
+      "setPasswordButton": "设置密码",
+      "saved": "已保存！",
+      "errors": {
+        "passwordTooShort": "新密码必须至少 10 个字符。",
+        "changeFailed": "修改密码时出了点问题。",
+        "generic": "出了点问题，请重试。"
+      },
+      "forgotPassword": "忘记当前密码了？改为<link>通过邮箱重置</link>。",
+      "signOut": "退出登录"
+    },
+    "public": {
+      "noCookbooks": "暂无公开食谱集。",
+      "noRecipesInCookbook": "此食谱集中暂无食谱。"
+    }
+  },
+  "settings": {
+    "personalization": {
+      "heading": "个性化设置",
+      "subheading": "随时更新您的饮食、过敏原和口味偏好。更改会立即应用于您的面板。",
+      "howMorsoLearns": {
+        "title": "Morso 如何了解您",
+        "body": "下面的每一次评分、收藏和跳过都会反馈到您的口味画像中——使用 Morso 越多，推荐就越精准。",
+        "seeHowItWorks": "了解详情"
+      },
+      "allergies": {
+        "title": "有任何过敏情况吗？",
+        "body": "可以选择多项适用的情况。这是防止不安全食谱出现在您面板上的主要保护措施。",
+        "otherLabel": "其他过敏原",
+        "otherHelp": "请用逗号分隔列出具体食物或食物类别（例如“猕猴桃、贝类”）。",
+        "otherPlaceholder": "例如：猕猴桃、香菜"
+      },
+      "diets": {
+        "title": "有适用于您的饮食方式吗？",
+        "body": "可以选择任意多项。没有限制也没关系，您可以留空。"
+      },
+      "spice": {
+        "title": "您能吃多辣？",
+        "body": "我们不会推荐比这更辣的食谱。未标注辣度的食谱仍会照常显示。",
+        "mild": "微辣",
+        "medium": "中辣",
+        "hot": "重辣"
+      },
+      "foodGroups": {
+        "title": "这些食物您吃得多吗？",
+        "body": "从很少到经常。这会影响我们优先展示哪些食谱，但不会完全排除任何选项。",
+        "rarely": "很少",
+        "constantly": "经常"
+      },
+      "feedback": {
+        "label": "没看到您经常吃的东西？",
+        "help": "告诉我们，我们会尽快添加。此项为可选。"
+      },
+      "cuisines": {
+        "label": "喜爱的菜系",
+        "help": "如果可以，请至少输入 {count} 个，越多越好。这会让系统更倾向于推荐这些菜系，但不会排除其他选项。",
+        "placeholder": "例如：墨西哥菜、泰国菜、法国菜"
+      },
+      "errors": {
+        "saveFailed": "保存偏好设置时出了点问题。",
+        "generic": "出了点问题，请重试。"
+      },
+      "save": "保存更改",
+      "saving": "保存中…",
+      "saved": "已保存！"
+    }
+  },
+  "cookLater": {
+    "heading": "待烹饪",
+    "savedCount": "已保存 {count}/{cap}。烹饪一道菜以腾出空间。",
+    "hiddenCount": "{count, plural, one {# 道已保存食谱} other {# 道已保存食谱}}因您的过敏或饮食设置被隐藏。",
+    "removeAriaLabel": "从待烹饪中移除",
+    "empty": "还没有保存任何食谱。在面板中为食谱加星即可添加到这里。"
+  },
+  "cookbooks": {
+    "manage": {
+      "heading": "管理食谱集",
+      "visibilityNote": "公开——在您的个人资料页面上，其他已登录用户可见。",
+      "coverChangeAriaLabel": "更改食谱集封面",
+      "addCover": "添加封面",
+      "coverLabel": "封面图片",
+      "uploading": "上传中…",
+      "clickToChange": "点击更改。",
+      "nameLabel": "名称",
+      "saving": "保存中…",
+      "saveName": "保存名称",
+      "saved": "已保存！",
+      "errors": {
+        "nameRequired": "食谱集名称不能为空。",
+        "coverUploadFailed": "上传封面时出了点问题。",
+        "renameFailed": "重命名食谱集时出了点问题。",
+        "addRecipeFailed": "添加该食谱时出了点问题。",
+        "removeRecipeFailed": "移除该食谱时出了点问题。",
+        "deleteFailed": "删除食谱集时出了点问题。",
+        "generic": "出了点问题，请重试。"
+      },
+      "deleteConfirm": "删除“{name}”？此操作无法撤销。",
+      "addRecipesHeading": "添加您烹饪过的食谱",
+      "adding": "添加中…",
+      "add": "添加",
+      "recipesHeading": "食谱",
+      "noRecipes": "暂无食谱。请从上方您烹饪过的食谱中添加一个。",
+      "deleting": "删除中…",
+      "deleteCookbook": "删除食谱集"
+    }
+  }
+}

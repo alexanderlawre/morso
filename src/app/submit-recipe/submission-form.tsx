@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { RecipeFormFields } from "@/components/recipe-form-fields";
 import {
   EMPTY_RECIPE,
@@ -22,6 +23,7 @@ export function SubmissionForm({
   diets: EditorDiet[];
   allergens: EditorAllergen[];
 }) {
+  const t = useTranslations("submitRecipe");
   const router = useRouter();
   const [form, setForm] = useState<RecipeFormValues>(EMPTY_RECIPE);
   const [photoFile, setPhotoFile] = useState<File | null>(null);
@@ -89,15 +91,15 @@ export function SubmissionForm({
   async function handleSubmit() {
     setError(null);
     if (!form.cuisineId) {
-      setError("Pick a cuisine.");
+      setError(t("errors.pickCuisine"));
       return;
     }
     if (form.ingredients.some((i) => !i.item.trim())) {
-      setError("Every ingredient needs an item name.");
+      setError(t("errors.ingredientNeedsName"));
       return;
     }
     if (form.steps.some((s) => !s.text.trim())) {
-      setError("Every step needs text.");
+      setError(t("errors.stepNeedsText"));
       return;
     }
 
@@ -110,7 +112,9 @@ export function SubmissionForm({
       });
       if (!res.ok) {
         const body = await res.json().catch(() => null);
-        throw new Error(typeof body?.error === "string" ? body.error : "Submission failed");
+        throw new Error(
+          typeof body?.error === "string" ? body.error : t("errors.submissionFailed"),
+        );
       }
       const { submission } = (await res.json()) as { submission: { id: string } };
 
@@ -123,7 +127,7 @@ export function SubmissionForm({
         });
         if (!photoRes.ok) {
           // Submission itself succeeded — surface a soft warning but still treat as submitted.
-          setError("Recipe submitted, but the photo upload failed. You can resubmit with a photo next time.");
+          setError(t("errors.photoUploadFailed"));
         }
       }
 
@@ -133,7 +137,7 @@ export function SubmissionForm({
       setPhotoPreview(null);
       router.refresh();
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Submission failed");
+      setError(err instanceof Error ? err.message : t("errors.submissionFailed"));
     } finally {
       setSaving(false);
     }
@@ -142,16 +146,14 @@ export function SubmissionForm({
   if (submitted) {
     return (
       <div className="rounded-2xl border border-[#E8E6E0] bg-white p-6 text-center">
-        <p className="text-sm font-medium text-[#101010]">Thanks! Your recipe was submitted.</p>
-        <p className="mt-1 text-sm text-[#6B7370]">
-          An admin will review it soon. You can track its status above.
-        </p>
+        <p className="text-sm font-medium text-[#101010]">{t("success.title")}</p>
+        <p className="mt-1 text-sm text-[#6B7370]">{t("success.body")}</p>
         <button
           type="button"
           onClick={() => setSubmitted(false)}
           className="mt-4 rounded-xl border border-[#E8E6E0] px-4 py-2 text-sm font-medium text-[#101010] shadow-brand"
         >
-          Submit another recipe
+          {t("success.submitAnother")}
         </button>
       </div>
     );
@@ -160,7 +162,7 @@ export function SubmissionForm({
   return (
     <div className="space-y-5 rounded-2xl border border-[#E8E6E0] bg-white p-6">
       <div>
-        <label className="mb-1 block text-xs font-medium text-[#6B7370]">Photo (optional)</label>
+        <label className="mb-1 block text-xs font-medium text-[#6B7370]">{t("form.photoLabel")}</label>
         <div className="flex items-center gap-3">
           <div className="h-16 w-16 shrink-0 overflow-hidden rounded-lg bg-[#EDF3EF]">
             {photoPreview && (
@@ -181,7 +183,7 @@ export function SubmissionForm({
             disabled={saving}
             className="rounded-full border border-[#E8E6E0] px-3 py-2 text-xs text-[#101010] shadow-brand disabled:opacity-50"
           >
-            {photoFile ? "Change photo" : "Add photo"}
+            {photoFile ? t("form.changePhoto") : t("form.addPhoto")}
           </button>
         </div>
       </div>
@@ -216,7 +218,7 @@ export function SubmissionForm({
           disabled={saving}
           className="w-full rounded-xl bg-[#1B4332] py-3 text-sm font-medium text-white shadow-brand disabled:opacity-50"
         >
-          {saving ? "Submitting…" : "Submit recipe"}
+          {saving ? t("actions.submitting") : t("actions.submit")}
         </button>
       </div>
     </div>

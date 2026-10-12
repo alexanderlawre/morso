@@ -3,6 +3,57 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Semantic theme tokens — the "light" set (current/default app look).
+     Overridden wholesale per-token under [data-theme="green"] and
+     [data-theme="dark"] below. Keeping these as plain custom properties
+     (not directly inside @theme) is what lets a runtime `data-theme`
+     attribute swap them — @theme itself is a compile-time token registry,
+     not a runtime switch; see the Tailwind v4 "@theme inline indirection"
+     pattern used for --color-background/--color-foreground above, which
+     this follows. */
+  --page: #efefef;
+  --surface: #ffffff;
+  --border: #e8e6e0;
+  --ink: #101010;
+  --muted: #6b7370;
+  --accent: #1b4332;
+  --accent-ink: #ffffff;
+  --link: #2c5a87;
+  --danger: #b23a32;
+  /* Hover tint for plain list rows (menu items, dropdown options) — a
+     faint wash of the surface color, not a fixed mint green, so it still
+     reads correctly against dark surfaces. */
+  --hover: #edf3ef;
+}
+
+/* "Green": deep brand-green-dominant surfaces (not just an accent swap) —
+   the page itself reads as the evergreen brand color, light text on top. */
+:root[data-theme="green"] {
+  --page: #0f1f17;
+  --surface: #16281f;
+  --border: #2a4536;
+  --ink: #f2f5f3;
+  --muted: #a9bdb2;
+  --accent: #3f7a5c;
+  --accent-ink: #ffffff;
+  --link: #8fc5e8;
+  --danger: #e2766d;
+  --hover: #1f3a2c;
+}
+
+/* "Dark": Apple-style system dark mode — near-black surfaces. */
+:root[data-theme="dark"] {
+  --page: #000000;
+  --surface: #1c1c1e;
+  --border: #2c2c2e;
+  --ink: #f2f2f7;
+  --muted: #8e8e93;
+  --accent: #2f6a4f;
+  --accent-ink: #ffffff;
+  --link: #6ab0f3;
+  --danger: #ff6b61;
+  --hover: #2c2c2e;
 }
 
 @theme inline {
@@ -10,18 +61,37 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-body);
   --font-serif: var(--font-title);
+
+  /* Semantic theme utilities (bg-page, bg-surface, border-border, text-ink,
+     text-muted, bg-accent, text-accent-ink, text-link, text-danger, ...) —
+     named utilities over scattering bg-[var(--token)] arbitrary values at
+     call sites, so Tailwind's own tooling still understands them. */
+  --color-page: var(--page);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-link: var(--link);
+  --color-danger: var(--danger);
+  --color-hover: var(--hover);
 }
 
-/* This app only has one, light theme — no component has dark-mode styling
-   (no `dark:` variants anywhere). Explicitly pin color-scheme to light so
-   iOS/Safari (and other browsers) don't auto-invert the page, native form
-   controls, or scrollbars when the device is set to dark mode, which was
-   previously making body text unreadable and leaving header/footer/buttons
-   in a mismatched, un-adapted light style against a flipped-dark page. */
+/* color-scheme follows the active theme so iOS/Safari (and other browsers)
+   render native form controls, scrollbars, etc. correctly against each
+   theme's actual background instead of auto-inverting a light page (the
+   original bug this rule existed to prevent) or leaving light-styled native
+   controls stranded on a dark background. */
 html {
   color-scheme: light;
   -webkit-text-size-adjust: 100%;
   overscroll-behavior-y: contain;
+}
+
+html[data-theme="green"],
+html[data-theme="dark"] {
+  color-scheme: dark;
 }
 
 /* Tailwind v4's Preflight resets <button> to `cursor: default`, which makes

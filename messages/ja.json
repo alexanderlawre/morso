@@ -1,0 +1,109 @@
+{
+  "accessibility": {
+    "trigger": "アクセシビリティと言語の設定",
+    "about": {
+      "label": "Morsoについて",
+      "body": "Morsoは、食事制限やアレルゲン、好みに合わせてレシピをおすすめします。自分専用のダッシュボードから、気になるレシピを保存したり、作った料理を記録したりできます。",
+      "close": "閉じる"
+    },
+    "language": {
+      "label": "言語"
+    },
+    "appearance": {
+      "label": "外観",
+      "light": "ライト",
+      "green": "グリーン",
+      "dark": "ダーク"
+    },
+    "back": "戻る",
+    "menuLabel": "外観と言語"
+  },
+  "auth": {
+    "login": {
+      "welcomeBack": "おかえりなさい。",
+      "emailLabel": "メールアドレス",
+      "passwordLabel": "パスワード",
+      "forgotPassword": "パスワードをお忘れですか？",
+      "wrongCredentials": "メールアドレスまたはパスワードが正しくありません。",
+      "loggingIn": "ログイン中…",
+      "submit": "ログイン",
+      "newHere": "はじめてですか？",
+      "createAccount": "アカウントを作成"
+    },
+    "signup": {
+      "tagline": "あなたに合わせたレシピ。",
+      "stepLabel": "ステップ1/3：プロフィール",
+      "addPhotoAria": "プロフィール写真を追加",
+      "addPhoto": "写真を追加",
+      "profilePhotoLabel": "プロフィール写真",
+      "profilePhotoHint": "任意です。あとからいつでも追加・変更できます。",
+      "fullNameLabel": "氏名",
+      "emailLabel": "メールアドレス",
+      "passwordLabel": "パスワード",
+      "passwordHint": "10文字以上。",
+      "confirmPasswordLabel": "パスワード（確認）",
+      "passwordsMatch": "パスワードが一致しています。",
+      "passwordsMismatch": "パスワードがまだ一致していません。",
+      "birthdayLabel": "生年月日",
+      "passwordsDontMatchError": "パスワードが一致しません",
+      "locationRequiredError": "市区町村と国は必須です",
+      "genericError": "問題が発生しました",
+      "partialFailureError": "アカウントは作成されましたが、ログインに失敗しました。ログインをお試しください。",
+      "retryError": "問題が発生しました。もう一度お試しください。",
+      "creatingAccount": "アカウントを作成中…",
+      "continue": "続ける",
+      "alreadyHaveAccount": "すでにアカウントをお持ちですか？",
+      "logIn": "ログイン"
+    },
+    "forgotPassword": {
+      "title": "パスワードをリセット",
+      "subtitle": "メールアドレスを入力すると、リセット用のリンクをお送りします。",
+      "emailLabel": "メールアドレス",
+      "submitted": "該当するアカウントがあれば、パスワードリセット用のリンクを送信しました。受信トレイをご確認ください。",
+      "sending": "送信中…",
+      "submit": "リセットリンクを送信",
+      "backToLogin": "ログインに戻る",
+      "genericError": "問題が発生しました"
+    },
+    "resetPassword": {
+      "title": "新しいパスワードを設定",
+      "subtitle": "アカウントの新しいパスワードを選んでください。",
+      "mismatchError": "パスワードが一致しません。",
+      "genericError": "問題が発生しました",
+      "invalidLink": "このリセットリンクが見つからないか、無効です。こちらのページから新しいリンクをリクエストしてください：",
+      "forgotPasswordLink": "パスワードを忘れた場合",
+      "pageSuffix": "",
+      "success": "パスワードを更新しました。ログイン画面に移動します…",
+      "newPasswordLabel": "新しいパスワード",
+      "confirmPasswordLabel": "新しいパスワード（確認）",
+      "updating": "更新中…",
+      "submit": "パスワードを更新"
+    },
+    "oauth": {
+      "redirecting": "リダイレクト中…",
+      "google": "Googleで続ける",
+      "apple": "Appleで続ける",
+      "or": "または"
+    }
+  },
+  "howItWorks": {
+    "title": "Morsoがあなたを知る仕組み",
+    "subtitle": "長いアンケートに答える必要はありません。Morsoを使えば使うほど、精度が上がります。",
+    "steps": {
+      "use": {
+        "title": "Morsoを使う",
+        "caption": "作る、保存する、スキップする、評価する——すべての行動がシグナルになります。"
+      },
+      "signal": {
+        "title": "シグナルを読み取る",
+        "caption": "あなたの好みのプロファイルが、裏側で静かに更新されます。"
+      },
+      "sharpen": {
+        "title": "おすすめがより精度を増す",
+        "caption": "明日のおすすめは、今日よりも少しあなたに合ったものになります。"
+      }
+    },
+    "footer": "……Morsoを開くたびに、このサイクルが繰り返されます。",
+    "gotIt": "わかりました"
+  }
+}

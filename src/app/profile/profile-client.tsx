@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
+import { useTranslations } from "next-intl";
 import { AnimatePresence, motion } from "framer-motion";
 import { CookedRecipeCard, type CookedRecipeData } from "@/components/recipe-card-shell";
 import { compressImage } from "@/lib/image-compression";
@@ -39,6 +40,7 @@ export function ProfileClient({
   cooked: CookedRecipeData[];
   cookbooks: CookbookSummary[];
 }) {
+  const t = useTranslations("profile");
   const router = useRouter();
   const { update } = useSession();
   const [name, setName] = useState(initialName);
@@ -70,14 +72,14 @@ export function ProfileClient({
       const res = await fetch("/api/account/photo", { method: "POST", body: formData });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) {
-        setError(data.error ?? "Something went wrong uploading your photo.");
+        setError(data.error ?? t("errors.photoUploadFailed"));
         return;
       }
       setPhotoPreview(data.imageUrl ?? previewUrl);
       await update({ image: data.imageUrl ?? previewUrl });
       router.refresh();
     } catch {
-      setError("Something went wrong uploading your photo.");
+      setError(t("errors.photoUploadFailed"));
     } finally {
       setUploadingPhoto(false);
     }
@@ -87,11 +89,11 @@ export function ProfileClient({
     const trimmedName = name.trim();
     const trimmedCountry = location.country.trim();
     if (!trimmedName) {
-      setError("Name can't be empty.");
+      setError(t("errors.nameRequired"));
       return;
     }
     if (!trimmedCountry) {
-      setError("Country can't be empty.");
+      setError(t("errors.countryRequired"));
       return;
     }
     setSaving(true);
@@ -111,13 +113,13 @@ export function ProfileClient({
       });
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
-        setError(data.error ?? "Something went wrong saving your profile.");
+        setError(data.error ?? t("errors.saveFailed"));
         return;
       }
       setSaved(true);
       router.refresh();
     } catch {
-      setError("Something went wrong. Try again.");
+      setError(t("errors.generic"));
     } finally {
       setSaving(false);
     }
@@ -126,7 +128,7 @@ export function ProfileClient({
   return (
     <main className="mx-auto w-full max-w-3xl flex-1 px-6 py-10">
       <PageTransition>
-        <h1 className="text-2xl font-bold text-[#101010]">Profile</h1>
+        <h1 className="text-2xl font-bold text-[#101010]">{t("heading")}</h1>
 
         <div className="mt-6 rounded-2xl border border-[#E8E6E0] bg-white p-5 shadow-soft">
           <div className="flex items-center gap-4">
@@ -136,7 +138,7 @@ export function ProfileClient({
               disabled={uploadingPhoto}
               whileHover={{ y: -2 }}
               className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-full border border-[#E8E6E0] bg-[#EDF3EF] text-xs text-[#6B7370] disabled:opacity-50"
-              aria-label="Change profile photo"
+              aria-label={t("photo.changeAriaLabel")}
             >
               <AnimatePresence mode="wait" initial={false}>
                 {photoPreview ? (
@@ -158,7 +160,7 @@ export function ProfileClient({
                     exit={{ opacity: 0, scale: 0.9 }}
                     transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
                   >
-                    Add photo
+                    {t("photo.addPhoto")}
                   </motion.span>
                 )}
               </AnimatePresence>
@@ -171,14 +173,14 @@ export function ProfileClient({
               className="hidden"
             />
             <div>
-              <p className="text-sm font-medium text-[#101010]">Profile photo</p>
+              <p className="text-sm font-medium text-[#101010]">{t("photo.label")}</p>
               <p className="flex items-center gap-2 text-xs text-[#6B7370]">
                 {uploadingPhoto ? (
                   <>
-                    <LoadingOrb size={20} /> Uploading...
+                    <LoadingOrb size={20} /> {t("photo.uploading")}
                   </>
                 ) : (
-                  "Click to change."
+                  t("photo.clickToChange")
                 )}
               </p>
             </div>
@@ -186,7 +188,7 @@ export function ProfileClient({
 
           <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
-              <label className="block text-sm font-medium text-[#101010]">Name</label>
+              <label className="block text-sm font-medium text-[#101010]">{t("fields.name")}</label>
               <input
                 type="text"
                 value={name}
@@ -198,7 +200,7 @@ export function ProfileClient({
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-[#101010]">Birthday</label>
+              <label className="block text-sm font-medium text-[#101010]">{t("fields.birthday")}</label>
               <BirthdayPicker
                 value={birthday}
                 onChange={(next) => {
@@ -228,13 +230,13 @@ export function ProfileClient({
             >
               {saving ? (
                 <span className="inline-flex items-center justify-center gap-2">
-                  <LoadingOrb size={20} theme="dark" /> Saving...
+                  <LoadingOrb size={20} theme="dark" /> {t("actions.saving")}
                 </span>
               ) : (
-                "Save"
+                t("actions.save")
               )}
             </MotionButton>
-            {saved && <span className="text-sm text-[#1B4332]">Saved!</span>}
+            {saved && <span className="text-sm text-[#1B4332]">{t("actions.saved")}</span>}
           </div>
           {error && <p className="mt-2 text-sm text-[#B23A32]">{error}</p>}
         </div>
@@ -242,16 +244,11 @@ export function ProfileClient({
         <CookbooksSection cookbooks={cookbooks} />
 
         <div className="mt-10">
-          <h2 className="text-lg font-bold text-[#101010]">Cook archive</h2>
-          <p className="mt-1 text-sm text-[#6B7370]">
-            Private — only you can see this. Recipes you&apos;ve marked as cooked show up here; add
-            any of them to a public cookbook above.
-          </p>
+          <h2 className="text-lg font-bold text-[#101010]">{t("cookArchive.heading")}</h2>
+          <p className="mt-1 text-sm text-[#6B7370]">{t("cookArchive.privacyNote")}</p>
 
           {cooked.length === 0 ? (
-            <p className="mt-4 text-sm text-[#6B7370]">
-              Nothing cooked yet. Mark a recipe as cooked from your dashboard to add it here.
-            </p>
+            <p className="mt-4 text-sm text-[#6B7370]">{t("cookArchive.empty")}</p>
           ) : (
             <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
               {cooked.map((recipe) => (

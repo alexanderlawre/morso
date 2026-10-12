@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import {
   dietEmblemClass,
   formatMinutes,
@@ -45,6 +46,7 @@ export function RecipeCardShell({
   badge?: React.ReactNode;
   children?: React.ReactNode;
 }) {
+  const t = useTranslations("dashboard");
   const router = useRouter();
   const emblems = visibleDietEmblems(recipe.dietTags, 2);
 
@@ -116,7 +118,7 @@ export function RecipeCardShell({
           href={`/recipe/${recipe.slug}`}
           className="mt-4 block rounded-full bg-[#1B4332] px-4 py-2 text-center text-sm font-medium text-white shadow-brand transition hover:-translate-y-0.5"
         >
-          View Recipe
+          {t("recipeCard.viewRecipe")}
         </Link>
       </div>
     </div>
@@ -132,10 +134,12 @@ export function formatCookedDate(iso: string): string {
 }
 
 export function CookedRecipeCard({ recipe }: { recipe: CookedRecipeData }) {
+  const t = useTranslations("dashboard");
   return (
     <RecipeCardShell recipe={recipe}>
       <p className="mt-3 text-xs font-extralight text-[#6B7370]">
-        Cooked {recipe.timesCooked > 1 ? `${recipe.timesCooked}x` : ""} · last on{" "}
+        {t("recipeCard.cookedPrefix")} {recipe.timesCooked > 1 ? `${recipe.timesCooked}x` : ""} ·{" "}
+        {t("recipeCard.lastOn")}{" "}
         {formatCookedDate(recipe.lastCookedAt)}
       </p>
     </RecipeCardShell>
@@ -154,6 +158,7 @@ export function UserCookbookRecipeCard({
   onRemove: () => void;
   removing?: boolean;
 }) {
+  const t = useTranslations("dashboard");
   return (
     <RecipeCardShell recipe={recipe}>
       <button
@@ -165,7 +170,7 @@ export function UserCookbookRecipeCard({
         disabled={removing}
         className="mt-3 text-xs font-extralight text-[#B23A32] underline disabled:opacity-50"
       >
-        {removing ? "Removing..." : "Remove from cookbook"}
+        {removing ? t("recipeCard.removing") : t("recipeCard.removeFromCookbook")}
       </button>
     </RecipeCardShell>
   );

@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
+import { useTranslations } from "next-intl";
 import type { FoodGroup, FoodGroupCategory } from "@prisma/client";
 import { OnboardingShell, CategoryAccordion, SliderRow, TagInput } from "../onboarding-ui";
 import { ONBOARDING_PREFS_KEY, type OnboardingPreferences } from "../shared";
@@ -11,9 +12,10 @@ import { MotionButton } from "@/components/motion-button";
 const TOTAL_STEPS = 3;
 const SUGGESTED_CUISINE_COUNT = 5;
 
-// Display order and labels for the basic food-group categories. Each
-// category starts as a single "Overall" slider; expanding it reveals one
-// slider per individual food group within that category.
+// Display order for the basic food-group categories. Each category starts
+// as a single "Overall" slider; expanding it reveals one slider per
+// individual food group within that category. Labels are translated (see
+// categoryLabels below) rather than hardcoded here.
 const CATEGORY_ORDER: FoodGroupCategory[] = [
   "PRODUCE",
   "PROTEIN",
@@ -23,18 +25,22 @@ const CATEGORY_ORDER: FoodGroupCategory[] = [
   "OTHER",
 ];
 
-const CATEGORY_LABELS: Record<FoodGroupCategory, string> = {
-  PRODUCE: "Fruits and vegetables",
-  PROTEIN: "Proteins",
-  GRAIN: "Grains",
-  DAIRY: "Dairy",
-  FLAVOR: "Flavor and seasonings",
-  OTHER: "Other",
-};
-
 export function PersonalizeClient({ foodGroups }: { foodGroups: FoodGroup[] }) {
   const router = useRouter();
   const { update } = useSession();
+  const t = useTranslations("onboarding");
+
+  const categoryLabels: Record<FoodGroupCategory, string> = useMemo(
+    () => ({
+      PRODUCE: t("personalize.categories.produce"),
+      PROTEIN: t("personalize.categories.protein"),
+      GRAIN: t("personalize.categories.grain"),
+      DAIRY: t("personalize.categories.dairy"),
+      FLAVOR: t("personalize.categories.flavor"),
+      OTHER: t("personalize.categories.other"),
+    }),
+    [t],
+  );
 
   const [prefs, setPrefs] = useState<OnboardingPreferences | null>(null);
   const [ready, setReady] = useState(false);
@@ -50,10 +56,10 @@ export function PersonalizeClient({ foodGroups }: { foodGroups: FoodGroup[] }) {
     }
     return CATEGORY_ORDER.filter((category) => byCategory.has(category)).map((category) => ({
       category,
-      label: CATEGORY_LABELS[category],
+      label: categoryLabels[category],
       items: byCategory.get(category)!,
     }));
-  }, [foodGroups]);
+  }, [foodGroups, categoryLabels]);
 
   const [values, setValues] = useState<Record<string, number>>(() => {
     const init: Record<string, number> = {};
@@ -139,7 +145,7 @@ export function PersonalizeClient({ foodGroups }: { foodGroups: FoodGroup[] }) {
 
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
-        setError(data.error ?? "Something went wrong saving your preferences.");
+        setError(data.error ?? t("personalize.errors.saveFailed"));
         setSubmitting(false);
         return;
       }
@@ -149,7 +155,7 @@ export function PersonalizeClient({ foodGroups }: { foodGroups: FoodGroup[] }) {
       router.push("/dashboard");
       router.refresh();
     } catch {
-      setError("Something went wrong. Try again.");
+      setError(t("personalize.errors.generic"));
       setSubmitting(false);
     }
   }
@@ -160,8 +166,8 @@ export function PersonalizeClient({ foodGroups }: { foodGroups: FoodGroup[] }) {
     <OnboardingShell
       step={3}
       totalSteps={TOTAL_STEPS}
-      title="Personalize"
-      subtitle="Rarely to constantly. Defaults are fine if you're not sure, you can always tweak this later."
+      title={t("personalize.title")}
+      subtitle={t("personalize.subtitle")}
       footer={
         <div className="mt-8 flex gap-3">
           <MotionButton
@@ -169,7 +175,7 @@ export function PersonalizeClient({ foodGroups }: { foodGroups: FoodGroup[] }) {
             onClick={() => router.push("/onboarding/preferences")}
             className="rounded-xl border border-[#E8E6E0] px-4 py-3 text-sm font-medium text-[#101010] shadow-brand"
           >
-            Back
+            {t("common.back")}
           </MotionButton>
           <MotionButton
             type="button"
@@ -177,16 +183,15 @@ export function PersonalizeClient({ foodGroups }: { foodGroups: FoodGroup[] }) {
             disabled={submitting}
             className="flex-1 rounded-xl bg-[#1B4332] py-3 text-sm font-medium text-white shadow-brand disabled:opacity-50"
           >
-            {submitting ? "Saving..." : "Finish"}
+            {submitting ? t("personalize.saving") : t("personalize.finish")}
           </MotionButton>
         </div>
       }
     >
       <div className="mb-4 rounded-2xl bg-[#EDF3EF] p-4">
-        <p className="text-sm font-bold text-[#101010]">Use → Signal → Sharper picks</p>
+        <p className="text-sm font-bold text-[#101010]">{t("personalize.signalBanner.title")}</p>
         <p className="mt-1 text-xs text-[#6B7370]">
-          These sliders are just a starting point — Morso keeps learning from what you actually
-          cook.
+          {t("personalize.signalBanner.description")}
         </p>
       </div>
 
@@ -214,10 +219,10 @@ export function PersonalizeClient({ foodGroups }: { foodGroups: FoodGroup[] }) {
 
       <div className="mt-8 border-t border-[#E8E6E0] pt-6">
         <label className="block text-sm font-medium text-[#101010]">
-          Don&apos;t see something you eat a lot?
+          {t("personalize.feedback.label")}
         </label>
         <p className="mt-1 text-xs text-[#6B7370]">
-          Tell us and we&apos;ll work on adding it. Optional.
+          {t("personalize.feedback.description")}
         </p>
         <textarea
           value={feedback}
@@ -229,11 +234,10 @@ export function PersonalizeClient({ foodGroups }: { foodGroups: FoodGroup[] }) {
 
       <div className="mt-8 border-t border-[#E8E6E0] pt-6">
         <label className="block text-sm font-medium text-[#101010]">
-          Favorite cuisines
+          {t("personalize.cuisines.label")}
         </label>
         <p className="mt-1 text-xs text-[#6B7370]">
-          Type at least {SUGGESTED_CUISINE_COUNT} if you can, more if you want. This shows
-          favoritism toward these cuisines without ruling out anything else.
+          {t("personalize.cuisines.description", { count: SUGGESTED_CUISINE_COUNT })}
         </p>
         <div className="mt-2">
           <TagInput
@@ -242,13 +246,14 @@ export function PersonalizeClient({ foodGroups }: { foodGroups: FoodGroup[] }) {
             onRemove={(v) => setFavoriteCuisines((prev) => prev.filter((c) => c !== v))}
             input={cuisineInput}
             onInputChange={setCuisineInput}
-            placeholder="e.g. Mexican, Thai, French"
+            placeholder={t("personalize.cuisines.placeholder")}
           />
         </div>
         {favoriteCuisines.length > 0 && favoriteCuisines.length < SUGGESTED_CUISINE_COUNT && (
           <p className="mt-2 text-xs text-[#6B7370]">
-            {SUGGESTED_CUISINE_COUNT - favoriteCuisines.length} more suggested, but not
-            required.
+            {t("personalize.cuisines.moreSuggested", {
+              count: SUGGESTED_CUISINE_COUNT - favoriteCuisines.length,
+            })}
           </p>
         )}
       </div>

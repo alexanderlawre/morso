@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
+import { readPreferenceCookies } from "@/lib/preference-cookies";
 
 const onboardingSchema = z.object({
   diets: z.array(
@@ -39,6 +40,13 @@ export async function POST(request: Request) {
   const { diets, allergenIds, customAllergens, meters, favoriteCuisines, foodGroupFeedback, spiceMax } =
     parsed.data;
 
+  // Carry over a guest's pre-auth theme/language choice (set via the
+  // accessibility menu's cookies before this account had anywhere to store
+  // them) into the UserPreferences row created right here. Only matters for
+  // `create` — an `update` means the row (and whatever theme/locale it
+  // already holds) exists, which this route doesn't own.
+  const { theme, locale } = await readPreferenceCookies();
+
   await prisma.$transaction([
     prisma.userPreferences.upsert({
       where: { userId: session.user.id },
@@ -49,6 +57,8 @@ export async function POST(request: Request) {
         favoriteCuisines,
         foodGroupFeedback: foodGroupFeedback ?? undefined,
         spiceMax: spiceMax === undefined ? undefined : spiceMax,
+        theme,
+        locale,
       },
       update: {
         allergens: { set: allergenIds.map((id) => ({ id })) },

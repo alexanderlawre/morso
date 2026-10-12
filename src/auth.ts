@@ -38,6 +38,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           onboarded: !!user.preferences,
           isAdmin: user.isAdmin,
           isPremium: user.isPremium,
+          theme: user.preferences?.theme ?? "LIGHT",
+          locale: user.preferences?.locale ?? "en",
         };
       },
     }),
@@ -126,6 +128,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             onboarded: !!dbUser.preferences,
             isAdmin: dbUser.isAdmin,
             isPremium: dbUser.isPremium,
+            theme: dbUser.preferences?.theme ?? "LIGHT",
+            locale: dbUser.preferences?.locale ?? "en",
           },
         });
       }

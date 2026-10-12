@@ -1,0 +1,515 @@
+{
+  "accessibility": {
+    "trigger": "Barrierefreiheit- und Spracheinstellungen",
+    "about": {
+      "label": "Über Morso",
+      "body": "Morso empfiehlt Rezepte basierend auf deiner Ernährung, Allergenen und Vorlieben – ein personalisiertes Dashboard mit passenden Rezepten, die du für später speichern und als gekocht markieren kannst.",
+      "close": "Schließen"
+    },
+    "language": {
+      "label": "Sprache"
+    },
+    "appearance": {
+      "label": "Erscheinungsbild",
+      "light": "Hell",
+      "green": "Grün",
+      "dark": "Dunkel"
+    },
+    "back": "Zurück",
+    "menuLabel": "Erscheinungsbild & Sprache"
+  },
+  "auth": {
+    "login": {
+      "welcomeBack": "Willkommen zurück.",
+      "emailLabel": "E-Mail",
+      "passwordLabel": "Passwort",
+      "forgotPassword": "Passwort vergessen?",
+      "wrongCredentials": "Falsche E-Mail oder falsches Passwort.",
+      "loggingIn": "Anmeldung läuft...",
+      "submit": "Anmelden",
+      "newHere": "Neu hier?",
+      "createAccount": "Konto erstellen"
+    },
+    "signup": {
+      "tagline": "Rezepte, die zu dir passen.",
+      "stepLabel": "Schritt 1 von 3: Profil",
+      "addPhotoAria": "Profilbild hinzufügen",
+      "addPhoto": "Foto hinzufügen",
+      "profilePhotoLabel": "Profilbild",
+      "profilePhotoHint": "Optional. Du kannst es jederzeit hinzufügen oder ändern.",
+      "fullNameLabel": "Vollständiger Name",
+      "emailLabel": "E-Mail",
+      "passwordLabel": "Passwort",
+      "passwordHint": "Mindestens 10 Zeichen.",
+      "confirmPasswordLabel": "Passwort wiederholen",
+      "passwordsMatch": "Passwörter stimmen überein.",
+      "passwordsMismatch": "Passwörter stimmen noch nicht überein.",
+      "birthdayLabel": "Geburtstag",
+      "passwordsDontMatchError": "Passwörter stimmen nicht überein",
+      "locationRequiredError": "Stadt und Land sind erforderlich",
+      "genericError": "Etwas ist schiefgelaufen",
+      "partialFailureError": "Konto erstellt, aber Anmeldung fehlgeschlagen. Bitte melde dich an.",
+      "retryError": "Etwas ist schiefgelaufen. Versuch es erneut.",
+      "creatingAccount": "Konto wird erstellt...",
+      "continue": "Weiter",
+      "alreadyHaveAccount": "Du hast schon ein Konto?",
+      "logIn": "Anmelden"
+    },
+    "forgotPassword": {
+      "title": "Passwort zurücksetzen",
+      "subtitle": "Gib deine E-Mail ein, und wir senden dir einen Link zum Zurücksetzen.",
+      "emailLabel": "E-Mail",
+      "submitted": "Falls zu dieser E-Mail ein Konto existiert, haben wir einen Link zum Zurücksetzen gesendet. Prüfe dein Postfach.",
+      "sending": "Wird gesendet...",
+      "submit": "Link zum Zurücksetzen senden",
+      "backToLogin": "Zurück zur Anmeldung",
+      "genericError": "Etwas ist schiefgelaufen"
+    },
+    "resetPassword": {
+      "title": "Neues Passwort festlegen",
+      "subtitle": "Wähle ein neues Passwort für dein Konto.",
+      "mismatchError": "Passwörter stimmen nicht überein.",
+      "genericError": "Etwas ist schiefgelaufen",
+      "invalidLink": "Dieser Reset-Link fehlt oder ist ungültig. Fordere einen neuen auf der",
+      "forgotPasswordLink": "Passwort vergessen",
+      "pageSuffix": "-Seite an.",
+      "success": "Passwort aktualisiert. Du wirst zur Anmeldung weitergeleitet...",
+      "newPasswordLabel": "Neues Passwort",
+      "confirmPasswordLabel": "Neues Passwort bestätigen",
+      "updating": "Wird aktualisiert...",
+      "submit": "Passwort aktualisieren"
+    },
+    "oauth": {
+      "redirecting": "Weiterleitung...",
+      "google": "Weiter mit Google",
+      "apple": "Weiter mit Apple",
+      "or": "oder"
+    }
+  },
+  "howItWorks": {
+    "title": "Wie Morso dich kennenlernt",
+    "subtitle": "Keine lange Umfrage nötig. Je mehr du Morso nutzt, desto besser wird es.",
+    "steps": {
+      "use": {
+        "title": "Du nutzt Morso",
+        "caption": "Kochen, speichern, überspringen, bewerten — jede Aktion ist ein Signal."
+      },
+      "signal": {
+        "title": "Wir erfassen das Signal",
+        "caption": "Dein Geschmacksprofil wird im Hintergrund leise aktualisiert."
+      },
+      "sharpen": {
+        "title": "Empfehlungen werden präziser",
+        "caption": "Die Vorschläge von morgen passen etwas besser zu dir als die von heute."
+      }
+    },
+    "footer": "…und der Kreislauf wiederholt sich jedes Mal, wenn du Morso öffnest.",
+    "gotIt": "Verstanden"
+  },
+  "dashboard": {
+    "heading": {
+      "lunch": "Mittagessen-Vorschläge für dich",
+      "dinner": "Abendessen-Vorschläge für dich",
+      "tapas": "Tapas-Vorschläge für dich",
+      "breakfast": "Frühstücks-Vorschläge für dich"
+    },
+    "subtitle": {
+      "meals": "{count, plural, one {# Rezept heute für dich ausgewählt.} other {# Rezepte heute für dich ausgewählt.}}",
+      "tapas": "{count, plural, one {# Tapa heute für dich ausgewählt.} other {# Tapas heute für dich ausgewählt.}}",
+      "breakfast": "{count, plural, one {# Frühstück heute für dich ausgewählt.} other {# Frühstücke heute für dich ausgewählt.}}"
+    },
+    "category": {
+      "ariaLabel": "Welche Rezepte möchtest du sehen?",
+      "meals": "Hauptgerichte",
+      "tapas": "Tapas",
+      "breakfast": "Frühstück"
+    },
+    "filters": {
+      "label": "Filter",
+      "clear": "Filter zurücksetzen",
+      "moreOf": "Mehr von",
+      "tags": "Tags"
+    },
+    "emptyState": {
+      "noPreferences": "Noch keine Rezepte passend zu deinen Vorlieben. Schau später wieder vorbei.",
+      "noFiltered": "Keine Rezepte entsprechen deinen ausgewählten Filtern."
+    },
+    "loading": {
+      "ariaLabel": "Rezepte werden geladen",
+      "text": "Rezepte werden geladen…"
+    },
+    "refresh": {
+      "button": "Rezepte aktualisieren",
+      "shuffling": "Wird gemischt…",
+      "error": "Etwas ist schiefgelaufen. Versuch es erneut."
+    },
+    "recipeCard": {
+      "addToCookLater": "Zu „Später kochen“ hinzufügen",
+      "removeFromCookLater": "Aus „Später kochen“ entfernen",
+      "starError": "Etwas ist schiefgelaufen.",
+      "somethingNew": "Etwas Neues",
+      "viewRecipe": "Rezept ansehen",
+      "cookLater": "Später kochen",
+      "saving": "Wird gespeichert…",
+      "cookedPrefix": "Gekocht",
+      "lastOn": "zuletzt am",
+      "removing": "Wird entfernt...",
+      "removeFromCookbook": "Aus Kochbuch entfernen"
+    },
+    "refreshBlocked": {
+      "title": "Das war deine Aktualisierung für jetzt",
+      "body": "Neue Vorschläge erscheinen automatisch im nächsten Zeitfenster – oder hol dir mit Morso+ unbegrenzte Aktualisierungen.",
+      "nextWindowIn": "Nächstes Zeitfenster in {countdown}",
+      "anyMomentNow": "jeden Moment",
+      "minutes": "{minutes} Min.",
+      "hours": "{hours} Std.",
+      "hoursMinutes": "{hours} Std. {minutes} Min.",
+      "gotIt": "Verstanden",
+      "goMorsoPlus": "Zu Morso+"
+    }
+  },
+  "onboarding": {
+    "common": {
+      "back": "Zurück",
+      "continue": "Weiter"
+    },
+    "preferences": {
+      "title": "Allergien und Ernährung",
+      "subtitle": "Allergien haben Vorrang. Sie filtern passende Zutaten dauerhaft aus allem heraus, was wir dir zeigen. Du kannst das später jederzeit in deinem Profil ändern.",
+      "allergies": {
+        "heading": "Hast du Allergien?",
+        "description": "Wähle eine Kategorie aus und hake dann die zutreffenden Punkte an. Das ist die wichtigste Schutzmaßnahme, damit unsichere Rezepte nicht in deinem Dashboard erscheinen.",
+        "otherLabel": "Etwas anderes",
+        "otherDescription": "Nicht oben aufgelistet? Füge bestimmte Lebensmittel oder Lebensmittelgruppen hinzu, durch Kommas getrennt (z. B. „Kiwi, Schalentiere“).",
+        "otherPlaceholder": "z. B. Kiwi, Koriander"
+      },
+      "diets": {
+        "heading": "Hast du bestimmte Ernährungsweisen?",
+        "description": "Wähle so viele aus, wie du möchtest. Keine Einschränkungen ist auch in Ordnung, du kannst das Feld leer lassen."
+      }
+    },
+    "personalize": {
+      "title": "Personalisieren",
+      "subtitle": "Von selten bis ständig. Die Standardwerte passen, wenn du dir unsicher bist – du kannst das später immer noch anpassen.",
+      "saving": "Wird gespeichert...",
+      "finish": "Fertigstellen",
+      "signalBanner": {
+        "title": "Nutzung → Signal → Schärfere Vorschläge",
+        "description": "Diese Regler sind nur ein Ausgangspunkt – Morso lernt laufend aus dem, was du tatsächlich kochst."
+      },
+      "categories": {
+        "produce": "Obst und Gemüse",
+        "protein": "Proteine",
+        "grain": "Getreide",
+        "dairy": "Milchprodukte",
+        "flavor": "Aromen und Gewürze",
+        "other": "Sonstiges"
+      },
+      "feedback": {
+        "label": "Fehlt etwas, das du oft isst?",
+        "description": "Sag uns Bescheid und wir arbeiten daran, es hinzuzufügen. Optional."
+      },
+      "cuisines": {
+        "label": "Lieblingsküchen",
+        "description": "Gib mindestens {count} ein, wenn möglich, gerne auch mehr. Das bevorzugt diese Küchen, ohne andere auszuschließen.",
+        "placeholder": "z. B. Mexikanisch, Thailändisch, Französisch",
+        "moreSuggested": "{count, plural, one {# weitere vorgeschlagen, aber nicht erforderlich.} other {# weitere vorgeschlagen, aber nicht erforderlich.}}"
+      },
+      "errors": {
+        "saveFailed": "Beim Speichern deiner Einstellungen ist etwas schiefgelaufen.",
+        "generic": "Etwas ist schiefgelaufen. Versuch es erneut."
+      }
+    }
+  },
+  "recipe": {
+    "allergenWarning": {
+      "title": "Möglicher Allergen-Konflikt",
+      "body": "Dieses Rezept könnte mit einer Allergie in deinem Profil im Konflikt stehen oder wurde noch nicht mit deinen angegebenen Allergien abgeglichen. Bitte prüfe die Zutaten vor dem Kochen sorgfältig."
+    },
+    "imageCredit": "Foto: {credit}",
+    "prepCookTime": "{prep} Min. Vorbereitung / {cook} Min. Kochzeit",
+    "allergenBadge": "⚠ Enthält {allergen}",
+    "allergenUnverified": "Allergeninfos noch nicht geprüft — bitte die Zutatenliste sorgfältig überprüfen.",
+    "tagsToggle": "Tags & Ernährungsinfos",
+    "sections": {
+      "nutrition": "Nährwerte",
+      "ingredients": "Zutaten",
+      "method": "Zubereitung",
+      "completeTheMeal": "Die Mahlzeit vervollständigen"
+    },
+    "nutritionFor": "für {count, plural, one {# Portion} other {# Portionen}}",
+    "nutrition": {
+      "calories": "Kalorien",
+      "protein": "Eiweiß",
+      "carbs": "Kohlenhydrate",
+      "fat": "Fett",
+      "fiber": "Ballaststoffe",
+      "cholesterol": "Cholesterin",
+      "premiumLock": "Schalte Fett, Ballaststoffe & Cholesterin mit Premium frei"
+    },
+    "servingsStepper": {
+      "decrease": "Portionen verringern",
+      "increase": "Portionen erhöhen",
+      "count": "{count, plural, one {# Portion} other {# Portionen}}"
+    },
+    "ingredientOptional": "optional",
+    "subRecipe": {
+      "toggle": "Möchtest du {title} selbst zubereiten?"
+    },
+    "stepDuration": "~{minutes} Min.",
+    "errors": {
+      "somethingWentWrong": "Etwas ist schiefgelaufen.",
+      "cookFailed": "Etwas ist schiefgelaufen. Versuch es erneut.",
+      "cookRateLimited": "Du kannst ungefähr um {when} ein weiteres Kochen eintragen.",
+      "timeFallback": "später"
+    },
+    "actions": {
+      "cookLater": "Später kochen",
+      "logging": "Wird eingetragen...",
+      "logged": "✓ Eingetragen!",
+      "iCookedThis": "Ich habe das gekocht"
+    },
+    "cosign": {
+      "title": "Gut gekocht!",
+      "prompt": "Möchtest du eine Notiz hinterlassen, wie es gelaufen ist?",
+      "placeholder": "Optionale Notiz...",
+      "skip": "Überspringen",
+      "share": "Mitunterschrift teilen"
+    }
+  },
+  "submitRecipe": {
+    "form": {
+      "photoLabel": "Foto (optional)",
+      "addPhoto": "Foto hinzufügen",
+      "changePhoto": "Foto ändern",
+      "titleLabel": "Titel",
+      "shortDescriptionLabel": "Kurzbeschreibung",
+      "noteLabel": "Notiz",
+      "introCopyLabel": "Einleitungstext",
+      "servingsLabel": "Portionen",
+      "prepMinLabel": "Vorbereitung (Min.)",
+      "cookMinLabel": "Kochzeit (Min.)",
+      "difficultyLabel": "Schwierigkeitsgrad",
+      "cuisineLabel": "Küche",
+      "selectCuisinePlaceholder": "Küche auswählen…",
+      "addCuisineInputPlaceholder": "Neue Küche hinzufügen…",
+      "addCuisineLabel": "Eine neue Küche hinzufügen",
+      "addCuisinePlaceholder": "z. B. Äthiopisch",
+      "mealSlotLabel": "Mahlzeit-Kategorie",
+      "attributesLabel": "Attribute / Tags",
+      "dietTagsLabel": "Ernährungs-Tags",
+      "allergenTagsLabel": "Allergen-Tags",
+      "batchFriendlyLabel": "Gut vorzubereiten (Batch Cooking)",
+      "macrosLabel": "Makros (pro Portion, optional)",
+      "macros": {
+        "caloriesPlaceholder": "Kal",
+        "caloriesCaption": "Kalorien",
+        "proteinPlaceholder": "g",
+        "proteinCaption": "Eiweiß",
+        "carbsPlaceholder": "g",
+        "carbsCaption": "Kohlenhydrate",
+        "fatPlaceholder": "g",
+        "fatCaption": "Fett"
+      },
+      "pairingSuggestionLabel": "Passt gut zu (optional)",
+      "pairingSuggestionPlaceholder": "z. B. Passt gut zu einem kalten Bier oder einer Caipirinha.",
+      "ingredientsLabel": "Zutaten",
+      "ingredientQtyPlaceholder": "Menge",
+      "ingredientUnitPlaceholder": "Einheit",
+      "ingredientItemPlaceholder": "Zutat",
+      "prepNotePlaceholder": "Vorbereitungshinweis (optional)",
+      "componentPlaceholder": "Bestandteil (optional)",
+      "optionalLabel": "Optional",
+      "completeMealTip": "Tipp: Verwende „Die Mahlzeit vervollständigen“ als Bestandteil für Beilagen/Getränke, die das Gericht abrunden – sie erhalten am Ende der Rezeptseite einen eigenen hervorgehobenen Hinweis.",
+      "stepsLabel": "Schritte",
+      "stepPlaceholder": "Schritt {number}",
+      "durationPlaceholder": "Dauer (Min.)",
+      "subRecipesLabel": "Teilrezepte (optional)",
+      "subRecipeTitlePlaceholder": "Titel, z. B. „Empanada-Teig selbst machen“"
+    },
+    "actions": {
+      "add": "+ Hinzufügen",
+      "adding": "Wird hinzugefügt…",
+      "addIngredient": "+ Zutat hinzufügen",
+      "addStep": "+ Schritt hinzufügen",
+      "addSubRecipe": "+ Teilrezept hinzufügen",
+      "remove": "Entfernen",
+      "submit": "Rezept einreichen",
+      "submitting": "Wird eingereicht…"
+    },
+    "errors": {
+      "pickCuisine": "Wähle eine Küche aus.",
+      "ingredientNeedsName": "Jede Zutat braucht einen Namen.",
+      "stepNeedsText": "Jeder Schritt braucht einen Text.",
+      "submissionFailed": "Einreichung fehlgeschlagen",
+      "photoUploadFailed": "Rezept eingereicht, aber der Foto-Upload ist fehlgeschlagen. Du kannst es nächstes Mal mit Foto erneut einreichen.",
+      "addCuisineFailed": "Küche konnte nicht hinzugefügt werden"
+    },
+    "success": {
+      "title": "Danke! Dein Rezept wurde eingereicht.",
+      "body": "Ein Admin wird es bald prüfen. Du kannst den Status oben verfolgen.",
+      "submitAnother": "Weiteres Rezept einreichen"
+    }
+  },
+  "profile": {
+    "heading": "Profil",
+    "photo": {
+      "changeAriaLabel": "Profilbild ändern",
+      "addPhoto": "Foto hinzufügen",
+      "label": "Profilbild",
+      "uploading": "Wird hochgeladen...",
+      "clickToChange": "Klicken, um zu ändern."
+    },
+    "fields": {
+      "name": "Name",
+      "birthday": "Geburtstag"
+    },
+    "actions": {
+      "save": "Speichern",
+      "saving": "Wird gespeichert...",
+      "saved": "Gespeichert!"
+    },
+    "errors": {
+      "nameRequired": "Der Name darf nicht leer sein.",
+      "countryRequired": "Das Land darf nicht leer sein.",
+      "photoUploadFailed": "Beim Hochladen deines Fotos ist etwas schiefgelaufen.",
+      "saveFailed": "Beim Speichern deines Profils ist etwas schiefgelaufen.",
+      "generic": "Etwas ist schiefgelaufen. Versuch es erneut."
+    },
+    "cookArchive": {
+      "heading": "Koch-Archiv",
+      "privacyNote": "Privat — nur du kannst das sehen. Als gekocht markierte Rezepte erscheinen hier; du kannst sie oben zu einem öffentlichen Kochbuch hinzufügen.",
+      "empty": "Noch nichts gekocht. Markiere ein Rezept in deinem Dashboard als gekocht, um es hier hinzuzufügen."
+    },
+    "cookbooks": {
+      "heading": "Meine Kochbücher",
+      "visibilityNote": "Öffentlich — sichtbar für andere angemeldete Nutzer. Nur Rezepte, die du gekocht hast, können hinzugefügt werden.",
+      "empty": "Du hast noch kein Kochbuch erstellt. Erstelle eins, um deine gekochten Rezepte zu sammeln.",
+      "recipeCount": "{count, plural, one {# Rezept} other {# Rezepte}}",
+      "noCover": "Kein Titelbild",
+      "namePlaceholder": "Kochbuchname",
+      "create": "Erstellen",
+      "cancel": "Abbrechen",
+      "newCookbook": "+ Neues Kochbuch",
+      "errors": {
+        "createFailed": "Beim Erstellen deines Kochbuchs ist etwas schiefgelaufen.",
+        "generic": "Etwas ist schiefgelaufen. Versuch es erneut."
+      }
+    },
+    "accountSettings": {
+      "title": "Kontoeinstellungen",
+      "email": "E-Mail",
+      "timezone": "Zeitzone",
+      "changePasswordTitle": "Passwort ändern",
+      "setPasswordTitle": "Passwort festlegen",
+      "ssoNote": "Dein Konto wurde über die Anmeldung mit Google oder Apple erstellt. Lege ein Passwort fest, um dich auch mit deiner E-Mail anmelden zu können.",
+      "currentPasswordPlaceholder": "Aktuelles Passwort",
+      "newPasswordPlaceholder": "Neues Passwort (mind. 10 Zeichen)",
+      "saving": "Wird gespeichert...",
+      "changePasswordButton": "Passwort ändern",
+      "setPasswordButton": "Passwort festlegen",
+      "saved": "Gespeichert!",
+      "errors": {
+        "passwordTooShort": "Das neue Passwort muss mindestens 10 Zeichen lang sein.",
+        "changeFailed": "Beim Ändern deines Passworts ist etwas schiefgelaufen.",
+        "generic": "Etwas ist schiefgelaufen. Versuch es erneut."
+      },
+      "forgotPassword": "Aktuelles Passwort vergessen? <link>Stattdessen per E-Mail zurücksetzen</link>.",
+      "signOut": "Abmelden"
+    },
+    "public": {
+      "noCookbooks": "Noch keine öffentlichen Kochbücher.",
+      "noRecipesInCookbook": "Noch keine Rezepte in diesem Kochbuch."
+    }
+  },
+  "settings": {
+    "personalization": {
+      "heading": "Personalisierung",
+      "subheading": "Aktualisiere deine Ernährung, Allergien und Geschmacksvorlieben jederzeit. Änderungen wirken sich sofort auf dein Dashboard aus.",
+      "howMorsoLearns": {
+        "title": "Wie Morso dich kennenlernt",
+        "body": "Jede Bewertung, jedes Speichern und Überspringen unten fließt in dein Geschmacksprofil ein — die Empfehlungen werden präziser, je mehr du Morso nutzt.",
+        "seeHowItWorks": "So funktioniert's"
+      },
+      "allergies": {
+        "title": "Hast du Allergien?",
+        "body": "Wähle so viele aus, wie zutreffen. Das ist die wichtigste Schutzmaßnahme, damit unsichere Rezepte nicht in deinem Dashboard erscheinen.",
+        "otherLabel": "Weitere Allergien",
+        "otherHelp": "Liste bestimmte Lebensmittel oder Lebensmittelgruppen auf, durch Kommas getrennt (z. B. „Kiwi, Schalentiere“).",
+        "otherPlaceholder": "z. B. Kiwi, Koriander"
+      },
+      "diets": {
+        "title": "Hast du bestimmte Ernährungsweisen?",
+        "body": "Wähle so viele aus, wie du möchtest. Keine Einschränkungen ist auch in Ordnung, du kannst das Feld leer lassen."
+      },
+      "spice": {
+        "title": "Wie viel Schärfe verträgst du?",
+        "body": "Wir zeigen dir nichts Schärferes als das. Rezepte, die wir noch nicht auf Schärfe bewertet haben, erscheinen trotzdem.",
+        "mild": "Mild",
+        "medium": "Mittel",
+        "hot": "Scharf"
+      },
+      "foodGroups": {
+        "title": "Wie oft isst du das?",
+        "body": "Von selten bis ständig. Das beeinflusst, welche Rezepte wir dir zuerst zeigen, schließt aber nie etwas aus.",
+        "rarely": "selten",
+        "constantly": "ständig"
+      },
+      "feedback": {
+        "label": "Fehlt etwas, das du oft isst?",
+        "help": "Sag uns Bescheid und wir arbeiten daran, es hinzuzufügen. Optional."
+      },
+      "cuisines": {
+        "label": "Lieblingsküchen",
+        "help": "Gib mindestens {count} ein, wenn möglich, gerne auch mehr. Das bevorzugt diese Küchen, ohne andere auszuschließen.",
+        "placeholder": "z. B. Mexikanisch, Thailändisch, Französisch"
+      },
+      "errors": {
+        "saveFailed": "Beim Speichern deiner Einstellungen ist etwas schiefgelaufen.",
+        "generic": "Etwas ist schiefgelaufen. Versuch es erneut."
+      },
+      "save": "Änderungen speichern",
+      "saving": "Wird gespeichert...",
+      "saved": "Gespeichert!"
+    }
+  },
+  "cookLater": {
+    "heading": "Später kochen",
+    "savedCount": "{count}/{cap} gespeichert. Koch eins, um Platz für mehr zu schaffen.",
+    "hiddenCount": "{count, plural, one {# gespeichertes Rezept} other {# gespeicherte Rezepte}} wegen deiner Allergie- oder Ernährungseinstellungen ausgeblendet.",
+    "removeAriaLabel": "Aus „Später kochen“ entfernen",
+    "empty": "Noch nichts gespeichert. Markiere ein Rezept in deinem Dashboard mit einem Stern, um es hier hinzuzufügen."
+  },
+  "cookbooks": {
+    "manage": {
+      "heading": "Kochbuch verwalten",
+      "visibilityNote": "Öffentlich — für andere angemeldete Nutzer auf deinem Profil sichtbar.",
+      "coverChangeAriaLabel": "Kochbuch-Titelbild ändern",
+      "addCover": "Titelbild hinzufügen",
+      "coverLabel": "Titelbild",
+      "uploading": "Wird hochgeladen...",
+      "clickToChange": "Klicken, um zu ändern.",
+      "nameLabel": "Name",
+      "saving": "Wird gespeichert...",
+      "saveName": "Namen speichern",
+      "saved": "Gespeichert!",
+      "errors": {
+        "nameRequired": "Der Kochbuchname darf nicht leer sein.",
+        "coverUploadFailed": "Beim Hochladen des Titelbilds ist etwas schiefgelaufen.",
+        "renameFailed": "Beim Umbenennen deines Kochbuchs ist etwas schiefgelaufen.",
+        "addRecipeFailed": "Beim Hinzufügen dieses Rezepts ist etwas schiefgelaufen.",
+        "removeRecipeFailed": "Beim Entfernen dieses Rezepts ist etwas schiefgelaufen.",
+        "deleteFailed": "Beim Löschen deines Kochbuchs ist etwas schiefgelaufen.",
+        "generic": "Etwas ist schiefgelaufen. Versuch es erneut."
+      },
+      "deleteConfirm": "„{name}“ löschen? Das kann nicht widerrufen werden.",
+      "addRecipesHeading": "Ein von dir gekochtes Rezept hinzufügen",
+      "adding": "Wird hinzugefügt...",
+      "add": "Hinzufügen",
+      "recipesHeading": "Rezepte",
+      "noRecipes": "Noch keine Rezepte. Füge oben eins aus deinen gekochten Rezepten hinzu.",
+      "deleting": "Wird gelöscht...",
+      "deleteCookbook": "Kochbuch löschen"
+    }
+  }
+}

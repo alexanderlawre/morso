@@ -1,3 +1,4 @@
+import { getTranslations } from "next-intl/server";
 import { RecipeCardShell, type SavedRecipeData } from "@/components/recipe-card-shell";
 import { PageTransition } from "@/components/page-transition";
 import { getInitials } from "@/lib/avatar";
@@ -12,7 +13,7 @@ export type PublicCookbook = {
 // Purely presentational — no client-side state needed for a read-only view,
 // so this stays a plain (server-renderable) component even though it
 // renders client leaves like RecipeCardShell/PageTransition.
-export function PublicProfileClient({
+export async function PublicProfileClient({
   name,
   image,
   cookbooks,
@@ -21,6 +22,7 @@ export function PublicProfileClient({
   image: string | null;
   cookbooks: PublicCookbook[];
 }) {
+  const t = await getTranslations("profile.public");
   return (
     <main className="mx-auto w-full max-w-3xl flex-1 px-6 py-10">
       <PageTransition>
@@ -37,7 +39,7 @@ export function PublicProfileClient({
         </div>
 
         {cookbooks.length === 0 ? (
-          <p className="mt-10 text-sm text-[#6B7370]">No public cookbooks yet.</p>
+          <p className="mt-10 text-sm text-[#6B7370]">{t("noCookbooks")}</p>
         ) : (
           cookbooks.map((cookbook) => (
             <div key={cookbook.id} className="mt-10">
@@ -56,7 +58,7 @@ export function PublicProfileClient({
               </div>
 
               {cookbook.recipes.length === 0 ? (
-                <p className="mt-3 text-sm text-[#6B7370]">No recipes in this cookbook yet.</p>
+                <p className="mt-3 text-sm text-[#6B7370]">{t("noRecipesInCookbook")}</p>
               ) : (
                 <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
                   {cookbook.recipes.map((recipe) => (

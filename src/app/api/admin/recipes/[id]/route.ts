@@ -72,6 +72,12 @@ export async function PATCH(
       where: { id },
       data: {
         ...rest,
+        // Ingredients/steps are deleted+recreated above with a freshly
+        // renumbered `order`, which would desync any order-indexed
+        // RecipeTranslation rows — bump so the read path detects staleness
+        // and falls back to English instead of zipping translated text to
+        // the wrong ingredient/step.
+        ...(ingredients || steps ? { contentVersion: { increment: 1 } } : {}),
         ...(cuisineId ? { cuisine: { connect: { id: cuisineId } } } : {}),
         ...(dietIds ? { dietTags: { set: dietIds.map((did) => ({ id: did })) } } : {}),
         ...(allergenIds

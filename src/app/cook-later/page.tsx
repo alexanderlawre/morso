@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import { getTranslations } from "next-intl/server";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { savedRecipeExpiryCutoff } from "@/lib/saved-recipes";
@@ -8,6 +9,7 @@ import { CookLaterClient } from "./cook-later-client";
 const SAVED_RECIPE_CAP = 10;
 
 export default async function CookLaterPage() {
+  const t = await getTranslations("cookLater");
   const session = await auth();
   if (!session?.user) redirect("/login");
   if (!session.user.onboarded) redirect("/onboarding");
@@ -93,15 +95,12 @@ export default async function CookLaterPage() {
 
   return (
     <main className="mx-auto w-full max-w-3xl flex-1 px-6 py-10">
-      <h1 className="text-2xl font-bold text-[#101010]">Cook later</h1>
+      <h1 className="text-2xl font-bold text-[#101010]">{t("heading")}</h1>
       <p className="mt-1 text-sm text-[#6B7370]">
-        {saved.length}/{SAVED_RECIPE_CAP} saved. Cook one to make room for more.
+        {t("savedCount", { count: saved.length, cap: SAVED_RECIPE_CAP })}
       </p>
       {hiddenCount > 0 && (
-        <p className="mt-1 text-sm text-[#B23A32]">
-          {hiddenCount} saved {hiddenCount === 1 ? "recipe" : "recipes"} hidden due to your
-          allergy or diet settings.
-        </p>
+        <p className="mt-1 text-sm text-[#B23A32]">{t("hiddenCount", { count: hiddenCount })}</p>
       )}
 
       <div className="mt-6">

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { signIn } from "next-auth/react";
+import { useTranslations } from "next-intl";
 import { MotionButton } from "@/components/motion-button";
 import { LoadingOrb } from "@/components/loading-orb";
 
@@ -13,6 +14,7 @@ import { LoadingOrb } from "@/components/loading-orb";
 // returning) to /onboarding/preferences from there, so no extra redirect
 // logic is needed for the new-account case.
 export function OAuthButtons() {
+  const t = useTranslations("auth.oauth");
   const [pending, setPending] = useState<"google" | "apple" | null>(null);
 
   async function handleClick(provider: "google" | "apple") {
@@ -30,10 +32,10 @@ export function OAuthButtons() {
         type="button"
         disabled={pending !== null}
         onClick={() => handleClick("google")}
-        className="flex w-full items-center justify-center gap-2 rounded-xl border border-[#E8E6E0] bg-white py-3 text-sm font-medium text-[#101010] shadow-brand transition-colors hover:bg-[#EDF3EF] disabled:opacity-50"
+        className="flex w-full items-center justify-center gap-2 rounded-xl border border-border bg-surface py-3 text-sm font-medium text-ink shadow-brand transition-colors hover:bg-hover disabled:opacity-50"
       >
         {pending === "google" ? <LoadingOrb size={20} /> : <GoogleIcon />}
-        {pending === "google" ? "Redirecting..." : "Continue with Google"}
+        {pending === "google" ? t("redirecting") : t("google")}
       </MotionButton>
       <MotionButton
         type="button"
@@ -42,13 +44,13 @@ export function OAuthButtons() {
         className="flex w-full items-center justify-center gap-2 rounded-xl bg-black py-3 text-sm font-medium text-white shadow-brand transition-colors hover:bg-[#101010] disabled:opacity-50"
       >
         {pending === "apple" ? <LoadingOrb size={20} theme="dark" /> : <AppleIcon />}
-        {pending === "apple" ? "Redirecting..." : "Continue with Apple"}
+        {pending === "apple" ? t("redirecting") : t("apple")}
       </MotionButton>
 
       <div className="flex items-center gap-3 pt-1">
-        <div className="h-px flex-1 bg-[#E8E6E0]" />
-        <span className="text-xs text-[#6B7370]">or</span>
-        <div className="h-px flex-1 bg-[#E8E6E0]" />
+        <div className="h-px flex-1 bg-border" />
+        <span className="text-xs text-muted">{t("or")}</span>
+        <div className="h-px flex-1 bg-border" />
       </div>
     </div>
   );

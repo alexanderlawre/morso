@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   UserCookbookRecipeCard,
@@ -25,6 +26,7 @@ export function CookbookManageClient({
   recipes: SavedRecipeData[];
   availableToAdd: SavedRecipeData[];
 }) {
+  const t = useTranslations("cookbooks.manage");
   const router = useRouter();
   const [name, setName] = useState(initialName);
   const [coverPreview, setCoverPreview] = useState<string | null>(initialCoverImageUrl);
@@ -55,13 +57,13 @@ export function CookbookManageClient({
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) {
-        setError(data.error ?? "Something went wrong uploading the cover.");
+        setError(data.error ?? t("errors.coverUploadFailed"));
         return;
       }
       setCoverPreview(data.coverImageUrl ?? previewUrl);
       router.refresh();
     } catch {
-      setError("Something went wrong uploading the cover.");
+      setError(t("errors.coverUploadFailed"));
     } finally {
       setUploadingCover(false);
     }
@@ -70,7 +72,7 @@ export function CookbookManageClient({
   async function saveName() {
     const trimmed = name.trim();
     if (!trimmed) {
-      setError("Cookbook name can't be empty.");
+      setError(t("errors.nameRequired"));
       return;
     }
     setSavingName(true);
@@ -84,13 +86,13 @@ export function CookbookManageClient({
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) {
-        setError(data.error ?? "Something went wrong renaming your cookbook.");
+        setError(data.error ?? t("errors.renameFailed"));
         return;
       }
       setNameSaved(true);
       router.refresh();
     } catch {
-      setError("Something went wrong. Try again.");
+      setError(t("errors.generic"));
     } finally {
       setSavingName(false);
     }
@@ -107,12 +109,12 @@ export function CookbookManageClient({
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) {
-        setError(data.error ?? "Something went wrong adding that recipe.");
+        setError(data.error ?? t("errors.addRecipeFailed"));
         return;
       }
       router.refresh();
     } catch {
-      setError("Something went wrong. Try again.");
+      setError(t("errors.generic"));
     } finally {
       setAddingRecipeId(null);
     }
@@ -127,32 +129,32 @@ export function CookbookManageClient({
       });
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
-        setError(data.error ?? "Something went wrong removing that recipe.");
+        setError(data.error ?? t("errors.removeRecipeFailed"));
         return;
       }
       router.refresh();
     } catch {
-      setError("Something went wrong. Try again.");
+      setError(t("errors.generic"));
     } finally {
       setRemovingRecipeId(null);
     }
   }
 
   async function deleteCookbook() {
-    if (!confirm(`Delete "${initialName}"? This can't be undone.`)) return;
+    if (!confirm(t("deleteConfirm", { name: initialName }))) return;
     setDeleting(true);
     setError(null);
     try {
       const res = await fetch(`/api/cookbooks/${cookbookId}`, { method: "DELETE" });
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
-        setError(data.error ?? "Something went wrong deleting your cookbook.");
+        setError(data.error ?? t("errors.deleteFailed"));
         return;
       }
       router.push("/profile");
       router.refresh();
     } catch {
-      setError("Something went wrong. Try again.");
+      setError(t("errors.generic"));
     } finally {
       setDeleting(false);
     }
@@ -161,10 +163,8 @@ export function CookbookManageClient({
   return (
     <main className="mx-auto w-full max-w-3xl flex-1 px-6 py-10">
       <PageTransition>
-        <h1 className="text-2xl font-bold text-[#101010]">Manage cookbook</h1>
-        <p className="mt-1 text-sm text-[#6B7370]">
-          Public — visible to other signed-in users on your profile.
-        </p>
+        <h1 className="text-2xl font-bold text-[#101010]">{t("heading")}</h1>
+        <p className="mt-1 text-sm text-[#6B7370]">{t("visibilityNote")}</p>
 
         <div className="mt-6 rounded-2xl border border-[#E8E6E0] bg-white p-5 shadow-soft">
           <div className="flex items-center gap-4">
@@ -174,7 +174,7 @@ export function CookbookManageClient({
               disabled={uploadingCover}
               whileHover={{ y: -2 }}
               className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-[#E8E6E0] bg-[#EDF3EF] text-xs text-[#6B7370] disabled:opacity-50"
-              aria-label="Change cookbook cover"
+              aria-label={t("coverChangeAriaLabel")}
             >
               <AnimatePresence mode="wait" initial={false}>
                 {coverPreview ? (
@@ -196,7 +196,7 @@ export function CookbookManageClient({
                     exit={{ opacity: 0, scale: 0.9 }}
                     transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
                   >
-                    Add cover
+                    {t("addCover")}
                   </motion.span>
                 )}
               </AnimatePresence>
@@ -209,21 +209,21 @@ export function CookbookManageClient({
               className="hidden"
             />
             <div>
-              <p className="text-sm font-medium text-[#101010]">Cover picture</p>
+              <p className="text-sm font-medium text-[#101010]">{t("coverLabel")}</p>
               <p className="flex items-center gap-2 text-xs text-[#6B7370]">
                 {uploadingCover ? (
                   <>
-                    <LoadingOrb size={20} /> Uploading...
+                    <LoadingOrb size={20} /> {t("uploading")}
                   </>
                 ) : (
-                  "Click to change."
+                  t("clickToChange")
                 )}
               </p>
             </div>
           </div>
 
           <div className="mt-5">
-            <label className="block text-sm font-medium text-[#101010]">Name</label>
+            <label className="block text-sm font-medium text-[#101010]">{t("nameLabel")}</label>
             <input
               type="text"
               value={name}
@@ -241,9 +241,9 @@ export function CookbookManageClient({
               disabled={savingName}
               className="shrink-0 rounded-xl bg-[#1B4332] px-4 py-2.5 text-sm font-medium text-white shadow-brand transition-colors hover:bg-[#2D6A4F] disabled:opacity-50"
             >
-              {savingName ? "Saving..." : "Save name"}
+              {savingName ? t("saving") : t("saveName")}
             </MotionButton>
-            {nameSaved && <span className="text-sm text-[#1B4332]">Saved!</span>}
+            {nameSaved && <span className="text-sm text-[#1B4332]">{t("saved")}</span>}
           </div>
 
           {error && <p className="mt-3 text-sm text-[#B23A32]">{error}</p>}
@@ -251,7 +251,7 @@ export function CookbookManageClient({
 
         {availableToAdd.length > 0 && (
           <div className="mt-8">
-            <h2 className="text-lg font-bold text-[#101010]">Add a recipe you&apos;ve cooked</h2>
+            <h2 className="text-lg font-bold text-[#101010]">{t("addRecipesHeading")}</h2>
             <div className="mt-3 space-y-2">
               {availableToAdd.map((recipe) => (
                 <div
@@ -265,7 +265,7 @@ export function CookbookManageClient({
                     disabled={addingRecipeId === recipe.id}
                     className="shrink-0 rounded-lg border border-[#E8E6E0] px-3 py-1.5 text-xs font-medium text-[#101010] shadow-brand disabled:opacity-50"
                   >
-                    {addingRecipeId === recipe.id ? "Adding..." : "Add"}
+                    {addingRecipeId === recipe.id ? t("adding") : t("add")}
                   </MotionButton>
                 </div>
               ))}
@@ -274,11 +274,9 @@ export function CookbookManageClient({
         )}
 
         <div className="mt-8">
-          <h2 className="text-lg font-bold text-[#101010]">Recipes</h2>
+          <h2 className="text-lg font-bold text-[#101010]">{t("recipesHeading")}</h2>
           {recipes.length === 0 ? (
-            <p className="mt-4 text-sm text-[#6B7370]">
-              No recipes yet. Add one from your cooked recipes above.
-            </p>
+            <p className="mt-4 text-sm text-[#6B7370]">{t("noRecipes")}</p>
           ) : (
             <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
               {recipes.map((recipe) => (
@@ -300,7 +298,7 @@ export function CookbookManageClient({
             disabled={deleting}
             className="rounded-xl border border-[#E8E6E0] px-4 py-2.5 text-sm font-medium text-[#B23A32] shadow-brand transition-colors hover:bg-[#EDF3EF] disabled:opacity-50"
           >
-            {deleting ? "Deleting..." : "Delete cookbook"}
+            {deleting ? t("deleting") : t("deleteCookbook")}
           </MotionButton>
         </div>
       </PageTransition>

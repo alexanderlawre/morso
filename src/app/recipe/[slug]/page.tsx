@@ -1,7 +1,9 @@
 import { notFound, redirect } from "next/navigation";
+import { getLocale, getTranslations } from "next-intl/server";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { savedRecipeExpiryCutoff } from "@/lib/saved-recipes";
+import { resolveRecipeContent } from "@/lib/recipe-translation";
 import { RecipeDetailClient } from "./recipe-detail-client";
 
 export default async function RecipeDetailPage({
@@ -58,20 +60,37 @@ export default async function RecipeDetailPage({
     recipe.allergenReviewStatus !== "VERIFIED";
   const allergyWarning = hasCatalogConflict || hasCustomConflict || hasUnverifiedConflict;
 
+  const t = await getTranslations("recipe");
+  const locale = await getLocale();
+  const content = await resolveRecipeContent({
+    recipeId: recipe.id,
+    contentVersion: recipe.contentVersion,
+    locale,
+    english: {
+      title: recipe.title,
+      shortDescription: recipe.shortDescription,
+      note: recipe.note,
+      introCopy: recipe.introCopy,
+      pairingSuggestion: recipe.pairingSuggestion,
+      ingredients: recipe.ingredients,
+      steps: recipe.steps,
+    },
+  });
+
   const recipeDetail = {
     id: recipe.id,
-    title: recipe.title,
-    shortDescription: recipe.shortDescription,
-    note: recipe.note,
-    introCopy: recipe.introCopy,
+    title: content.title,
+    shortDescription: content.shortDescription,
+    note: content.note,
+    introCopy: content.introCopy,
     servings: recipe.servings,
     prepMinutes: recipe.prepMinutes,
     cookMinutes: recipe.cookMinutes,
     difficulty: recipe.difficulty,
     cuisine: recipe.cuisine.name,
     effortTier: recipe.effortTier,
-    ingredients: recipe.ingredients,
-    steps: recipe.steps,
+    ingredients: content.ingredients,
+    steps: content.steps,
     subRecipes: recipe.subRecipes as unknown as {
       id: string;
       order: number;
@@ -87,7 +106,7 @@ export default async function RecipeDetailPage({
     fatGrams: recipe.fatGrams,
     fiberGrams: recipe.fiberGrams,
     cholesterolMg: recipe.cholesterolMg,
-    pairingSuggestion: recipe.pairingSuggestion,
+    pairingSuggestion: content.pairingSuggestion,
     attributes: recipe.attributeTags.map((a) => a.code),
     dietTags: recipe.dietTags.map((d) => d.name),
     allergenTags: recipeAllergenNames,
@@ -97,13 +116,9 @@ export default async function RecipeDetailPage({
   return (
     <main className="mx-auto w-full max-w-2xl flex-1 px-6 py-10">
       {allergyWarning && (
-        <div className="mb-6 rounded-xl border border-[#B23A32] bg-[#FBEBE9] px-4 py-3 text-sm text-[#B23A32]">
-          <p className="font-bold">Possible allergen conflict</p>
-          <p className="mt-1">
-            This recipe may conflict with an allergy on your profile, or hasn&apos;t been
-            verified against your declared allergies yet. Please review the ingredients
-            carefully before cooking.
-          </p>
+        <div className="mb-6 rounded-xl border border-danger bg-[#FBEBE9] px-4 py-3 text-sm text-danger">
+          <p className="font-bold">{t("allergenWarning.title")}</p>
+          <p className="mt-1">{t("allergenWarning.body")}</p>
         </div>
       )}
       <RecipeDetailClient
