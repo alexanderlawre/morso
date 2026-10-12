@@ -47,12 +47,12 @@ export function RefreshBlockedModal({
 
   return (
     <SheetModal open={open} onClose={onClose}>
-      <p className="text-lg font-bold text-[#101010]">{t("refreshBlocked.title")}</p>
-      <p className="mt-2 text-sm text-[#6B7370]">
+      <p className="text-lg font-bold text-ink">{t("refreshBlocked.title")}</p>
+      <p className="mt-2 text-sm text-muted">
         {t("refreshBlocked.body")}
       </p>
       {remaining !== null && (
-        <p className="mt-3 text-xs font-medium text-[#6B7370]">
+        <p className="mt-3 text-xs font-medium text-muted">
           {t("refreshBlocked.nextWindowIn", { countdown: formatCountdown(remaining, t) })}
         </p>
       )}
@@ -60,14 +60,14 @@ export function RefreshBlockedModal({
         <button
           type="button"
           onClick={onClose}
-          className="flex-1 rounded-lg border border-[#E8E6E0] px-4 py-2.5 text-sm font-medium text-[#101010] shadow-brand transition hover:bg-[#EDF3EF]"
+          className="flex-1 rounded-lg border border-border px-4 py-2.5 text-sm font-medium text-ink shadow-brand transition hover:bg-hover"
         >
           {t("refreshBlocked.gotIt")}
         </button>
         <Link
           href="/premium"
           onClick={onClose}
-          className="flex-1 rounded-lg bg-[#1B4332] px-4 py-2.5 text-center text-sm font-medium text-white shadow-brand transition hover:opacity-90"
+          className="flex-1 rounded-lg bg-accent px-4 py-2.5 text-center text-sm font-medium text-accent-ink shadow-brand transition hover:opacity-90"
         >
           {t("refreshBlocked.goMorsoPlus")}
         </Link>
