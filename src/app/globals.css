@@ -25,6 +25,10 @@
      faint wash of the surface color, not a fixed mint green, so it still
      reads correctly against dark surfaces. */
   --hover: #edf3ef;
+  /* Darker accent for :hover on solid accent-colored buttons. */
+  --accent-hover: #2d6a4f;
+  /* Soft danger-tinted background for allergen/warning callouts. */
+  --danger-soft: #fbebe9;
 }
 
 /* "Green": deep brand-green-dominant surfaces (not just an accent swap) —
@@ -40,6 +44,8 @@
   --link: #8fc5e8;
   --danger: #e2766d;
   --hover: #1f3a2c;
+  --accent-hover: #4f9470;
+  --danger-soft: #3a2220;
 }
 
 /* "Dark": Apple-style system dark mode — near-black surfaces. */
@@ -54,6 +60,8 @@
   --link: #6ab0f3;
   --danger: #ff6b61;
   --hover: #2c2c2e;
+  --accent-hover: #3f8264;
+  --danger-soft: #2e1b1a;
 }
 
 @theme inline {
@@ -76,6 +84,8 @@
   --color-link: var(--link);
   --color-danger: var(--danger);
   --color-hover: var(--hover);
+  --color-accent-hover: var(--accent-hover);
+  --color-danger-soft: var(--danger-soft);
 }
 
 /* color-scheme follows the active theme so iOS/Safari (and other browsers)
