@@ -30,21 +30,21 @@ export function OnboardingShell({
   return (
     <main className="flex flex-1 flex-col px-6 py-8">
       <PageTransition className="mx-auto flex w-full max-w-md flex-1 flex-col">
-        <div className="h-1.5 w-full rounded-full bg-[#E8E6E0]">
+        <div className="h-1.5 w-full rounded-full bg-border">
           <motion.div
-            className="h-1.5 rounded-full bg-[#1B4332]"
+            className="h-1.5 rounded-full bg-accent"
             initial={{ width: 0 }}
             animate={{ width: `${progress}%` }}
             transition={{ type: "spring", stiffness: 200, damping: 30 }}
           />
         </div>
-        <p className="mt-3 text-xs font-extralight uppercase tracking-wide text-[#6B7370]">
+        <p className="mt-3 text-xs font-extralight uppercase tracking-wide text-muted">
           Step {step} of {totalSteps}
         </p>
 
         <div className="mt-4 flex-1">
-          <h2 className="text-xl font-bold tracking-tight text-[#101010]">{title}</h2>
-          {subtitle && <p className="mt-1 text-sm text-[#6B7370]">{subtitle}</p>}
+          <h2 className="text-xl font-bold tracking-tight text-ink">{title}</h2>
+          {subtitle && <p className="mt-1 text-sm text-muted">{subtitle}</p>}
           <div className="mt-6">{children}</div>
         </div>
 
@@ -75,8 +75,8 @@ export function ChipGrid({
             whileTap={{ scale: 0.9 }}
             className={`rounded-full border px-4 py-2.5 text-sm transition ${
               active
-                ? "border-[#1B4332] bg-[#EDF3EF] text-[#1B4332]"
-                : "border-[#E8E6E0] bg-white text-[#101010]"
+                ? "border-accent bg-hover text-accent"
+                : "border-border bg-white text-ink"
             }`}
           >
             {opt.label}
@@ -120,7 +120,7 @@ export function DietCommitmentSlider({
   };
 
   return (
-    <div className="mt-2 rounded-xl bg-[#EDF3EF] p-3">
+    <div className="mt-2 rounded-xl bg-hover p-3">
       <input
         type="range"
         min={0}
@@ -128,17 +128,17 @@ export function DietCommitmentSlider({
         step={1}
         value={index}
         onChange={(e) => onChange(COMMITMENT_LEVELS[Number(e.target.value)])}
-        className="w-full accent-[#1B4332]"
+        className="w-full accent-accent"
         aria-label={`${dietName} commitment level`}
       />
-      <div className="flex justify-between text-[10px] font-extralight text-[#6B7370]">
+      <div className="flex justify-between text-[10px] font-extralight text-muted">
         {COMMITMENT_LEVELS.map((level) => (
-          <span key={level} className={level === value ? "font-medium text-[#1B4332]" : ""}>
+          <span key={level} className={level === value ? "font-medium text-accent" : ""}>
             {COMMITMENT_LABELS[level]}
           </span>
         ))}
       </div>
-      <p className="mt-1 text-xs font-extralight text-[#6B7370]">{description[value]}</p>
+      <p className="mt-1 text-xs font-extralight text-muted">{description[value]}</p>
     </div>
   );
 }
@@ -165,7 +165,7 @@ export function CategoryItemPicker({
       <select
         value={active?.label ?? ""}
         onChange={(e) => setActiveLabel(e.target.value)}
-        className="w-full rounded-xl border border-[#E8E6E0] bg-white px-3 py-2.5 text-base transition-shadow duration-200 focus:outline-none focus:ring-2 focus:ring-[#1B4332]"
+        className="w-full rounded-xl border border-border bg-surface px-3 py-2.5 text-base transition-shadow duration-200 focus:outline-none focus:ring-2 focus:ring-accent"
       >
         {groups.map((g) => {
           const count = g.options.filter((o) => selected.includes(o.value)).length;
@@ -198,8 +198,8 @@ export function SliderRow({
   return (
     <div>
       <div className="flex items-center justify-between text-sm">
-        <span className="text-[#101010]">{label}</span>
-        <span className="text-[#6B7370]">{value}</span>
+        <span className="text-ink">{label}</span>
+        <span className="text-muted">{value}</span>
       </div>
       <input
         type="range"
@@ -207,7 +207,7 @@ export function SliderRow({
         max={100}
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}
-        className="mt-1 w-full accent-[#1B4332]"
+        className="mt-1 w-full accent-accent"
       />
     </div>
   );
@@ -233,12 +233,12 @@ export function CategoryAccordion({
   children: React.ReactNode;
 }) {
   return (
-    <div className="rounded-2xl border border-[#E8E6E0] bg-white p-4 shadow-soft">
+    <div className="rounded-2xl border border-border bg-surface p-4 shadow-soft">
       <button
         type="button"
         onClick={onToggleExpanded}
         aria-expanded={expanded}
-        className="flex items-center gap-1.5 text-sm font-bold text-[#101010]"
+        className="flex items-center gap-1.5 text-sm font-bold text-ink"
       >
         <motion.span
           className="inline-block text-xs"
@@ -251,7 +251,7 @@ export function CategoryAccordion({
       </button>
       <div className="mt-3">
         <SliderRow label="Overall" value={value} onChange={onChange} />
-        <div className="flex justify-between text-xs text-[#6B7370]">
+        <div className="flex justify-between text-xs text-muted">
           <span>rarely</span>
           <span>constantly</span>
         </div>
@@ -265,7 +265,7 @@ export function CategoryAccordion({
             transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
             className="overflow-hidden"
           >
-            <div className="mt-4 space-y-4 border-t border-[#E8E6E0] pt-4">{children}</div>
+            <div className="mt-4 space-y-4 border-t border-border pt-4">{children}</div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -305,13 +305,13 @@ export function TagInput({
           }}
           placeholder={placeholder}
           disabled={cap !== undefined && value.length >= cap}
-          className="flex-1 rounded-xl border border-[#E8E6E0] bg-white px-3 py-2.5 text-base transition-shadow duration-200 focus:outline-none focus:ring-2 focus:ring-[#1B4332] disabled:opacity-50"
+          className="flex-1 rounded-xl border border-border bg-surface px-3 py-2.5 text-base transition-shadow duration-200 focus:outline-none focus:ring-2 focus:ring-accent disabled:opacity-50"
         />
         <MotionButton
           type="button"
           onClick={onAdd}
           disabled={cap !== undefined && value.length >= cap}
-          className="rounded-xl border border-[#E8E6E0] px-4 py-2.5 text-sm font-medium shadow-brand disabled:opacity-50"
+          className="rounded-xl border border-border px-4 py-2.5 text-sm font-medium shadow-brand disabled:opacity-50"
         >
           Add
         </MotionButton>
@@ -321,14 +321,14 @@ export function TagInput({
           {value.map((v) => (
             <span
               key={v}
-              className="flex items-center gap-1 rounded-full bg-[#EDF3EF] px-3 py-1 text-xs text-[#101010]"
+              className="flex items-center gap-1 rounded-full bg-hover px-3 py-1 text-xs text-ink"
             >
               {v}
               <MotionButton
                 type="button"
                 onClick={() => onRemove(v)}
                 whileTap={{ scale: 0.9 }}
-                className="px-1 text-[#6B7370]"
+                className="px-1 text-muted"
               >
                 ×
               </MotionButton>

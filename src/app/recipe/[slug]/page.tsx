@@ -116,7 +116,7 @@ export default async function RecipeDetailPage({
   return (
     <main className="mx-auto w-full max-w-2xl flex-1 px-6 py-10">
       {allergyWarning && (
-        <div className="mb-6 rounded-xl border border-danger bg-[#FBEBE9] px-4 py-3 text-sm text-danger">
+        <div className="mb-6 rounded-xl border border-danger bg-danger-soft px-4 py-3 text-sm text-danger">
           <p className="font-bold">{t("allergenWarning.title")}</p>
           <p className="mt-1">{t("allergenWarning.body")}</p>
         </div>

@@ -17,11 +17,11 @@ import {
 } from "@/lib/recipe-form-shared";
 
 export function inputClass() {
-  return "w-full rounded-lg border border-[#E8E6E0] bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1B4332]";
+  return "w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-accent";
 }
 
 export function labelClass() {
-  return "mb-1 block text-xs font-extralight text-[#6B7370]";
+  return "mb-1 block text-xs font-extralight text-muted";
 }
 
 /**
@@ -60,7 +60,7 @@ export function AddCuisineInline({ onCreated }: { onCreated: (cuisine: EditorCui
   }
 
   return (
-    <div className="rounded-2xl border border-dashed border-[#E8E6E0] bg-white p-4">
+    <div className="rounded-2xl border border-dashed border-border bg-surface p-4">
       <label className={labelClass()}>{t("form.addCuisineLabel")}</label>
       <div className="flex gap-2">
         <input
@@ -73,7 +73,7 @@ export function AddCuisineInline({ onCreated }: { onCreated: (cuisine: EditorCui
           type="button"
           onClick={submit}
           disabled={adding || !name.trim()}
-          className="shrink-0 rounded-lg border border-[#E8E6E0] px-3 py-2 text-xs text-[#101010] shadow-brand disabled:opacity-50"
+          className="shrink-0 rounded-lg border border-border px-3 py-2 text-xs text-ink shadow-brand disabled:opacity-50"
         >
           {adding ? t("actions.adding") : t("actions.add")}
         </button>
@@ -98,8 +98,8 @@ export function Chip({
       onClick={onClick}
       className={`rounded-full border px-3 py-1.5 text-xs font-medium ${
         active
-          ? "border-[#1B4332] bg-[#EDF3EF] text-[#1B4332]"
-          : "border-[#E8E6E0] text-[#6B7370]"
+          ? "border-accent bg-hover text-accent"
+          : "border-border text-muted"
       }`}
     >
       {children}
@@ -296,7 +296,7 @@ export function RecipeFormFields({
               type="button"
               onClick={onAddCuisine}
               disabled={addingCuisine || !newCuisineName.trim()}
-              className="shrink-0 rounded-lg border border-[#E8E6E0] px-3 py-2 text-xs text-[#101010] shadow-brand disabled:opacity-50"
+              className="shrink-0 rounded-lg border border-border px-3 py-2 text-xs text-ink shadow-brand disabled:opacity-50"
             >
               {addingCuisine ? t("actions.adding") : t("actions.add")}
             </button>
@@ -364,7 +364,7 @@ export function RecipeFormFields({
         </div>
       </div>
 
-      <label className="flex items-center gap-2 text-sm text-[#101010]">
+      <label className="flex items-center gap-2 text-sm text-ink">
         <input
           type="checkbox"
           checked={form.batchFriendly}
@@ -388,7 +388,7 @@ export function RecipeFormFields({
                 update("caloriesPerServing", e.target.value ? Number(e.target.value) : null)
               }
             />
-            <p className="mt-1 text-center text-[10px] font-extralight text-[#6B7370]">{t("form.macros.caloriesCaption")}</p>
+            <p className="mt-1 text-center text-[10px] font-extralight text-muted">{t("form.macros.caloriesCaption")}</p>
           </div>
           <div>
             <input
@@ -399,7 +399,7 @@ export function RecipeFormFields({
               value={form.proteinGrams ?? ""}
               onChange={(e) => update("proteinGrams", e.target.value ? Number(e.target.value) : null)}
             />
-            <p className="mt-1 text-center text-[10px] font-extralight text-[#6B7370]">{t("form.macros.proteinCaption")}</p>
+            <p className="mt-1 text-center text-[10px] font-extralight text-muted">{t("form.macros.proteinCaption")}</p>
           </div>
           <div>
             <input
@@ -410,7 +410,7 @@ export function RecipeFormFields({
               value={form.carbsGrams ?? ""}
               onChange={(e) => update("carbsGrams", e.target.value ? Number(e.target.value) : null)}
             />
-            <p className="mt-1 text-center text-[10px] font-extralight text-[#6B7370]">{t("form.macros.carbsCaption")}</p>
+            <p className="mt-1 text-center text-[10px] font-extralight text-muted">{t("form.macros.carbsCaption")}</p>
           </div>
           <div>
             <input
@@ -421,7 +421,7 @@ export function RecipeFormFields({
               value={form.fatGrams ?? ""}
               onChange={(e) => update("fatGrams", e.target.value ? Number(e.target.value) : null)}
             />
-            <p className="mt-1 text-center text-[10px] font-extralight text-[#6B7370]">{t("form.macros.fatCaption")}</p>
+            <p className="mt-1 text-center text-[10px] font-extralight text-muted">{t("form.macros.fatCaption")}</p>
           </div>
         </div>
       </div>
@@ -443,14 +443,14 @@ export function RecipeFormFields({
           <button
             type="button"
             onClick={addIngredient}
-            className="text-xs font-medium text-[#2C5A87] underline"
+            className="text-xs font-medium text-link underline"
           >
             {t("actions.addIngredient")}
           </button>
         </div>
         <div className="space-y-2">
           {form.ingredients.map((ing, i) => (
-            <div key={i} className="rounded-lg border border-[#E8E6E0] bg-white p-2">
+            <div key={i} className="rounded-lg border border-border bg-surface p-2">
               <div className="grid grid-cols-[1fr_1fr_2fr] gap-2">
                 <input
                   className={inputClass()}
@@ -484,7 +484,7 @@ export function RecipeFormFields({
                   value={ing.component ?? ""}
                   onChange={(e) => updateIngredient(i, { component: e.target.value || null })}
                 />
-                <label className="flex items-center gap-1 whitespace-nowrap text-xs text-[#6B7370]">
+                <label className="flex items-center gap-1 whitespace-nowrap text-xs text-muted">
                   <input
                     type="checkbox"
                     checked={ing.optional}
@@ -503,7 +503,7 @@ export function RecipeFormFields({
             </div>
           ))}
         </div>
-        <p className="mt-1 text-[10px] text-[#6B7370]">{t("form.completeMealTip")}</p>
+        <p className="mt-1 text-[10px] text-muted">{t("form.completeMealTip")}</p>
       </div>
 
       {/* Steps */}
@@ -513,14 +513,14 @@ export function RecipeFormFields({
           <button
             type="button"
             onClick={addStep}
-            className="text-xs font-medium text-[#2C5A87] underline"
+            className="text-xs font-medium text-link underline"
           >
             {t("actions.addStep")}
           </button>
         </div>
         <div className="space-y-2">
           {form.steps.map((step, i) => (
-            <div key={i} className="rounded-lg border border-[#E8E6E0] bg-white p-2">
+            <div key={i} className="rounded-lg border border-border bg-surface p-2">
               <textarea
                 rows={2}
                 className={inputClass()}
@@ -563,14 +563,14 @@ export function RecipeFormFields({
           <button
             type="button"
             onClick={addSubRecipe}
-            className="text-xs font-medium text-[#2C5A87] underline"
+            className="text-xs font-medium text-link underline"
           >
             {t("actions.addSubRecipe")}
           </button>
         </div>
         <div className="space-y-3">
           {form.subRecipes.map((sub, subIdx) => (
-            <div key={subIdx} className="rounded-lg border border-[#E8E6E0] bg-white p-3">
+            <div key={subIdx} className="rounded-lg border border-border bg-surface p-3">
               <div className="flex items-center gap-2">
                 <input
                   className={inputClass()}
@@ -589,11 +589,11 @@ export function RecipeFormFields({
 
               <div className="mt-3">
                 <div className="flex items-center justify-between">
-                  <p className="text-xs font-medium text-[#6B7370]">{t("form.ingredientsLabel")}</p>
+                  <p className="text-xs font-medium text-muted">{t("form.ingredientsLabel")}</p>
                   <button
                     type="button"
                     onClick={() => addSubRecipeIngredient?.(subIdx)}
-                    className="text-xs font-medium text-[#2C5A87] underline"
+                    className="text-xs font-medium text-link underline"
                   >
                     {t("actions.addIngredient")}
                   </button>
@@ -639,11 +639,11 @@ export function RecipeFormFields({
 
               <div className="mt-3">
                 <div className="flex items-center justify-between">
-                  <p className="text-xs font-medium text-[#6B7370]">{t("form.stepsLabel")}</p>
+                  <p className="text-xs font-medium text-muted">{t("form.stepsLabel")}</p>
                   <button
                     type="button"
                     onClick={() => addSubRecipeStep?.(subIdx)}
-                    className="text-xs font-medium text-[#2C5A87] underline"
+                    className="text-xs font-medium text-link underline"
                   >
                     {t("actions.addStep")}
                   </button>

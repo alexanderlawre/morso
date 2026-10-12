@@ -128,16 +128,16 @@ export function ProfileClient({
   return (
     <main className="mx-auto w-full max-w-3xl flex-1 px-6 py-10">
       <PageTransition>
-        <h1 className="text-2xl font-bold text-[#101010]">{t("heading")}</h1>
+        <h1 className="text-2xl font-bold text-ink">{t("heading")}</h1>
 
-        <div className="mt-6 rounded-2xl border border-[#E8E6E0] bg-white p-5 shadow-soft">
+        <div className="mt-6 rounded-2xl border border-border bg-surface p-5 shadow-soft">
           <div className="flex items-center gap-4">
             <MotionButton
               type="button"
               onClick={() => fileInputRef.current?.click()}
               disabled={uploadingPhoto}
               whileHover={{ y: -2 }}
-              className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-full border border-[#E8E6E0] bg-[#EDF3EF] text-xs text-[#6B7370] disabled:opacity-50"
+              className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-full border border-border bg-hover text-xs text-muted disabled:opacity-50"
               aria-label={t("photo.changeAriaLabel")}
             >
               <AnimatePresence mode="wait" initial={false}>
@@ -173,8 +173,8 @@ export function ProfileClient({
               className="hidden"
             />
             <div>
-              <p className="text-sm font-medium text-[#101010]">{t("photo.label")}</p>
-              <p className="flex items-center gap-2 text-xs text-[#6B7370]">
+              <p className="text-sm font-medium text-ink">{t("photo.label")}</p>
+              <p className="flex items-center gap-2 text-xs text-muted">
                 {uploadingPhoto ? (
                   <>
                     <LoadingOrb size={20} /> {t("photo.uploading")}
@@ -188,7 +188,7 @@ export function ProfileClient({
 
           <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
-              <label className="block text-sm font-medium text-[#101010]">{t("fields.name")}</label>
+              <label className="block text-sm font-medium text-ink">{t("fields.name")}</label>
               <input
                 type="text"
                 value={name}
@@ -196,11 +196,11 @@ export function ProfileClient({
                   setSaved(false);
                   setName(e.target.value);
                 }}
-                className="mt-2 w-full rounded-xl border border-[#E8E6E0] bg-white px-3 py-2.5 text-base focus:outline-none focus:ring-2 focus:ring-[#1B4332]"
+                className="mt-2 w-full rounded-xl border border-border bg-surface px-3 py-2.5 text-base focus:outline-none focus:ring-2 focus:ring-accent"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-[#101010]">{t("fields.birthday")}</label>
+              <label className="block text-sm font-medium text-ink">{t("fields.birthday")}</label>
               <BirthdayPicker
                 value={birthday}
                 onChange={(next) => {
@@ -226,7 +226,7 @@ export function ProfileClient({
               type="button"
               onClick={save}
               disabled={saving}
-              className="shrink-0 rounded-xl bg-[#1B4332] px-4 py-2.5 text-sm font-medium text-white shadow-brand transition-colors hover:bg-[#2D6A4F] disabled:opacity-50"
+              className="shrink-0 rounded-xl bg-accent px-4 py-2.5 text-sm font-medium text-accent-ink shadow-brand transition-colors hover:bg-accent-hover disabled:opacity-50"
             >
               {saving ? (
                 <span className="inline-flex items-center justify-center gap-2">
@@ -236,19 +236,19 @@ export function ProfileClient({
                 t("actions.save")
               )}
             </MotionButton>
-            {saved && <span className="text-sm text-[#1B4332]">{t("actions.saved")}</span>}
+            {saved && <span className="text-sm text-accent">{t("actions.saved")}</span>}
           </div>
-          {error && <p className="mt-2 text-sm text-[#B23A32]">{error}</p>}
+          {error && <p className="mt-2 text-sm text-danger">{error}</p>}
         </div>
 
         <CookbooksSection cookbooks={cookbooks} />
 
         <div className="mt-10">
-          <h2 className="text-lg font-bold text-[#101010]">{t("cookArchive.heading")}</h2>
-          <p className="mt-1 text-sm text-[#6B7370]">{t("cookArchive.privacyNote")}</p>
+          <h2 className="text-lg font-bold text-ink">{t("cookArchive.heading")}</h2>
+          <p className="mt-1 text-sm text-muted">{t("cookArchive.privacyNote")}</p>
 
           {cooked.length === 0 ? (
-            <p className="mt-4 text-sm text-[#6B7370]">{t("cookArchive.empty")}</p>
+            <p className="mt-4 text-sm text-muted">{t("cookArchive.empty")}</p>
           ) : (
             <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
               {cooked.map((recipe) => (
