@@ -95,12 +95,12 @@ export default async function CookLaterPage() {
 
   return (
     <main className="mx-auto w-full max-w-3xl flex-1 px-6 py-10">
-      <h1 className="text-2xl font-bold text-[#101010]">{t("heading")}</h1>
-      <p className="mt-1 text-sm text-[#6B7370]">
+      <h1 className="text-2xl font-bold text-ink">{t("heading")}</h1>
+      <p className="mt-1 text-sm text-muted">
         {t("savedCount", { count: saved.length, cap: SAVED_RECIPE_CAP })}
       </p>
       {hiddenCount > 0 && (
-        <p className="mt-1 text-sm text-[#B23A32]">{t("hiddenCount", { count: hiddenCount })}</p>
+        <p className="mt-1 text-sm text-danger">{t("hiddenCount", { count: hiddenCount })}</p>
       )}
 
       <div className="mt-6">

@@ -90,14 +90,14 @@ export function PreferencesClient({
           <MotionButton
             type="button"
             onClick={() => router.back()}
-            className="rounded-xl border border-[#E8E6E0] px-4 py-3 text-sm font-medium text-[#101010] shadow-brand"
+            className="rounded-xl border border-border px-4 py-3 text-sm font-medium text-ink shadow-brand"
           >
             {t("common.back")}
           </MotionButton>
           <MotionButton
             type="button"
             onClick={handleContinue}
-            className="flex-1 rounded-xl bg-[#1B4332] py-3 text-sm font-medium text-white shadow-brand"
+            className="flex-1 rounded-xl bg-accent py-3 text-sm font-medium text-accent-ink shadow-brand"
           >
             {t("common.continue")}
           </MotionButton>
@@ -105,8 +105,8 @@ export function PreferencesClient({
       }
     >
       <div>
-        <h3 className="text-sm font-bold text-[#101010]">{t("preferences.allergies.heading")}</h3>
-        <p className="mt-1 text-xs text-[#6B7370]">
+        <h3 className="text-sm font-bold text-ink">{t("preferences.allergies.heading")}</h3>
+        <p className="mt-1 text-xs text-muted">
           {t("preferences.allergies.description")}
         </p>
         <div className="mt-3">
@@ -118,10 +118,10 @@ export function PreferencesClient({
         </div>
 
         <div className="mt-5">
-          <label className="block text-sm font-medium text-[#101010]">
+          <label className="block text-sm font-medium text-ink">
             {t("preferences.allergies.otherLabel")}
           </label>
-          <p className="mt-1 text-xs text-[#6B7370]">
+          <p className="mt-1 text-xs text-muted">
             {t("preferences.allergies.otherDescription")}
           </p>
           <div className="mt-2">
@@ -137,9 +137,9 @@ export function PreferencesClient({
         </div>
       </div>
 
-      <div className="mt-8 border-t border-[#E8E6E0] pt-6">
-        <h3 className="text-sm font-bold text-[#101010]">{t("preferences.diets.heading")}</h3>
-        <p className="mt-1 text-xs text-[#6B7370]">
+      <div className="mt-8 border-t border-border pt-6">
+        <h3 className="text-sm font-bold text-ink">{t("preferences.diets.heading")}</h3>
+        <p className="mt-1 text-xs text-muted">
           {t("preferences.diets.description")}
         </p>
         <div className="mt-3">

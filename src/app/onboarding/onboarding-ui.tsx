@@ -76,7 +76,7 @@ export function ChipGrid({
             className={`rounded-full border px-4 py-2.5 text-sm transition ${
               active
                 ? "border-accent bg-hover text-accent"
-                : "border-border bg-white text-ink"
+                : "border-border bg-surface text-ink"
             }`}
           >
             {opt.label}

@@ -145,13 +145,13 @@ export function SubmissionForm({
 
   if (submitted) {
     return (
-      <div className="rounded-2xl border border-[#E8E6E0] bg-white p-6 text-center">
-        <p className="text-sm font-medium text-[#101010]">{t("success.title")}</p>
-        <p className="mt-1 text-sm text-[#6B7370]">{t("success.body")}</p>
+      <div className="rounded-2xl border border-border bg-surface p-6 text-center">
+        <p className="text-sm font-medium text-ink">{t("success.title")}</p>
+        <p className="mt-1 text-sm text-muted">{t("success.body")}</p>
         <button
           type="button"
           onClick={() => setSubmitted(false)}
-          className="mt-4 rounded-xl border border-[#E8E6E0] px-4 py-2 text-sm font-medium text-[#101010] shadow-brand"
+          className="mt-4 rounded-xl border border-border px-4 py-2 text-sm font-medium text-ink shadow-brand"
         >
           {t("success.submitAnother")}
         </button>
@@ -160,11 +160,11 @@ export function SubmissionForm({
   }
 
   return (
-    <div className="space-y-5 rounded-2xl border border-[#E8E6E0] bg-white p-6">
+    <div className="space-y-5 rounded-2xl border border-border bg-surface p-6">
       <div>
-        <label className="mb-1 block text-xs font-medium text-[#6B7370]">{t("form.photoLabel")}</label>
+        <label className="mb-1 block text-xs font-medium text-muted">{t("form.photoLabel")}</label>
         <div className="flex items-center gap-3">
-          <div className="h-16 w-16 shrink-0 overflow-hidden rounded-lg bg-[#EDF3EF]">
+          <div className="h-16 w-16 shrink-0 overflow-hidden rounded-lg bg-hover">
             {photoPreview && (
               // eslint-disable-next-line @next/next/no-img-element
               <img src={photoPreview} alt="" className="h-full w-full object-cover" />
@@ -181,7 +181,7 @@ export function SubmissionForm({
             type="button"
             onClick={() => fileInputRef.current?.click()}
             disabled={saving}
-            className="rounded-full border border-[#E8E6E0] px-3 py-2 text-xs text-[#101010] shadow-brand disabled:opacity-50"
+            className="rounded-full border border-border px-3 py-2 text-xs text-ink shadow-brand disabled:opacity-50"
           >
             {photoFile ? t("form.changePhoto") : t("form.addPhoto")}
           </button>
@@ -211,12 +211,12 @@ export function SubmissionForm({
 
       {error && <p className="text-sm text-red-600">{error}</p>}
 
-      <div className="border-t border-[#E8E6E0] pt-4">
+      <div className="border-t border-border pt-4">
         <button
           type="button"
           onClick={handleSubmit}
           disabled={saving}
-          className="w-full rounded-xl bg-[#1B4332] py-3 text-sm font-medium text-white shadow-brand disabled:opacity-50"
+          className="w-full rounded-xl bg-accent py-3 text-sm font-medium text-accent-ink shadow-brand disabled:opacity-50"
         >
           {saving ? t("actions.submitting") : t("actions.submit")}
         </button>

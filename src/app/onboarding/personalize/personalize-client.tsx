@@ -173,7 +173,7 @@ export function PersonalizeClient({ foodGroups }: { foodGroups: FoodGroup[] }) {
           <MotionButton
             type="button"
             onClick={() => router.push("/onboarding/preferences")}
-            className="rounded-xl border border-[#E8E6E0] px-4 py-3 text-sm font-medium text-[#101010] shadow-brand"
+            className="rounded-xl border border-border px-4 py-3 text-sm font-medium text-ink shadow-brand"
           >
             {t("common.back")}
           </MotionButton>
@@ -181,16 +181,16 @@ export function PersonalizeClient({ foodGroups }: { foodGroups: FoodGroup[] }) {
             type="button"
             onClick={finish}
             disabled={submitting}
-            className="flex-1 rounded-xl bg-[#1B4332] py-3 text-sm font-medium text-white shadow-brand disabled:opacity-50"
+            className="flex-1 rounded-xl bg-accent py-3 text-sm font-medium text-accent-ink shadow-brand disabled:opacity-50"
           >
             {submitting ? t("personalize.saving") : t("personalize.finish")}
           </MotionButton>
         </div>
       }
     >
-      <div className="mb-4 rounded-2xl bg-[#EDF3EF] p-4">
-        <p className="text-sm font-bold text-[#101010]">{t("personalize.signalBanner.title")}</p>
-        <p className="mt-1 text-xs text-[#6B7370]">
+      <div className="mb-4 rounded-2xl bg-hover p-4">
+        <p className="text-sm font-bold text-ink">{t("personalize.signalBanner.title")}</p>
+        <p className="mt-1 text-xs text-muted">
           {t("personalize.signalBanner.description")}
         </p>
       </div>
@@ -217,26 +217,26 @@ export function PersonalizeClient({ foodGroups }: { foodGroups: FoodGroup[] }) {
         ))}
       </div>
 
-      <div className="mt-8 border-t border-[#E8E6E0] pt-6">
-        <label className="block text-sm font-medium text-[#101010]">
+      <div className="mt-8 border-t border-border pt-6">
+        <label className="block text-sm font-medium text-ink">
           {t("personalize.feedback.label")}
         </label>
-        <p className="mt-1 text-xs text-[#6B7370]">
+        <p className="mt-1 text-xs text-muted">
           {t("personalize.feedback.description")}
         </p>
         <textarea
           value={feedback}
           onChange={(e) => setFeedback(e.target.value)}
           rows={2}
-          className="mt-2 w-full rounded-xl border border-[#E8E6E0] bg-white px-3 py-2.5 text-base transition-shadow duration-200 focus:outline-none focus:ring-2 focus:ring-[#1B4332]"
+          className="mt-2 w-full rounded-xl border border-border bg-surface px-3 py-2.5 text-base transition-shadow duration-200 focus:outline-none focus:ring-2 focus:ring-accent"
         />
       </div>
 
-      <div className="mt-8 border-t border-[#E8E6E0] pt-6">
-        <label className="block text-sm font-medium text-[#101010]">
+      <div className="mt-8 border-t border-border pt-6">
+        <label className="block text-sm font-medium text-ink">
           {t("personalize.cuisines.label")}
         </label>
-        <p className="mt-1 text-xs text-[#6B7370]">
+        <p className="mt-1 text-xs text-muted">
           {t("personalize.cuisines.description", { count: SUGGESTED_CUISINE_COUNT })}
         </p>
         <div className="mt-2">
@@ -250,7 +250,7 @@ export function PersonalizeClient({ foodGroups }: { foodGroups: FoodGroup[] }) {
           />
         </div>
         {favoriteCuisines.length > 0 && favoriteCuisines.length < SUGGESTED_CUISINE_COUNT && (
-          <p className="mt-2 text-xs text-[#6B7370]">
+          <p className="mt-2 text-xs text-muted">
             {t("personalize.cuisines.moreSuggested", {
               count: SUGGESTED_CUISINE_COUNT - favoriteCuisines.length,
             })}
@@ -258,7 +258,7 @@ export function PersonalizeClient({ foodGroups }: { foodGroups: FoodGroup[] }) {
         )}
       </div>
 
-      {error && <p className="mt-6 text-sm text-[#B23A32]">{error}</p>}
+      {error && <p className="mt-6 text-sm text-danger">{error}</p>}
     </OnboardingShell>
   );
 }

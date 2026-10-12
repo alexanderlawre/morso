@@ -163,17 +163,17 @@ export function CookbookManageClient({
   return (
     <main className="mx-auto w-full max-w-3xl flex-1 px-6 py-10">
       <PageTransition>
-        <h1 className="text-2xl font-bold text-[#101010]">{t("heading")}</h1>
-        <p className="mt-1 text-sm text-[#6B7370]">{t("visibilityNote")}</p>
+        <h1 className="text-2xl font-bold text-ink">{t("heading")}</h1>
+        <p className="mt-1 text-sm text-muted">{t("visibilityNote")}</p>
 
-        <div className="mt-6 rounded-2xl border border-[#E8E6E0] bg-white p-5 shadow-soft">
+        <div className="mt-6 rounded-2xl border border-border bg-surface p-5 shadow-soft">
           <div className="flex items-center gap-4">
             <MotionButton
               type="button"
               onClick={() => fileInputRef.current?.click()}
               disabled={uploadingCover}
               whileHover={{ y: -2 }}
-              className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-[#E8E6E0] bg-[#EDF3EF] text-xs text-[#6B7370] disabled:opacity-50"
+              className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-border bg-hover text-xs text-muted disabled:opacity-50"
               aria-label={t("coverChangeAriaLabel")}
             >
               <AnimatePresence mode="wait" initial={false}>
@@ -209,8 +209,8 @@ export function CookbookManageClient({
               className="hidden"
             />
             <div>
-              <p className="text-sm font-medium text-[#101010]">{t("coverLabel")}</p>
-              <p className="flex items-center gap-2 text-xs text-[#6B7370]">
+              <p className="text-sm font-medium text-ink">{t("coverLabel")}</p>
+              <p className="flex items-center gap-2 text-xs text-muted">
                 {uploadingCover ? (
                   <>
                     <LoadingOrb size={20} /> {t("uploading")}
@@ -223,7 +223,7 @@ export function CookbookManageClient({
           </div>
 
           <div className="mt-5">
-            <label className="block text-sm font-medium text-[#101010]">{t("nameLabel")}</label>
+            <label className="block text-sm font-medium text-ink">{t("nameLabel")}</label>
             <input
               type="text"
               value={name}
@@ -231,7 +231,7 @@ export function CookbookManageClient({
                 setNameSaved(false);
                 setName(e.target.value);
               }}
-              className="mt-2 w-full max-w-sm rounded-xl border border-[#E8E6E0] bg-white px-3 py-2.5 text-base focus:outline-none focus:ring-2 focus:ring-[#1B4332]"
+              className="mt-2 w-full max-w-sm rounded-xl border border-border bg-surface px-3 py-2.5 text-base focus:outline-none focus:ring-2 focus:ring-accent"
             />
           </div>
           <div className="mt-3 flex items-center gap-3">
@@ -239,31 +239,31 @@ export function CookbookManageClient({
               type="button"
               onClick={saveName}
               disabled={savingName}
-              className="shrink-0 rounded-xl bg-[#1B4332] px-4 py-2.5 text-sm font-medium text-white shadow-brand transition-colors hover:bg-[#2D6A4F] disabled:opacity-50"
+              className="shrink-0 rounded-xl bg-accent px-4 py-2.5 text-sm font-medium text-accent-ink shadow-brand transition-colors hover:bg-accent-hover disabled:opacity-50"
             >
               {savingName ? t("saving") : t("saveName")}
             </MotionButton>
-            {nameSaved && <span className="text-sm text-[#1B4332]">{t("saved")}</span>}
+            {nameSaved && <span className="text-sm text-accent">{t("saved")}</span>}
           </div>
 
-          {error && <p className="mt-3 text-sm text-[#B23A32]">{error}</p>}
+          {error && <p className="mt-3 text-sm text-danger">{error}</p>}
         </div>
 
         {availableToAdd.length > 0 && (
           <div className="mt-8">
-            <h2 className="text-lg font-bold text-[#101010]">{t("addRecipesHeading")}</h2>
+            <h2 className="text-lg font-bold text-ink">{t("addRecipesHeading")}</h2>
             <div className="mt-3 space-y-2">
               {availableToAdd.map((recipe) => (
                 <div
                   key={recipe.id}
-                  className="flex items-center justify-between rounded-xl border border-[#E8E6E0] bg-white px-4 py-3"
+                  className="flex items-center justify-between rounded-xl border border-border bg-surface px-4 py-3"
                 >
-                  <span className="text-sm text-[#101010]">{recipe.title}</span>
+                  <span className="text-sm text-ink">{recipe.title}</span>
                   <MotionButton
                     type="button"
                     onClick={() => addRecipe(recipe.id)}
                     disabled={addingRecipeId === recipe.id}
-                    className="shrink-0 rounded-lg border border-[#E8E6E0] px-3 py-1.5 text-xs font-medium text-[#101010] shadow-brand disabled:opacity-50"
+                    className="shrink-0 rounded-lg border border-border px-3 py-1.5 text-xs font-medium text-ink shadow-brand disabled:opacity-50"
                   >
                     {addingRecipeId === recipe.id ? t("adding") : t("add")}
                   </MotionButton>
@@ -274,9 +274,9 @@ export function CookbookManageClient({
         )}
 
         <div className="mt-8">
-          <h2 className="text-lg font-bold text-[#101010]">{t("recipesHeading")}</h2>
+          <h2 className="text-lg font-bold text-ink">{t("recipesHeading")}</h2>
           {recipes.length === 0 ? (
-            <p className="mt-4 text-sm text-[#6B7370]">{t("noRecipes")}</p>
+            <p className="mt-4 text-sm text-muted">{t("noRecipes")}</p>
           ) : (
             <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
               {recipes.map((recipe) => (
@@ -291,12 +291,12 @@ export function CookbookManageClient({
           )}
         </div>
 
-        <div className="mt-10 border-t border-[#E8E6E0] pt-6">
+        <div className="mt-10 border-t border-border pt-6">
           <MotionButton
             type="button"
             onClick={deleteCookbook}
             disabled={deleting}
-            className="rounded-xl border border-[#E8E6E0] px-4 py-2.5 text-sm font-medium text-[#B23A32] shadow-brand transition-colors hover:bg-[#EDF3EF] disabled:opacity-50"
+            className="rounded-xl border border-border px-4 py-2.5 text-sm font-medium text-danger shadow-brand transition-colors hover:bg-hover disabled:opacity-50"
           >
             {deleting ? t("deleting") : t("deleteCookbook")}
           </MotionButton>

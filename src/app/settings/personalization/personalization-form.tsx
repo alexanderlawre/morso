@@ -165,24 +165,24 @@ export function PersonalizationForm({
   return (
     <main className="mx-auto w-full max-w-2xl flex-1 px-6 py-10 pb-content-safe">
       <PageTransition>
-        <h1 className="text-xl font-bold tracking-tight text-[#101010]">{t("heading")}</h1>
-        <p className="mt-1 text-sm text-[#6B7370]">{t("subheading")}</p>
+        <h1 className="text-xl font-bold tracking-tight text-ink">{t("heading")}</h1>
+        <p className="mt-1 text-sm text-muted">{t("subheading")}</p>
 
-        <div className="mt-8 rounded-2xl border border-[#E8E6E0] bg-white p-5 shadow-soft">
-          <h3 className="text-sm font-bold text-[#101010]">{t("howMorsoLearns.title")}</h3>
-          <p className="mt-1 text-xs text-[#6B7370]">{t("howMorsoLearns.body")}</p>
+        <div className="mt-8 rounded-2xl border border-border bg-surface p-5 shadow-soft">
+          <h3 className="text-sm font-bold text-ink">{t("howMorsoLearns.title")}</h3>
+          <p className="mt-1 text-xs text-muted">{t("howMorsoLearns.body")}</p>
           <button
             type="button"
             onClick={() => setShowHowItWorks(true)}
-            className="mt-2 text-xs font-medium text-[#2C5A87] underline"
+            className="mt-2 text-xs font-medium text-link underline"
           >
             {t("howMorsoLearns.seeHowItWorks")}
           </button>
         </div>
 
-        <div className="mt-6 rounded-2xl border border-[#E8E6E0] bg-white p-5 shadow-soft">
-          <h3 className="text-sm font-bold text-[#101010]">{t("allergies.title")}</h3>
-          <p className="mt-1 text-xs text-[#6B7370]">{t("allergies.body")}</p>
+        <div className="mt-6 rounded-2xl border border-border bg-surface p-5 shadow-soft">
+          <h3 className="text-sm font-bold text-ink">{t("allergies.title")}</h3>
+          <p className="mt-1 text-xs text-muted">{t("allergies.body")}</p>
           <div className="mt-3">
             <ChipGrid
               options={allergens.map((a) => ({ value: a.id, label: a.name }))}
@@ -192,10 +192,10 @@ export function PersonalizationForm({
           </div>
 
           <div className="mt-5">
-            <label className="block text-sm font-medium text-[#101010]">
+            <label className="block text-sm font-medium text-ink">
               {t("allergies.otherLabel")}
             </label>
-            <p className="mt-1 text-xs text-[#6B7370]">{t("allergies.otherHelp")}</p>
+            <p className="mt-1 text-xs text-muted">{t("allergies.otherHelp")}</p>
             <div className="mt-2">
               <TagInput
                 value={customAllergens}
@@ -212,9 +212,9 @@ export function PersonalizationForm({
           </div>
         </div>
 
-        <div className="mt-6 rounded-2xl border border-[#E8E6E0] bg-white p-5 shadow-soft">
-          <h3 className="text-sm font-bold text-[#101010]">{t("diets.title")}</h3>
-          <p className="mt-1 text-xs text-[#6B7370]">{t("diets.body")}</p>
+        <div className="mt-6 rounded-2xl border border-border bg-surface p-5 shadow-soft">
+          <h3 className="text-sm font-bold text-ink">{t("diets.title")}</h3>
+          <p className="mt-1 text-xs text-muted">{t("diets.body")}</p>
           <div className="mt-3">
             <ChipGrid
               options={diets.map((d) => ({ value: d.id, label: d.name }))}
@@ -243,9 +243,9 @@ export function PersonalizationForm({
           )}
         </div>
 
-        <div className="mt-6 rounded-2xl border border-[#E8E6E0] bg-white p-5 shadow-soft">
-          <h3 className="text-sm font-bold text-[#101010]">{t("spice.title")}</h3>
-          <p className="mt-1 text-xs text-[#6B7370]">{t("spice.body")}</p>
+        <div className="mt-6 rounded-2xl border border-border bg-surface p-5 shadow-soft">
+          <h3 className="text-sm font-bold text-ink">{t("spice.title")}</h3>
+          <p className="mt-1 text-xs text-muted">{t("spice.body")}</p>
           <div className="mt-3">
             <ChipGrid
               options={SPICE_OPTIONS.map((o) => ({
@@ -262,15 +262,15 @@ export function PersonalizationForm({
           </div>
         </div>
 
-        <div className="mt-6 rounded-2xl border border-[#E8E6E0] bg-white p-5 shadow-soft">
-          <h3 className="text-sm font-bold text-[#101010]">{t("foodGroups.title")}</h3>
-          <p className="mt-1 text-xs text-[#6B7370]">{t("foodGroups.body")}</p>
+        <div className="mt-6 rounded-2xl border border-border bg-surface p-5 shadow-soft">
+          <h3 className="text-sm font-bold text-ink">{t("foodGroups.title")}</h3>
+          <p className="mt-1 text-xs text-muted">{t("foodGroups.body")}</p>
           <div className="mt-4 space-y-6">
             {FOOD_GROUP_CLUSTERS.map((cluster, i) => (
               <div key={cluster.title}>
                 <div className="flex items-center justify-between text-sm">
-                  <span className="font-medium text-[#101010]">{cluster.title}</span>
-                  <span className="text-[#6B7370]">{clusterValues[i]}</span>
+                  <span className="font-medium text-ink">{cluster.title}</span>
+                  <span className="text-muted">{clusterValues[i]}</span>
                 </div>
                 <input
                   type="range"
@@ -283,9 +283,9 @@ export function PersonalizationForm({
                     next[i] = Number(e.target.value);
                     setClusterValues(next);
                   }}
-                  className="mt-2 w-full accent-[#1B4332]"
+                  className="mt-2 w-full accent-accent"
                 />
-                <div className="flex justify-between text-xs text-[#6B7370]">
+                <div className="flex justify-between text-xs text-muted">
                   <span>{t("foodGroups.rarely")}</span>
                   <span>{t("foodGroups.constantly")}</span>
                 </div>
@@ -294,11 +294,11 @@ export function PersonalizationForm({
           </div>
         </div>
 
-        <div className="mt-6 rounded-2xl border border-[#E8E6E0] bg-white p-5 shadow-soft">
-          <label className="block text-sm font-medium text-[#101010]">
+        <div className="mt-6 rounded-2xl border border-border bg-surface p-5 shadow-soft">
+          <label className="block text-sm font-medium text-ink">
             {t("feedback.label")}
           </label>
-          <p className="mt-1 text-xs text-[#6B7370]">{t("feedback.help")}</p>
+          <p className="mt-1 text-xs text-muted">{t("feedback.help")}</p>
           <textarea
             value={feedback}
             onChange={(e) => {
@@ -306,15 +306,15 @@ export function PersonalizationForm({
               setFeedback(e.target.value);
             }}
             rows={2}
-            className="mt-2 w-full rounded-xl border border-[#E8E6E0] bg-white px-3 py-2.5 text-base focus:outline-none focus:ring-2 focus:ring-[#1B4332]"
+            className="mt-2 w-full rounded-xl border border-border bg-surface px-3 py-2.5 text-base focus:outline-none focus:ring-2 focus:ring-accent"
           />
         </div>
 
-        <div className="mt-6 rounded-2xl border border-[#E8E6E0] bg-white p-5 shadow-soft">
-          <label className="block text-sm font-medium text-[#101010]">
+        <div className="mt-6 rounded-2xl border border-border bg-surface p-5 shadow-soft">
+          <label className="block text-sm font-medium text-ink">
             {t("cuisines.label")}
           </label>
-          <p className="mt-1 text-xs text-[#6B7370]">
+          <p className="mt-1 text-xs text-muted">
             {t("cuisines.help", { count: SUGGESTED_CUISINE_COUNT })}
           </p>
           <div className="mt-2">
@@ -332,18 +332,18 @@ export function PersonalizationForm({
           </div>
         </div>
 
-        {error && <p className="mt-6 text-sm text-[#B23A32]">{error}</p>}
+        {error && <p className="mt-6 text-sm text-danger">{error}</p>}
 
-        <div className="mt-8 flex items-center gap-3 border-t border-[#E8E6E0] pt-6">
+        <div className="mt-8 flex items-center gap-3 border-t border-border pt-6">
           <MotionButton
             type="button"
             onClick={save}
             disabled={saving}
-            className="rounded-xl bg-[#1B4332] px-5 py-3 text-sm font-medium text-white shadow-brand transition-colors hover:bg-[#2D6A4F] disabled:opacity-50"
+            className="rounded-xl bg-accent px-5 py-3 text-sm font-medium text-accent-ink shadow-brand transition-colors hover:bg-accent-hover disabled:opacity-50"
           >
             {saving ? t("saving") : t("save")}
           </MotionButton>
-          {saved && <span className="text-sm text-[#1B4332]">{t("saved")}</span>}
+          {saved && <span className="text-sm text-accent">{t("saved")}</span>}
         </div>
       </PageTransition>
 

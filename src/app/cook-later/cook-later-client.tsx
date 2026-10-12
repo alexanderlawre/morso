@@ -62,8 +62,8 @@ function SavedRecipeCard({
               src/lib/saved-recipes.ts) — turns the warning red used
               elsewhere in this app once there's a day or less left. */}
           <span
-            className={`absolute right-3 top-3 rounded-full bg-white/90 px-2.5 py-1 text-xs font-medium shadow-sm ${
-              urgent ? "text-[#B23A32]" : "text-[#101010]"
+            className={`absolute right-3 top-3 rounded-full bg-surface/90 px-2.5 py-1 text-xs font-medium shadow-sm ${
+              urgent ? "text-danger" : "text-ink"
             }`}
           >
             {timeLeft}
@@ -85,7 +85,7 @@ export function CookLaterClient({ recipes }: { recipes: CookLaterRecipeData[] })
   if (items.length === 0) {
     return (
       <PageTransition>
-        <p className="text-sm text-[#6B7370]">{t("empty")}</p>
+        <p className="text-sm text-muted">{t("empty")}</p>
       </PageTransition>
     );
   }
