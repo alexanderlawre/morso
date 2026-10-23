@@ -75,16 +75,18 @@ export default async function RootLayout({
           <AuthSessionProvider session={session}>
             <NativeBootstrap />
             <TimezoneSync />
-            {/* Hidden only for the genuine "logged in but mid-onboarding"
-                case (unchanged from before) — guests (no session at all)
-                now see the header too, with a Log in/Sign up variant
-                instead of the account menu. */}
-            {(!session?.user || session.user.onboarded) && (
+            {/* Only shown for a logged-in, onboarded user — guests get no
+                header here. The two guest-accessible pages (dashboard,
+                recipe detail) render their own guest-variant AppHeader
+                locally instead; the 4 auth pages already have their own
+                self-contained chrome (see (auth)/layout.tsx) and must not
+                get a second, redundant header/logo stacked on top. */}
+            {session?.user?.onboarded && (
               <AppHeader
-                isAdmin={session?.user?.isAdmin}
-                name={session?.user?.name}
-                image={session?.user?.image}
-                isGuest={!session?.user}
+                isAdmin={session.user.isAdmin}
+                name={session.user.name}
+                image={session.user.image}
+                isGuest={false}
               />
             )}
             {children}

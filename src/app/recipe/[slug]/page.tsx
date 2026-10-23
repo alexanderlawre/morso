@@ -4,6 +4,7 @@ import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { savedRecipeExpiryCutoff } from "@/lib/saved-recipes";
 import { resolveRecipeContent } from "@/lib/recipe-translation";
+import { AppHeader } from "@/components/app-header";
 import { RecipeDetailClient } from "./recipe-detail-client";
 
 export default async function RecipeDetailPage({
@@ -116,19 +117,22 @@ export default async function RecipeDetailPage({
   };
 
   return (
-    <main className="mx-auto w-full max-w-2xl flex-1 px-6 py-10">
-      {allergyWarning && (
-        <div className="mb-6 rounded-xl border border-danger bg-danger-soft px-4 py-3 text-sm text-danger">
-          <p className="font-bold">{t("allergenWarning.title")}</p>
-          <p className="mt-1">{t("allergenWarning.body")}</p>
-        </div>
-      )}
-      <RecipeDetailClient
-        recipe={recipeDetail}
-        initialSaved={isSavedAndFresh}
-        isPremium={session?.user?.isPremium ?? false}
-        isGuest={!session?.user}
-      />
-    </main>
+    <>
+      {!session?.user && <AppHeader isGuest />}
+      <main className="mx-auto w-full max-w-2xl flex-1 px-6 py-10">
+        {allergyWarning && (
+          <div className="mb-6 rounded-xl border border-danger bg-danger-soft px-4 py-3 text-sm text-danger">
+            <p className="font-bold">{t("allergenWarning.title")}</p>
+            <p className="mt-1">{t("allergenWarning.body")}</p>
+          </div>
+        )}
+        <RecipeDetailClient
+          recipe={recipeDetail}
+          initialSaved={isSavedAndFresh}
+          isPremium={session?.user?.isPremium ?? false}
+          isGuest={!session?.user}
+        />
+      </main>
+    </>
   );
 }
