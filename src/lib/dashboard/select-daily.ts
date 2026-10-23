@@ -8,6 +8,7 @@ import {
 import { scoreRecipe, weightedShuffle, type ScoringProfile } from "@/lib/recommend/score";
 import { savedRecipeExpiryCutoff } from "@/lib/saved-recipes";
 import { clustersForRecipe } from "@/lib/food-group-clusters";
+import { seededRng } from "@/lib/seeded-random";
 import {
   getCurrentMealSlot,
   getMealSlotWindowKey,
@@ -85,8 +86,17 @@ type DashboardContext = {
   dietMatchRatio?: number;
 };
 
+// Guests (userId === null) skip every user-keyed query below and fall
+// through to the same `?? <default>` degradation every field already has —
+// see filterEligibleRecipes/filterWithinSpiceCeiling, which already treat
+// an empty profile as "nothing to filter on", yielding the full unfiltered
+// active-recipe pool. No DB row is ever read or written for a guest here.
+function emptyIfNoUser<T>(userId: string | null, fn: () => Promise<T[]>): Promise<T[]> {
+  return userId ? fn() : Promise.resolve([]);
+}
+
 async function loadDashboardContext(
-  userId: string,
+  userId: string | null,
   // Lets a refresh request pass a just-changed category control value that
   // hasn't been persisted yet (or shouldn't override the stored default on
   // every read) — see refreshDailySelection / /api/dashboard/refresh.
@@ -95,15 +105,21 @@ async function loadDashboardContext(
 ): Promise<DashboardContext> {
   const [user, preferences, dietPrefs, recipes, savedRecipes, foodGroupPrefs, cookedCuisineRows, recentlyShown] =
     await Promise.all([
-      prisma.user.findUnique({ where: { id: userId }, select: { timezone: true } }),
-      prisma.userPreferences.findUnique({
-        where: { userId },
-        include: { allergens: true },
-      }),
-      prisma.userDietPreference.findMany({
-        where: { userId },
-        include: { diet: true },
-      }),
+      userId
+        ? prisma.user.findUnique({ where: { id: userId }, select: { timezone: true } })
+        : Promise.resolve(null),
+      userId
+        ? prisma.userPreferences.findUnique({
+            where: { userId },
+            include: { allergens: true },
+          })
+        : Promise.resolve(null),
+      emptyIfNoUser(userId, () =>
+        prisma.userDietPreference.findMany({
+          where: { userId: userId! },
+          include: { diet: true },
+        }),
+      ),
       prisma.recipe.findMany({
         where: { isActive: true },
         include: {
@@ -117,30 +133,36 @@ async function loadDashboardContext(
           },
         },
       }),
-      prisma.savedRecipe.findMany({
-        where: { userId, savedAt: { gte: savedRecipeExpiryCutoff() } },
-        select: { recipeId: true },
-      }),
+      emptyIfNoUser(userId, () =>
+        prisma.savedRecipe.findMany({
+          where: { userId: userId!, savedAt: { gte: savedRecipeExpiryCutoff() } },
+          select: { recipeId: true },
+        }),
+      ),
       // Learned taste profile — see learn.ts for how these get written
       // (cook/star = positive nudge, dismiss/mute = negative nudge).
-      prisma.foodGroupPreference.findMany({ where: { userId } }),
+      emptyIfNoUser(userId, () => prisma.foodGroupPreference.findMany({ where: { userId: userId! } })),
       // Behavior-derived cuisine affinity, separate from declared
       // onboarding favoriteCuisines (see scoreRecipe's implicitFavoriteCuisines).
-      prisma.cookLog.findMany({
-        where: { userId },
-        select: { recipe: { select: { cuisine: { select: { name: true } } } } },
-      }),
+      emptyIfNoUser(userId, () =>
+        prisma.cookLog.findMany({
+          where: { userId: userId! },
+          select: { recipe: { select: { cuisine: { select: { name: true } } } } },
+        }),
+      ),
       // Free-tier feed intelligence v1: feeds a mild negative scoring bias
       // (see score.ts's recentlyShownRecipeIds) — this is separate from, and
       // softer than, getOrCreateBatch's hard per-window exclusion, which
       // only ever looks at the *current* window.
-      prisma.servedCard.findMany({
-        where: {
-          userId,
-          servedAt: { gte: new Date(Date.now() - FRESHNESS_LOOKBACK_DAYS * 24 * 60 * 60 * 1000) },
-        },
-        select: { recipeId: true },
-      }),
+      emptyIfNoUser(userId, () =>
+        prisma.servedCard.findMany({
+          where: {
+            userId: userId!,
+            servedAt: { gte: new Date(Date.now() - FRESHNESS_LOOKBACK_DAYS * 24 * 60 * 60 * 1000) },
+          },
+          select: { recipeId: true },
+        }),
+      ),
     ]);
 
   // Only STRICT diets are a hard filter — MODERATE/FLEXIBLE diets are
@@ -380,6 +402,9 @@ function pickAffinity(
   // See dedupeByProtein — threaded through unchanged so pickDaily's
   // aligned/open split can share one signal set across both calls.
   usedSignals?: Set<string>,
+  // See weightedShuffle — defaults to Math.random, the guest dashboard path
+  // passes a seeded rng instead (see pickDaily).
+  rng: () => number = Math.random,
 ): EligibleRecipe[] {
   const declared = new Set(profile.favoriteCuisines);
   const implicit = new Set(profile.implicitFavoriteCuisines ?? []);
@@ -389,8 +414,8 @@ function pickAffinity(
   const restTier = base.filter((r) => !declared.has(r.cuisine) && !implicit.has(r.cuisine));
 
   const orderTier = (recipes: EligibleRecipe[]) => {
-    const saved = weightedShuffle(recipes.filter((r) => r.saved), weight);
-    const unsaved = weightedShuffle(recipes.filter((r) => !r.saved), weight);
+    const saved = weightedShuffle(recipes.filter((r) => r.saved), weight, rng);
+    const unsaved = weightedShuffle(recipes.filter((r) => !r.saved), weight, rng);
     return [...saved, ...unsaved];
   };
 
@@ -423,6 +448,10 @@ export function pickDaily(
   // rather than one or the other winning by chance. STRICT diets never
   // reach here — `pool` is already hard-filtered to satisfy them.
   dietMix?: { alignedDietNames: string[]; ratio: number },
+  // See weightedShuffle — defaults to Math.random; the guest dashboard path
+  // (see getGuestDailySelection) passes a seeded rng so a page reload shows
+  // the same 4 cards until the meal-slot window rolls over.
+  rng: () => number = Math.random,
 ): EligibleRecipe[] {
   const available = pool.filter((r) => !exclude.has(r.id));
   const base = available.length >= DAILY_CARD_COUNT ? available : pool;
@@ -434,7 +463,7 @@ export function pickDaily(
     const alignedTarget = Math.round(dietMix.ratio * affinitySlotCount);
     const alignedPool = base.filter((r) => satisfiesDiets(r, dietMix.alignedDietNames));
     const usedSignals = new Set<string>();
-    const alignedPicks = pickAffinity(alignedPool, profile, weight, alignedTarget, usedSignals);
+    const alignedPicks = pickAffinity(alignedPool, profile, weight, alignedTarget, usedSignals, rng);
 
     // Graceful fallback: if the aligned pool came up short of alignedTarget,
     // the open slice picks up the difference so all affinitySlotCount slots
@@ -442,17 +471,17 @@ export function pickDaily(
     const alignedIds = new Set(alignedPicks.map((r) => r.id));
     const openPool = base.filter((r) => !alignedIds.has(r.id));
     const openCount = affinitySlotCount - alignedPicks.length;
-    const openPicks = pickAffinity(openPool, profile, weight, openCount, usedSignals);
+    const openPicks = pickAffinity(openPool, profile, weight, openCount, usedSignals, rng);
 
     affinityPicks = [...alignedPicks, ...openPicks];
   } else {
-    affinityPicks = pickAffinity(base, profile, weight, affinitySlotCount);
+    affinityPicks = pickAffinity(base, profile, weight, affinitySlotCount, undefined, rng);
   }
 
   const affinityPickIds = new Set(affinityPicks.map((r) => r.id));
   const discoveryCandidates = base.filter((r) => !affinityPickIds.has(r.id));
   const discoveryPool = discoveryCandidates.length > 0 ? discoveryCandidates : base;
-  const discoveryPicks = weightedShuffle(discoveryPool, (r) => discoveryWeight(r, profile)).slice(
+  const discoveryPicks = weightedShuffle(discoveryPool, (r) => discoveryWeight(r, profile), rng).slice(
     0,
     DISCOVERY_SLOT_COUNT,
   );
@@ -759,6 +788,59 @@ export async function refreshDailySelection(
       skipDuplicates: true,
     });
   }
+
+  return {
+    served: flagDiscoveryCard(served, profile).map(toCardData),
+    pool: activePool.map(toCardData),
+    nextWindowAt: nextMealSlotWindowAt(timezone),
+    category,
+  };
+}
+
+// Guest (not-logged-in) dashboard: same recipe pool + scoring pipeline as a
+// logged-in user with an empty profile (see loadDashboardContext's
+// userId === null path) — a generic, non-personalized set, per product
+// decision. Never touches ServedCard (hard FK to User, and there's no real
+// user to key it by) — instead, the picks are deterministically seeded off
+// the current meal-slot window, so a page reload shows the exact same 4
+// cards until the window rolls over, without persisting anything.
+export async function getGuestDailySelection(categoryOverride?: DashboardCategory): Promise<DailySelection> {
+  const ctx = await loadDashboardContext(null, categoryOverride);
+  const { pool, profile, timezone, currentSlot, category } = ctx;
+  const { pool: activePool, windowKey: activeWindowKey } = activePoolFor(ctx);
+
+  const rng = seededRng(activeWindowKey);
+  const served = pickDaily(activePool, profile, currentSlot, new Set(), undefined, rng);
+  const servedWithBadge = flagDiscoveryCard(served, profile);
+
+  const poolById = new Map(pool.map((r) => [r.id, r]));
+  const cookbooks = await loadCookbookSections(poolById);
+
+  return {
+    pool: activePool.map(toCardData),
+    served: servedWithBadge.map(toCardData),
+    currentSlot,
+    nextWindowAt: nextMealSlotWindowAt(timezone),
+    userDiets: profile.diets,
+    cookbooks,
+    category,
+  };
+}
+
+// Guest's one-shot "Refresh recipes" — the httpOnly cookie cap in
+// /api/dashboard/refresh ensures this only ever runs once per guest. Real
+// (unseeded) shuffle, unlike the initial load above, and excludes whatever
+// is currently on screen (passed by the client — there's no persisted
+// ServedCard row to read back for a guest). Never persists anything.
+export async function refreshGuestDailySelection(
+  excludeIds: string[],
+  categoryOverride?: DashboardCategory,
+): Promise<RefreshResult> {
+  const ctx = await loadDashboardContext(null, categoryOverride);
+  const { profile, timezone, currentSlot, category } = ctx;
+  const { pool: activePool } = activePoolFor(ctx);
+
+  const served = pickDaily(activePool, profile, currentSlot, new Set(excludeIds));
 
   return {
     served: flagDiscoveryCard(served, profile).map(toCardData),

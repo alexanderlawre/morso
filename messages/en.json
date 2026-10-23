@@ -1,4 +1,16 @@
 {
+  "guest": {
+    "header": {
+      "logIn": "Log in",
+      "signUp": "Sign up"
+    },
+    "signUpPrompt": {
+      "title": "Create a free account",
+      "body": "Save recipes, build a Cook Later list, and log what you cook — create a free account to keep going.",
+      "maybeLater": "Maybe later",
+      "createAccount": "Create account"
+    }
+  },
   "accessibility": {
     "trigger": "Accessibility and language settings",
     "about": {
@@ -165,7 +177,10 @@
       "hours": "{hours}h",
       "hoursMinutes": "{hours}h {minutes}m",
       "gotIt": "Got it",
-      "goMorsoPlus": "Go Morso+"
+      "goMorsoPlus": "Go Morso+",
+      "guestTitle": "That's your free preview refresh",
+      "guestBody": "Create a free account to keep browsing fresh picks, save recipes, and get a daily rotation tailored to you.",
+      "createAccount": "Create account"
     }
   },
   "onboarding": {

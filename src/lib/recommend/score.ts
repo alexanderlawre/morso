@@ -129,8 +129,15 @@ function foodGroupAffinityBonus(
 
 // Weighted-random shuffle: higher-scoring recipes are more likely to sort
 // earlier, but nothing is ever excluded — every recipe has a nonzero chance.
-export function weightedShuffle<T>(items: T[], weightOf: (item: T) => number): T[] {
-  const pool = items.map((item) => ({ item, key: Math.random() ** (1 / Math.max(weightOf(item), 0.01)) }));
+// `rng` defaults to Math.random for every existing caller; the guest
+// dashboard path (see select-daily.ts) passes a seeded one instead so a
+// page reload shows the same picks until the meal-slot window rolls over.
+export function weightedShuffle<T>(
+  items: T[],
+  weightOf: (item: T) => number,
+  rng: () => number = Math.random,
+): T[] {
+  const pool = items.map((item) => ({ item, key: rng() ** (1 / Math.max(weightOf(item), 0.01)) }));
   pool.sort((a, b) => b.key - a.key);
   return pool.map((p) => p.item);
 }

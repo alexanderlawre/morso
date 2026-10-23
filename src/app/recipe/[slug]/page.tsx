@@ -14,8 +14,7 @@ export default async function RecipeDetailPage({
   const { slug } = await params;
 
   const session = await auth();
-  if (!session?.user) redirect("/login");
-  if (!session.user.onboarded) redirect("/onboarding");
+  if (session?.user && !session.user.onboarded) redirect("/onboarding");
 
   const recipe = await prisma.recipe.findUnique({
     where: { slug },
@@ -32,15 +31,18 @@ export default async function RecipeDetailPage({
 
   if (!recipe || !recipe.isActive) notFound();
 
-  const [saved, preferences] = await Promise.all([
-    prisma.savedRecipe.findUnique({
-      where: { userId_recipeId: { userId: session.user.id, recipeId: recipe.id } },
-    }),
-    prisma.userPreferences.findUnique({
-      where: { userId: session.user.id },
-      include: { allergens: true },
-    }),
-  ]);
+  const userId = session?.user?.id ?? null;
+  const [saved, preferences] = userId
+    ? await Promise.all([
+        prisma.savedRecipe.findUnique({
+          where: { userId_recipeId: { userId, recipeId: recipe.id } },
+        }),
+        prisma.userPreferences.findUnique({
+          where: { userId },
+          include: { allergens: true },
+        }),
+      ])
+    : [null, null];
   const isSavedAndFresh = !!saved && saved.savedAt >= savedRecipeExpiryCutoff();
 
   const declaredAllergens = preferences?.allergens.map((a) => a.name) ?? [];
@@ -124,7 +126,8 @@ export default async function RecipeDetailPage({
       <RecipeDetailClient
         recipe={recipeDetail}
         initialSaved={isSavedAndFresh}
-        isPremium={session.user.isPremium}
+        isPremium={session?.user?.isPremium ?? false}
+        isGuest={!session?.user}
       />
     </main>
   );

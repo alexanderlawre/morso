@@ -75,11 +75,16 @@ export default async function RootLayout({
           <AuthSessionProvider session={session}>
             <NativeBootstrap />
             <TimezoneSync />
-            {session?.user?.onboarded && (
+            {/* Hidden only for the genuine "logged in but mid-onboarding"
+                case (unchanged from before) — guests (no session at all)
+                now see the header too, with a Log in/Sign up variant
+                instead of the account menu. */}
+            {(!session?.user || session.user.onboarded) && (
               <AppHeader
-                isAdmin={session.user.isAdmin}
-                name={session.user.name}
-                image={session.user.image}
+                isAdmin={session?.user?.isAdmin}
+                name={session?.user?.name}
+                image={session?.user?.image}
+                isGuest={!session?.user}
               />
             )}
             {children}
