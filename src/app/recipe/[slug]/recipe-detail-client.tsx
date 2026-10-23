@@ -15,6 +15,7 @@ import { scaleQuantity } from "@/lib/quantity";
 import { MotionButton } from "@/components/motion-button";
 import { PageTransition } from "@/components/page-transition";
 import { SheetModal } from "@/components/sheet-modal";
+import { SignUpPromptModal } from "@/components/sign-up-prompt-modal";
 
 type Ingredient = {
   id: string;
@@ -84,10 +85,12 @@ export function RecipeDetailClient({
   recipe,
   initialSaved = false,
   isPremium = false,
+  isGuest = false,
 }: {
   recipe: RecipeDetail;
   initialSaved?: boolean;
   isPremium?: boolean;
+  isGuest?: boolean;
 }) {
   const t = useTranslations("recipe");
   const [servings, setServings] = useState(recipe.servings);
@@ -101,6 +104,9 @@ export function RecipeDetailClient({
   const [tagsOpen, setTagsOpen] = useState(false);
   const [justCooked, setJustCooked] = useState(false);
   const [openSubRecipeIds, setOpenSubRecipeIds] = useState<Set<string>>(new Set());
+  // Opened instead of performing an account-only action (save/"I cooked
+  // this") when isGuest — see toggleStar/handleCook below.
+  const [showSignUpPrompt, setShowSignUpPrompt] = useState(false);
 
   function toggleSubRecipe(id: string) {
     setOpenSubRecipeIds((prev) => {
@@ -112,9 +118,12 @@ export function RecipeDetailClient({
   }
 
   useEffect(() => {
-    // Log OPEN once when the detail page is actually reached, not on link hover/prefetch.
+    // Log OPEN once when the detail page is actually reached, not on link
+    // hover/prefetch. Guests reach this page too now, but /api/interactions
+    // stays account-only — skip the always-401'd fetch.
+    if (isGuest) return;
     logInteraction(recipe.id, "OPEN");
-  }, [recipe.id]);
+  }, [recipe.id, isGuest]);
 
   const factor = servings / recipe.servings;
 
@@ -144,6 +153,10 @@ export function RecipeDetailClient({
   );
 
   async function toggleStar() {
+    if (isGuest) {
+      setShowSignUpPrompt(true);
+      return;
+    }
     const next = !starred;
     setStarred(next);
     setSaveError(null);
@@ -170,6 +183,10 @@ export function RecipeDetailClient({
   }
 
   async function handleCook() {
+    if (isGuest) {
+      setShowSignUpPrompt(true);
+      return;
+    }
     setCooking(true);
     setCookError(null);
     try {
@@ -634,6 +651,7 @@ export function RecipeDetailClient({
           </MotionButton>
         </div>
       </SheetModal>
+      <SignUpPromptModal open={showSignUpPrompt} onClose={() => setShowSignUpPrompt(false)} />
     </PageTransition>
   );
 }

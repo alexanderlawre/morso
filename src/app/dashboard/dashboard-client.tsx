@@ -22,6 +22,7 @@ import { MotionCard } from "@/components/motion-card";
 import { LoadingOrb } from "@/components/loading-orb";
 import { EmptyState } from "@/components/empty-state";
 import { RefreshBlockedModal } from "@/components/refresh-blocked-modal";
+import { SignUpPromptModal } from "@/components/sign-up-prompt-modal";
 
 export type RecipeCardData = {
   id: string;
@@ -55,10 +56,14 @@ function StarButton({
   recipeId,
   saved,
   onSavedChange,
+  isGuest,
+  onRequireAccount,
 }: {
   recipeId: string;
   saved: boolean;
   onSavedChange: (saved: boolean) => void;
+  isGuest: boolean;
+  onRequireAccount: () => void;
 }) {
   const t = useTranslations("dashboard");
   const [pending, setPending] = useState(false);
@@ -66,6 +71,10 @@ function StarButton({
 
   async function toggle(e: React.MouseEvent) {
     e.stopPropagation();
+    if (isGuest) {
+      onRequireAccount();
+      return;
+    }
     if (pending) return;
     const next = !saved;
     setPending(true);
@@ -141,6 +150,8 @@ function RecipeCard({
   onSavedChange,
   popKey,
   index,
+  isGuest,
+  onRequireAccount,
 }: {
   recipe: RecipeCardData;
   userDiets: string[];
@@ -157,6 +168,8 @@ function RecipeCard({
   // all at once. Omitted (defaults to 0, no stagger) for cookbook carousels,
   // which aren't a "mount" moment in the same sense.
   index?: number;
+  isGuest: boolean;
+  onRequireAccount: () => void;
 }) {
   const t = useTranslations("dashboard");
   const router = useRouter();
@@ -183,6 +196,9 @@ function RecipeCard({
   }, [popKey]);
 
   useEffect(() => {
+    // Guests hit this mount point too now that the dashboard is public, but
+    // /api/interactions stays account-only — skip the always-401'd fetch.
+    if (isGuest) return;
     const el = ref.current;
     if (!el) return;
 
@@ -211,10 +227,14 @@ function RecipeCard({
       observer.disconnect();
       if (timer) clearTimeout(timer);
     };
-  }, [recipe.id]);
+  }, [recipe.id, isGuest]);
 
   async function handleCookLater(e: React.MouseEvent) {
     e.stopPropagation();
+    if (isGuest) {
+      onRequireAccount();
+      return;
+    }
     if (cookLaterPending) return;
     setCookLaterPending(true);
     try {
@@ -260,6 +280,8 @@ function RecipeCard({
           recipeId={recipe.id}
           saved={recipe.saved}
           onSavedChange={(saved) => onSavedChange(recipe.id, saved)}
+          isGuest={isGuest}
+          onRequireAccount={onRequireAccount}
         />
         {recipe.isDiscovery ? (
           <span className="absolute right-3 top-3 rounded-full bg-accent px-2.5 py-1 text-[11px] font-medium text-accent-ink shadow-sm">
@@ -702,6 +724,7 @@ export function DashboardClient({
   cookbooks,
   category,
   currentSlot,
+  isGuest,
 }: {
   pool: RecipeCardData[];
   served: RecipeCardData[];
@@ -709,6 +732,7 @@ export function DashboardClient({
   cookbooks: CookbookSection[];
   category: DashboardCategory;
   currentSlot: "LUNCH" | "DINNER";
+  isGuest: boolean;
 }) {
   const t = useTranslations("dashboard");
   const [poolState, setPoolState] = useState(pool);
@@ -724,11 +748,20 @@ export function DashboardClient({
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [refreshPending, setRefreshPending] = useState(false);
   const [refreshMessage, setRefreshMessage] = useState<string | null>(null);
-  // A1 free-plan gate: set from a 429 REFRESH_LIMIT_REACHED response to the
-  // plain "Refresh recipes" tap (never the category switch — see
-  // handleCategoryChange). Separate from refreshMessage since this opens a
-  // modal rather than an inline note.
+  // A1 free-plan gate / guest one-shot-refresh gate: set from a 429
+  // REFRESH_LIMIT_REACHED response to the plain "Refresh recipes" tap
+  // (never the category switch — see handleCategoryChange). Separate from
+  // refreshMessage since this opens a modal rather than an inline note.
+  // `refreshBlockedOpen` is the modal's own open/closed signal — kept apart
+  // from `refreshBlockedUntil` (the optional countdown value) because
+  // guests are always blocked with nextWindowAt: null (no persisted
+  // per-user window to count down to), which would otherwise read as
+  // "not blocked" if open were derived from nextWindowAt alone.
+  const [refreshBlockedOpen, setRefreshBlockedOpen] = useState(false);
   const [refreshBlockedUntil, setRefreshBlockedUntil] = useState<string | null>(null);
+  // Opened instead of performing an account-only action (save/Cook Later)
+  // when isGuest — see StarButton/RecipeCard's onRequireAccount.
+  const [showSignUpPrompt, setShowSignUpPrompt] = useState(false);
   const [activeCategory, setActiveCategory] = useState(category);
   const [categoryPending, setCategoryPending] = useState(false);
   // Bumped every time `visible` is replaced with a new set of cards (server
@@ -796,11 +829,26 @@ export function DashboardClient({
     if (refreshPending) return;
     setRefreshPending(true);
     try {
-      const res = await fetch("/api/dashboard/refresh", { method: "POST" });
+      const res = await fetch("/api/dashboard/refresh", {
+        method: "POST",
+        // Guests have no persisted category/served state server-side to
+        // read back, so the client echoes what's currently on screen (see
+        // the refresh route's guest branch).
+        ...(isGuest
+          ? {
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                currentCategory: activeCategory,
+                excludeIds: visible.map((r) => r.id),
+              }),
+            }
+          : {}),
+      });
       const body = await res.json().catch(() => null);
 
       if (res.status === 429 && body?.error === "REFRESH_LIMIT_REACHED") {
         setRefreshBlockedUntil(body.nextWindowAt ?? null);
+        setRefreshBlockedOpen(true);
         return;
       }
 
@@ -1041,6 +1089,8 @@ export function DashboardClient({
                   userDiets={userDiets}
                   onSavedChange={handleSavedChange}
                   popKey={refreshGeneration}
+                  isGuest={isGuest}
+                  onRequireAccount={() => setShowSignUpPrompt(true)}
                 />
               ))}
             </AnimatePresence>
@@ -1091,10 +1141,12 @@ export function DashboardClient({
       </div>
 
       <RefreshBlockedModal
-        open={refreshBlockedUntil !== null}
-        onClose={() => setRefreshBlockedUntil(null)}
+        open={refreshBlockedOpen}
+        onClose={() => setRefreshBlockedOpen(false)}
         nextWindowAt={refreshBlockedUntil}
+        variant={isGuest ? "guest" : "premium"}
       />
+      <SignUpPromptModal open={showSignUpPrompt} onClose={() => setShowSignUpPrompt(false)} />
 
       {cookbooksState.length > 0 && (
         <div className="mt-10 space-y-8">
@@ -1108,6 +1160,8 @@ export function DashboardClient({
                       recipe={recipe}
                       userDiets={userDiets}
                       onSavedChange={handleSavedChange}
+                      isGuest={isGuest}
+                      onRequireAccount={() => setShowSignUpPrompt(true)}
                     />
                   </div>
                 ))}

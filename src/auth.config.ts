@@ -23,7 +23,16 @@ export const authConfig: NextAuthConfig = {
         pathname.startsWith("/api/signup") ||
         pathname.startsWith("/api/account/forgot-password") ||
         pathname.startsWith("/api/account/reset-password") ||
-        pathname.startsWith("/api/auth");
+        pathname.startsWith("/api/auth") ||
+        // Guest browsing: the root redirector, the dashboard, recipe detail
+        // pages, and the refresh endpoint they call are viewable without an
+        // account (see getGuestDailySelection/refreshGuestDailySelection in
+        // select-daily.ts). Every account-only route/API stays gated
+        // exactly as before.
+        pathname === "/" ||
+        pathname === "/dashboard" ||
+        pathname.startsWith("/recipe/") ||
+        pathname === "/api/dashboard/refresh";
 
       if (isPublicRoute) return true;
       if (!isLoggedIn) return false;

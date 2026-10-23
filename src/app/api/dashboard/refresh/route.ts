@@ -1,23 +1,35 @@
 import { NextResponse } from "next/server";
+import { cookies } from "next/headers";
 import { z } from "zod";
 import { Prisma } from "@prisma/client";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
-import { refreshDailySelection, resolveActiveWindow } from "@/lib/dashboard/select-daily";
+import {
+  refreshDailySelection,
+  refreshGuestDailySelection,
+  resolveActiveWindow,
+} from "@/lib/dashboard/select-daily";
 import { getEntitlements } from "@/lib/entitlements";
+
+const GUEST_REFRESH_COOKIE = "morso_guest_refresh_used";
 
 const refreshSchema = z.object({
   // An explicit change to the dashboard's Meals/Tapas/Breakfast category
   // control. Optional — a plain "Refresh recipes" tap sends no body and
   // just re-picks under the user's existing category.
   category: z.enum(["MEALS", "TAPAS", "BREAKFAST"]).optional(),
+  // Guest-only, ignored when a session exists (whose current category is
+  // already tracked server-side via UserPreferences.dashboardCategory):
+  // echoes the client's active category tab on a plain guest refresh, since
+  // there's nowhere server-side to read a guest's current section back from.
+  currentCategory: z.enum(["MEALS", "TAPAS", "BREAKFAST"]).optional(),
+  // Guest-only: ids of the cards currently on screen, used as the exclude
+  // set — there's no persisted ServedCard row to read back for a guest.
+  excludeIds: z.array(z.string()).max(8).optional(),
 });
 
 export async function POST(request: Request) {
   const session = await auth();
-  if (!session?.user) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
 
   // Body is optional — the plain refresh button sends none.
   const rawBody = await request.text();
@@ -25,7 +37,43 @@ export async function POST(request: Request) {
   if (!parsed.success) {
     return NextResponse.json({ error: "Invalid input" }, { status: 400 });
   }
-  const { category } = parsed.data;
+  const { category, currentCategory, excludeIds } = parsed.data;
+
+  if (!session?.user) {
+    // Guest path: exactly one refresh, enforced via an httpOnly cookie (no
+    // DB row — RefreshUsage has a hard FK to User). Only the plain refresh
+    // tap is gated, matching the logged-in behavior below.
+    if (category === undefined) {
+      const cookieStore = await cookies();
+      if (cookieStore.get(GUEST_REFRESH_COOKIE)?.value === "1") {
+        return NextResponse.json(
+          {
+            error: "REFRESH_LIMIT_REACHED",
+            message: "Create a free account to keep browsing fresh picks.",
+            nextWindowAt: null,
+          },
+          { status: 429 },
+        );
+      }
+    }
+
+    const result = await refreshGuestDailySelection(excludeIds ?? [], category ?? currentCategory);
+    const response = NextResponse.json({
+      recipes: result.served,
+      pool: result.pool,
+      nextWindowAt: null,
+      category: result.category,
+    });
+    if (category === undefined) {
+      response.cookies.set(GUEST_REFRESH_COOKIE, "1", {
+        httpOnly: true,
+        sameSite: "lax",
+        path: "/",
+        maxAge: 60 * 60 * 24,
+      });
+    }
+    return response;
+  }
 
   // A1 — free-plan manual refresh cap: one per section per meal-slot
   // window. Deliberately scoped to the *plain* "Refresh recipes" tap only

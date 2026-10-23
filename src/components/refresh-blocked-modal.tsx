@@ -29,10 +29,16 @@ export function RefreshBlockedModal({
   open,
   onClose,
   nextWindowAt,
+  // "guest" is the not-logged-in case (see /api/dashboard/refresh's
+  // cookie-gated one-shot cap) — nextWindowAt is always null there (no
+  // persisted per-user window to count down to), so the CTA points at
+  // sign-up instead of Morso+, with copy that doesn't imply waiting helps.
+  variant = "premium",
 }: {
   open: boolean;
   onClose: () => void;
   nextWindowAt: string | null;
+  variant?: "premium" | "guest";
 }) {
   const t = useTranslations("dashboard");
   const [now, setNow] = useState(() => Date.now());
@@ -44,12 +50,15 @@ export function RefreshBlockedModal({
   }, [open]);
 
   const remaining = nextWindowAt ? new Date(nextWindowAt).getTime() - now : null;
+  const isGuest = variant === "guest";
 
   return (
     <SheetModal open={open} onClose={onClose}>
-      <p className="text-lg font-bold text-ink">{t("refreshBlocked.title")}</p>
+      <p className="text-lg font-bold text-ink">
+        {t(isGuest ? "refreshBlocked.guestTitle" : "refreshBlocked.title")}
+      </p>
       <p className="mt-2 text-sm text-muted">
-        {t("refreshBlocked.body")}
+        {t(isGuest ? "refreshBlocked.guestBody" : "refreshBlocked.body")}
       </p>
       {remaining !== null && (
         <p className="mt-3 text-xs font-medium text-muted">
@@ -65,11 +74,11 @@ export function RefreshBlockedModal({
           {t("refreshBlocked.gotIt")}
         </button>
         <Link
-          href="/premium"
+          href={isGuest ? "/signup" : "/premium"}
           onClick={onClose}
           className="flex-1 rounded-lg bg-accent px-4 py-2.5 text-center text-sm font-medium text-accent-ink shadow-brand transition hover:opacity-90"
         >
-          {t("refreshBlocked.goMorsoPlus")}
+          {t(isGuest ? "refreshBlocked.createAccount" : "refreshBlocked.goMorsoPlus")}
         </Link>
       </div>
     </SheetModal>
