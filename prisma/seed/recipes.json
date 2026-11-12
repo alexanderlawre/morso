@@ -13303,6 +13303,12 @@
     ],
     "heroColor": "#B5734A",
     "allergenReviewStatus": "VERIFIED",
+    "caloriesPerServing": 420,
+    "proteinGrams": 32,
+    "carbsGrams": 52,
+    "fatGrams": 9,
+    "fiberGrams": 2,
+    "cholesterolMg": 85,
     "ingredients": [
       {
         "component": null,
@@ -13361,6 +13367,15 @@
       {
         "component": null,
         "order": 7,
+        "quantity": "2",
+        "unit": "tbsp",
+        "item": "fish sauce",
+        "prepNote": null,
+        "optional": false
+      },
+      {
+        "component": null,
+        "order": 8,
         "quantity": "1",
         "unit": "cup",
         "item": "bean sprouts, herbs, lime",
@@ -13407,9 +13422,7 @@
     "dietTags": [
       "Gluten-free",
       "Dairy-free",
-      "Low-sodium",
-      "Diabetic-friendly",
-      "Kosher"
+      "Diabetic-friendly"
     ],
     "allergenTags": [
       "Fish"

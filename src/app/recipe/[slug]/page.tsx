@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
 import { getLocale, getTranslations } from "next-intl/server";
 import { auth } from "@/auth";
@@ -6,6 +7,37 @@ import { savedRecipeExpiryCutoff } from "@/lib/saved-recipes";
 import { resolveRecipeContent } from "@/lib/recipe-translation";
 import { AppHeader } from "@/components/app-header";
 import { RecipeDetailClient } from "./recipe-detail-client";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const recipe = await prisma.recipe.findUnique({
+    where: { slug },
+    select: { title: true, shortDescription: true, imageUrl: true, isActive: true },
+  });
+
+  if (!recipe || !recipe.isActive) return {};
+
+  const title = `${recipe.title} — Morso`;
+  return {
+    title,
+    description: recipe.shortDescription,
+    openGraph: {
+      title,
+      description: recipe.shortDescription,
+      images: recipe.imageUrl ? [{ url: recipe.imageUrl }] : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description: recipe.shortDescription,
+      images: recipe.imageUrl ? [recipe.imageUrl] : undefined,
+    },
+  };
+}
 
 export default async function RecipeDetailPage({
   params,
@@ -116,10 +148,19 @@ export default async function RecipeDetailPage({
     allergenReviewStatus: recipe.allergenReviewStatus,
   };
 
+  const recipeJsonLd = buildRecipeJsonLd(recipeDetail, slug);
+
   return (
     <>
       {!session?.user && <AppHeader isGuest />}
       <main className="mx-auto w-full max-w-2xl flex-1 px-6 py-10">
+        <script
+          type="application/ld+json"
+          // Only ever fed our own already-sanitized data below, but escape
+          // "<" anyway so a stray "</script>" in recipe text (e.g. a note
+          // mentioning HTML) can never break out of this tag.
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(recipeJsonLd).replace(/</g, "\\u003c") }}
+        />
         {allergyWarning && (
           <div className="mb-6 rounded-xl border border-danger bg-danger-soft px-4 py-3 text-sm text-danger">
             <p className="font-bold">{t("allergenWarning.title")}</p>
@@ -135,4 +176,60 @@ export default async function RecipeDetailPage({
       </main>
     </>
   );
+}
+
+function isoDuration(minutes: number): string {
+  return `PT${minutes}M`;
+}
+
+function buildRecipeJsonLd(
+  recipe: {
+    title: string;
+    shortDescription: string;
+    servings: number;
+    prepMinutes: number;
+    cookMinutes: number;
+    cuisine: string;
+    imageUrl: string | null;
+    ingredients: { quantity: string; unit: string | null; item: string }[];
+    steps: { text: string }[];
+    caloriesPerServing: number | null;
+    proteinGrams: number | null;
+    carbsGrams: number | null;
+    fatGrams: number | null;
+  },
+  slug: string,
+) {
+  const appUrl = process.env.APP_URL || "http://localhost:3000";
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Recipe",
+    name: recipe.title,
+    description: recipe.shortDescription,
+    image: recipe.imageUrl ? [`${appUrl}${recipe.imageUrl}`] : undefined,
+    url: `${appUrl}/recipe/${slug}`,
+    recipeYield: `${recipe.servings} servings`,
+    prepTime: isoDuration(recipe.prepMinutes),
+    cookTime: isoDuration(recipe.cookMinutes),
+    totalTime: isoDuration(recipe.prepMinutes + recipe.cookMinutes),
+    recipeCuisine: recipe.cuisine,
+    recipeIngredient: recipe.ingredients.map((i) =>
+      [i.quantity, i.unit, i.item].filter(Boolean).join(" "),
+    ),
+    recipeInstructions: recipe.steps.map((step) => ({
+      "@type": "HowToStep",
+      text: step.text,
+    })),
+    nutrition:
+      recipe.caloriesPerServing != null
+        ? {
+            "@type": "NutritionInformation",
+            calories: `${recipe.caloriesPerServing} calories`,
+            proteinContent: recipe.proteinGrams != null ? `${recipe.proteinGrams}g` : undefined,
+            carbohydrateContent: recipe.carbsGrams != null ? `${recipe.carbsGrams}g` : undefined,
+            fatContent: recipe.fatGrams != null ? `${recipe.fatGrams}g` : undefined,
+          }
+        : undefined,
+  };
 }

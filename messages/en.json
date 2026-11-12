@@ -1,4 +1,11 @@
 {
+  "legal": {
+    "footer": {
+      "privacy": "Privacy",
+      "terms": "Terms"
+    },
+    "signupAgreement": "By creating an account, you agree to our <terms>Terms</terms> and <privacy>Privacy Policy</privacy>."
+  },
   "guest": {
     "header": {
       "logIn": "Log in",
@@ -245,6 +252,7 @@
     "prepCookTime": "{prep} min prep / {cook} min cook",
     "allergenBadge": "⚠ Contains {allergen}",
     "allergenUnverified": "Allergen info not yet verified — please check the ingredient list carefully.",
+    "allergenDisclaimer": "Allergen and nutrition info is provided for general guidance only, not medical advice — always check the full ingredient list yourself.",
     "tagsToggle": "Tags & dietary info",
     "sections": {
       "nutrition": "Nutrition",
@@ -430,7 +438,13 @@
         "generic": "Something went wrong. Try again."
       },
       "forgotPassword": "Forgot your current password? <link>Reset it by email</link> instead.",
-      "signOut": "Sign out"
+      "signOut": "Sign out",
+      "deleteAccount": "Delete account",
+      "deleteConfirmTitle": "Delete your account?",
+      "deleteConfirmBody": "This permanently removes your profile, preferences, saved recipes, and cook history. This can't be undone.",
+      "deleteConfirmButton": "Yes, delete my account",
+      "deleting": "Deleting...",
+      "cancel": "Cancel"
     },
     "public": {
       "noCookbooks": "No public cookbooks yet.",

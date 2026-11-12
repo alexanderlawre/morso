@@ -14,10 +14,12 @@ import { OAuthButtons } from "@/components/oauth-buttons";
 import { LocationPicker, type LocationValue } from "@/components/location-picker";
 import { BirthdayPicker } from "@/components/birthday-picker";
 import { LoadingOrb } from "@/components/loading-orb";
+import { LegalFooter } from "@/components/legal-footer";
 import { hideKeyboard } from "@/lib/native";
 
 export default function SignupPage() {
   const t = useTranslations("auth.signup");
+  const tLegal = useTranslations("legal");
   const router = useRouter();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -240,6 +242,21 @@ export default function SignupPage() {
               </motion.p>
             )}
 
+            <p className="text-xs text-muted">
+              {tLegal.rich("signupAgreement", {
+                terms: (chunks) => (
+                  <Link href="/terms" className="underline hover:text-ink">
+                    {chunks}
+                  </Link>
+                ),
+                privacy: (chunks) => (
+                  <Link href="/privacy" className="underline hover:text-ink">
+                    {chunks}
+                  </Link>
+                ),
+              })}
+            </p>
+
             <MotionButton
               type="submit"
               disabled={loading}
@@ -265,6 +282,8 @@ export default function SignupPage() {
             {t("logIn")}
           </Link>
         </div>
+
+        <LegalFooter className="mt-6" />
       </PageTransition>
     </main>
   );

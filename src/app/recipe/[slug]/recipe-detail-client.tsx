@@ -305,6 +305,9 @@ export function RecipeDetailClient({
       {isAllergenUnverified && (recipe.allergenTags.length > 0 || recipe.dietTags.length > 0) && (
         <p className="mt-1 text-[11px] italic text-muted">{t("allergenUnverified")}</p>
       )}
+      {recipe.allergenTags.length > 0 && (
+        <p className="mt-1 text-[11px] text-muted">{t("allergenDisclaimer")}</p>
+      )}
 
       {recipe.attributes.length > 0 && (
         <div className="mt-3">
