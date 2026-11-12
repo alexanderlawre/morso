@@ -259,6 +259,7 @@ export function RecipeDetailClient({
               fill
               sizes="(min-width: 640px) 42rem, 100vw"
               className="object-cover"
+              quality={90}
               priority
             />
           </motion.div>

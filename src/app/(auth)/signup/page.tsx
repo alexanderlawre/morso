@@ -1,18 +1,15 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Wordmark } from "@/components/wordmark";
 import { useTranslations } from "next-intl";
-import { compressImage } from "@/lib/image-compression";
 import { PageTransition } from "@/components/page-transition";
 import { MotionButton } from "@/components/motion-button";
 import { OAuthButtons } from "@/components/oauth-buttons";
-import { LocationPicker, type LocationValue } from "@/components/location-picker";
-import { BirthdayPicker } from "@/components/birthday-picker";
 import { LoadingOrb } from "@/components/loading-orb";
 import { LegalFooter } from "@/components/legal-footer";
 import { hideKeyboard } from "@/lib/native";
@@ -25,20 +22,8 @@ export default function SignupPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [birthday, setBirthday] = useState("");
-  const [location, setLocation] = useState<LocationValue>({ country: "", state: "", city: "" });
-  const [photoFile, setPhotoFile] = useState<File | null>(null);
-  const [photoPreview, setPhotoPreview] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-  const fileInputRef = useRef<HTMLInputElement>(null);
-
-  function handlePhotoSelect(e: React.ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    setPhotoFile(file);
-    setPhotoPreview(URL.createObjectURL(file));
-  }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -49,27 +34,13 @@ export default function SignupPage() {
       return;
     }
 
-    if (!location.country || !location.city) {
-      setError(t("locationRequiredError"));
-      return;
-    }
-
     setLoading(true);
 
     try {
       const res = await fetch("/api/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name,
-          email,
-          password,
-          confirmPassword,
-          birthday: birthday || null,
-          city: location.city,
-          state: location.state || null,
-          country: location.country,
-        }),
+        body: JSON.stringify({ name, email, password, confirmPassword }),
       });
       const data = await res.json();
 
@@ -89,19 +60,6 @@ export default function SignupPage() {
         setError(t("partialFailureError"));
         setLoading(false);
         return;
-      }
-
-      // Photo is optional and best-effort: a failed upload shouldn't block
-      // the rest of signup, since the account already exists at this point.
-      if (photoFile) {
-        try {
-          const compressed = await compressImage(photoFile);
-          const formData = new FormData();
-          formData.append("file", compressed, "photo.webp");
-          await fetch("/api/account/photo", { method: "POST", body: formData });
-        } catch {
-          // ignore
-        }
       }
 
       hideKeyboard();
@@ -128,37 +86,7 @@ export default function SignupPage() {
             <OAuthButtons />
           </div>
 
-          <p className="text-xs font-medium uppercase tracking-wide text-muted">
-            {t("stepLabel")}
-          </p>
-
           <form onSubmit={handleSubmit} className="mt-4 space-y-4">
-            <div className="flex items-center gap-4">
-              <MotionButton
-                type="button"
-                onClick={() => fileInputRef.current?.click()}
-                className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-full border border-border bg-hover text-xs text-muted"
-                aria-label={t("addPhotoAria")}
-              >
-                {photoPreview ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img src={photoPreview} alt="" className="h-full w-full object-cover" />
-                ) : (
-                  t("addPhoto")
-                )}
-              </MotionButton>
-              <input
-                ref={fileInputRef}
-                type="file"
-                accept="image/*"
-                onChange={handlePhotoSelect}
-                className="hidden"
-              />
-              <div>
-                <p className="text-sm font-medium text-ink">{t("profilePhotoLabel")}</p>
-                <p className="text-xs text-muted">{t("profilePhotoHint")}</p>
-              </div>
-            </div>
             <div>
               <label className="block text-sm font-medium text-ink">
                 {t("fullNameLabel")}
@@ -220,15 +148,6 @@ export default function SignupPage() {
                   {password === confirmPassword ? t("passwordsMatch") : t("passwordsMismatch")}
                 </p>
               )}
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-ink">
-                {t("birthdayLabel")}
-              </label>
-              <BirthdayPicker value={birthday} onChange={setBirthday} />
-            </div>
-            <div>
-              <LocationPicker value={location} onChange={setLocation} />
             </div>
 
             {error && (

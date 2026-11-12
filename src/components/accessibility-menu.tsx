@@ -25,7 +25,20 @@ function setCookie(name: string, value: string) {
 // self-contained (owns its own view/theme/locale/about state) so either
 // caller can just conditionally mount it — state naturally resets each
 // time it mounts, since it's unmounted on close.
-export function AccessibilityPanel({ onClose }: { onClose: () => void }) {
+export function AccessibilityPanel({
+  onClose,
+  onAboutRequested,
+}: {
+  onClose: () => void;
+  // AccessibilityMenu's dropdown unmounts this panel the moment it closes
+  // (see its AnimatePresence below), which would destroy showAbout's local
+  // state along with it before the About modal ever got to render. When
+  // provided, this lets that caller close its own dropdown and own the
+  // About modal's state itself instead of this panel managing it locally —
+  // ProfileMenu's SheetModal-wrapped usage doesn't have that problem, so it
+  // omits this and keeps the self-contained behavior below.
+  onAboutRequested?: () => void;
+}) {
   const t = useTranslations("accessibility");
   const locale = useLocale() as Locale;
   const router = useRouter();
@@ -74,7 +87,7 @@ export function AccessibilityPanel({ onClose }: { onClose: () => void }) {
       {view === "root" && (
         <>
           <button
-            onClick={() => setShowAbout(true)}
+            onClick={() => (onAboutRequested ? onAboutRequested() : setShowAbout(true))}
             className="block w-full px-4 py-2 text-start text-sm text-ink transition hover:bg-hover"
           >
             {t("about.label")}
@@ -145,18 +158,27 @@ export function AccessibilityPanel({ onClose }: { onClose: () => void }) {
         </>
       )}
 
-      <SheetModal open={showAbout} onClose={() => setShowAbout(false)}>
-        <p className="text-lg font-bold text-ink">{t("about.label")}</p>
-        <p className="mt-2 text-sm text-muted">{t("about.body")}</p>
-        <button
-          type="button"
-          onClick={() => setShowAbout(false)}
-          className="mt-5 w-full rounded-lg border border-border px-4 py-2.5 text-sm font-medium text-ink shadow-brand transition hover:bg-hover"
-        >
-          {t("about.close")}
-        </button>
-      </SheetModal>
+      {!onAboutRequested && <AboutModal open={showAbout} onClose={() => setShowAbout(false)} />}
     </>
+  );
+}
+
+// Extracted so AccessibilityMenu (see below) can own this modal's open state
+// itself and render it outside the dropdown that would otherwise unmount it.
+export function AboutModal({ open, onClose }: { open: boolean; onClose: () => void }) {
+  const t = useTranslations("accessibility");
+  return (
+    <SheetModal open={open} onClose={onClose}>
+      <p className="text-lg font-bold text-ink">{t("about.label")}</p>
+      <p className="mt-2 text-sm text-muted">{t("about.body")}</p>
+      <button
+        type="button"
+        onClick={onClose}
+        className="mt-5 w-full rounded-lg border border-border px-4 py-2.5 text-sm font-medium text-ink shadow-brand transition hover:bg-hover"
+      >
+        {t("about.close")}
+      </button>
+    </SheetModal>
   );
 }
 
@@ -174,9 +196,9 @@ function ThemeSwatch({ mode }: { mode: ThemeMode }) {
   );
 }
 
-// Plain globe glyph — language is one of the three options behind this
-// button, and a neutral icon avoids a face/person silhouette.
-function GlobeIcon() {
+// Sliders glyph, not a globe — this button opens About/Language/Appearance
+// together, and a globe was repeatedly misread as "change language only".
+function SettingsIcon() {
   return (
     <svg
       width="18"
@@ -188,11 +210,12 @@ function GlobeIcon() {
       strokeLinecap="round"
       aria-hidden="true"
     >
-      <circle cx="12" cy="12" r="9" />
-      <ellipse cx="12" cy="12" rx="4" ry="9" />
-      <path d="M3 12h18" />
-      <path d="M4.5 7.5h15" />
-      <path d="M4.5 16.5h15" />
+      <line x1="4" y1="7" x2="20" y2="7" />
+      <circle cx="9" cy="7" r="2" fill="currentColor" stroke="none" />
+      <line x1="4" y1="12" x2="20" y2="12" />
+      <circle cx="15" cy="12" r="2" fill="currentColor" stroke="none" />
+      <line x1="4" y1="17" x2="20" y2="17" />
+      <circle cx="11" cy="17" r="2" fill="currentColor" stroke="none" />
     </svg>
   );
 }
@@ -203,6 +226,11 @@ function GlobeIcon() {
 export function AccessibilityMenu() {
   const t = useTranslations("accessibility");
   const [open, setOpen] = useState(false);
+  // Lifted out of AccessibilityPanel (see onAboutRequested there) so the
+  // About modal survives this dropdown closing instead of unmounting with
+  // it — and so opening About can close this dropdown behind it instead of
+  // leaving both stacked.
+  const [showAbout, setShowAbout] = useState(false);
   const ref = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -231,7 +259,7 @@ export function AccessibilityMenu() {
         whileTap={{ scale: 0.92 }}
         className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-surface text-ink shadow-sm"
       >
-        <GlobeIcon />
+        <SettingsIcon />
       </MotionButton>
 
       <AnimatePresence>
@@ -243,10 +271,18 @@ export function AccessibilityMenu() {
             exit={{ opacity: 0, scale: 0.92, y: -6 }}
             transition={{ type: "spring", stiffness: 420, damping: 30 }}
           >
-            <AccessibilityPanel onClose={() => setOpen(false)} />
+            <AccessibilityPanel
+              onClose={() => setOpen(false)}
+              onAboutRequested={() => {
+                setOpen(false);
+                setShowAbout(true);
+              }}
+            />
           </motion.div>
         )}
       </AnimatePresence>
+
+      <AboutModal open={showAbout} onClose={() => setShowAbout(false)} />
     </div>
   );
 }

@@ -1845,7 +1845,7 @@
     "mealSlot": [
       "BREAKFAST",
       "LUNCH",
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKNIGHT",
     "batchFriendly": false,
@@ -2415,7 +2415,7 @@
     "cuisine": "North African",
     "mealSlot": [
       "BREAKFAST",
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKEND",
     "batchFriendly": true,
@@ -2581,7 +2581,7 @@
     "difficulty": "EASY",
     "cuisine": "North African",
     "mealSlot": [
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKNIGHT",
     "batchFriendly": true,
@@ -2769,7 +2769,7 @@
     "difficulty": "EASY",
     "cuisine": "North African",
     "mealSlot": [
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKNIGHT",
     "batchFriendly": true,
@@ -3804,7 +3804,7 @@
     "difficulty": "EASY",
     "cuisine": "North African",
     "mealSlot": [
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKNIGHT",
     "batchFriendly": true,
@@ -4015,7 +4015,7 @@
     "difficulty": "INVOLVED",
     "cuisine": "North African",
     "mealSlot": [
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "PROJECT",
     "batchFriendly": true,
@@ -4640,7 +4640,7 @@
     "difficulty": "EASY",
     "cuisine": "North African",
     "mealSlot": [
-      "SNACK",
+      "TAPAS",
       "LUNCH"
     ],
     "effortTier": "WEEKNIGHT",
@@ -4847,7 +4847,7 @@
     "difficulty": "EASY",
     "cuisine": "North African",
     "mealSlot": [
-      "SNACK",
+      "TAPAS",
       "LUNCH"
     ],
     "effortTier": "WEEKNIGHT",

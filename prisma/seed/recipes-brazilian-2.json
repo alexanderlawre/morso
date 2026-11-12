@@ -11,7 +11,7 @@
     "difficulty": "INVOLVED",
     "cuisine": "Brazilian",
     "mealSlot": [
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "PROJECT",
     "batchFriendly": true,
@@ -239,7 +239,7 @@
     "difficulty": "EASY",
     "cuisine": "Brazilian",
     "mealSlot": [
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKNIGHT",
     "batchFriendly": true,
@@ -359,7 +359,7 @@
     "difficulty": "INVOLVED",
     "cuisine": "Brazilian",
     "mealSlot": [
-      "SNACK",
+      "TAPAS",
       "LUNCH"
     ],
     "effortTier": "PROJECT",
@@ -1230,7 +1230,7 @@
     "difficulty": "MEDIUM",
     "cuisine": "Brazilian",
     "mealSlot": [
-      "SNACK",
+      "TAPAS",
       "LUNCH"
     ],
     "effortTier": "WEEKEND",
@@ -1829,7 +1829,7 @@
     "cuisine": "Brazilian",
     "mealSlot": [
       "BREAKFAST",
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKNIGHT",
     "batchFriendly": false,
@@ -1948,7 +1948,7 @@
     "cuisine": "Brazilian",
     "mealSlot": [
       "BREAKFAST",
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKNIGHT",
     "batchFriendly": false,
@@ -2089,7 +2089,7 @@
     "difficulty": "MEDIUM",
     "cuisine": "Brazilian",
     "mealSlot": [
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKEND",
     "batchFriendly": true,
@@ -2685,7 +2685,7 @@
     "difficulty": "MEDIUM",
     "cuisine": "Brazilian",
     "mealSlot": [
-      "SNACK",
+      "TAPAS",
       "LUNCH"
     ],
     "effortTier": "WEEKEND",

@@ -514,7 +514,7 @@
     "cuisine": "Peruvian",
     "mealSlot": [
       "LUNCH",
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKEND",
     "batchFriendly": true,
@@ -754,7 +754,7 @@
     "cuisine": "Peruvian",
     "mealSlot": [
       "LUNCH",
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKNIGHT",
     "batchFriendly": false,
@@ -961,7 +961,7 @@
     "cuisine": "Peruvian",
     "mealSlot": [
       "LUNCH",
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKNIGHT",
     "batchFriendly": true,
@@ -1156,7 +1156,7 @@
     "cuisine": "Peruvian",
     "mealSlot": [
       "DINNER",
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKEND",
     "batchFriendly": false,
@@ -2827,7 +2827,7 @@
     "difficulty": "EASY",
     "cuisine": "Peruvian",
     "mealSlot": [
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKNIGHT",
     "batchFriendly": true,
@@ -2996,7 +2996,7 @@
     "difficulty": "MEDIUM",
     "cuisine": "Peruvian",
     "mealSlot": [
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKEND",
     "batchFriendly": true,
@@ -3158,7 +3158,7 @@
     "difficulty": "MEDIUM",
     "cuisine": "Peruvian",
     "mealSlot": [
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKEND",
     "batchFriendly": false,

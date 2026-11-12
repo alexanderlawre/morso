@@ -2069,7 +2069,7 @@
     "cuisine": "French",
     "mealSlot": [
       "BREAKFAST",
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKEND",
     "batchFriendly": false,
@@ -2580,7 +2580,7 @@
     "cuisine": "French",
     "mealSlot": [
       "LUNCH",
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKEND",
     "batchFriendly": true,
@@ -3063,7 +3063,7 @@
     "difficulty": "MEDIUM",
     "cuisine": "French",
     "mealSlot": [
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKEND",
     "batchFriendly": false,
@@ -3386,7 +3386,7 @@
     "cuisine": "French",
     "mealSlot": [
       "LUNCH",
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "PROJECT",
     "batchFriendly": true,
@@ -3605,7 +3605,7 @@
     "difficulty": "EASY",
     "cuisine": "French",
     "mealSlot": [
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKNIGHT",
     "batchFriendly": false,
@@ -3964,7 +3964,7 @@
     "difficulty": "EASY",
     "cuisine": "French",
     "mealSlot": [
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKNIGHT",
     "batchFriendly": true,

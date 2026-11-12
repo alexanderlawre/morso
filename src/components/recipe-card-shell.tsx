@@ -70,6 +70,7 @@ export function RecipeCardShell({
               fill
               sizes="(min-width: 640px) 50vw, 100vw"
               className="object-cover"
+              quality={90}
             />
           </div>
         ) : null}

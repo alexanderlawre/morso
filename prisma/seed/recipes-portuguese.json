@@ -712,7 +712,7 @@
     "cookMinutes": 20,
     "difficulty": "INVOLVED",
     "cuisine": "Portuguese",
-    "mealSlot": ["BREAKFAST", "SNACK"],
+    "mealSlot": ["BREAKFAST", "TAPAS"],
     "effortTier": "PROJECT",
     "batchFriendly": true,
     "attributes": ["COMFORT_FOOD", "CROWD_PLEASER"],

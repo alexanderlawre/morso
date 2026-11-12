@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
 // Generic modal primitive: bottom sheet on mobile, centered card on
@@ -8,6 +10,13 @@ import { AnimatePresence, motion } from "framer-motion";
 // backdrop-fade + sheet-rise/scale-in transition instead of an instant
 // mount/unmount. Wrap AnimatePresence around the call site so `open`
 // toggling animates out before unmounting.
+//
+// Rendered via a portal straight to document.body: `fixed` only positions
+// relative to the viewport when every ancestor is free of a `transform`,
+// but framer-motion leaves a persistent inline `transform` on an animated
+// ancestor even at rest. Any caller nested inside another animated
+// motion.div (e.g. the accessibility dropdown) would otherwise anchor this
+// modal to that ancestor's box instead of the real viewport.
 export function SheetModal({
   open,
   onClose,
@@ -19,7 +28,10 @@ export function SheetModal({
   children: React.ReactNode;
   panelClassName?: string;
 }) {
-  return (
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
+  const modal = (
     <AnimatePresence>
       {open && (
         <motion.div
@@ -44,4 +56,11 @@ export function SheetModal({
       )}
     </AnimatePresence>
   );
+
+  // Server-render/initial-render with nothing (document.body isn't
+  // available yet); the portal takes over on the client right after mount.
+  // Modals are never needed for the pre-hydration HTML, so this never
+  // causes a visible flash.
+  if (!mounted) return null;
+  return createPortal(modal, document.body);
 }

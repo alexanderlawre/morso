@@ -1613,7 +1613,7 @@
     "cuisine": "Italian",
     "mealSlot": [
       "LUNCH",
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKNIGHT",
     "batchFriendly": false,
@@ -1742,7 +1742,7 @@
     "difficulty": "EASY",
     "cuisine": "Italian",
     "mealSlot": [
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKNIGHT",
     "batchFriendly": false,
@@ -1881,7 +1881,7 @@
     "difficulty": "INVOLVED",
     "cuisine": "Italian",
     "mealSlot": [
-      "SNACK",
+      "TAPAS",
       "LUNCH"
     ],
     "effortTier": "PROJECT",
@@ -2643,7 +2643,7 @@
     "difficulty": "EASY",
     "cuisine": "Italian",
     "mealSlot": [
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKNIGHT",
     "batchFriendly": true,
@@ -2802,7 +2802,7 @@
     "difficulty": "MEDIUM",
     "cuisine": "Italian",
     "mealSlot": [
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKEND",
     "batchFriendly": true,
@@ -2949,7 +2949,7 @@
     "cuisine": "Italian",
     "mealSlot": [
       "BREAKFAST",
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "PROJECT",
     "batchFriendly": true,
@@ -3155,7 +3155,7 @@
     "cuisine": "Italian",
     "mealSlot": [
       "BREAKFAST",
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKNIGHT",
     "batchFriendly": true,
