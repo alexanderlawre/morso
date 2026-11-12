@@ -2,6 +2,12 @@ import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import { z } from "zod";
 import { prisma } from "@/lib/prisma";
+import { getClientIp, rateLimitHit } from "@/lib/rate-limit";
+
+// 10 signups per IP per hour — generous for a household/shared connection,
+// but enough to blunt a bot farming free accounts.
+const SIGNUP_LIMIT = 10;
+const SIGNUP_WINDOW_MS = 60 * 60 * 1000;
 
 const signupSchema = z
   .object({
@@ -24,6 +30,14 @@ const signupSchema = z
   });
 
 export async function POST(request: Request) {
+  const allowed = await rateLimitHit(`signup:${getClientIp(request)}`, SIGNUP_LIMIT, SIGNUP_WINDOW_MS);
+  if (!allowed) {
+    return NextResponse.json(
+      { error: "Too many signups from this network. Try again later." },
+      { status: 429 },
+    );
+  }
+
   const body = await request.json();
   const parsed = signupSchema.safeParse(body);
 
