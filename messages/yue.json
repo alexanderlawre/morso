@@ -165,7 +165,10 @@
       "hours": "{hours}小時",
       "hoursMinutes": "{hours}小時 {minutes}分鐘",
       "gotIt": "知道了",
-      "goMorsoPlus": "升級Morso+"
+      "goMorsoPlus": "升級Morso+",
+      "guestTitle": "嗰個係你嘅免費預覽重新整理",
+      "guestBody": "開立免費帳戶,繼續瀏覽新食譜、儲存食譜,仲可以每日收到為你配對嘅推介。",
+      "createAccount": "開立帳戶"
     }
   },
   "onboarding": {
@@ -275,7 +278,8 @@
       "placeholder": "非必要筆記...",
       "skip": "跳過",
       "share": "分享心得"
-    }
+    },
+    "allergenDisclaimer": "過敏原同營養資訊只作一般參考,並非醫療建議 — 請務必自己檢查完整嘅材料清單。"
   },
   "submitRecipe": {
     "form": {
@@ -415,7 +419,13 @@
         "generic": "出咗啲問題，請再試。"
       },
       "forgotPassword": "唔記得目前密碼？可以<link>用電郵重設</link>。",
-      "signOut": "登出"
+      "signOut": "登出",
+      "deleteAccount": "刪除帳戶",
+      "deleteConfirmTitle": "刪除你嘅帳戶?",
+      "deleteConfirmBody": "呢個操作會永久刪除你嘅個人資料、偏好設定、已儲存嘅食譜同煮食紀錄。呢個動作無法復原。",
+      "deleteConfirmButton": "係,刪除我嘅帳戶",
+      "deleting": "刪除緊...",
+      "cancel": "取消"
     },
     "public": {
       "noCookbooks": "仲未有公開食譜集。",
@@ -510,6 +520,25 @@
       "noRecipes": "仲未有食譜。可以喺上面你煮過嘅食譜中加一個。",
       "deleting": "刪除緊...",
       "deleteCookbook": "刪除食譜集"
+    }
+  },
+  "legal": {
+    "footer": {
+      "privacy": "私隱",
+      "terms": "條款"
+    },
+    "signupAgreement": "開立帳戶即表示你同意我哋嘅<terms>條款</terms>同埋<privacy>私隱政策</privacy>。"
+  },
+  "guest": {
+    "header": {
+      "logIn": "登入",
+      "signUp": "註冊"
+    },
+    "signUpPrompt": {
+      "title": "開立免費帳戶",
+      "body": "儲存食譜、建立「待煮」清單,仲可以記錄你煮過嘅嘢 — 開立免費帳戶即可繼續。",
+      "maybeLater": "遲啲先",
+      "createAccount": "開立帳戶"
     }
   }
 }

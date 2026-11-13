@@ -165,7 +165,10 @@
       "hours": "{hours}時間",
       "hoursMinutes": "{hours}時間{minutes}分",
       "gotIt": "わかりました",
-      "goMorsoPlus": "Morso+を見る"
+      "goMorsoPlus": "Morso+を見る",
+      "guestTitle": "これが無料プレビューの更新でした",
+      "guestBody": "新しいレシピを引き続き閲覧したり、レシピを保存したり、あなた専用の毎日のローテーションを受け取るには、無料アカウントを作成してください。",
+      "createAccount": "アカウントを作成"
     }
   },
   "onboarding": {
@@ -275,7 +278,8 @@
       "placeholder": "感想を入力（任意）...",
       "skip": "スキップ",
       "share": "感想を共有"
-    }
+    },
+    "allergenDisclaimer": "アレルゲンと栄養に関する情報は一般的な目安として提供されるものであり、医学的なアドバイスではありません — 必ずご自身で材料リスト全体を確認してください。"
   },
   "submitRecipe": {
     "form": {
@@ -415,7 +419,13 @@
         "generic": "問題が発生しました。もう一度お試しください。"
       },
       "forgotPassword": "現在のパスワードをお忘れですか？代わりに<link>メールでリセット</link>してください。",
-      "signOut": "ログアウト"
+      "signOut": "ログアウト",
+      "deleteAccount": "アカウントを削除",
+      "deleteConfirmTitle": "アカウントを削除しますか?",
+      "deleteConfirmBody": "これにより、プロフィール、設定、保存したレシピ、調理履歴が完全に削除されます。元に戻すことはできません。",
+      "deleteConfirmButton": "はい、アカウントを削除します",
+      "deleting": "削除中...",
+      "cancel": "キャンセル"
     },
     "public": {
       "noCookbooks": "公開中のクックブックはまだありません。",
@@ -510,6 +520,25 @@
       "noRecipes": "まだレシピがありません。上の調理済みレシピから追加してください。",
       "deleting": "削除中...",
       "deleteCookbook": "クックブックを削除"
+    }
+  },
+  "legal": {
+    "footer": {
+      "privacy": "プライバシー",
+      "terms": "利用規約"
+    },
+    "signupAgreement": "アカウントを作成すると、<terms>利用規約</terms>および<privacy>プライバシーポリシー</privacy>に同意したことになります。"
+  },
+  "guest": {
+    "header": {
+      "logIn": "ログイン",
+      "signUp": "新規登録"
+    },
+    "signUpPrompt": {
+      "title": "無料アカウントを作成",
+      "body": "レシピを保存したり、「後で作る」リストを作ったり、作った料理を記録したりできます — 続けるには無料アカウントを作成してください。",
+      "maybeLater": "また今度",
+      "createAccount": "アカウントを作成"
     }
   }
 }

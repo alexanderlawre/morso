@@ -165,7 +165,10 @@
       "hours": "{hours} 小时",
       "hoursMinutes": "{hours} 小时 {minutes} 分钟",
       "gotIt": "知道了",
-      "goMorsoPlus": "升级 Morso+"
+      "goMorsoPlus": "升级 Morso+",
+      "guestTitle": "这是你的免费预览刷新",
+      "guestBody": "创建免费账户,继续浏览新食谱、保存食谱,并获取为你定制的每日推荐。",
+      "createAccount": "创建账户"
     }
   },
   "onboarding": {
@@ -275,7 +278,8 @@
       "placeholder": "可选留言…",
       "skip": "跳过",
       "share": "分享成果"
-    }
+    },
+    "allergenDisclaimer": "过敏原和营养信息仅供一般参考,不构成医疗建议 — 请务必自行查看完整的配料表。"
   },
   "submitRecipe": {
     "form": {
@@ -415,7 +419,13 @@
         "generic": "出了点问题，请重试。"
       },
       "forgotPassword": "忘记当前密码了？改为<link>通过邮箱重置</link>。",
-      "signOut": "退出登录"
+      "signOut": "退出登录",
+      "deleteAccount": "删除账户",
+      "deleteConfirmTitle": "删除你的账户?",
+      "deleteConfirmBody": "此操作将永久删除你的个人资料、偏好设置、已保存的食谱和烹饪记录。此操作无法撤销。",
+      "deleteConfirmButton": "是的,删除我的账户",
+      "deleting": "正在删除...",
+      "cancel": "取消"
     },
     "public": {
       "noCookbooks": "暂无公开食谱集。",
@@ -510,6 +520,25 @@
       "noRecipes": "暂无食谱。请从上方您烹饪过的食谱中添加一个。",
       "deleting": "删除中…",
       "deleteCookbook": "删除食谱集"
+    }
+  },
+  "legal": {
+    "footer": {
+      "privacy": "隐私",
+      "terms": "条款"
+    },
+    "signupAgreement": "创建账户即表示你同意我们的<terms>条款</terms>和<privacy>隐私政策</privacy>。"
+  },
+  "guest": {
+    "header": {
+      "logIn": "登录",
+      "signUp": "注册"
+    },
+    "signUpPrompt": {
+      "title": "创建免费账户",
+      "body": "保存食谱、创建\"待烹饪\"清单,并记录你做过的菜 — 创建免费账户以继续。",
+      "maybeLater": "以后再说",
+      "createAccount": "创建账户"
     }
   }
 }

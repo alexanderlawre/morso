@@ -165,7 +165,10 @@
       "hours": "{hours}h",
       "hoursMinutes": "{hours}h {minutes}m",
       "gotIt": "Entendido",
-      "goMorsoPlus": "Pasar a Morso+"
+      "goMorsoPlus": "Pasar a Morso+",
+      "guestTitle": "Esa fue tu actualización de vista previa gratuita",
+      "guestBody": "Crea una cuenta gratuita para seguir explorando nuevas recetas, guardar recetas y obtener una rotación diaria personalizada para ti.",
+      "createAccount": "Crear cuenta"
     }
   },
   "onboarding": {
@@ -275,7 +278,8 @@
       "placeholder": "Nota opcional...",
       "skip": "Omitir",
       "share": "Compartir reseña"
-    }
+    },
+    "allergenDisclaimer": "La información sobre alérgenos y nutrición se ofrece solo como orientación general, no como consejo médico — revisa siempre la lista completa de ingredientes tú mismo."
   },
   "submitRecipe": {
     "form": {
@@ -415,7 +419,13 @@
         "generic": "Algo salió mal. Inténtalo de nuevo."
       },
       "forgotPassword": "¿Olvidaste tu contraseña actual? <link>Restablécela por correo electrónico</link> en su lugar.",
-      "signOut": "Cerrar sesión"
+      "signOut": "Cerrar sesión",
+      "deleteAccount": "Eliminar cuenta",
+      "deleteConfirmTitle": "¿Eliminar tu cuenta?",
+      "deleteConfirmBody": "Esto elimina permanentemente tu perfil, preferencias, recetas guardadas e historial de cocina. Esto no se puede deshacer.",
+      "deleteConfirmButton": "Sí, eliminar mi cuenta",
+      "deleting": "Eliminando...",
+      "cancel": "Cancelar"
     },
     "public": {
       "noCookbooks": "Todavía no hay libros de recetas públicos.",
@@ -510,6 +520,25 @@
       "noRecipes": "Todavía no hay recetas. Añade una desde tus recetas cocinadas arriba.",
       "deleting": "Eliminando...",
       "deleteCookbook": "Eliminar libro de recetas"
+    }
+  },
+  "legal": {
+    "footer": {
+      "privacy": "Privacidad",
+      "terms": "Términos"
+    },
+    "signupAgreement": "Al crear una cuenta, aceptas nuestros <terms>Términos</terms> y nuestra <privacy>Política de Privacidad</privacy>."
+  },
+  "guest": {
+    "header": {
+      "logIn": "Iniciar sesión",
+      "signUp": "Registrarse"
+    },
+    "signUpPrompt": {
+      "title": "Crea una cuenta gratuita",
+      "body": "Guarda recetas, crea una lista de \"Cocinar más tarde\" y registra lo que cocinas — crea una cuenta gratuita para continuar.",
+      "maybeLater": "Quizás más tarde",
+      "createAccount": "Crear cuenta"
     }
   }
 }
