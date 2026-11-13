@@ -5,6 +5,14 @@ import Apple from "next-auth/providers/apple";
 import bcrypt from "bcryptjs";
 import { authConfig } from "@/auth.config";
 import { prisma } from "@/lib/prisma";
+import { getClientIp, rateLimitHit } from "@/lib/rate-limit";
+
+// Keyed by email so repeated attempts against one account get blocked even
+// from different IPs (credential stuffing/brute force), and separately by
+// IP so one source can't spray attempts across many emails either.
+const LOGIN_EMAIL_LIMIT = 10;
+const LOGIN_IP_LIMIT = 30;
+const LOGIN_WINDOW_MS = 15 * 60 * 1000;
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   ...authConfig,
@@ -14,13 +22,20 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials) {
+      async authorize(credentials, request) {
         const email = credentials?.email as string | undefined;
         const password = credentials?.password as string | undefined;
         if (!email || !password) return null;
 
+        const normalizedEmail = email.toLowerCase();
+        const [emailAllowed, ipAllowed] = await Promise.all([
+          rateLimitHit(`login:email:${normalizedEmail}`, LOGIN_EMAIL_LIMIT, LOGIN_WINDOW_MS),
+          rateLimitHit(`login:ip:${getClientIp(request)}`, LOGIN_IP_LIMIT, LOGIN_WINDOW_MS),
+        ]);
+        if (!emailAllowed || !ipAllowed) return null;
+
         const user = await prisma.user.findUnique({
-          where: { email: email.toLowerCase() },
+          where: { email: normalizedEmail },
           include: { preferences: true },
         });
         // Users created via Google/Apple sign-in have no passwordHash and

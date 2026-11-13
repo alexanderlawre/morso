@@ -2,6 +2,12 @@ import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import { z } from "zod";
 import { prisma } from "@/lib/prisma";
+import { getClientIp, rateLimitHit } from "@/lib/rate-limit";
+
+// 10 signups per IP per hour — generous for a household/shared connection,
+// but enough to blunt a bot farming free accounts.
+const SIGNUP_LIMIT = 10;
+const SIGNUP_WINDOW_MS = 60 * 60 * 1000;
 
 const signupSchema = z
   .object({
@@ -9,10 +15,14 @@ const signupSchema = z
     email: z.string().trim().toLowerCase().email("Enter a valid email"),
     password: z.string().min(10, "Password must be at least 10 characters"),
     confirmPassword: z.string(),
+    // Birthday/location were cut from the signup form itself (unused
+    // elsewhere, and a privacy liability to collect up front) — these stay
+    // optional, matching the already-nullable User columns, so an older
+    // client or the profile page's own update path can still set them.
     birthday: z.coerce.date().optional().nullable(),
-    city: z.string().trim().min(1, "City is required"),
+    city: z.string().trim().optional().nullable(),
     state: z.string().trim().nullable().optional(),
-    country: z.string().trim().min(1, "Country is required"),
+    country: z.string().trim().optional().nullable(),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "Passwords don't match",
@@ -20,6 +30,14 @@ const signupSchema = z
   });
 
 export async function POST(request: Request) {
+  const allowed = await rateLimitHit(`signup:${getClientIp(request)}`, SIGNUP_LIMIT, SIGNUP_WINDOW_MS);
+  if (!allowed) {
+    return NextResponse.json(
+      { error: "Too many signups from this network. Try again later." },
+      { status: 429 },
+    );
+  }
+
   const body = await request.json();
   const parsed = signupSchema.safeParse(body);
 
@@ -31,6 +49,8 @@ export async function POST(request: Request) {
   }
 
   const { name, email, password, birthday, city, state, country } = parsed.data;
+  const cityValue = city || null;
+  const countryValue = country || null;
 
   const existing = await prisma.user.findUnique({ where: { email } });
   if (existing) {
@@ -48,9 +68,9 @@ export async function POST(request: Request) {
       email,
       passwordHash,
       birthday: birthday ?? undefined,
-      city,
+      city: cityValue,
       state: state || null,
-      country,
+      country: countryValue,
     },
   });
 

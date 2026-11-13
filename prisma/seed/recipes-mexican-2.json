@@ -1399,7 +1399,7 @@
     "mealSlot": [
       "LUNCH",
       "DINNER",
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKEND",
     "batchFriendly": false,
@@ -2769,7 +2769,7 @@
     "difficulty": "EASY",
     "cuisine": "Mexican",
     "mealSlot": [
-      "SNACK",
+      "TAPAS",
       "DINNER"
     ],
     "effortTier": "WEEKNIGHT",
@@ -2938,7 +2938,7 @@
     "cuisine": "Mexican",
     "mealSlot": [
       "LUNCH",
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKNIGHT",
     "batchFriendly": false,

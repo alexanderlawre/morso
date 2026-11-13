@@ -12,7 +12,7 @@
     "difficulty": "EASY",
     "cuisine": "Spanish",
     "mealSlot": [
-      "SNACK",
+      "TAPAS",
       "DINNER"
     ],
     "effortTier": "WEEKNIGHT",
@@ -196,7 +196,7 @@
     "difficulty": "EASY",
     "cuisine": "Spanish",
     "mealSlot": [
-      "SNACK",
+      "TAPAS",
       "DINNER"
     ],
     "effortTier": "WEEKNIGHT",
@@ -352,7 +352,7 @@
     "cuisine": "Spanish",
     "mealSlot": [
       "BREAKFAST",
-      "SNACK",
+      "TAPAS",
       "DINNER"
     ],
     "effortTier": "WEEKNIGHT",
@@ -468,7 +468,7 @@
     "difficulty": "INVOLVED",
     "cuisine": "Spanish",
     "mealSlot": [
-      "SNACK",
+      "TAPAS",
       "DINNER"
     ],
     "effortTier": "WEEKEND",
@@ -660,7 +660,7 @@
     "mealSlot": [
       "BREAKFAST",
       "LUNCH",
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKEND",
     "batchFriendly": true,
@@ -788,7 +788,7 @@
     "difficulty": "EASY",
     "cuisine": "Spanish",
     "mealSlot": [
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKNIGHT",
     "batchFriendly": false,
@@ -883,7 +883,7 @@
     "difficulty": "MEDIUM",
     "cuisine": "Spanish",
     "mealSlot": [
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKEND",
     "batchFriendly": true,
@@ -1026,7 +1026,7 @@
     "difficulty": "MEDIUM",
     "cuisine": "Spanish",
     "mealSlot": [
-      "SNACK",
+      "TAPAS",
       "DINNER"
     ],
     "effortTier": "WEEKEND",
@@ -1237,7 +1237,7 @@
     "difficulty": "EASY",
     "cuisine": "Spanish",
     "mealSlot": [
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKNIGHT",
     "batchFriendly": false,
@@ -3979,7 +3979,7 @@
     "difficulty": "EASY",
     "cuisine": "Spanish",
     "mealSlot": [
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKNIGHT",
     "batchFriendly": false,
@@ -4117,7 +4117,7 @@
     "difficulty": "EASY",
     "cuisine": "Spanish",
     "mealSlot": [
-      "SNACK",
+      "TAPAS",
       "DINNER"
     ],
     "effortTier": "WEEKNIGHT",
@@ -4276,7 +4276,7 @@
     "difficulty": "MEDIUM",
     "cuisine": "Spanish",
     "mealSlot": [
-      "SNACK",
+      "TAPAS",
       "DINNER"
     ],
     "effortTier": "WEEKEND",
@@ -4568,7 +4568,7 @@
     "mealSlot": [
       "BREAKFAST",
       "LUNCH",
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKNIGHT",
     "batchFriendly": false,
@@ -4715,7 +4715,7 @@
     "difficulty": "MEDIUM",
     "cuisine": "Spanish",
     "mealSlot": [
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKEND",
     "batchFriendly": true,
@@ -4876,7 +4876,7 @@
     "cuisine": "Spanish",
     "mealSlot": [
       "BREAKFAST",
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKEND",
     "batchFriendly": false,
@@ -5063,7 +5063,7 @@
     "difficulty": "EASY",
     "cuisine": "Spanish",
     "mealSlot": [
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKEND",
     "batchFriendly": true,
@@ -5214,7 +5214,7 @@
     "difficulty": "MEDIUM",
     "cuisine": "Spanish",
     "mealSlot": [
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKEND",
     "batchFriendly": true,
@@ -5365,7 +5365,7 @@
     "difficulty": "MEDIUM",
     "cuisine": "Spanish",
     "mealSlot": [
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKEND",
     "batchFriendly": true,
@@ -5514,7 +5514,7 @@
     "cuisine": "Spanish",
     "mealSlot": [
       "BREAKFAST",
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKEND",
     "batchFriendly": true,
@@ -5849,7 +5849,7 @@
     "cuisine": "Spanish",
     "mealSlot": [
       "LUNCH",
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKNIGHT",
     "batchFriendly": true,
@@ -6004,7 +6004,7 @@
     "cuisine": "Spanish",
     "mealSlot": [
       "LUNCH",
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKNIGHT",
     "batchFriendly": true,
@@ -6158,7 +6158,7 @@
     "cuisine": "Spanish",
     "mealSlot": [
       "LUNCH",
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKNIGHT",
     "batchFriendly": true,
@@ -6631,7 +6631,7 @@
     "difficulty": "EASY",
     "cuisine": "Spanish",
     "mealSlot": [
-      "SNACK",
+      "TAPAS",
       "BREAKFAST"
     ],
     "effortTier": "WEEKNIGHT",
@@ -6963,7 +6963,7 @@
     "difficulty": "EASY",
     "cuisine": "Spanish",
     "mealSlot": [
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKNIGHT",
     "batchFriendly": false,
@@ -7080,7 +7080,7 @@
     "cuisine": "Spanish",
     "mealSlot": [
       "LUNCH",
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKNIGHT",
     "batchFriendly": true,
@@ -8225,7 +8225,7 @@
     "mealSlot": [
       "LUNCH",
       "DINNER",
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKNIGHT",
     "batchFriendly": false,

@@ -1253,7 +1253,7 @@
     "difficulty": "EASY",
     "cuisine": "Caribbean",
     "mealSlot": [
-      "SNACK",
+      "TAPAS",
       "DINNER"
     ],
     "effortTier": "WEEKNIGHT",
@@ -1880,7 +1880,7 @@
     "cuisine": "Caribbean",
     "mealSlot": [
       "BREAKFAST",
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKEND",
     "batchFriendly": true,
@@ -3546,7 +3546,7 @@
     "difficulty": "EASY",
     "cuisine": "Caribbean",
     "mealSlot": [
-      "SNACK",
+      "TAPAS",
       "DINNER"
     ],
     "effortTier": "WEEKNIGHT",
@@ -3716,7 +3716,7 @@
     "difficulty": "MEDIUM",
     "cuisine": "Caribbean",
     "mealSlot": [
-      "SNACK",
+      "TAPAS",
       "DINNER"
     ],
     "effortTier": "WEEKEND",
@@ -3951,7 +3951,7 @@
     "difficulty": "MEDIUM",
     "cuisine": "Caribbean",
     "mealSlot": [
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKEND",
     "batchFriendly": false,
@@ -4139,7 +4139,7 @@
     "difficulty": "MEDIUM",
     "cuisine": "Caribbean",
     "mealSlot": [
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKEND",
     "batchFriendly": true,

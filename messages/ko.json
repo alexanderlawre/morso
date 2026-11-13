@@ -165,7 +165,10 @@
       "hours": "{hours}시간",
       "hoursMinutes": "{hours}시간 {minutes}분",
       "gotIt": "확인했어요",
-      "goMorsoPlus": "Morso+ 시작하기"
+      "goMorsoPlus": "Morso+ 시작하기",
+      "guestTitle": "무료 미리보기 새로고침을 사용했어요",
+      "guestBody": "새로운 레시피를 계속 둘러보고, 레시피를 저장하고, 맞춤형 일일 추천을 받으려면 무료 계정을 만드세요.",
+      "createAccount": "계정 만들기"
     }
   },
   "onboarding": {
@@ -275,7 +278,8 @@
       "placeholder": "선택 사항 메모...",
       "skip": "건너뛰기",
       "share": "공유하기"
-    }
+    },
+    "allergenDisclaimer": "알레르기 유발 성분 및 영양 정보는 일반적인 참고용으로만 제공되며 의학적 조언이 아닙니다 — 항상 전체 재료 목록을 직접 확인하세요."
   },
   "submitRecipe": {
     "form": {
@@ -415,7 +419,13 @@
         "generic": "문제가 발생했습니다. 다시 시도해 주세요."
       },
       "forgotPassword": "현재 비밀번호를 잊으셨나요? 대신 <link>이메일로 재설정</link>하세요.",
-      "signOut": "로그아웃"
+      "signOut": "로그아웃",
+      "deleteAccount": "계정 삭제",
+      "deleteConfirmTitle": "계정을 삭제하시겠어요?",
+      "deleteConfirmBody": "이 작업은 프로필, 환경설정, 저장한 레시피, 요리 기록을 영구적으로 삭제합니다. 되돌릴 수 없습니다.",
+      "deleteConfirmButton": "네, 제 계정을 삭제할게요",
+      "deleting": "삭제 중...",
+      "cancel": "취소"
     },
     "public": {
       "noCookbooks": "아직 공개된 쿡북이 없습니다.",
@@ -510,6 +520,25 @@
       "noRecipes": "아직 레시피가 없습니다. 위의 요리한 레시피에서 추가하세요.",
       "deleting": "삭제 중...",
       "deleteCookbook": "쿡북 삭제"
+    }
+  },
+  "legal": {
+    "footer": {
+      "privacy": "개인정보 보호",
+      "terms": "이용약관"
+    },
+    "signupAgreement": "계정을 만들면 당사의 <terms>이용약관</terms> 및 <privacy>개인정보 처리방침</privacy>에 동의하는 것입니다."
+  },
+  "guest": {
+    "header": {
+      "logIn": "로그인",
+      "signUp": "가입하기"
+    },
+    "signUpPrompt": {
+      "title": "무료 계정 만들기",
+      "body": "레시피를 저장하고, \"나중에 요리하기\" 목록을 만들고, 요리한 내용을 기록하세요 — 계속하려면 무료 계정을 만드세요.",
+      "maybeLater": "나중에 할게요",
+      "createAccount": "계정 만들기"
     }
   }
 }

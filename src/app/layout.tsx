@@ -35,14 +35,34 @@ const stixTwoText = STIX_Two_Text({
 });
 
 export const metadata: Metadata = {
-  title: "Morso",
+  metadataBase: new URL(process.env.APP_URL || "http://localhost:3000"),
+  title: {
+    default: "Morso",
+    template: "%s",
+  },
   description: "Four recipes. That's the whole surface.",
+  icons: {
+    icon: "/brand/png/app-icon-light-32.png",
+    apple: "/brand/png/app-icon-light-180.png",
+  },
+  openGraph: {
+    siteName: "Morso",
+    title: "Morso",
+    description: "Four recipes. That's the whole surface.",
+    images: ["/brand/png/app-icon-light-512.png"],
+  },
+  twitter: {
+    card: "summary",
+    title: "Morso",
+    description: "Four recipes. That's the whole surface.",
+  },
 };
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
+  // Deliberately no maximumScale — locking pinch-zoom is an accessibility
+  // problem for low-vision users, and nothing on this site needs it.
   viewportFit: "cover",
 };
 

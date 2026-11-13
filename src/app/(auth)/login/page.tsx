@@ -11,6 +11,7 @@ import { PageTransition } from "@/components/page-transition";
 import { MotionButton } from "@/components/motion-button";
 import { OAuthButtons } from "@/components/oauth-buttons";
 import { LoadingOrb } from "@/components/loading-orb";
+import { LegalFooter } from "@/components/legal-footer";
 import { hideKeyboard } from "@/lib/native";
 
 export default function LoginPage() {
@@ -126,6 +127,8 @@ export default function LoginPage() {
             {t("createAccount")}
           </Link>
         </div>
+
+        <LegalFooter className="mt-6" />
       </PageTransition>
     </main>
   );

@@ -282,7 +282,7 @@
     "mealSlot": [
       "LUNCH",
       "DINNER",
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKEND",
     "batchFriendly": true,
@@ -931,7 +931,7 @@
     "mealSlot": [
       "LUNCH",
       "DINNER",
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKNIGHT",
     "batchFriendly": false,
@@ -1264,7 +1264,7 @@
     "difficulty": "MEDIUM",
     "cuisine": "Chilean",
     "mealSlot": [
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKEND",
     "batchFriendly": true,
@@ -1411,7 +1411,7 @@
     "cuisine": "Chilean",
     "mealSlot": [
       "BREAKFAST",
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKEND",
     "batchFriendly": true,
@@ -1566,7 +1566,7 @@
     "difficulty": "EASY",
     "cuisine": "Chilean",
     "mealSlot": [
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKNIGHT",
     "batchFriendly": false,
@@ -2375,7 +2375,7 @@
     "cuisine": "Chilean",
     "mealSlot": [
       "BREAKFAST",
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKEND",
     "batchFriendly": true,
@@ -2507,7 +2507,7 @@
     "difficulty": "EASY",
     "cuisine": "Chilean",
     "mealSlot": [
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKEND",
     "batchFriendly": true,
@@ -2685,7 +2685,7 @@
     "difficulty": "EASY",
     "cuisine": "Chilean",
     "mealSlot": [
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKNIGHT",
     "batchFriendly": true,

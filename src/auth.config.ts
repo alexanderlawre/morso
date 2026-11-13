@@ -32,9 +32,46 @@ export const authConfig: NextAuthConfig = {
         pathname === "/" ||
         pathname === "/dashboard" ||
         pathname.startsWith("/recipe/") ||
-        pathname === "/api/dashboard/refresh";
+        pathname === "/api/dashboard/refresh" ||
+        // Legal pages, and the crawler/PWA metadata files Next's app-router
+        // special-file convention serves at these exact paths — all must be
+        // reachable by a logged-out visitor (and by Google, which never has
+        // a session) or they 307 to /login instead of rendering.
+        pathname === "/privacy" ||
+        pathname === "/terms" ||
+        pathname === "/robots.txt" ||
+        pathname === "/sitemap.xml" ||
+        pathname === "/manifest.webmanifest";
 
       if (isPublicRoute) return true;
+
+      // A path that doesn't match any real route at all (typo, dead link,
+      // bot probe) can't reach anything behind the gate either way — there's
+      // no page.tsx for it — so let it through instead of bouncing to
+      // /login. Next's router then renders the real not-found.tsx 404, which
+      // is both correct for a crawler and friendlier for a person who
+      // followed a bad link.
+      const knownRoutePrefixes = [
+        "/login",
+        "/signup",
+        "/forgot-password",
+        "/reset-password",
+        "/dashboard",
+        "/onboarding",
+        "/admin",
+        "/api",
+        "/cook-later",
+        "/profile",
+        "/recipe",
+        "/settings",
+        "/submit-recipe",
+        "/privacy",
+        "/terms",
+      ];
+      const isKnownRoute =
+        pathname === "/" || knownRoutePrefixes.some((prefix) => pathname.startsWith(prefix));
+      if (!isKnownRoute) return true;
+
       if (!isLoggedIn) return false;
 
       const needsOnboarding =

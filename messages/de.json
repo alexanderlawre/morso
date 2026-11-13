@@ -165,7 +165,10 @@
       "hours": "{hours} Std.",
       "hoursMinutes": "{hours} Std. {minutes} Min.",
       "gotIt": "Verstanden",
-      "goMorsoPlus": "Zu Morso+"
+      "goMorsoPlus": "Zu Morso+",
+      "guestTitle": "Das war deine kostenlose Vorschau-Aktualisierung",
+      "guestBody": "Erstelle ein kostenloses Konto, um weiter neue Rezepte zu entdecken, Rezepte zu speichern und eine auf dich zugeschnittene tägliche Auswahl zu erhalten.",
+      "createAccount": "Konto erstellen"
     }
   },
   "onboarding": {
@@ -275,7 +278,8 @@
       "placeholder": "Optionale Notiz...",
       "skip": "Überspringen",
       "share": "Mitunterschrift teilen"
-    }
+    },
+    "allergenDisclaimer": "Angaben zu Allergenen und Nährwerten dienen nur der allgemeinen Orientierung und sind keine medizinische Beratung — prüfe immer selbst die vollständige Zutatenliste."
   },
   "submitRecipe": {
     "form": {
@@ -415,7 +419,13 @@
         "generic": "Etwas ist schiefgelaufen. Versuch es erneut."
       },
       "forgotPassword": "Aktuelles Passwort vergessen? <link>Stattdessen per E-Mail zurücksetzen</link>.",
-      "signOut": "Abmelden"
+      "signOut": "Abmelden",
+      "deleteAccount": "Konto löschen",
+      "deleteConfirmTitle": "Konto löschen?",
+      "deleteConfirmBody": "Dies entfernt dauerhaft dein Profil, deine Einstellungen, gespeicherten Rezepte und deinen Kochverlauf. Dies kann nicht rückgängig gemacht werden.",
+      "deleteConfirmButton": "Ja, mein Konto löschen",
+      "deleting": "Wird gelöscht...",
+      "cancel": "Abbrechen"
     },
     "public": {
       "noCookbooks": "Noch keine öffentlichen Kochbücher.",
@@ -510,6 +520,25 @@
       "noRecipes": "Noch keine Rezepte. Füge oben eins aus deinen gekochten Rezepten hinzu.",
       "deleting": "Wird gelöscht...",
       "deleteCookbook": "Kochbuch löschen"
+    }
+  },
+  "legal": {
+    "footer": {
+      "privacy": "Datenschutz",
+      "terms": "Nutzungsbedingungen"
+    },
+    "signupAgreement": "Mit der Kontoerstellung stimmst du unseren <terms>Nutzungsbedingungen</terms> und unserer <privacy>Datenschutzerklärung</privacy> zu."
+  },
+  "guest": {
+    "header": {
+      "logIn": "Anmelden",
+      "signUp": "Registrieren"
+    },
+    "signUpPrompt": {
+      "title": "Erstelle ein kostenloses Konto",
+      "body": "Speichere Rezepte, erstelle eine „Später kochen“-Liste und halte fest, was du gekocht hast — erstelle ein kostenloses Konto, um weiterzumachen.",
+      "maybeLater": "Vielleicht später",
+      "createAccount": "Konto erstellen"
     }
   }
 }

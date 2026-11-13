@@ -676,3 +676,20 @@ model RefreshUsage {
 
   @@unique([userId, section, windowKey])
 }
+
+// Fixed-window rate-limit counter for endpoints with no authenticated User
+// to hang a per-user row off of (signup, credentials login) — same
+// create-then-catch-the-unique-constraint technique as RefreshUsage above,
+// just keyed by an arbitrary string (e.g. "signup:<ip>" or "login:<email>")
+// instead of a userId. See src/lib/rate-limit.ts. Rows are never deleted —
+// a fresh window naturally gets a fresh windowKey, so old rows just age out
+// as inert history, same as RefreshUsage.
+model RateLimitHit {
+  id        String   @id @default(cuid())
+  key       String
+  windowKey String
+  count     Int      @default(1)
+  createdAt DateTime @default(now())
+
+  @@unique([key, windowKey])
+}

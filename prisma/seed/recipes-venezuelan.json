@@ -808,7 +808,7 @@
     "cuisine": "Venezuelan",
     "mealSlot": [
       "BREAKFAST",
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKNIGHT",
     "batchFriendly": true,
@@ -959,7 +959,7 @@
     "difficulty": "MEDIUM",
     "cuisine": "Venezuelan",
     "mealSlot": [
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKEND",
     "batchFriendly": true,
@@ -1113,7 +1113,7 @@
     "cuisine": "Venezuelan",
     "mealSlot": [
       "BREAKFAST",
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKEND",
     "batchFriendly": true,
@@ -1617,7 +1617,7 @@
     "cuisine": "Venezuelan",
     "mealSlot": [
       "BREAKFAST",
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKEND",
     "batchFriendly": true,
@@ -1826,7 +1826,7 @@
     "cuisine": "Venezuelan",
     "mealSlot": [
       "LUNCH",
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKNIGHT",
     "batchFriendly": true,
@@ -2226,7 +2226,7 @@
     "difficulty": "EASY",
     "cuisine": "Venezuelan",
     "mealSlot": [
-      "SNACK",
+      "TAPAS",
       "DINNER"
     ],
     "effortTier": "WEEKNIGHT",
@@ -2339,7 +2339,7 @@
     "difficulty": "MEDIUM",
     "cuisine": "Venezuelan",
     "mealSlot": [
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKEND",
     "batchFriendly": true,
@@ -2487,7 +2487,7 @@
     "difficulty": "EASY",
     "cuisine": "Venezuelan",
     "mealSlot": [
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKNIGHT",
     "batchFriendly": true,

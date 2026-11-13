@@ -215,7 +215,7 @@
     "mealSlot": [
       "LUNCH",
       "DINNER",
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKEND",
     "batchFriendly": true,
@@ -920,7 +920,7 @@
     "mealSlot": [
       "LUNCH",
       "DINNER",
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKNIGHT",
     "batchFriendly": false,
@@ -1078,7 +1078,7 @@
     "difficulty": "EASY",
     "cuisine": "Argentinian",
     "mealSlot": [
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKNIGHT",
     "batchFriendly": false,
@@ -1199,7 +1199,7 @@
     "cuisine": "Argentinian",
     "mealSlot": [
       "LUNCH",
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKEND",
     "batchFriendly": true,
@@ -1604,7 +1604,7 @@
     "difficulty": "EASY",
     "cuisine": "Argentinian",
     "mealSlot": [
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKEND",
     "batchFriendly": true,
@@ -2461,7 +2461,7 @@
     "cuisine": "Argentinian",
     "mealSlot": [
       "BREAKFAST",
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "PROJECT",
     "batchFriendly": true,
@@ -2659,7 +2659,7 @@
     "difficulty": "MEDIUM",
     "cuisine": "Argentinian",
     "mealSlot": [
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKEND",
     "batchFriendly": false,

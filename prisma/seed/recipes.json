@@ -5264,7 +5264,7 @@
     "cuisine": "Mexican",
     "mealSlot": [
       "LUNCH",
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKNIGHT",
     "batchFriendly": false,
@@ -5671,7 +5671,7 @@
     "cuisine": "Mexican",
     "mealSlot": [
       "LUNCH",
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKNIGHT",
     "batchFriendly": true,
@@ -6067,7 +6067,7 @@
     "cuisine": "Japanese",
     "mealSlot": [
       "DINNER",
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKEND",
     "batchFriendly": true,
@@ -6209,7 +6209,7 @@
     "cuisine": "Japanese",
     "mealSlot": [
       "LUNCH",
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKNIGHT",
     "batchFriendly": true,
@@ -8101,7 +8101,7 @@
     "difficulty": "MEDIUM",
     "cuisine": "Thai",
     "mealSlot": [
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKEND",
     "batchFriendly": false,
@@ -8230,7 +8230,7 @@
     "cuisine": "Thai",
     "mealSlot": [
       "LUNCH",
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKNIGHT",
     "batchFriendly": false,
@@ -8676,7 +8676,7 @@
     "difficulty": "EASY",
     "cuisine": "Middle Eastern",
     "mealSlot": [
-      "SNACK",
+      "TAPAS",
       "LUNCH"
     ],
     "effortTier": "WEEKNIGHT",
@@ -9018,7 +9018,7 @@
     "cuisine": "Middle Eastern",
     "mealSlot": [
       "LUNCH",
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKNIGHT",
     "batchFriendly": true,
@@ -9302,7 +9302,7 @@
     "cuisine": "Middle Eastern",
     "mealSlot": [
       "LUNCH",
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKNIGHT",
     "batchFriendly": false,
@@ -10085,7 +10085,7 @@
     "difficulty": "EASY",
     "cuisine": "American",
     "mealSlot": [
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKNIGHT",
     "batchFriendly": false,
@@ -11823,7 +11823,7 @@
     "cuisine": "Korean",
     "mealSlot": [
       "DINNER",
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKEND",
     "batchFriendly": false,
@@ -13159,7 +13159,7 @@
     "difficulty": "MEDIUM",
     "cuisine": "Filipino",
     "mealSlot": [
-      "SNACK",
+      "TAPAS",
       "DINNER"
     ],
     "effortTier": "WEEKEND",
@@ -13303,6 +13303,12 @@
     ],
     "heroColor": "#B5734A",
     "allergenReviewStatus": "VERIFIED",
+    "caloriesPerServing": 420,
+    "proteinGrams": 32,
+    "carbsGrams": 52,
+    "fatGrams": 9,
+    "fiberGrams": 2,
+    "cholesterolMg": 85,
     "ingredients": [
       {
         "component": null,
@@ -13361,6 +13367,15 @@
       {
         "component": null,
         "order": 7,
+        "quantity": "2",
+        "unit": "tbsp",
+        "item": "fish sauce",
+        "prepNote": null,
+        "optional": false
+      },
+      {
+        "component": null,
+        "order": 8,
         "quantity": "1",
         "unit": "cup",
         "item": "bean sprouts, herbs, lime",
@@ -13407,9 +13422,7 @@
     "dietTags": [
       "Gluten-free",
       "Dairy-free",
-      "Low-sodium",
-      "Diabetic-friendly",
-      "Kosher"
+      "Diabetic-friendly"
     ],
     "allergenTags": [
       "Fish"
@@ -13570,7 +13583,7 @@
     "cuisine": "Vietnamese",
     "mealSlot": [
       "LUNCH",
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKEND",
     "batchFriendly": false,
@@ -14805,7 +14818,7 @@
     "cuisine": "West African",
     "mealSlot": [
       "DINNER",
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKNIGHT",
     "batchFriendly": false,
@@ -15412,7 +15425,7 @@
     "cuisine": "Brazilian",
     "mealSlot": [
       "BREAKFAST",
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKNIGHT",
     "batchFriendly": true,
@@ -16100,7 +16113,7 @@
     "cuisine": "Indonesian",
     "mealSlot": [
       "DINNER",
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKNIGHT",
     "batchFriendly": false,
@@ -16919,8 +16932,7 @@
     "difficulty": "EASY",
     "cuisine": "Greek",
     "mealSlot": [
-      "TAPAS",
-      "SNACK"
+      "TAPAS"
     ],
     "effortTier": "WEEKNIGHT",
     "batchFriendly": false,

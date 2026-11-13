@@ -9,6 +9,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Liquid } from "liquid-gooey";
 import { Capacitor } from "@capacitor/core";
 import { logInteraction } from "@/lib/log-interaction";
+import { trackEvent } from "@/lib/analytics";
 import { hapticImpactLight, hapticImpactMedium } from "@/lib/native";
 import { shuffle } from "@/lib/shuffle";
 import {
@@ -96,6 +97,8 @@ function StarButton({
         const body = await res.json().catch(() => null);
         onSavedChange(!next);
         setError(body?.error ?? t("recipeCard.starError"));
+      } else if (next) {
+        trackEvent("cook_later", { recipeId });
       }
     } catch {
       onSavedChange(!next);
@@ -183,12 +186,20 @@ function RecipeCard({
   // scoped precisely to "when they refresh", never to first paint.
   const isFirstPop = useRef(true);
   const [popped, setPopped] = useState(true);
+  // Separate from `popped`: this one never goes back to false. Mounting the
+  // Liquid wrapper (an SVG goo-filter effect) on all 4 cards costs real
+  // layout/paint time, so it stays unmounted — same as the cookbook/tapas/
+  // breakfast cards, which never pass popKey at all — until a refresh has
+  // actually happened at least once, instead of paying that cost on every
+  // single dashboard load whether or not it'll ever be used.
+  const [hasEverRefreshed, setHasEverRefreshed] = useState(false);
   useEffect(() => {
     if (popKey === undefined) return;
     if (isFirstPop.current) {
       isFirstPop.current = false;
       return;
     }
+    setHasEverRefreshed(true);
     setPopped(false);
     const raf = requestAnimationFrame(() => setPopped(true));
     return () => cancelAnimationFrame(raf);
@@ -247,6 +258,7 @@ function RecipeCard({
         onSavedChange(recipe.id, true);
         logInteraction(recipe.id, "STAR");
         hapticImpactMedium();
+        trackEvent("cook_later", { recipeId: recipe.id });
       }
     } catch {
       // Non-fatal: navigate regardless so the user isn't stuck.
@@ -273,6 +285,12 @@ function RecipeCard({
               fill
               sizes="(min-width: 640px) 50vw, 100vw"
               className="object-cover"
+              quality={90}
+              // Only the main 4-card rotation passes `index` (see its own
+              // doc comment above), and all 4 sit above the fold on initial
+              // load — preload them instead of lazy-loading, since lazy
+              // loading an image the user sees immediately just delays it.
+              priority={index !== undefined && index < 4}
             />
           </div>
         ) : null}
@@ -362,7 +380,7 @@ function RecipeCard({
       onClick={() => router.push(`/recipe/${recipe.slug}`)}
       className="cursor-pointer overflow-hidden rounded-[25px] border border-border bg-surface shadow-brand"
     >
-      {popKey === undefined ? (
+      {popKey === undefined || !hasEverRefreshed ? (
         innerContent
       ) : (
         // Same decorative-halo technique already used for the refresh button
@@ -771,6 +789,13 @@ export function DashboardClient({
   // already-visible cards and shouldn't replay the pop.
   const [refreshGeneration, setRefreshGeneration] = useState(0);
 
+  useEffect(() => {
+    trackEvent("feed_view", { category });
+    // Only the initial mount counts as "viewing the feed" — a category
+    // switch re-picks a new pool but isn't a fresh page view.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   function replaceVisible(next: RecipeCardData[]) {
     setVisible(next);
     setRefreshGeneration((g) => g + 1);
@@ -859,6 +884,7 @@ export function DashboardClient({
 
       replaceVisible(body.recipes);
       setBaseVisible(body.recipes);
+      trackEvent("refresh", { category: activeCategory });
     } catch {
       setRefreshMessage(t("refresh.error"));
     } finally {

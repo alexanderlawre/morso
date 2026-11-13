@@ -34,5 +34,5 @@ export const FOOD_GROUP_CLUSTERS: { title: string; groups: string[] }[] = [
   { title: "Fish & shellfish", groups: ["Oily fish", "White fish", "Shellfish"] },
   { title: "Eggs & dairy", groups: ["Eggs", "Dairy", "Fermented foods"] },
   { title: "Nuts, seeds & soy", groups: ["Nuts & seeds", "Soy & tofu"] },
-  { title: "Sweets & fried indulgence", groups: ["Added sugar", "Fried & rich"] },
+  { title: "Treats", groups: ["Added sugar", "Fried & rich"] },
 ];

@@ -24,6 +24,12 @@ const nextConfig: NextConfig = {
     dangerouslyAllowSVG: true,
     contentDispositionType: "attachment",
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    // Recipe photos use quality=90 (see recipe-card-shell.tsx,
+    // dashboard-client.tsx, recipe-detail-client.tsx) — sharper than the
+    // 75 default, which was visibly soft on retina displays at card size.
+    // Next 15+ requires every quality value an <Image> passes to be listed
+    // here explicitly.
+    qualities: [75, 90],
   },
 };
 

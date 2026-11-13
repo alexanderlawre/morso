@@ -120,6 +120,13 @@ export function ProfileMenu({
             >
               How Morso works
             </button>
+            <a
+              href="mailto:hello@morso.app?subject=Morso%20feedback"
+              onClick={() => setOpen(false)}
+              className="block px-4 py-2 text-sm text-ink transition hover:bg-hover"
+            >
+              Send feedback
+            </a>
             <div className="my-1.5 border-t border-border" />
             <button
               onClick={() => signOut({ callbackUrl: "/login" })}

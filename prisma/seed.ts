@@ -87,6 +87,16 @@ type RecipeSeed = {
   // Optional side/drink pairing recommendation — only populated where the
   // pairing is culturally unambiguous.
   pairingSuggestion?: string;
+  // Per-serving macros — optional since most of the bulk-seeded recipes in
+  // this file don't have them filled in yet. The detail page scales these
+  // by the servings stepper itself, so these must already be per-serving,
+  // not whole-recipe totals.
+  caloriesPerServing?: number | null;
+  proteinGrams?: number | null;
+  carbsGrams?: number | null;
+  fatGrams?: number | null;
+  fiberGrams?: number | null;
+  cholesterolMg?: number | null;
 };
 
 async function main() {
@@ -153,6 +163,12 @@ async function main() {
             attributeTags: { set: recipe.attributes.map((code) => ({ code })) },
             heroColor: recipe.heroColor,
             pairingSuggestion: recipe.pairingSuggestion ?? null,
+            caloriesPerServing: recipe.caloriesPerServing ?? null,
+            proteinGrams: recipe.proteinGrams ?? null,
+            carbsGrams: recipe.carbsGrams ?? null,
+            fatGrams: recipe.fatGrams ?? null,
+            fiberGrams: recipe.fiberGrams ?? null,
+            cholesterolMg: recipe.cholesterolMg ?? null,
             // Ingredients/steps are deleted+recreated below, which would
             // desync any order-indexed RecipeTranslation rows — bump so the
             // read path detects staleness and falls back to English instead
@@ -208,6 +224,12 @@ async function main() {
         allergenReviewStatus: recipe.allergenReviewStatus,
         isActive: recipe.isActive ?? true,
         pairingSuggestion: recipe.pairingSuggestion ?? null,
+        caloriesPerServing: recipe.caloriesPerServing ?? null,
+        proteinGrams: recipe.proteinGrams ?? null,
+        carbsGrams: recipe.carbsGrams ?? null,
+        fatGrams: recipe.fatGrams ?? null,
+        fiberGrams: recipe.fiberGrams ?? null,
+        cholesterolMg: recipe.cholesterolMg ?? null,
         ingredients: { create: recipe.ingredients },
         steps: { create: recipe.steps },
         subRecipes: recipe.subRecipes

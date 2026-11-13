@@ -24,6 +24,9 @@ export function AccountSettingsSection({
   const [saved, setSaved] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [passwordIsSet, setPasswordIsSet] = useState(hasPassword);
+  const [confirmingDelete, setConfirmingDelete] = useState(false);
+  const [deleting, setDeleting] = useState(false);
+  const [deleteError, setDeleteError] = useState<string | null>(null);
 
   async function changePassword() {
     if (newPassword.length < 10) {
@@ -55,6 +58,24 @@ export function AccountSettingsSection({
       setError(t("errors.generic"));
     } finally {
       setSaving(false);
+    }
+  }
+
+  async function deleteAccount() {
+    setDeleting(true);
+    setDeleteError(null);
+    try {
+      const res = await fetch("/api/account/delete", { method: "POST" });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        setDeleteError(data.error ?? t("errors.generic"));
+        setDeleting(false);
+        return;
+      }
+      await signOut({ callbackUrl: "/" });
+    } catch {
+      setDeleteError(t("errors.generic"));
+      setDeleting(false);
     }
   }
 
@@ -138,6 +159,49 @@ export function AccountSettingsSection({
         >
           {t("signOut")}
         </MotionButton>
+      </div>
+
+      <div className="mt-5 border-t border-border pt-5">
+        {!confirmingDelete ? (
+          <MotionButton
+            type="button"
+            onClick={() => setConfirmingDelete(true)}
+            whileHover={{ y: -2 }}
+            className="rounded-xl border border-danger/40 px-4 py-2.5 text-sm font-medium text-danger shadow-brand transition-colors hover:bg-hover"
+          >
+            {t("deleteAccount")}
+          </MotionButton>
+        ) : (
+          <div className="rounded-xl border border-danger/40 p-4">
+            <p className="text-sm font-medium text-ink">{t("deleteConfirmTitle")}</p>
+            <p className="mt-1 text-xs text-muted">{t("deleteConfirmBody")}</p>
+            <div className="mt-3 flex items-center gap-3">
+              <MotionButton
+                type="button"
+                onClick={deleteAccount}
+                disabled={deleting}
+                className="rounded-xl bg-danger px-4 py-2.5 text-sm font-medium text-white shadow-brand disabled:opacity-50"
+              >
+                {deleting ? (
+                  <span className="inline-flex items-center justify-center gap-2">
+                    <LoadingOrb size={20} theme="dark" /> {t("deleting")}
+                  </span>
+                ) : (
+                  t("deleteConfirmButton")
+                )}
+              </MotionButton>
+              <MotionButton
+                type="button"
+                onClick={() => setConfirmingDelete(false)}
+                disabled={deleting}
+                className="rounded-xl border border-border px-4 py-2.5 text-sm font-medium text-ink transition-colors hover:bg-hover"
+              >
+                {t("cancel")}
+              </MotionButton>
+            </div>
+            {deleteError && <p className="mt-2 text-sm text-danger">{deleteError}</p>}
+          </div>
+        )}
       </div>
     </CollapsibleSection>
   );

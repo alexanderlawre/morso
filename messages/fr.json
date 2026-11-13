@@ -165,7 +165,10 @@
       "hours": "{hours} h",
       "hoursMinutes": "{hours} h {minutes} min",
       "gotIt": "Compris",
-      "goMorsoPlus": "Passer à Morso+"
+      "goMorsoPlus": "Passer à Morso+",
+      "guestTitle": "C'était votre actualisation gratuite d'aperçu",
+      "guestBody": "Créez un compte gratuit pour continuer à découvrir de nouvelles recettes, enregistrer des recettes et obtenir une rotation quotidienne personnalisée.",
+      "createAccount": "Créer un compte"
     }
   },
   "onboarding": {
@@ -275,7 +278,8 @@
       "placeholder": "Note facultative...",
       "skip": "Passer",
       "share": "Partager"
-    }
+    },
+    "allergenDisclaimer": "Les informations sur les allergènes et la nutrition sont fournies à titre indicatif uniquement, et ne constituent pas un avis médical — vérifiez toujours vous-même la liste complète des ingrédients."
   },
   "submitRecipe": {
     "form": {
@@ -415,7 +419,13 @@
         "generic": "Une erreur s'est produite. Réessaie."
       },
       "forgotPassword": "Tu as oublié ton mot de passe actuel ? <link>Réinitialise-le par e-mail</link> à la place.",
-      "signOut": "Se déconnecter"
+      "signOut": "Se déconnecter",
+      "deleteAccount": "Supprimer le compte",
+      "deleteConfirmTitle": "Supprimer votre compte ?",
+      "deleteConfirmBody": "Cela supprime définitivement votre profil, vos préférences, vos recettes enregistrées et votre historique de cuisine. Cette action est irréversible.",
+      "deleteConfirmButton": "Oui, supprimer mon compte",
+      "deleting": "Suppression en cours...",
+      "cancel": "Annuler"
     },
     "public": {
       "noCookbooks": "Pas encore de livres de recettes publics.",
@@ -510,6 +520,25 @@
       "noRecipes": "Pas encore de recettes. Ajoute-en une depuis tes recettes cuisinées ci-dessus.",
       "deleting": "Suppression...",
       "deleteCookbook": "Supprimer le livre de recettes"
+    }
+  },
+  "legal": {
+    "footer": {
+      "privacy": "Confidentialité",
+      "terms": "Conditions"
+    },
+    "signupAgreement": "En créant un compte, vous acceptez nos <terms>Conditions</terms> et notre <privacy>Politique de confidentialité</privacy>."
+  },
+  "guest": {
+    "header": {
+      "logIn": "Se connecter",
+      "signUp": "S'inscrire"
+    },
+    "signUpPrompt": {
+      "title": "Créez un compte gratuit",
+      "body": "Enregistrez des recettes, créez une liste « Cuisiner plus tard » et suivez ce que vous cuisinez — créez un compte gratuit pour continuer.",
+      "maybeLater": "Plus tard",
+      "createAccount": "Créer un compte"
     }
   }
 }
