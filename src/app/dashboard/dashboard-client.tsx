@@ -9,6 +9,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Liquid } from "liquid-gooey";
 import { Capacitor } from "@capacitor/core";
 import { logInteraction } from "@/lib/log-interaction";
+import { trackEvent } from "@/lib/analytics";
 import { hapticImpactLight, hapticImpactMedium } from "@/lib/native";
 import { shuffle } from "@/lib/shuffle";
 import {
@@ -96,6 +97,8 @@ function StarButton({
         const body = await res.json().catch(() => null);
         onSavedChange(!next);
         setError(body?.error ?? t("recipeCard.starError"));
+      } else if (next) {
+        trackEvent("cook_later", { recipeId });
       }
     } catch {
       onSavedChange(!next);
@@ -255,6 +258,7 @@ function RecipeCard({
         onSavedChange(recipe.id, true);
         logInteraction(recipe.id, "STAR");
         hapticImpactMedium();
+        trackEvent("cook_later", { recipeId: recipe.id });
       }
     } catch {
       // Non-fatal: navigate regardless so the user isn't stuck.
@@ -785,6 +789,13 @@ export function DashboardClient({
   // already-visible cards and shouldn't replay the pop.
   const [refreshGeneration, setRefreshGeneration] = useState(0);
 
+  useEffect(() => {
+    trackEvent("feed_view", { category });
+    // Only the initial mount counts as "viewing the feed" — a category
+    // switch re-picks a new pool but isn't a fresh page view.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   function replaceVisible(next: RecipeCardData[]) {
     setVisible(next);
     setRefreshGeneration((g) => g + 1);
@@ -873,6 +884,7 @@ export function DashboardClient({
 
       replaceVisible(body.recipes);
       setBaseVisible(body.recipes);
+      trackEvent("refresh", { category: activeCategory });
     } catch {
       setRefreshMessage(t("refresh.error"));
     } finally {

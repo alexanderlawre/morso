@@ -12,6 +12,7 @@ import { MotionButton } from "@/components/motion-button";
 import { OAuthButtons } from "@/components/oauth-buttons";
 import { LoadingOrb } from "@/components/loading-orb";
 import { LegalFooter } from "@/components/legal-footer";
+import { trackEvent } from "@/lib/analytics";
 import { hideKeyboard } from "@/lib/native";
 
 export default function SignupPage() {
@@ -35,6 +36,7 @@ export default function SignupPage() {
     }
 
     setLoading(true);
+    trackEvent("signup_start");
 
     try {
       const res = await fetch("/api/signup", {
@@ -62,6 +64,7 @@ export default function SignupPage() {
         return;
       }
 
+      trackEvent("signup_complete");
       hideKeyboard();
       router.push("/onboarding/preferences");
       router.refresh();

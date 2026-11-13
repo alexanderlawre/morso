@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { AnimatePresence, motion } from "framer-motion";
 import { logInteraction } from "@/lib/log-interaction";
+import { trackEvent } from "@/lib/analytics";
 import {
   attributeLabel,
   dietEmblemClass,
@@ -121,6 +122,7 @@ export function RecipeDetailClient({
     // Log OPEN once when the detail page is actually reached, not on link
     // hover/prefetch. Guests reach this page too now, but /api/interactions
     // stays account-only — skip the always-401'd fetch.
+    trackEvent("recipe_view", { recipeId: recipe.id });
     if (isGuest) return;
     logInteraction(recipe.id, "OPEN");
   }, [recipe.id, isGuest]);
@@ -175,6 +177,8 @@ export function RecipeDetailClient({
         const body = await res.json().catch(() => null);
         setStarred(!next);
         setSaveError(body?.error ?? t("errors.somethingWentWrong"));
+      } else if (next) {
+        trackEvent("cook_later", { recipeId: recipe.id });
       }
     } catch {
       setStarred(!next);
@@ -218,6 +222,7 @@ export function RecipeDetailClient({
       setShowCosign(true);
       setJustCooked(true);
       setTimeout(() => setJustCooked(false), 1400);
+      trackEvent("i_cooked_this", { recipeId: recipe.id });
     } catch {
       setCookError(t("errors.cookFailed"));
     } finally {

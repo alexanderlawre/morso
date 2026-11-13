@@ -32,8 +32,8 @@ export default function PrivacyPage() {
           <h2 className="text-lg font-bold text-ink">How we use it</h2>
           <p className="mt-2 text-muted">
             We use your data to run the core product: picking recipes that fit your diet and
-            allergens, remembering what you've saved or cooked, and improving recommendations
-            based on your activity. We don't sell your data, and we don't share it with
+            allergens, remembering what you&apos;ve saved or cooked, and improving recommendations
+            based on your activity. We don&apos;t sell your data, and we don&apos;t share it with
             advertisers.
           </p>
         </section>
@@ -43,7 +43,7 @@ export default function PrivacyPage() {
           <p className="mt-2 text-muted">
             We use a small number of cookies: your signed-in session, and your theme/language
             preference (set before you even create an account, so it carries over once you
-            do). We don't use third-party tracking or advertising cookies.
+            do). We don&apos;t use third-party tracking or advertising cookies.
           </p>
         </section>
 
@@ -73,7 +73,7 @@ export default function PrivacyPage() {
         <section>
           <h2 className="text-lg font-bold text-ink">Children</h2>
           <p className="mt-2 text-muted">
-            Morso is not directed at children, and we don't knowingly collect information from
+            Morso is not directed at children, and we don&apos;t knowingly collect information from
             anyone under 18.
           </p>
         </section>

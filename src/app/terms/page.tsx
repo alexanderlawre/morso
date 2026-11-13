@@ -22,7 +22,7 @@ export default function TermsPage() {
           <p className="mt-2 text-muted">
             Morso recommends recipes based on your diet, allergens, and taste preferences. You
             can browse a limited set of picks without an account; creating a free account
-            unlocks saving recipes, tracking what you've cooked, and personalized
+            unlocks saving recipes, tracking what you&apos;ve cooked, and personalized
             recommendations that improve over time.
           </p>
         </section>
@@ -30,10 +30,10 @@ export default function TermsPage() {
         <section>
           <h2 className="text-lg font-bold text-ink">Your account</h2>
           <p className="mt-2 text-muted">
-            You're responsible for keeping your password secure and for anything that happens
+            You&apos;re responsible for keeping your password secure and for anything that happens
             under your account. Tell us your real diet and allergen preferences — we use them
-            to filter what we show you, but we can't guarantee every recipe is free of an
-            ingredient you didn't tell us about, or that our filtering catches every edge case.
+            to filter what we show you, but we can&apos;t guarantee every recipe is free of an
+            ingredient you didn&apos;t tell us about, or that our filtering catches every edge case.
           </p>
         </section>
 
@@ -51,8 +51,8 @@ export default function TermsPage() {
         <section>
           <h2 className="text-lg font-bold text-ink">Acceptable use</h2>
           <p className="mt-2 text-muted">
-            Don't misuse the service: no scraping at scale, no attempting to break
-            authentication or rate limits, no uploading content you don't have the rights to,
+            Don&apos;t misuse the service: no scraping at scale, no attempting to break
+            authentication or rate limits, no uploading content you don&apos;t have the rights to,
             no impersonating another person.
           </p>
         </section>
@@ -61,8 +61,8 @@ export default function TermsPage() {
           <h2 className="text-lg font-bold text-ink">Premium features</h2>
           <p className="mt-2 text-muted">
             Some features may be offered as part of a paid plan in the future. Pricing, free
-            trial terms, and what's included are subject to change before any paid plan
-            launches, and we'll clearly describe them before you're asked to pay anything.
+            trial terms, and what&apos;s included are subject to change before any paid plan
+            launches, and we&apos;ll clearly describe them before you&apos;re asked to pay anything.
           </p>
         </section>
 
@@ -81,8 +81,8 @@ export default function TermsPage() {
         <section>
           <h2 className="text-lg font-bold text-ink">Disclaimer &amp; liability</h2>
           <p className="mt-2 text-muted">
-            The service is provided "as is," without warranties of any kind. To the extent
-            permitted by law, Morso isn't liable for indirect or consequential damages arising
+            The service is provided &quot;as is,&quot; without warranties of any kind. To the extent
+            permitted by law, Morso isn&apos;t liable for indirect or consequential damages arising
             from your use of the service.
           </p>
         </section>
